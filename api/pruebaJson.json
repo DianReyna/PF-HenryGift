@@ -1,0 +1,40 @@
+[
+    {
+      "id": "a237271c-c204-4b20-aed1-487bedda31b6",
+      "name": "Cursos y talleres",
+      "price": "$2680",
+      "category": [
+                       {
+                          "categoryId":"00054",
+                          "name":"formacion"
+                       }
+                    ],
+      "ranking": "4",
+      "person": "2",
+      "expiration date": "02-09-22",
+      "detail": "aqui puedes estudiar artes marciales",
+      "imagen": "data:image/",
+      "gift": "asdfaev1234",
+      "product": [
+        {
+          "id": "0001",
+          "name": "Curso de fotografía básica",
+          "price": "200",
+          "description":"saraza",
+          "imagen": "data:image/",
+          "location": "823 Gale Terrace",
+          "provider": {
+                           "idProvider":"0000035",
+                           "name":"cursitos",
+                           "phone":"1023514154541",
+                           "adress":"cll 45 n 38 45",
+                           "email":"cursito@gmail.com"
+                       },
+          "stock": {
+                        "stockId":"0005",
+                        "Cantidad":"20"
+                     }
+          }
+      ]
+    }
+  ]
