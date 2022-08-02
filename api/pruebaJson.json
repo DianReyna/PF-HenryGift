@@ -1,40 +1,173 @@
 [
-    {
-      "id": "a237271c-c204-4b20-aed1-487bedda31b6",
-      "name": "Cursos y talleres",
-      "price": "$2680",
-      "category": [
-                       {
-                          "categoryId":"00054",
-                          "name":"formacion"
-                       }
-                    ],
-      "ranking": "4",
-      "person": "2",
-      "expiration date": "02-09-22",
-      "detail": "aqui puedes estudiar artes marciales",
-      "imagen": "data:image/",
-      "gift": "asdfaev1234",
-      "product": [
-        {
-          "id": "0001",
-          "name": "Curso de fotografía básica",
-          "price": "200",
-          "description":"saraza",
-          "imagen": "data:image/",
-          "location": "823 Gale Terrace",
-          "provider": {
-                           "idProvider":"0000035",
-                           "name":"cursitos",
-                           "phone":"1023514154541",
-                           "adress":"cll 45 n 38 45",
-                           "email":"cursito@gmail.com"
-                       },
-          "stock": {
-                        "stockId":"0005",
-                        "Cantidad":"20"
-                     }
-          }
-      ]
-    }
-  ]
+  {
+    "id": "ATEL-a237271c-1",
+    "name": "Atelier",
+    "price": 2680,
+    "category": [
+      {
+        "categoryId": "00054",
+        "name": "cursos y talleres"
+      }
+    ],
+    "ranking": 4,
+    "person": "2",
+    "expiration date": "02-09-22",
+    "detail": "Ofrece la posibilidad de elegir entre una selección de cursos y talleres, para desarrollar al máximo la creatividad",
+    "imagen": "https://cdn.pixabay.com/photo/2019/01/04/16/20/paint-3913465__340.jpg",
+    "gift": "asdfaev1234-ATEL",
+    "product": [
+      {
+        "id": "TIE-0001",
+        "name": "Taller de ilustración experimental",
+        "price": 200,
+        "description": "Conocé este espacio donde vas a poder elegir entre clases de Ilustración, técnicas experimentales y clases de acuarela.",
+        "imagen": "https://cdn.pixabay.com/photo/2016/11/19/17/28/art-1840481__340.jpg",
+        "location": "823 Gale Terrace, Florida",
+        "provider": {
+          "idProvider": "CUR-0000035",
+          "name": "cursitos",
+          "phone": "1023514154541",
+          "adress": "Rue de Lyon 109, Florida",
+          "email": "cursito@gmail.com"
+        },
+        "stock": {
+          "stockId": "TIE-0005",
+          "Cantidad": "20"
+        }
+      }, 
+      {
+        "id": "MUS-0021",
+        "name": "Clases de Canto",
+        "price": 150,
+        "description": "¿Te gustaría explorar tu pasión por el canto? En Cambiatuvoz encontrarás clases y cursos para dar los primeros pasos. No importa si no sabés cantar.",
+        "imagen": "https://cdn.pixabay.com/photo/2022/04/02/13/43/music-7107045__340.jpg",
+        "location": "SW 112th Ct Miami, Miami",
+        "provider": {
+          "idProvider": "MUS-0000037",
+          "name": "musiquita",
+          "phone": "102351414265",
+          "adress": "2228 Willow Ln, Miami",
+          "email": "musiquita@gmail.com"
+        },
+        "stock": {
+          "stockId": "MUS-00015",
+          "Cantidad": "40"
+        }
+      },
+      {
+        "id": "TAF-0053",
+        "name": "Taller de Alfarería El Fango",
+        "price": 300,
+        "description": "¡Deja que tus manos creen cosas increíbles! Vivilo en El Fango Taller de Alfarería.",
+        "imagen": "https://cdn.pixabay.com/photo/2018/03/04/19/47/ceramics-3199006__340.jpg",
+        "location": "35th St Miami, Florida",
+        "provider": {
+          "idProvider": "TAF-0000587",
+          "name": "El Fango",
+          "phone": "1023514352665",
+          "adress": " 53rd St Miami, Florida",
+          "email": "elfango@gmail.com"
+        },
+        "stock": {
+          "stockId": "TAF-00102",
+          "Cantidad": "35"
+        }
+      }
+    ]
+  },
+  {
+    "id": "CUTE-a237271c-2",
+    "name": "Cultura Tech",
+    "price": 4500,
+    "category": [
+      {
+        "categoryId": "00059",
+        "name": "cursos y talleres"
+      }
+    ],
+    "ranking": 3,
+    "person": "1",
+    "expiration date": "02-11-22",
+    "detail": "Ofrece una amplia variedad de cursos online en vivo para capacitarse en las tendencias del futuro y dominar las herramientas necesarias potenciando toda la creatividad.",
+    "imagen": "https://cdn.pixabay.com/photo/2014/11/16/23/39/superhero-534120__340.jpg",
+    "gift": "asdfaev89101-CUTE",
+    "product": [
+      {
+        "id": "UXUI-0089",
+        "name": "Diseño UX/UI",
+        "price": 500,
+        "description": "Aprendé todo sobre el diseño de experiencia de usuario y el diseño de interfaz.",
+        "imagen": "https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227__480.jpg",
+        "location": "38th St Miami, Florida",
+        "provider": {
+          "idProvider": "DES-0000835",
+          "name": "Desing Inc",
+          "phone": "10235635636541",
+          "adress": " 60th St Miami, Florida",
+          "email": "desinginc@gmail.com"
+        },
+        "stock": {
+          "stockId": "DES-0089",
+          "Cantidad": "10"
+        }
+      }, 
+      {
+        "id": "ECO-0321",
+        "name": "E-commerce",
+        "price": 650,
+        "description": "Aprendé las claves para gestionar una tienda de ecommerce",
+        "imagen": "https://images.pexels.com/photos/35550/ipad-tablet-technology-touch.jpg?auto=compress&cs=tinysrgb&w=600",
+        "location": "161st Ter Miami, Florida",
+        "provider": {
+          "idProvider": "WEB-0008837",
+          "name": "Web School",
+          "phone": "102351414265",
+          "adress": "166th St Miami, Florida",
+          "email": "Webschool@gmail.com"
+        },
+        "stock": {
+          "stockId": "WEB-08515",
+          "Cantidad": "7"
+        }
+      },
+      {
+        "id": "PMG-0143",
+        "name": "Product Manager",
+        "price": 450,
+        "description": "Aprende a crear y gestionar productos digitales con el curso de Product Manager",
+        "imagen": "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "location": "519 Fred Scott Rd Pollock, Louisiana",
+        "provider": {
+          "idProvider": "MAN-0000555",
+          "name": "Manager SA",
+          "phone": "102586322665",
+          "adress": "820 863rd Hwy Winnsboro, Louisiana",
+          "email": "managersa@gmail.com"
+        },
+        "stock": {
+          "stockId": "MAN-005478",
+          "Cantidad": "35"
+        }
+      },
+      {
+        "id": "WOR-0222",
+        "name": "WordPress",
+        "price": 570,
+        "description": "Aprendé a crear sitios web con gran facilidad para tu negocio o para tus clientes!",
+        "imagen": "https://images.pexels.com/photos/265667/pexels-photo-265667.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "location": "310 Oakley Ln Destrehan, Louisiana",
+        "provider": {
+          "idProvider": "COD-0000555",
+          "name": "Code Tech",
+          "phone": "165449863665",
+          "adress": "310 Palmetto St Bunkie, Louisiana",
+          "email": "codetech@gmail.com"
+        },
+        "stock": {
+          "stockId": "COD-007530",
+          "Cantidad": "15"
+        }
+      }
+    ]
+  }
+]
