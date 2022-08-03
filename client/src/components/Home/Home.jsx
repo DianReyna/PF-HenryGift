@@ -15,9 +15,8 @@ export default function Home() {
 
   return (
     <div>
-      {/* {boxes[0]} */}
-      {console.log("soy la boxes", boxes)}
-
+      <h2>Soy Home</h2>
+      {boxes&&boxes.map((el,index)=><h1 key={index}>{el.name}</h1>)}
     </div>
   )
 }

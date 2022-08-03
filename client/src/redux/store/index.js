@@ -2,9 +2,8 @@ import {configureStore} from "@reduxjs/toolkit";
 import boxes from "../reducer/boxesSlice"
 
 export default configureStore({
-    reducer:
+    reducer:{
         boxes,
-        // products: products
-    
-
+         // products: products
+    }
 })
