@@ -1,12 +1,13 @@
 [
   {
-    "id": "a237271c-c204-4b20-aed1-487bedda31b6",
-    "name": "Cursos y talleres",
+
+    "id": "ATEL-a237271c-1",
+    "name": "Atelier",
     "price": 2680,
     "category": [
       {
         "categoryId": "00054",
-        "name": "formacion"
+        "name": "cursos y talleres"
       }
     ],
     "ranking": 4,
@@ -225,6 +226,101 @@
     ]
   },
   {
+    "id": "CUTE-a237271c-2",
+    "name": "Cultura Tech",
+    "price": 4500,
+    "category": [
+      {
+        "categoryId": "00059",
+        "name": "cursos y talleres"
+      }
+    ],
+    "ranking": 3,
+    "person": "1",
+    "expiration date": "02-11-22",
+    "detail": "Ofrece una amplia variedad de cursos online en vivo para capacitarse en las tendencias del futuro y dominar las herramientas necesarias potenciando toda la creatividad.",
+    "imagen": "https://cdn.pixabay.com/photo/2014/11/16/23/39/superhero-534120__340.jpg",
+    "gift": "asdfaev89101-CUTE",
+    "product": [
+      {
+        "id": "UXUI-0089",
+        "name": "Diseño UX/UI",
+        "price": 500,
+        "description": "Aprendé todo sobre el diseño de experiencia de usuario y el diseño de interfaz.",
+        "imagen": "https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227__480.jpg",
+        "location": "38th St Miami, Florida",
+        "provider": {
+          "idProvider": "DES-0000835",
+          "name": "Desing Inc",
+          "phone": "10235635636541",
+          "adress": " 60th St Miami, Florida",
+          "email": "desinginc@gmail.com"
+        },
+        "stock": {
+          "stockId": "DES-0089",
+          "Cantidad": "10"
+        }
+      }, 
+      {
+        "id": "ECO-0321",
+        "name": "E-commerce",
+        "price": 650,
+        "description": "Aprendé las claves para gestionar una tienda de ecommerce",
+        "imagen": "https://images.pexels.com/photos/35550/ipad-tablet-technology-touch.jpg?auto=compress&cs=tinysrgb&w=600",
+        "location": "161st Ter Miami, Florida",
+        "provider": {
+          "idProvider": "WEB-0008837",
+          "name": "Web School",
+          "phone": "102351414265",
+          "adress": "166th St Miami, Florida",
+          "email": "Webschool@gmail.com"
+        },
+        "stock": {
+          "stockId": "WEB-08515",
+          "Cantidad": "7"
+        }
+      },
+      {
+        "id": "PMG-0143",
+        "name": "Product Manager",
+        "price": 450,
+        "description": "Aprende a crear y gestionar productos digitales con el curso de Product Manager",
+        "imagen": "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "location": "519 Fred Scott Rd Pollock, Louisiana",
+        "provider": {
+          "idProvider": "MAN-0000555",
+          "name": "Manager SA",
+          "phone": "102586322665",
+          "adress": "820 863rd Hwy Winnsboro, Louisiana",
+          "email": "managersa@gmail.com"
+        },
+        "stock": {
+          "stockId": "MAN-005478",
+          "Cantidad": "35"
+        }
+      },
+      {
+        "id": "WOR-0222",
+        "name": "WordPress",
+        "price": 570,
+        "description": "Aprendé a crear sitios web con gran facilidad para tu negocio o para tus clientes!",
+        "imagen": "https://images.pexels.com/photos/265667/pexels-photo-265667.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "location": "310 Oakley Ln Destrehan, Louisiana",
+        "provider": {
+          "idProvider": "COD-0000555",
+          "name": "Code Tech",
+          "phone": "165449863665",
+          "adress": "310 Palmetto St Bunkie, Louisiana",
+          "email": "codetech@gmail.com"
+        },
+        "stock": {
+          "stockId": "COD-007530",
+          "Cantidad": "15"
+        }
+      }
+    ]
+  },{
+
     "id": "a237271c-c204-4b20-aed1-487bedda3ok1",
     "name": "Look & Style",
     "price": 3520,
@@ -491,4 +587,3 @@
       ]
     }
 ]
-
