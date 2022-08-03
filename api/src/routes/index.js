@@ -1,8 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const Boxes = require("../database");
+const { Router } = require("express");
+const router = Router();
+const AllBoxes = require("../routes/Boxes.routes.js");
 
-router.get("/boxes", (req, res) => {
-  res.json(Boxes);
-});
+router.use("/boxes", AllBoxes);
+
 module.exports = router;
