@@ -2,8 +2,7 @@ const { DataTypes,UUID } = require('sequelize');
 
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('products', {
-
+  sequelize.define('providers', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -14,22 +13,19 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-   
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.FLOAT,
-      allowNull: false
-    },
-    location: {
+    
+    phone: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    image: {
-      type: DataTypes.TEXT,
-      allowNull: false 
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
+    
   });
 };
