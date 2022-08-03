@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBoxes } from '../../redux/actions/boxesActions';
-
+import NavBar from '../NavBar/NavBar';
 
 export default function Home() {
 
@@ -15,8 +15,9 @@ export default function Home() {
 
   return (
     <div>
-      <h2>Soy Home</h2>
-      {boxes&&boxes.map((el,index)=><h1 key={index}>{el.name}</h1>)}
+      <NavBar></NavBar>
+      {/* <h2>Soy Home</h2>
+      {boxes&&boxes.map((el,index)=><h1 key={index}>{el.name}</h1>)} */}
     </div>
   )
 }
