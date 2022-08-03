@@ -1,9 +1,7 @@
-const { DataTypes,UUID } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('boxes', {
-
+module.exports = BoxFactory = (sequelize) => {
+  return sequelize.define("Box", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -14,31 +12,32 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    
     price: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: false,
     },
     ranking: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: false,
     },
     expiration_date: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     detail: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     image: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     person: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    }
-    
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: false,
   });
 };
