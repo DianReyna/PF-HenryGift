@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const { conn } = require('./src/database/index');
+const { sequelize } = require('./src/database/index');
 const routes = require('./src/routes/index');
 const errorHandler = require('./src/middlewares/errorHandler');
 const setHeaders = require('./src/middlewares/setHeaders');
@@ -27,7 +27,7 @@ app.use(errorHandler);
 // set DB connection and express server
 async function start() {
   try {
-    await conn.sync({force: true});
+    await sequelize.sync({force: true});
     app.listen(PORT, () => {
       console.log("Server listening on port", PORT);
     });
