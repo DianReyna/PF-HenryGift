@@ -38,10 +38,6 @@ module.exports = (sequelize) => {
     person: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    gift_id: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
     
   });
