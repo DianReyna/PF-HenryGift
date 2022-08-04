@@ -21,7 +21,7 @@ const createNewProvider = async (req, res, next) => {
       newProvider
     );
     if (createdProvider) {
-      res.status(200).send("Provider Created!");
+      res.status(201).send("Provider Created!");
     } else {
       res.status(404).send("Error creating provider!");
     }
