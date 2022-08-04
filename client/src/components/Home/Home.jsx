@@ -6,7 +6,7 @@ import { getBoxes } from '../../redux/actions/boxesActions';
 export default function Home() {
 
   const dispatch = useDispatch();
-  const boxes = useSelector ((state)=> state.boxes)
+  const {boxes} = useSelector ((state)=> state.boxes)
   
 
   useEffect(()=>{
