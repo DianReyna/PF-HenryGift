@@ -35,7 +35,7 @@ export default function Home() {
             }
             <Link to='/boxDetail'>View more</Link>
     </div>
-  )
+  ) 
 }
 
 {/* {boxes&&boxes.map((el,index)=><h1 key={index}>{el.name}</h1>)} */}
