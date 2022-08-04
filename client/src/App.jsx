@@ -1,7 +1,8 @@
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Footer } from "./components/Footer/Footer";
+
 
 function App() {
   return (
