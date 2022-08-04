@@ -28,7 +28,22 @@ const getBox = async (req, res, next) => {
   }
 };
 
+const getAllBoxes = async (req, res, next) => {
+  const { name } = req.query;
+  try {
+    const allBoxes = await boxServices.getAllBoxes(name);
+
+    if (allBoxes || allBoxes.length > 0) {
+      res.status(200).send(allBoxes);
+    } else {
+      res.status(404).send("Error at Server");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   createNewBox,
   getBox,
+  getAllBoxes,
 };
