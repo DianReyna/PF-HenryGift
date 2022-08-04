@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../Products/ProductCard";
 
 
-
 export default function BoxDetail() {
     const [boxDetail, setBoxDetail]  = useState([]);
     const params = useParams()
@@ -31,7 +30,7 @@ useEffect(()=>{
         <h4>Expiration date: {boxDetail.expiration_date}</h4>
         {boxDetail.product && boxDetail.product.map((product)=> 
         <ProductCard
-        name={product.name} 
+        name={product.name}   
         description={product.description}
         location={product.location}/>)}
         </div>:
