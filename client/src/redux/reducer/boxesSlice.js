@@ -8,8 +8,8 @@ export const boxesSlice = createSlice({
     }, 
     reducers:{
         getAllBoxes: (state, action) =>{
-            console.log("soy el action", action.payload)
-            state.boxes=[...action.payload]
+            // console.log("soy el action", action.payload)
+            state.boxes= action.payload
         },
     }
 })
