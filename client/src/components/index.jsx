@@ -1,1 +1,1 @@
-//importar todos los componentes
+//importar todos los cgitomponentes
