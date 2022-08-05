@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -71,12 +71,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar() {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const [name, setName] = useState("")
 
   function handleInputChange(event){
     event.preventDefault()
-    setName(event.target.value)
-    dispatch(searchBox(name))
+    dispatch(searchBox(event.target.value))
   }
 
   return (

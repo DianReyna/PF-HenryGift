@@ -4,10 +4,12 @@ import TextField from '@mui/material/TextField';
 import styles from './Form.module.css'
 import NavBar from '../NavBar/NavBar'
 import Button from '@mui/material/Button';
-
-
+import {createBox} from '../../redux/actions/boxesActions'
+import { useDispatch } from 'react-redux';
 
 export default function Form() {
+  const dispatch = useDispatch()
+
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [detail, setDetail] = useState('');
@@ -15,11 +17,11 @@ export default function Form() {
   const [expirationDate, setExpirationDate] = useState('');
   const [image, setImage] = useState('');
   const [person, setPerson] = useState('');
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState('');
 
   const [nameError, setNameError] = useState(false);
   const [priceError, setPriceError] = useState(false);
-  const [detailError, setdetailError] = useState(false);
+  const [detailError, setDetailError] = useState(false);
   const [rankingError, setRankingError] = useState(false);
   const [expirationDateError, setExpirationDateError] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -31,7 +33,7 @@ export default function Form() {
     e.preventDefault()
 
     setNameError(false)
-    setnDescriptionError(false)
+    setDetailError(false)
     setPriceError(false)
     setRankingError(false)
     setExpirationDateError(false)
@@ -43,7 +45,7 @@ export default function Form() {
       setNameError(true)
     }
     if (detail == '') {
-      setdetailError(true)
+      setDetailError(true)
     }
     if (price == '') {
       setPriceError(true)
@@ -60,12 +62,12 @@ export default function Form() {
     if (person == '') { 
       setPersonError(true)
     }
-    if (products.length == 0) {
+    if (products == '') {
       setProductsError(true)
     }
 
-    if (name && description && price){
-      console.log(name, description, price)
+    if (name && detail && price && ranking && expirationDate && image && person && products){
+      dispatch(createBox(name, detail, price, ranking, expirationDate, image, person, products))
     }
   }
 
