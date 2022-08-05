@@ -9,6 +9,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button'
 import { NavLink } from "react-router-dom";
 import styles from './NavBar.module.css'
+import { useDispatch } from 'react-redux';
+import {searchBox} from '../../redux/actions/boxesActions'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,11 +70,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
+  const dispatch = useDispatch()
+
+  function handleInputChange(event){
+    event.preventDefault()
+    dispatch(searchBox(event.target.value))
+  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={styles.toolbar} >
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -82,15 +90,16 @@ export default function SearchAppBar() {
             <MenuIcon />
           </IconButton>
 
-          <NavLink to={"/"} className={styles.navlink} >
+          <NavLink to={"/home"} className={styles.navlink} >
             <Button style={{color: 'white'}} >Home</Button>
           </NavLink>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              <SearchIcon/>
             </div>
             <InputBase
+              onChange={handleInputChange}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
@@ -99,7 +108,7 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <NavLink to={"/"} className={styles.navlink} >
+          <NavLink to={"/form"} className={styles.navlink} >
             <Button style={{color: 'white'}} >Admin</Button>
           </NavLink>
         </Toolbar>
