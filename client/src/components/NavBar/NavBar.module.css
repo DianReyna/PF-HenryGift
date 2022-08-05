@@ -1,24 +1,16 @@
-.container {
-    display: flex;
-    gap: 100px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
-    background-color: #24252A;
-}
-.button{
+.button {
     background-color: transparent;
     border-color: transparent;
-}
-
-.text {
-    font-weight: 500;
-    font-size: 16px;
+    font-size: 17px;
     text-decoration: none;
-    color: #edf0f1;
 }
 
-.navlinks {
-    display: inline-block;
-    padding: 0px 20px;
+.button :hover {
+    cursor: pointer;
+    transition: 0.1s;
+    color: white;
+}
+
+.navlink {
+    text-decoration: none;
 }
