@@ -1,4 +1,4 @@
-const { Box, Products } = require("../database/index");
+const { Box, Products,Category } = require("../database/index");
 const { Op } = require("sequelize");
 
 const createNewBox = async (box) => {
@@ -21,9 +21,10 @@ const findProducts = async (products) => {
   });
   return findAllProducts;
 };
-const getAllBoxes = async (name) => {
+const getAllBoxes = async (name,offset,limit) => {
   if (name) {
     const getOneBox = await Box.findAll({
+      include: [{ model: Category }],
       where: {
         name: {
           [Op.iLike]: `%${name}`,
@@ -32,7 +33,7 @@ const getAllBoxes = async (name) => {
     });
     return getOneBox;
   } else {
-    const findAllBoxes = Box.findAll();
+    const findAllBoxes = Box.findAll({ include: [{ model: Category }],offset,limit});
     return findAllBoxes;
   }
 };
