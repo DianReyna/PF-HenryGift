@@ -9,10 +9,7 @@ import {Card, CardMedia} from '@mui/material';
 export default function BoxCard ({id, name, price, category, ranking, person, expiration_date, detail, image, gift}){
 
     return(
-<<<<<<< HEAD
-=======
 
->>>>>>> acf1127371563015ff95998f9fecd1e0b65469ba
         <Card sx={{maxWidth:345}}>
             <CardMedia 
             component="img"
