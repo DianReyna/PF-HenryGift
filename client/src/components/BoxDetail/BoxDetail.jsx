@@ -4,8 +4,6 @@ import { getBoxes } from "../../redux/actions/boxesActions";
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../Products/ProductCard";
 
-
-
 export default function BoxDetail() {
     // const [boxDetail, setBoxDetail]  = useState({hola: 'cargando'});
     // const params = useParams()
