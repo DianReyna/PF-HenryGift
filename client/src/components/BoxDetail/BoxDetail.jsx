@@ -3,8 +3,8 @@ import { getBoxes } from "../../redux/actions/boxesActions";
 import { useSelector, useDispatch } from 'react-redux';
 import {useParams} from 'react-router-dom';
 import ProductCard from "../Products/ProductCard";
-
 import { Card, Grid } from "@mui/material";
+
 
 export default function BoxDetail() {
     const dispatch = useDispatch();
