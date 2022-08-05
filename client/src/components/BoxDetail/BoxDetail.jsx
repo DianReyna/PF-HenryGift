@@ -24,7 +24,6 @@ useEffect(()=>{
     dispatch(getBoxes())
 },[dispatch])
 
-
   return (
     <Container maxWidth="xl">
     <div>
