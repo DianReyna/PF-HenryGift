@@ -4,6 +4,9 @@ const { sequelize } = require('./src/database/index');
 const routes = require('./src/routes/index');
 const errorHandler = require('./src/middlewares/errorHandler');
 const setHeaders = require('./src/middlewares/setHeaders');
+const { loadMockCategories } = require('./src/utils/categoriesMock');
+const { loadMockProviders } = require('./src/utils/providersMock');
+const { loadMockBoxes } = require('./src/utils/boxesMock');
 
 const PORT = process.env.PORT || 3001;
 
@@ -28,8 +31,10 @@ app.use(errorHandler);
 async function start() {
   try {
     await sequelize.sync({force: true});
-    app.listen(PORT, () => {
+    app.listen(PORT, async () => {
       console.log("Server listening on port", PORT);
+      await loadMockCategories()
+      await loadMockBoxes()
     });
   } catch (error) {
     console.log('Unable to connect to the database:', error);
