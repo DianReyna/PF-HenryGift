@@ -10,7 +10,7 @@ export default function BoxCard ({id, name, price, category, ranking, person, ex
           color:'black',
           width:'500px',
           padding:'16px, 16px, 16px, 16px', 
-          margin:'16px, 16px, 16px, 16px', 
+          // margin:'16px, 16px, 16px, 16px', 
           textAlign:'center',
           borderRadius: 2,
           zIndex: 'tooltip'
