@@ -4,12 +4,13 @@ import React from 'react';
 import BoxCards from '../BoxCards/BoxCards'
 import Carousel from '../Carousel/Carousel';
 import Pages from '../Pages/Pages';
-
+import NavBar from '../NavBar/NavBar'
 
 export default function Home() {
   return (
     <div>
-      <h2>Soy Home</h2>
+      <NavBar/>
+
       <Carousel/>
       <BoxCards />
       <Pages/>

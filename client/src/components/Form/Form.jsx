@@ -9,12 +9,22 @@ import Button from '@mui/material/Button';
 
 export default function Form() {
   const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [detail, setDetail] = useState('');
+  const [ranking, setRanking] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [image, setImage] = useState('');
+  const [person, setPerson] = useState('');
+  const [products, setProducts] = useState([]);
 
   const [nameError, setNameError] = useState(false);
-  const [descriptionError, setnDescriptionError] = useState(false);
   const [priceError, setPriceError] = useState(false);
+  const [detailError, setdetailError] = useState(false);
+  const [rankingError, setRankingError] = useState(false);
+  const [expirationDateError, setExpirationDateError] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [personError, setPersonError] = useState(false);
+  const [productsError, setProductsError] = useState(false);
 
 
   function handleOnSubmit(e){
@@ -23,18 +33,38 @@ export default function Form() {
     setNameError(false)
     setnDescriptionError(false)
     setPriceError(false)
+    setRankingError(false)
+    setExpirationDateError(false)
+    setImageError(false)
+    setPersonError(false)
+    setProductsError(false)
     
     if (name == '') { 
       setNameError(true)
     }
-    if (description == '') {
-      setnDescriptionError(true)
+    if (detail == '') {
+      setdetailError(true)
     }
     if (price == '') {
       setPriceError(true)
     }
+    if (ranking == '') { 
+      setRankingError(true)
+    }
+    if (expirationDate == '') {
+      setExpirationDateError(true)
+    }
+    if (image == '') {
+      setImageError(true)
+    }
+    if (person == '') { 
+      setPersonError(true)
+    }
+    if (products.length == 0) {
+      setProductsError(true)
+    }
 
-    if (name && description){
+    if (name && description && price){
       console.log(name, description, price)
     }
   }
@@ -59,13 +89,13 @@ export default function Form() {
               error={nameError}
             />
             <TextField
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDetail(e.target.value)}
               required
               id="standard-required"
               label="Descripcion de la box"
               defaultValue=""
               variant="standard"
-              error={descriptionError}
+              error={detailError}
             />
             <TextField
               onChange={(e) => setPrice(e.target.value)}
@@ -75,6 +105,51 @@ export default function Form() {
               defaultValue=""
               variant="standard"
               error={priceError}
+            />
+            <TextField
+              onChange={(e) => setRanking(e.target.value)}
+              required
+              id="standard-required"
+              label="Ranking de la box"
+              defaultValue=""
+              variant="standard"
+              error={rankingError}
+            />
+            <TextField
+              onChange={(e) => setExpirationDate(e.target.value)}
+              required
+              id="standard-required"
+              label="Fecha de vencimiento"
+              defaultValue=""
+              variant="standard"
+              error={expirationDateError}
+            />
+            <TextField
+              onChange={(e) => setImage(e.target.value)}
+              required
+              id="standard-required"
+              label="Imagen"
+              defaultValue=""
+              variant="standard"
+              error={imageError}
+            />
+            <TextField
+              onChange={(e) => setPerson(e.target.value)}
+              required
+              id="standard-required"
+              label="Cantidad de personas"
+              defaultValue=""
+              variant="standard"
+              error={personError}
+            />
+            <TextField
+              onChange={(e) => setProducts(e.target.value)}
+              required
+              id="standard-required"
+              label="Products"
+              defaultValue=""
+              variant="standard"
+              error={productsError}
             />
           </div>
           <Button type='submit' variant="outlined">Submit</Button>
