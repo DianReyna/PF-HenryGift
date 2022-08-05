@@ -24,54 +24,7 @@ const getProductById = async (id) => {
   return productById;
 };
 
-<<<<<<< HEAD
-const getAllProducts = async()=>{
-
-  let allProducts = await Products.findAll({include: [Provider]})
-  console.log("entro al service")
-  return allProducts
-
-}
-
-module.exports = {
-  createNewProduct,
-  getProductById,
-  getAllProducts
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 module.exports = {
   createNewProduct,
   getProductById,
 };
->>>>>>> e184f73668429ea058859b6265720a31a0b701ae
