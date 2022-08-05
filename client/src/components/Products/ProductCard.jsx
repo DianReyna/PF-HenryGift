@@ -1,13 +1,31 @@
 import React from "react";
+import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+// import style from "./ProductCard.module.css";
 
-export default function ProductCard ({id, name, description, location, imagen}){
-    return(
-        <div>
-            <img src={imagen} alt='img not found'/>
-            <h3>{id}</h3>
-            <h3>Product: {name}</h3>
-            <h3>Description: {description}</h3>
-            <h3>Location: {location}</h3>
-        </div>
-    );
+export default function ProductCard({
+  id,
+  name,
+  description,
+  location,
+  imagen,
+}) {
+  return (
+    <Card sx={{maxWidth:345}}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={imagen}
+        alt="img not found"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h4" component="div">
+          Product: {name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Description: {description}
+        </Typography>
+        <h3>Location: {location}</h3>
+      </CardContent>
+    </Card>
+  );
 }
