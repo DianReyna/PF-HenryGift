@@ -25,7 +25,9 @@ const getAllBoxes = async (name) => {
   if (name) {
     const getOneBox = await Box.findAll({
       where: {
-        name: { [Op.like]: `%${name}%` },
+        name: {
+          [Op.iLike]: `%${name}`,
+        },
       },
     });
     return getOneBox;
