@@ -1,24 +1,49 @@
 const { Box } = require("../database/index");
+const { Products } = require("../database/index");
+const boxServices = require("../services/boxServices");
 
 const createNewBox = async (req, res, next) => {
-  const { name, price, ranking, expiration_date, detail, image, person } = req.body;
+  const { products } = req.body;
   try {
-    const newBox = await Box.create({
-      name,
-      price,
-      ranking,
-      expiration_date,
-      detail,
-      image,
-      person,
-    });
-
+    const newBox = await boxServices.createNewBox(req.body);
+    const findedProducts = await boxServices.findProducts(products);
+    newBox.addProducts(findedProducts);
     res.send(newBox);
   } catch (error) {
     next(error);
   }
 };
 
+const getBox = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const box = await boxServices.getBox(id);
+    if (box) {
+      res.status(201).send(box);
+    } else {
+      res.status(404).send("Not found");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getAllBoxes = async (req, res, next) => {
+  const { name } = req.query;
+  try {
+    const allBoxes = await boxServices.getAllBoxes(name);
+
+    if (allBoxes || allBoxes.length > 0) {
+      res.status(200).send(allBoxes);
+    } else {
+      res.status(404).send("Error at Server");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   createNewBox,
+  getBox,
+  getAllBoxes,
 };

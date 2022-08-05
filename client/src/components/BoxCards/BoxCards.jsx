@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getBoxes } from '../../redux/actions/boxesActions';
 import BoxCard from '../BoxCard/BoxCard';
+
+import {Grid} from '@mui/material';
 
 
 export default function BoxCards() {
@@ -17,20 +18,25 @@ dispatch(getBoxes())
 
 return (
 <div>
-    <h2>Soy componentes que contienen las cartas</h2>
+    <Grid container spacing={3}>
     {
         boxes?.map((box, index) =>(
+            <Grid item xs={3}>
                 <BoxCard key={index}
                 image={box.imagen}
                 id={box.id}
-                ranking={box.anking}
-                box={box.name}
+                ranking={box.ranking}
+                name={box.name}
                 detail={box.detail}
                 person={box.person}
                 price={box.price}
-                expiration_date={box.expiration_date}/>
+                expiration_date={box.expiration_date}
+                />
+            </Grid>
+                
         ))
     }
+    </Grid>
 </div>
 ) 
 }
