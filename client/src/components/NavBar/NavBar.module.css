@@ -1,0 +1,16 @@
+.button {
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.button :hover {
+    cursor: pointer;
+    transition: 0.1s;
+    color: white;
+}
+
+.navlink {
+    text-decoration: none;
+}
