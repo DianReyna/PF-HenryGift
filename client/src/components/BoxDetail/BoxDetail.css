@@ -1,0 +1,38 @@
+body{
+  background-color: rgb(239, 239, 239);
+}
+
+.containerDetail{
+  background-color: aquamarine;
+}
+.imagenDetail{
+  /* text-align: center; */
+  width: 100%;
+  margin-left: 2rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+.informationDetail{
+    padding: 0 5rem;
+}
+
+
+
+
+
+
+/* <div className="detailContainer">
+            <div className="imageDetails">
+              <img src={boxes[0].imagen} alt='img not found'/>
+            </div>
+            <div className="infoDetails">
+              <h2>Box:{boxes[0].name}</h2>
+              <h4>Person: {boxes[0].person}</h4>
+              <h4>Price: {boxes[0].price}</h4>
+              <h4>Ranking: {boxes[0].ranking}</h4>
+              <h4>Expiration date: {boxes[0].expiration_date}</h4>
+            </div>
+            <div className="descriptionDetails">
+              <p>Detail:{boxes[0].detail}</p>
+            </div>
+          </div> */
