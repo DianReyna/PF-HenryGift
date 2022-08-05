@@ -1,13 +1,12 @@
 import React from "react";
 import {Box} from '@mui/material'
 import { Stack } from '@mui/material'
-import { Grid } from '@mui/material';
  
 
 export default function BoxCard ({id, name, price, category, ranking, person, expiration_date, detail, image, gift}){
     return(
         <Box sx={{
-          background: '#e0e0e0',
+          background:'#e0e0e0',
           color:'black',
           width:'500px',
           padding:'16px, 16px, 16px, 16px', 
@@ -17,9 +16,7 @@ export default function BoxCard ({id, name, price, category, ranking, person, ex
           zIndex: 'tooltip'
         }}
         >
-           <Stack spacing={2} >
-            <muiRating/>
-           </Stack>
+           
             <img src={image} alt='img not found' width={500} height={300}/>
             <h3>{id}</h3>
             <h3>Ranking: {ranking}</h3>
