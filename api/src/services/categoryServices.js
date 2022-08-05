@@ -9,7 +9,7 @@ const createNewCategory = async(categoryName) =>{
 const getAllCategories = async()=>{
 
   let allCategories = await Category.findAll({attributes: ['id', 'name']})
-
+ 
   return allCategories
 
 }
