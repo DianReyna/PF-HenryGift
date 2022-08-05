@@ -28,8 +28,11 @@ const createNewProduct = async (req, res, next) => {
       newProduct,
       provider
     );
-
-    res.send(createdProduct);
+    if (createdProduct) {
+      res.status(201).send("Product created!");
+    } else {
+      res.status(404).send("Error creating product!");
+    }
   } catch (error) {
     next(error);
   }
@@ -39,7 +42,12 @@ const getProductById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const productById = await productServices.getProductById(id);
-    res.send(productById);
+
+    if (productById) {
+      res.status(200).send(productById);
+    } else {
+      res.status(404).send("Not Fund!");
+    }
   } catch (error) {
     next(error);
   }

@@ -1,13 +1,19 @@
-const {Provider} = require("../database/index")
+const { Provider } = require("../database/index");
 
-const getAllProviders = async()=>{
+const getAllProviders = async () => {
+  let allProviders = await Provider.findAll({
+    attributes: ["id", "name", "phone", "address", "email"],
+  });
 
-  let allProviders = await Provider.findAll({attributes: ['id', 'name','phone','address','email']})
+  return allProviders;
+};
 
-  return allProviders
+const createNewProvider = async (newProvider) => {
+  const createdProvider = await Provider.create(newProvider);
 
-}
-
+  return createdProvider;
+};
 module.exports = {
   getAllProviders,
-}
+  createNewProvider,
+};
