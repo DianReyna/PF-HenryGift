@@ -3,7 +3,7 @@ const router = Router();
 const {
   getProductById,
   createNewProduct,
-} = require("../controllers/providerControllers");
+} = require("../controllers/productController.js");
 
 router.get("/:id", getProductById);
 
