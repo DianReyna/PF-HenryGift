@@ -5,15 +5,11 @@ import { Footer } from "./components/Footer/Footer";
 import Form from './components/Form/Form'
 
 
-
-
 function App() {
   return (
     <div className="App">
         <Routes>
-
             <Route path="/home" element={<Home />} />
-            {/* <Route path="/detail" element={<BoxDetail />} /> */}
             <Route path="/form" element={<Form />} />
             <Route path="/box/:idBox" element={<BoxDetail />} />
 
