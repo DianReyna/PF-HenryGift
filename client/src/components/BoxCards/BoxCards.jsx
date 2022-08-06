@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBoxes } from '../../redux/actions/boxesActions';
+import {getBoxesPerPage} from '../../redux/actions/boxesActions';
 import BoxCard from '../BoxCard/BoxCard';
+import AppPagination from '../AppPagination/AppPagination';
 
 import {Grid} from '@mui/material';
 
@@ -11,10 +12,12 @@ export default function BoxCards() {
 const dispatch = useDispatch();
 const {boxes} = useSelector ((state)=> state.boxes)
 
+const [page,setPage]=useState(0);
+// const [numberOfPages,setNumberOfPages]=useState(8);
 
 useEffect(()=>{
-dispatch(getBoxes())
-},[])
+dispatch(getBoxesPerPage(page))
+},[page])
 
 return (
 <div>
@@ -37,6 +40,7 @@ return (
         ))
     }
     </Grid>
+    <AppPagination setPage={setPage} page={page}/>
 </div>
 ) 
 }

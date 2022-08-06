@@ -3,7 +3,6 @@ import React from 'react';
 // import ProductCard from '../Products/ProductCard';
 import BoxCards from '../BoxCards/BoxCards'
 import Carousel from '../Carousel/Carousel';
-import Pages from '../Pages/Pages';
 import NavBar from '../NavBar/NavBar'
 
 export default function Home() {
@@ -13,7 +12,7 @@ export default function Home() {
 
       <Carousel/>
       <BoxCards />
-      <Pages/>
+      
     </div>
   ) 
 }
