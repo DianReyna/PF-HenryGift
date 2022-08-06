@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 
 
 export const boxesSlice = createSlice({
@@ -17,5 +19,8 @@ export const boxesSlice = createSlice({
     }
 })
 
+
 export const{ getAllBoxes, getDetailBox } = boxesSlice.actions
+
 export default boxesSlice.reducer
+
