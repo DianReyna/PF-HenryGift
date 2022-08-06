@@ -6,15 +6,21 @@ import axios from 'axios';
 export const boxesSlice = createSlice({
     name:"boxes",
     initialState: {
-        boxes: []
+        boxes: [],
+        detail: {}
     }, 
     reducers:{
         getAllBoxes: (state, action) =>{
-            state.boxes= action.payload
+            state.boxes = action.payload
         },
+        getDetailBox: (state, action) => {
+            state.detail = action.payload
+        }
     }
 })
 
-export const { getAllBoxes } = boxesSlice.actions
+
+export const{ getAllBoxes, getDetailBox } = boxesSlice.actions
+
 export default boxesSlice.reducer
 
