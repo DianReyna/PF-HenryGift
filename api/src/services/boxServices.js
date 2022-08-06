@@ -33,7 +33,7 @@ const getAllBoxes = async (name,offset,limit) => {
     });
     return getOneBox;
   } else {
-    const findAllBoxes = Box.findAll({ include: [{ model: Category }],offset,limit});
+    const findAllBoxes = Box.findAll({ include: [{ model: Category }],offset:limit*offset,limit});
     return findAllBoxes;
   }
 };
