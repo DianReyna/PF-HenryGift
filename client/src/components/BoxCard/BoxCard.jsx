@@ -22,8 +22,9 @@ export default function BoxCard({
 }) {
   return (
     <div className="container">
-      <Link to={`/box/${id}`}>
-        <Box>
+      <Link to={`/box/${id}`} style={{ textDecoration: 'none' }}>
+        <Box >
+          
           <Card sx={{ maxWidth: 345 }}>
 						
             <Altura>
