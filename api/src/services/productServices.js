@@ -24,7 +24,17 @@ const getProductById = async (id) => {
   return productById;
 };
 
+const getAllProducts = async () => {
+  const allProducts = await Products.findAll(
+    {
+      include: [Provider],
+    }
+  )
+  return allProducts
+}
+
 module.exports = {
   createNewProduct,
   getProductById,
+  getAllProducts
 };
