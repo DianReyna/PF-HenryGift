@@ -51,6 +51,7 @@ export default function Form() {
   const [boxImage, setBoxImage] = useState('');
   const [boxPerson, setBoxPerson] = useState('');
   const [boxProducts, setBoxProducts] = useState([]);
+  const [boxCategories, setBoxCategories] = useState([]);
   //ERRORS
   const [boxNameError, setBoxNameError] = useState(false);
   const [boxPriceError, setBoxPriceError] = useState(false);
@@ -60,6 +61,7 @@ export default function Form() {
   const [boxImageError, setBoxImageError] = useState(false);
   const [boxPersonError, setBoxPersonError] = useState(false);
   const [boxProductsError, setBoxProductsError] = useState(false);
+  const [boxCategoriesError, setBoxCategoriesError] = useState(false);
 
 
   function handleProductSubmit(e){
@@ -158,9 +160,12 @@ export default function Form() {
     if (boxProducts == '') {
       setBoxProductsError(true)
     }
+    if (boxCategories == '') {
+      setBoxCategoriesError(true)
+    }
 
-    if (boxName && boxDetail && boxPrice && boxRanking && boxExpirationDate && boxImage && boxPerson && boxProducts){
-      dispatch(createBox(boxName, boxDetail, boxPrice, boxRanking, boxExpirationDate, boxImage, boxPerson, boxProducts))
+    if (boxName && boxDetail && boxPrice && boxRanking && boxExpirationDate && boxImage && boxPerson && boxProducts && boxCategories){
+      dispatch(createBox({boxName, boxDetail, boxPrice, boxRanking, boxExpirationDate, boxImage, boxPerson, boxProducts, boxCategories}))
     }
   }
 
@@ -222,7 +227,7 @@ export default function Form() {
                 error={productImageError}
               />
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">Provider</InputLabel>
+                <InputLabel id="demo-simple-select-standard-label">Proveedor</InputLabel>
                 <Select
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
@@ -230,6 +235,7 @@ export default function Form() {
                   onChange={setProductProvider}
                   label="Provider"
                   error={productProviderError}
+                  required
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -355,7 +361,7 @@ export default function Form() {
                 error={boxPersonError}
               />
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">Product</InputLabel>
+                <InputLabel id="demo-simple-select-standard-label">Productos</InputLabel>
                 <Select
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
@@ -363,6 +369,26 @@ export default function Form() {
                   onChange={setBoxProducts}
                   label="Product"
                   error={boxProductsError}
+                  required
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {/* <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem> */}
+                </Select>
+              </FormControl>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-standard-label">Categorias</InputLabel>
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={boxCategories}
+                  onChange={setBoxCategories}
+                  label="Product"
+                  error={boxCategoriesError}
+                  required
                 >
                   <MenuItem value="">
                     <em>None</em>
