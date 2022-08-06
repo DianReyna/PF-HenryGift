@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import styles from './Form.module.css'
-import NavBar from '../NavBar/NavBar'
+//import NavBar from '../NavBar/NavBar'
 import Button from '@mui/material/Button';
 import {createBox} from '../../redux/actions/boxesActions'
 import { useDispatch } from 'react-redux';
@@ -73,7 +73,7 @@ export default function Form() {
 
   return (
     <div>
-      <NavBar></NavBar>
+      {/* <NavBar></NavBar> */}
       <Box
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
