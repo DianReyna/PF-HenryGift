@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 
 
 export const boxesSlice = createSlice({
@@ -8,11 +10,11 @@ export const boxesSlice = createSlice({
     }, 
     reducers:{
         getAllBoxes: (state, action) =>{
-            // console.log("soy el action", action.payload)
             state.boxes= action.payload
         },
     }
 })
 
-export const{ getAllBoxes } = boxesSlice.actions
+export const { getAllBoxes } = boxesSlice.actions
 export default boxesSlice.reducer
+
