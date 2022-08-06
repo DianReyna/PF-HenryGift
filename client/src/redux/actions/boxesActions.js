@@ -22,3 +22,11 @@ export const searchBox=(name)=>(dispatch)=>{
 export const createProvider=(payload)=>()=>{
     axios.post('http://localhost:3001/providers', payload)
 }
+
+export const createBox=(payload)=>()=>{
+    axios.post('http://localhost:3001/boxes', payload)
+}
+
+export const createProduct=(payload)=>()=>{
+    axios.post('http://localhost:3001/products', payload)
+}
