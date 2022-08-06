@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAllBoxes } from '../reducer/boxesSlice';
+import { getAllBoxes, getDetailBox } from '../reducer/boxesSlice';
 
 export const getBoxes=()=>(dispatch)=>{
     axios('http://localhost:3001/boxes')
@@ -24,6 +24,15 @@ export const createProvider=(payload)=>()=>{
 }
 
 export const createBox=(payload)=>()=>{
+
+    var json = axios.post('http://localhost:3001/boxes', payload)
+    return json
+}
+
+export const detailBox = (id) => (dispatch) => {
+    axios(`http://localhost:3001/boxes/${id}`)
+    .then(res => dispatch(getDetailBox(res.data)))
+    .catch(err => console.log(err))
     axios.post('http://localhost:3001/boxes', payload)
 }
 
