@@ -19,7 +19,6 @@ export const searchBox=(name)=>(dispatch)=>{
     .catch (err=>console.log(err))
 }
 
-export const createBox=(payload)=>()=>{
-    var json = axios.post('http://localhost:3001/boxes', payload)
-    return json
+export const createProvider=(payload)=>()=>{
+    axios.post('http://localhost:3001/providers', payload)
 }
