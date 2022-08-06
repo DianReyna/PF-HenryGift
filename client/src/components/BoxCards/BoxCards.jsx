@@ -26,7 +26,7 @@ return (
         boxes?.map((box, index) =>(
             <Grid item xs={3}>
                 <BoxCard key={index}
-                image={box.imagen}
+                image={box.image}
                 id={box.id}
                 ranking={box.ranking}
                 name={box.name}
