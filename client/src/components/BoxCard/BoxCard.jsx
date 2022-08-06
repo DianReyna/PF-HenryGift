@@ -9,6 +9,7 @@ import {
   Altura,
 } from "./BoxCardStyles";
 
+
 export default function BoxCard({
   id,
   name,

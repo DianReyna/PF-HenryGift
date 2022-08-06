@@ -53,7 +53,21 @@ const getProductById = async (req, res, next) => {
   }
 };
 
+const getAllProducts = async (req,res,next) => {
+
+  try {
+
+    const allProducts = await productServices.getAllProducts()
+    res.status(200).send(allProducts)
+    
+  } catch (error) {
+    next (error)
+  }
+
+}
+
 module.exports = {
   createNewProduct,
   getProductById,
+  getAllProducts
 };
