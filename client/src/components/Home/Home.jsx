@@ -1,21 +1,23 @@
-import React from 'react';
+import React from "react";
 // import { getBoxes } from '../../redux/actions/boxesActions';
 // import ProductCard from '../Products/ProductCard';
-import BoxCards from '../BoxCards/BoxCards'
-import Carousel from '../Carousel/Carousel';
-import Pages from '../Pages/Pages';
-import NavBar from '../NavBar/NavBar'
+import BoxCards from "../BoxCards/BoxCards";
+import Carousel from "../Carousel/Carousel";
+import Pages from "../Pages/Pages";
+// import NavBar from '../NavBar/NavBar'
 
 export default function Home() {
   return (
     <div>
-      <NavBar/>
+      {/* <NavBar/> */}
 
-      <Carousel/>
+      <Carousel />
       <BoxCards />
-      <Pages/>
+      <Pages />
     </div>
-  ) 
+  );
 }
 
-{/* {boxes&&boxes.map((el,index)=><h1 key={index}>{el.name}</h1>)} */}
+{
+  /* {boxes&&boxes.map((el,index)=><h1 key={index}>{el.name}</h1>)} */
+}
