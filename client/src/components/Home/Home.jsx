@@ -4,7 +4,7 @@ import React from "react";
 
 import BoxCards from "../BoxCards/BoxCards";
 import Carousel from "../Carousel/Carousel";
-import Pages from "../Pages/Pages";
+import Pages from "../AppPagination/AppPagination";
 // import NavBar from '../NavBar/NavBar'
 
 export default function Home() {
@@ -13,7 +13,6 @@ export default function Home() {
       {/* <NavBar/> */}
       <Carousel />
       <BoxCards />
-      <Pages />
     </div>
   );
 }
