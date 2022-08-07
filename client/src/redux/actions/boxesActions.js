@@ -37,3 +37,9 @@ export const detailBox = (id) => (dispatch) => {
 export const createProduct = (payload) => () => {
     axios.post("http://localhost:3001/products", payload);
 };
+
+export const sortBoxes = (col,dir) => (dispatch) => {
+    axios(`http://localhost:3001/sort?col=${col}&dir=${dir}`)
+    .then((res)=>dispatch(getAllBoxes(res.data)))
+    .catch((err)=>console.log(err))
+}
