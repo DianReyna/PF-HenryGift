@@ -1,13 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import {Box, TextField,  Button,  InputLabel,  MenuItem,  FormControl,  Select } from '@mui/material';
 import {createProvider, createBox, createProduct} from '../../redux/actions/boxesActions'
-import {getProducts} from '../../redux/actions/productsActions'
+import { getProvider } from '../../redux/actions/providerActions'
+import { getCategory } from '../../redux/actions/categoryActions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css'
 import NavBar from '../NavBar/NavBar'
@@ -16,10 +11,15 @@ export default function Form() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getProvider())
+    dispatch(getCategory())
     dispatch(getProducts())
   },[dispatch])
 
+  const providers = useSelector((state) => state.providers)
+  const categories = useSelector((state) => state.categories)
   const products = useSelector((state) => state.products)
+
 
   //PRODUCT
   const [productName, setProductName] = useState('');
@@ -101,13 +101,13 @@ export default function Form() {
     }
 
     if (productName && productDescription && productPrice && productLocation && productImage && productProvider){
-      dispatch(createProduct({productName, productDescription, productLocation, productPrice, productImage, productProvider}))
+      dispatch(createProduct({name: productName, description: productDescription, location: productLocation, price: productPrice, image: productImage, provider: productProvider}))
     }
   }
 
   function handleProviderSubmit(e){
     e.preventDefault()
-
+    console.log(providerName,  providerPhone,  providerEmail, providerAddress)
     setProviderNameError(false)
     setProviderPhoneError(false)
     setProviderAddressError(false)
@@ -127,7 +127,7 @@ export default function Form() {
     }
     
     if (providerName && providerPhone && providerAddress && providerEmail){
-      dispatch(createProvider({providerName, providerPhone, providerEmail, providerAddress}))
+      dispatch(createProvider({name: providerName, phone: providerPhone, email: providerEmail, address: providerAddress}))
     }
   }
   
@@ -172,7 +172,7 @@ export default function Form() {
     }
 
     if (boxName && boxDetail && boxPrice && boxRanking && boxExpirationDate && boxImage && boxPerson && boxProducts && boxCategories){
-      dispatch(createBox({boxName, boxDetail, boxPrice, boxRanking, boxExpirationDate, boxImage, boxPerson, boxProducts, boxCategories}))
+      dispatch(createBox({name: boxName, detail: boxDetail, price: boxPrice, ranking: boxRanking, expiraton_date: boxExpirationDate, image: boxImage, person: boxPerson, products: boxProducts, categories: boxCategories}))
     }
   }
 
@@ -242,14 +242,17 @@ export default function Form() {
                   onChange={setProductProvider}
                   label="Provider"
                   error={productProviderError}
+                  defaultValue=""
                   required
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {/* <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem> */}
+                  
+                    {providers.providers?.map(({name, id}) => {
+                      return (
+                        <MenuItem key={id} value={name}>
+                          {name}
+                          </MenuItem>)
+                    })}
+                  
                 </Select>
               </FormControl>
             </div>
@@ -257,6 +260,10 @@ export default function Form() {
           </form>
         </div>
         <div className={styles.formContainer} >
+
+
+
+
           <h2>PROVIDER</h2>
           <form noValidate autoComplete="off" onSubmit={handleProviderSubmit} >
             <div className={styles.formContainer} >
@@ -301,6 +308,10 @@ export default function Form() {
           </form>
         </div>
         <div className={styles.formContainer} >
+
+
+
+
           <h2>BOX</h2>
           <form noValidate autoComplete="off" onSubmit={handleBoxSubmit} >
             <div className={styles.formContainer} >
@@ -376,12 +387,15 @@ export default function Form() {
                   onChange={setBoxProducts}
                   label="Product"
                   error={boxProductsError}
+                  defaultValue=""
                   required
                 >
                   <MenuItem value="">
                     <em>Ninguno</em>
                   </MenuItem>
+
                   {products.map(product => (<MenuItem value={product.name}>{product.name}</MenuItem>))}
+
                 </Select>
               </FormControl>
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -393,14 +407,16 @@ export default function Form() {
                   onChange={setBoxCategories}
                   label="Product"
                   error={boxCategoriesError}
+                  defaultValue=""
                   required
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {/* <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem> */}
+
+                  {categories.category?.map(({name, id}) => {
+                    return (
+                    <MenuItem key={id}>
+                      {name}
+                    </MenuItem>)
+                  })}
                 </Select>
               </FormControl>
             </div>
