@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -7,12 +7,19 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {createProvider, createBox, createProduct} from '../../redux/actions/boxesActions'
-import { useDispatch } from 'react-redux';
+import {getProducts} from '../../redux/actions/productsActions'
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css'
 import NavBar from '../NavBar/NavBar'
 
 export default function Form() {
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProducts())
+  },[dispatch])
+
+  const products = useSelector((state) => state.products)
 
   //PRODUCT
   const [productName, setProductName] = useState('');
@@ -372,11 +379,9 @@ export default function Form() {
                   required
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>Ninguno</em>
                   </MenuItem>
-                  {/* <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem> */}
+                  {products.map(product => (<MenuItem value={product.name}>{product.name}</MenuItem>))}
                 </Select>
               </FormControl>
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
