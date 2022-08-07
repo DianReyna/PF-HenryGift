@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAllBoxes, getDetailBox } from "../reducer/boxesSlice";
+import { getAllBoxes, getDetailBox,getDetailProduct} from "../reducer/boxesSlice";
 
 export const getBoxes = () => (dispatch) => {
     axios("http://localhost:3001/boxes")
@@ -8,7 +8,11 @@ export const getBoxes = () => (dispatch) => {
 };
 
 export const getBoxesPerPage = (pag) => (dispatch) => {
+
+  axios.get(`http://localhost:3001/boxes?offset=${pag}&limit=4`)
+
     axios(`http://localhost:3001/boxes?offset=${pag}&limit=4`)
+
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
 };
@@ -20,6 +24,7 @@ export const searchBox = (name) => (dispatch) => {
 };
 
 export const createProvider = (payload) => () => {
+    console.log('action payload', payload)
     axios.post("http://localhost:3001/providers", payload);
 };
 
@@ -36,6 +41,12 @@ export const detailBox = (id) => (dispatch) => {
 
 export const createProduct = (payload) => () => {
     axios.post("http://localhost:3001/products", payload);
+};
+
+export const detailProduct = (id) => (dispatch) => {
+    axios.get(`http://localhost:3001/products/${id}`)
+    .then((res) =>dispatch(getDetailProduct(res.data)))
+    .catch((err) => console.log(err));
 };
 
 export const sortBoxes = (col,dir) => (dispatch) => {
