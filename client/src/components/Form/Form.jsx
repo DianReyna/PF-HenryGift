@@ -13,10 +13,12 @@ export default function Form() {
   useEffect(() => {
     dispatch(getProvider())
     dispatch(getCategory())
+    dispatch(getProducts())
   },[dispatch])
 
   const providers = useSelector((state) => state.providers)
   const categories = useSelector((state) => state.categories)
+  const products = useSelector((state) => state.products)
 
 
   //PRODUCT
@@ -389,8 +391,11 @@ export default function Form() {
                   required
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>Ninguno</em>
                   </MenuItem>
+
+                  {products.map(product => (<MenuItem value={product.name}>{product.name}</MenuItem>))}
+
                 </Select>
               </FormControl>
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
