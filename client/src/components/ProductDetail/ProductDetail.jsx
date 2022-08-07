@@ -29,11 +29,12 @@ export default function ProductDetail() {
     const {detailProd} = useSelector((state) => state.boxes)
     useEffect(() => {
       dispatch(detailProduct(idProduct))
-    }, [dispatch])
+    }, [dispatch,idProduct])
     
-  
+    // console.log(detailProd.Provider.name)
     return (
-      <Container> hola
+      
+      <Container> 
         <Box>
         <h1>{detailProd.name}</h1>
          <DetailProduct>
@@ -64,15 +65,15 @@ export default function ProductDetail() {
                 </ItemProduct>
                 <ItemProduct>
                 <h3>Service provided by : </h3>
-                <p>{detailProd.Provider.name}</p>
+                <p>{detailProd?.Provider?.name}</p>
                 </ItemProduct>
                 <ItemProduct>
                 <h3>Phone: </h3>
-                <p>{detailProd.Provider.phone}</p>
+                <p>{detailProd?.Provider?.phone}</p>
                 </ItemProduct>
                 <ItemProduct>
                 <h3>Adress: </h3>
-                <p>{detailProd.Provider.address}</p>
+                <p>{detailProd?.Provider?.address}</p>
                 </ItemProduct>
         </Box>
       </Container>

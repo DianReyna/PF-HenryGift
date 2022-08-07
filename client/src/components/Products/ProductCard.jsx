@@ -29,8 +29,9 @@ export default function ProductCard({
     imagen,
 }) {
     return (
-    <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
+     
         <SupCardProduct>
+            <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 345 }}>
                 <CardWidth>
                     <CardMedia
@@ -50,7 +51,8 @@ export default function ProductCard({
                     </CardContent>
                 </CardWidth>
             </Card>
+            </Link>
         </SupCardProduct>
-    </Link>
+    
     );
 }
