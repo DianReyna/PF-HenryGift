@@ -3,7 +3,7 @@ import { useDispatch ,useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
 import {detailProduct } from "../../redux/actions/boxesActions";
 import styled from 'styled-components';
-import { Container,Box } from "@mui/material";
+import { Container,Box,Card,CardMedia,Typography } from "@mui/material";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PlaceIcon from '@mui/icons-material/Place'; 
 
@@ -12,12 +12,6 @@ display: grid;
 grid-template-columns: 1.5fr 1fr;
 gap: 2rem;
 `
-const Imagen = styled.img`
-    border: 1px solid black;
-    border-radius: 0.5rem;
-    object-fit: cover;
-    width: 100%;
-  `
 const ItemProduct = styled.div`
   display: flex;
   margin-top: 0.9rem;
@@ -30,18 +24,21 @@ export default function ProductDetail() {
     useEffect(() => {
       dispatch(detailProduct(idProduct))
     }, [dispatch,idProduct])
-    
-    // console.log(detailProd.Provider.name)
     return (
       
-      <Container> 
+      <Container sx={{ m: 3 }} display={"flex"}> 
         <Box>
-        <h1>{detailProd.name}</h1>
+        <Typography gutterBottom variant="h4" component="div">
+        {detailProd.name}
+        </Typography>
          <DetailProduct>
-            <div>
-              <Imagen src={detailProd.image} alt='img not found'/>
-            </div>
-            <div>
+         <CardMedia
+        component="img"
+        height="240"
+        image={detailProd.image} 
+        alt='img not found'
+        />
+            <Card sx={{ p: 2 }}>
               <ItemProduct>
                 <h2>About :</h2>
               </ItemProduct>
@@ -56,10 +53,10 @@ export default function ProductDetail() {
                  <PlaceIcon/>
               <p>{detailProd.location}</p>
               </ItemProduct>
-            </div>
+            </Card>
           </DetailProduct>
         </Box>
-        <Box>
+        <Box sx={{ my: 5 }}>
              <ItemProduct>
                 <h2>Contact</h2>
                 </ItemProduct>
