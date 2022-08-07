@@ -6,12 +6,14 @@ import BoxCards from "../BoxCards/BoxCards";
 import Carousel from "../Carousel/Carousel";
 import Pages from "../AppPagination/AppPagination";
 import NavBar from '../NavBar/NavBar'
+import Sort from "../Sort/Sort"
 
 export default function Home() {
   return (
     <div>
       <NavBar/>
       <Carousel />
+      <Sort />
       <BoxCards />
     </div>
   );
