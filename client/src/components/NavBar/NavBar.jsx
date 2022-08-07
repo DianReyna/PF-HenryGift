@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useDispatch } from 'react-redux';
-import {searchBox} from '../../redux/actions/boxesActions'
+import {searchBox,getBoxesPerPage} from '../../redux/actions/boxesActions'
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
@@ -83,7 +83,13 @@ const ResponsiveAppBar = () => {
 
   function handleInputChange(event){
     event.preventDefault()
-    dispatch(searchBox(event.target.value))
+    if(event.target.value){
+
+      dispatch(searchBox(event.target.value))
+    }else {
+      
+      dispatch(getBoxesPerPage(0))
+    }
   }
 
   return (
@@ -108,10 +114,9 @@ const ResponsiveAppBar = () => {
             Henry-Gift
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-                <NavLink to={"/home"} className={styles.navlink}>
+            {pages.map((page, i) => (
+                <NavLink to={"/home"} className={styles.navlink} key={i}>
                     <Button
-                        key={page}
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: 'white', display: 'block' }}
                     >
@@ -133,7 +138,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://c8.alamy.com/compes/2b3hrwb/plantilla-vectorial-de-diseno-de-logotipo-pf-con-letra-de-monograma-inicial-resumen-del-diseno-del-logotipo-de-la-letra-pf-2b3hrwb.jpg" />
               </IconButton>
             </Tooltip>
 
@@ -153,8 +158,8 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <NavLink to={"/form"} className={styles.navlink} >
+              {settings.map((setting,i) => (
+                <NavLink to={"/form"} className={styles.navlink} key={i}>
                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
