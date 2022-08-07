@@ -1,5 +1,6 @@
 import React from "react";
-import {Pagination,Box,Typography} from '@mui/material';
+import { Pagination, Box, Typography } from "@mui/material";
+
 
 export default function AppPagination({setPage,page}) {
       return (
