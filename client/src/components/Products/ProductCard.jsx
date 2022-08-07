@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import styled from "styled-components";
 
@@ -28,7 +29,9 @@ export default function ProductCard({
     imagen,
 }) {
     return (
+     
         <SupCardProduct>
+            <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 345 }}>
                 <CardWidth>
                     <CardMedia
@@ -48,6 +51,8 @@ export default function ProductCard({
                     </CardContent>
                 </CardWidth>
             </Card>
+            </Link>
         </SupCardProduct>
+    
     );
 }
