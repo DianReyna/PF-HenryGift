@@ -43,3 +43,4 @@ export const sortBoxes = (col,dir) => (dispatch) => {
     .then((res)=>dispatch(getAllBoxes(res.data)))
     .catch((err)=>console.log(err))
 }
+
