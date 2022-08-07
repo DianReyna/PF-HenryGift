@@ -11,7 +11,6 @@ export const boxesSlice = createSlice({
     }, 
     reducers:{
         getAllBoxes: (state, action) =>{
-            console.log(state.boxes)
             state.boxes = action.payload
         },
         getDetailBox: (state, action) => {

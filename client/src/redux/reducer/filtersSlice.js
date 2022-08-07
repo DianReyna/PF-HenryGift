@@ -3,16 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 export const filtersSlice = createSlice({
   name: "filters",
   initialState: {
-    filters: [],
+      category: '', //gastronomi
+      person: '' // 1
   },
   reducers: {
-    getAllFilters: (state, action) => {
-      console.log(action.payload);
-
-      state.filters = action.payload(category);
+    setCategory: (state, action) => {
+      state.category = action.payload;
+      // console.log(state.category, 'lo que quedo guardado en el estado');
     },
+    setPerson: (state,action) => {
+      state.person = action.payload
+    }
   },
 });
 
-export const { getAllFilters } = filtersSlice.actions;
-export default filterssSlice.reducer;
+export const { setCategory, setPerson } = filtersSlice.actions;
+export default filtersSlice.reducer;

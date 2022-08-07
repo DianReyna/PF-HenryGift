@@ -7,7 +7,7 @@ import Carousel from "../Carousel/Carousel";
 import Pages from "../AppPagination/AppPagination";
 import NavBar from '../NavBar/NavBar'
 import Sort from "../Sort/Sort"
-import MultipleSelectPlaceholder from '../FilterComponent/Filters'
+import ContainerFilters from '../ContainerFilters/ContainerFilters'
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <NavBar/>
       <Carousel />
       <Sort />
-      <MultipleSelectPlaceholder />
+      <ContainerFilters />
       <BoxCards />
     </div>
   );
