@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useDispatch } from 'react-redux';
-import {searchBox} from '../../redux/actions/boxesActions'
+import {searchBox,getBoxesPerPage} from '../../redux/actions/boxesActions'
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
@@ -83,7 +83,13 @@ const ResponsiveAppBar = () => {
 
   function handleInputChange(event){
     event.preventDefault()
-    dispatch(searchBox(event.target.value))
+    if(event.target.value){
+
+      dispatch(searchBox(event.target.value))
+    }else {
+      
+      dispatch(getBoxesPerPage(0))
+    }
   }
 
   return (

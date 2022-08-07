@@ -34,10 +34,10 @@ const findCategory = async (category) => {
 const getAllBoxes = async (name, offset, limit) => {
   if (name) {
     const getOneBox = await Box.findAll({
-      include: [{ model: Category }],
+      include: [{ model: Category }],limit:4,
       where: {
         name: {
-          [Op.iLike]: `%${name}`,
+          [Op.iLike]: `%${name}%`,
         },
       },
     });
