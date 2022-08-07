@@ -20,6 +20,7 @@ export const searchBox = (name) => (dispatch) => {
 };
 
 export const createProvider = (payload) => () => {
+    console.log('action payload', payload)
     axios.post("http://localhost:3001/providers", payload);
 };
 
