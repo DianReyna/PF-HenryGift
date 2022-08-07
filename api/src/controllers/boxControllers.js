@@ -3,11 +3,16 @@ const { Products } = require("../database/index");
 const boxServices = require("../services/boxServices");
 
 const createNewBox = async (req, res, next) => {
-  const { products } = req.body;
+  const { products, category } = req.body;
   try {
     const newBox = await boxServices.createNewBox(req.body);
+
     const findedProducts = await boxServices.findProducts(products);
     newBox.addProducts(findedProducts);
+
+    const findedCategory = await boxServices.findCategory(category);
+    newBox.addCategory(findedCategory);
+
     res.send(newBox);
   } catch (error) {
     next(error);
@@ -29,9 +34,9 @@ const getBox = async (req, res, next) => {
 };
 
 const getAllBoxes = async (req, res, next) => {
-  const { name,offset,limit } = req.query;
+  const { name, offset, limit } = req.query;
   try {
-    const allBoxes = await boxServices.getAllBoxes(name,offset,limit);
+    const allBoxes = await boxServices.getAllBoxes(name, offset, limit);
 
     if (allBoxes || allBoxes.length > 0) {
       res.status(200).send(allBoxes);
