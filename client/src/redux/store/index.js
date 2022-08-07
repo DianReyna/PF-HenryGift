@@ -8,7 +8,7 @@ import products from '../reducer/productsSlice'
 export default configureStore({
     reducer:{
         boxes,
-        filters
+        filters,
         providers,
         categories
          // products: products
