@@ -8,3 +8,7 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+p{
+    color: red
+}

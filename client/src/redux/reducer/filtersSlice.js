@@ -13,9 +13,13 @@ export const filtersSlice = createSlice({
     },
     setPerson: (state,action) => {
       state.person = action.payload
+    },
+    clean: (state,action) => {
+      state.person = '',
+      state.category = "";
     }
   },
 });
 
-export const { setCategory, setPerson } = filtersSlice.actions;
+export const { setCategory, setPerson, clean } = filtersSlice.actions;
 export default filtersSlice.reducer;

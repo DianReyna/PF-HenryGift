@@ -11,7 +11,8 @@ export default configureStore({
         filters,
         providers,
         categories,
-         // products: products
+        products,
         sort
+
     }
 })

@@ -22,9 +22,7 @@ export const Footer = () => {
                         <Link  to ='https://www.instagram.com/' className='enlaces'><p>I </p></Link>
                     </div>
                 </div>
-                <div className="columnFooter">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.44367094894!2d-58.5033384559607!3d-34.61566245767745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20CABA%2C%20Argentina!5e0!3m2!1ses!2sco!4v1659578844052!5m2!1ses!2sco" width="400" height="200" loading="lazy" ></iframe>
-                </div>
+                
             </div>
         </footer>
     )
