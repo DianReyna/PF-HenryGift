@@ -22,7 +22,7 @@ export default function FilterPerson() {
   };
 
   return (
-    <Box>
+    <Box sx={{ background: '#F1F1F1', borderRadius: 2}}>
       <FormControl sx={{ width: 120 }}>
         <InputLabel id="demo-simple-select-label">Persons</InputLabel>
         <Select

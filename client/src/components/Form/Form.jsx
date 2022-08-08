@@ -3,11 +3,34 @@ import {Box, TextField,  Button,  InputLabel,  MenuItem,  FormControl,  Select }
 import {createProvider, createBox, createProduct} from '../../redux/actions/boxesActions'
 import { getProvider } from '../../redux/actions/providerActions'
 import { getCategory } from '../../redux/actions/categoryActions';
+import { getProducts } from '../../redux/actions/productsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css'
 import NavBar from '../NavBar/NavBar'
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 export default function Form() {
+  const theme = useTheme();
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -19,7 +42,6 @@ export default function Form() {
   const providers = useSelector((state) => state.providers)
   const categories = useSelector((state) => state.categories)
   const products = useSelector((state) => state.products)
-
 
   //PRODUCT
   const [productName, setProductName] = useState('');
@@ -88,7 +110,7 @@ export default function Form() {
       setProductDescriptionError(true)
     }
     if (productPrice == '') { 
-      setProductAddressError(true)
+      setProductPriceError(true)
     }
     if (productLocation == '') { 
       setProductLocationError(true)
@@ -170,9 +192,10 @@ export default function Form() {
     if (boxCategories == '') {
       setBoxCategoriesError(true)
     }
-
+    
     if (boxName && boxDetail && boxPrice && boxRanking && boxExpirationDate && boxImage && boxPerson && boxProducts && boxCategories){
-      dispatch(createBox({name: boxName, detail: boxDetail, price: boxPrice, ranking: boxRanking, expiraton_date: boxExpirationDate, image: boxImage, person: boxPerson, products: boxProducts, categories: boxCategories}))
+      console.log(boxName, boxDetail, boxPrice, boxRanking)
+      dispatch(createBox({name: boxName, detail: boxDetail, price: boxPrice, ranking: boxRanking, expiration_date: boxExpirationDate, image: boxImage, person: boxPerson, products: boxProducts, categories: boxCategories}))
     }
   }
 
@@ -233,26 +256,23 @@ export default function Form() {
                 variant="standard"
                 error={productImageError}
               />
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">Proveedor</InputLabel>
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Proveedor</InputLabel>
                 <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={productProvider}
-                  onChange={setProductProvider}
-                  label="Provider"
                   error={productProviderError}
-                  defaultValue=""
-                  required
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  value={productProvider}
+                  onChange={(e) => setProductProvider(e.target.value)}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
                 >
-                  
-                    {providers.providers?.map(({name, id}) => {
+                  {providers.providers?.map(({name, id}) => {
                       return (
-                        <MenuItem key={id} value={name}>
+                        <MenuItem key={id} value={name} styled={getStyles(name, productProvider, theme)}>
                           {name}
-                          </MenuItem>)
+                        </MenuItem>)
                     })}
-                  
                 </Select>
               </FormControl>
             </div>
@@ -260,10 +280,6 @@ export default function Form() {
           </form>
         </div>
         <div className={styles.formContainer} >
-
-
-
-
           <h2>PROVIDER</h2>
           <form noValidate autoComplete="off" onSubmit={handleProviderSubmit} >
             <div className={styles.formContainer} >
@@ -308,10 +324,6 @@ export default function Form() {
           </form>
         </div>
         <div className={styles.formContainer} >
-
-
-
-
           <h2>BOX</h2>
           <form noValidate autoComplete="off" onSubmit={handleBoxSubmit} >
             <div className={styles.formContainer} >
@@ -378,42 +390,41 @@ export default function Form() {
                 variant="standard"
                 error={boxPersonError}
               />
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">Productos</InputLabel>
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Productos</InputLabel>
                 <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={boxProducts}
-                  onChange={setBoxProducts}
-                  label="Product"
                   error={boxProductsError}
-                  defaultValue=""
-                  required
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={boxProducts}
+                  onChange={(e) => setBoxProducts(e.target.value)}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
                 >
-                  <MenuItem value="">
-                    <em>Ninguno</em>
-                  </MenuItem>
-
-                  {products.map(product => (<MenuItem value={product.name}>{product.name}</MenuItem>))}
-
+                  {products.products?.map(({name, id}) => {
+                    return (
+                      <MenuItem key={id} value={name} styled={getStyles(name, boxProducts, theme)}>
+                      {name}
+                    </MenuItem>)
+                  })}
                 </Select>
               </FormControl>
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">Categorias</InputLabel>
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Categorias</InputLabel>
                 <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={boxCategories}
-                  onChange={setBoxCategories}
-                  label="Product"
                   error={boxCategoriesError}
-                  defaultValue=""
-                  required
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={boxCategories}
+                  onChange={(e) => setBoxCategories(e.target.value)}
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
                 >
-
                   {categories.category?.map(({name, id}) => {
                     return (
-                    <MenuItem key={id}>
+                      <MenuItem key={id} value={name} styled={getStyles(name, boxCategories, theme)}>
                       {name}
                     </MenuItem>)
                   })}
