@@ -1,18 +1,21 @@
 import React from "react";
 import BoxCards from "../BoxCards/BoxCards";
 import Carousel from "../Carousel/Carousel";
-import NavBar from '../NavBar/NavBar'
-import Sort from "../Sort/Sort"
 import ContainerFilters from '../ContainerFilters/ContainerFilters'
+import styled from 'styled-components'
+const ContainerHome = styled.div`
+  
+`
 
 export default function Home() {
   return (
-    <div>
-      <NavBar/>
+    <ContainerHome>
       <Carousel />
-      <Sort />
+      <br /><br />
+      <hr />
       <ContainerFilters />
+      <hr />
       <BoxCards />
-    </div>
+    </ContainerHome>
   );
 }
