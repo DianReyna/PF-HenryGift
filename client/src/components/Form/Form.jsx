@@ -86,14 +86,12 @@ export default function Form() {
           
           
           <h2>PRODUCT</h2>
-          <form noValidate autoComplete="off" onSubmit={handleProductSubmit} >
+          <form onSubmit={handleProductSubmit} >
             <div className={styles.formContainer} >
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='productName'
-                defaultValue={input.productName}
-                required
-                id="standard-required"
+                defaultValue={input.productName || ''}
                 label="Nombre del producto"
                 variant="standard"
               />
@@ -102,9 +100,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='productDescription'
-                defaultValue={input.productDescription}
-                required
-                id="standard-required"
+                defaultValue={input.productDescription || ''}
                 label="Descripcion del producto"
                 variant="standard"
               />
@@ -113,9 +109,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='productPrice'
-                defaultValue={input.productPrice}
-                required
-                id="standard-required"
+                defaultValue={input.productPrice || ''}
                 label="Precio"
                 variant="standard"
               />
@@ -124,9 +118,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='productLocation'
-                defaultValue={input.productLocation}
-                required
-                id="standard-required"
+                defaultValue={input.productLocation || ''}
                 label="Direccion"
                 variant="standard"
               />
@@ -135,9 +127,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='productImage'
-                defaultValue={input.productImage}
-                required
-                id="standard-required"
+                defaultValue={input.productImage || ''}
                 label="Imagen"
                 variant="standard"
               />
@@ -147,15 +137,12 @@ export default function Form() {
                 <InputLabel id="demo-multiple-name-label">Proveedor</InputLabel>
 
 
-
-
-
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select-lable"
+                  // labelId="demo-simple-select-label"
+                  // id="demo-simple-select-lable"
                   onChange={(e) => handleProductChange(e)}
                   value={input.productProvider || ''}
-                  input={<OutlinedInput label="Name" />}
+                  // input={<OutlinedInput label="Name" />}
                   MenuProps={MenuProps}
                   >
                   {providers.providers?.map(({name, id}) => {
@@ -176,7 +163,7 @@ export default function Form() {
                 </Select>
               </FormControl>
             </div>
-            <Button type='submit' variant="outlined">Submit</Button>
+            <Button type='submit' variant="outlined">CREATE</Button>
           </form>
         </div>
         
@@ -196,16 +183,12 @@ export default function Form() {
         <div className={styles.formContainer} >
           <h2>PROVIDER</h2>
           <form 
-          noValidate 
-          autoComplete="off" 
-          onSubmit={e => handleProviderSubmit(e)} >
+            onSubmit={e => handleProviderSubmit(e)} >
             <div className={styles.formContainer} >
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='providerName'
-                defaultValue={input.providerName}
-                required
-                id="standard-required"
+                value={input.providerName || ''}
                 label="Nombre del proveedor"
                 variant="standard"
               />
@@ -214,9 +197,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='providerPhone'
-                defaultValue={input.providerPhone}
-                required
-                id="standard-required"
+                value={input.providerPhone || ''}
                 label="Numero de Telefono"
                 variant="standard"
               />
@@ -225,9 +206,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='providerAddress'
-                defaultValue={input.providerAddress}
-                required
-                id="standard-required"
+                value={input.providerAddress || ''}
                 label="Direccion"
                 variant="standard"
               />
@@ -236,9 +215,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='providerEmail'
-                defaultValue={input.providerEmail}
-                required
-                id="standard-required"
+                value={input.providerEmail || ''}
                 label="Email"
                 variant="standard"
               />
@@ -247,19 +224,7 @@ export default function Form() {
             </div>
             <Button variant="outlined" type="submit">
                 Create Provider
-              </Button>
-            {/* <div className="sub-form">
-            {Object.keys(errors).length === 0 ? (
-              <Button variant="outlined" type="submit">
-                Create Provider
-              </Button>
-            ) : null}
-            <Button
-              variant="outlined"
-              type="button"
-              onClick={e => cleanInputs(e)}
-            >Clean inputs</Button>
-          </div> */}
+            </Button>
           </form>
         </div>
         <div className={styles.formContainer} >
@@ -291,14 +256,12 @@ export default function Form() {
 
 
           <h2>BOX</h2>
-          <form noValidate autoComplete="off" onSubmit={handleBoxSubmit} >
+          <form onSubmit={handleBoxSubmit} >
             <div className={styles.formContainer} >
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxName'
-                value={input.boxName}
-                required
-                id="standard-required"
+                value={input.boxName || ''}
                 label="Nombre de la nueva box"
                 variant="standard"
               />
@@ -307,9 +270,7 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxDetail'
-                defaultValue={input.boxDetail}
-                required
-                id="standard-required"
+                defaultValue={input.boxDetail || ''}
                 label="Descripcion de la box"
                 variant="standard"
               />
@@ -318,9 +279,9 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxPrice'
-                defaultValue={input.boxPrice}
-                required
-                id="standard-required"
+                defaultValue={input.boxPrice || ''}
+                // required
+                // id="standard-required"
                 label="Precio"
                 variant="standard"
               />
@@ -329,9 +290,9 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxRanking'
-                defaultValue={input.boxRanking}
-                required
-                id="standard-required"
+                defaultValue={input.boxRanking || ''}
+                // required
+                // id="standard-required"
                 label="Ranking de la box"
                 variant="standard"
                 //error={boxRankingError}
@@ -341,9 +302,9 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxExpirationDate'
-                defaultValue={input.boxExpirationDate}
+                defaultValue={input.boxExpirationDate || ''}
                 required
-                id="standard-required"
+                // id="standard-required"
                 label="Fecha de vencimiento"
                 variant="standard"
                 //error={boxExpirationDateError}
@@ -353,9 +314,9 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxImage'
-                defaultValue={input.boxImage}
+                defaultValue={input.boxImage || ''}
                 required
-                id="standard-required"
+                // id="standard-required"
                 label="Imagen"
                 variant="standard"
                 //error={boxImageError}
@@ -365,9 +326,9 @@ export default function Form() {
               <TextField
                 onChange={(e) => handleChange(e)}
                 name='boxPerson'
-                defaultValue={input.boxPerson}
+                defaultValue={input.boxPerson || ''}
                 required
-                id="standard-required"
+                // id="standard-required"
                 label="Cantidad de personas"
                 variant="standard"
                 //error={boxPersonError}
@@ -384,8 +345,8 @@ export default function Form() {
                     value={input.boxProducts || []}
                     onChange={(e) => handleChange(e)}
                     name='boxProducts'
-                    defaultValue={input.boxProducts}
-                    input={<OutlinedInput label="Name" />}
+                    defaultValue={input.boxProducts || []}
+                    // input={<OutlinedInput label="Name" />}
                     MenuProps={MenuProps}
                   >
                     {products.products?.map(({name, id}) => {
@@ -408,7 +369,7 @@ export default function Form() {
                   value={input.boxCategories || []}
                   name='boxCategories'
                   onChange={(e) => handleChange(e)}
-                  input={<OutlinedInput label="Name" />}
+                  // input={<OutlinedInput label="Name" />}
                   MenuProps={MenuProps}
                 >
                   {categories.category?.map(({name, id}) => {
