@@ -8,12 +8,12 @@ import { Grid, Stack } from "@mui/material";
 export default function BoxCards() {
   const dispatch = useDispatch();
   const { boxes } = useSelector((state) => state.boxes);
-
+  const stateSort = useSelector(state => state.sort)
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    dispatch(getBoxesPerPage(page));
-  }, [page]);
+    dispatch(getBoxesPerPage(page,stateSort.col,stateSort.dir));
+  }, [page,stateSort]);
 
   return (
     <div className="Cards-container">
