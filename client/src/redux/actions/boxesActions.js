@@ -7,11 +7,11 @@ export const getBoxes = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getBoxesPerPage = (pag) => (dispatch) => {
+export const getBoxesPerPage = (pag,col,dir) => (dispatch) => {
 
-  axios.get(`http://localhost:3001/boxes?offset=${pag}&limit=4`)
+  console.log(col)
 
-    axios(`http://localhost:3001/boxes?offset=${pag}&limit=4`)
+    axios(`http://localhost:3001/boxes?offset=${pag}&limit=4&col=${col}&dir=${dir}`)
 
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
