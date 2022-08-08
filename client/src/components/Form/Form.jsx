@@ -3,6 +3,7 @@ import {Box, TextField,  Button,  InputLabel,  MenuItem,  FormControl,  Select }
 import {createProvider, createBox, createProduct} from '../../redux/actions/boxesActions'
 import { getProvider } from '../../redux/actions/providerActions'
 import { getCategory } from '../../redux/actions/categoryActions';
+import { getProducts } from '../../redux/actions/productsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css'
 import NavBar from '../NavBar/NavBar'
@@ -19,7 +20,6 @@ export default function Form() {
   const providers = useSelector((state) => state.providers)
   const categories = useSelector((state) => state.categories)
   const products = useSelector((state) => state.products)
-
 
   //PRODUCT
   const [productName, setProductName] = useState('');
@@ -394,7 +394,12 @@ export default function Form() {
                     <em>Ninguno</em>
                   </MenuItem>
 
-                  {products.map(product => (<MenuItem value={product.name}>{product.name}</MenuItem>))}
+                  {products.products?.map(({name, id}) => {
+                    return (
+                    <MenuItem key={id}>
+                      {name}
+                    </MenuItem>)
+                  })}
 
                 </Select>
               </FormControl>

@@ -10,7 +10,7 @@ export default configureStore({
         boxes,
         filters,
         providers,
-        categories
-         // products: products
+        categories,
+        products
     }
 })
