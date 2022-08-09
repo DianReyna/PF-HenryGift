@@ -2,8 +2,9 @@ const { DataTypes } = require("sequelize");
 
 module.exports = BoxFactory = (sequelize) => {
   return sequelize.define("Gift", {
-    unique_id: {
-      type: DataTypes.STRING,
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },

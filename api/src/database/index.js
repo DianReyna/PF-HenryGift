@@ -34,6 +34,9 @@ Products.belongsToMany(Box, { through: "box_products" });
 Category.belongsToMany(Box, { through: "box_category" });
 Box.belongsToMany(Category, { through: "box_category" });
 
+User.hasMany(OrderDetail, { foreignKey: "order_id" });
+OrderDetail.belongsTo(User, { foreignKey: "order_id" });
+
 module.exports = {
   sequelize,
   Box,

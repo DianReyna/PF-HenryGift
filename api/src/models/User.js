@@ -20,7 +20,7 @@ module.exports = BoxFactory = (sequelize) => {
       allowNull: false,
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   },

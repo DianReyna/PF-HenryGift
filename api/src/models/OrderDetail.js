@@ -9,7 +9,7 @@ module.exports = BoxFactory = (sequelize) => {
         primaryKey: true,
     },
     box_id: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     price: {
