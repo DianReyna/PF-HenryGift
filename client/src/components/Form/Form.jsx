@@ -1,26 +1,20 @@
-import React, { useEffect } from 'react';
-import {Box, TextField,  Button,  InputLabel,  MenuItem,  FormControl,  Select } from '@mui/material';
-import { getProvider } from '../../redux/actions/providerActions'
-import { getCategory } from '../../redux/actions/categoryActions';
-import { getProducts } from '../../redux/actions/productsActions';
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './Form.module.css'
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import useForm from './useForm';
-import validate from './validate';
-
-
-
-// function getStyles(name, personName, theme) {
-//   // console.log(personName)
-//   return {
-//     fontWeight:
-//       personName.indexOf(name) === -1
-//         ? theme.typography.fontWeightRegular
-//         : theme.typography.fontWeightMedium,
-//   };
-// }
+import React, { useEffect } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
+import { getProvider } from "../../redux/actions/providerActions";
+import { getCategory } from "../../redux/actions/categoryActions";
+import { getProducts } from "../../redux/actions/productsActions";
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./Form.module.css";
+import useForm from "./useForm";
+import validate from "./validate";
 
 
 const ITEM_HEIGHT = 48;
@@ -35,63 +29,45 @@ const MenuProps = {
 };
 
 export default function Form() {
-  //const theme = useTheme();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-
-  const {             
-    handleChange, 
-    input, 
-    handleProviderSubmit, 
-    handleDelete, 
+  const {
+    handleChange,
+    input,
+    handleProviderSubmit,
     errors,
-    cleanInputs,
-    handleProductSubmit, 
+    handleProductSubmit,
     handleProductChange,
-    handleBoxSubmit } = useForm(validate);
+    handleBoxSubmit,
+  } = useForm(validate);
 
   useEffect(() => {
-    dispatch(getProvider())
-    dispatch(getCategory())
-    dispatch(getProducts())
-  },[dispatch])
+    dispatch(getProvider());
+    dispatch(getCategory());
+    dispatch(getProducts());
+  }, [dispatch]);
 
-  const providers = useSelector((state) => state.providers)
-  const categories = useSelector((state) => state.categories)
-  const products = useSelector((state) => state.products)
-
-
+  const providers = useSelector((state) => state.providers);
+  const categories = useSelector((state) => state.categories);
+  const products = useSelector((state) => state.products);
 
   return (
     <div>
-      <Box className={styles.formsContainer}
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
+      <Box
+        className={styles.formsContainer}
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
       >
-        <div className={styles.formContainer} >
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+        <div className={styles.formContainer}>
           <h2>PRODUCT</h2>
-          <form onSubmit={handleProductSubmit} >
-            <div className={styles.formContainer} >
+          <form autoComplete="off" onSubmit={handleProductSubmit}>
+            <div className={styles.formContainer}>
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='productName'
-                defaultValue={input.productName || ''}
+                name="productName"
+                value={input.productName || ""}
+                required
                 label="Nombre del producto"
                 variant="standard"
               />
@@ -99,8 +75,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='productDescription'
-                defaultValue={input.productDescription || ''}
+                name="productDescription"
+                value={input.productDescription || ""}
+                required
                 label="Descripcion del producto"
                 variant="standard"
               />
@@ -108,8 +85,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='productPrice'
-                defaultValue={input.productPrice || ''}
+                name="productPrice"
+                value={input.productPrice || ""}
+                required
                 label="Precio"
                 variant="standard"
               />
@@ -117,8 +95,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='productLocation'
-                defaultValue={input.productLocation || ''}
+                name="productLocation"
+                value={input.productLocation || ""}
+                required
                 label="Direccion"
                 variant="standard"
               />
@@ -126,8 +105,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='productImage'
-                defaultValue={input.productImage || ''}
+                name="productImage"
+                value={input.productImage || ""}
+                required
                 label="Imagen"
                 variant="standard"
               />
@@ -136,59 +116,40 @@ export default function Form() {
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Proveedor</InputLabel>
 
-
                 <Select
-                  // labelId="demo-simple-select-label"
-                  // id="demo-simple-select-lable"
                   onChange={(e) => handleProductChange(e)}
-                  value={input.productProvider || ''}
-                  // input={<OutlinedInput label="Name" />}
+                  value={input.productProvider || ""}
                   MenuProps={MenuProps}
-                  >
-                  {providers.providers?.map(({name, id}) => {
-                      return (
-                        <MenuItem 
-                          key={id} 
-                          name='productProvider'
-                          
-                          value={name} 
-                        // styled={getStyles(name, 
-                        // input.productProvider, 
-                        // theme)}
-                        >
-                          {name}
-                      {/* {    console.log('Product provider',input.productProvider)} */}
-                        </MenuItem>)
-                    })}
+                >
+                  {providers.providers?.map(({ name, id }) => {
+                    return (
+                      <MenuItem
+                        key={id}
+                        name="productProvider"
+                        value={name}
+                      >
+                        {name}
+                      </MenuItem>
+                    );
+                  })}
                 </Select>
               </FormControl>
             </div>
-            <Button type='submit' variant="outlined">CREATE</Button>
+            <Button type="submit" variant="outlined">
+              CREATE
+            </Button>
           </form>
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div className={styles.formContainer} >
+
+        <div className={styles.formContainer}>
           <h2>PROVIDER</h2>
-          <form 
-            onSubmit={e => handleProviderSubmit(e)} >
-            <div className={styles.formContainer} >
+          <form autoComplete="off" onSubmit={(e) => handleProviderSubmit(e)}>
+            <div className={styles.formContainer}>
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='providerName'
-                value={input.providerName || ''}
+                name="providerName"
+                value={input.providerName || ""}
+                required
                 label="Nombre del proveedor"
                 variant="standard"
               />
@@ -196,8 +157,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='providerPhone'
-                value={input.providerPhone || ''}
+                name="providerPhone"
+                value={input.providerPhone || ""}
+                required
                 label="Numero de Telefono"
                 variant="standard"
               />
@@ -205,8 +167,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='providerAddress'
-                value={input.providerAddress || ''}
+                name="providerAddress"
+                value={input.providerAddress || ""}
+                required
                 label="Direccion"
                 variant="standard"
               />
@@ -214,54 +177,28 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='providerEmail'
-                value={input.providerEmail || ''}
+                name="providerEmail"
+                value={input.providerEmail || ""}
+                required
                 label="Email"
                 variant="standard"
               />
               {errors.providerEmail && <p>{errors.providerEmail}</p>}
-
             </div>
             <Button variant="outlined" type="submit">
-                Create Provider
+              CREATE
             </Button>
           </form>
         </div>
-        <div className={styles.formContainer} >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div className={styles.formContainer}>
           <h2>BOX</h2>
-          <form onSubmit={handleBoxSubmit} >
-            <div className={styles.formContainer} >
+          <form autoComplete="off" onSubmit={handleBoxSubmit}>
+            <div className={styles.formContainer}>
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxName'
-                value={input.boxName || ''}
+                name="boxName"
+                value={input.boxName || ""}
+                required
                 label="Nombre de la nueva box"
                 variant="standard"
               />
@@ -269,8 +206,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxDetail'
-                defaultValue={input.boxDetail || ''}
+                name="boxDetail"
+                value={input.boxDetail || ""}
+                required
                 label="Descripcion de la box"
                 variant="standard"
               />
@@ -278,10 +216,9 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxPrice'
-                defaultValue={input.boxPrice || ''}
-                // required
-                // id="standard-required"
+                name="boxPrice"
+                value={input.boxPrice || ""}
+                required
                 label="Precio"
                 variant="standard"
               />
@@ -289,101 +226,91 @@ export default function Form() {
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxRanking'
-                defaultValue={input.boxRanking || ''}
-                // required
-                // id="standard-required"
+                name="boxRanking"
+                value={input.boxRanking || ""}
+                required
                 label="Ranking de la box"
                 variant="standard"
-                //error={boxRankingError}
               />
               {errors.boxRanking && <p>{errors.boxRanking}</p>}
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxExpirationDate'
-                defaultValue={input.boxExpirationDate || ''}
+                name="boxExpirationDate"
+                value={input.boxExpirationDate || ""}
                 required
-                // id="standard-required"
                 label="Fecha de vencimiento"
                 variant="standard"
-                //error={boxExpirationDateError}
               />
               {errors.boxExpirationDate && <p>{errors.boxExpirationDate}</p>}
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxImage'
-                defaultValue={input.boxImage || ''}
+                name="boxImage"
+                value={input.boxImage || ""}
                 required
-                // id="standard-required"
                 label="Imagen"
                 variant="standard"
-                //error={boxImageError}
               />
               {errors.boxImage && <p>{errors.boxImage}</p>}
 
               <TextField
                 onChange={(e) => handleChange(e)}
-                name='boxPerson'
-                defaultValue={input.boxPerson || ''}
+                name="boxPerson"
+                value={input.boxPerson || ""}
                 required
-                // id="standard-required"
                 label="Cantidad de personas"
                 variant="standard"
-                //error={boxPersonError}
               />
               {errors.boxPerson && <p>{errors.boxPerson}</p>}
 
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Productos</InputLabel>
-                  <Select
-                    //error={boxProductsError}
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
-                    multiple
-                    value={input.boxProducts || []}
-                    onChange={(e) => handleChange(e)}
-                    name='boxProducts'
-                    defaultValue={input.boxProducts || []}
-                    // input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
-                  >
-                    {products.products?.map(({name, id}) => {
-                      return (
-                        <MenuItem key={id} value={name} 
-                        // styled={getStyles(name, input.boxProducts, theme)}
-                        >
-                        {name}
-                      </MenuItem>)
-                    })}
-                  </Select>
-              </FormControl>
-              <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-name-label">Categorias</InputLabel>
                 <Select
-                  //error={boxCategoriesError}
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={input.boxProducts || []}
+                  name="boxProducts"
+                  onChange={(e) => handleChange(e)}
+                  MenuProps={MenuProps}
+                >
+                  {products.products?.map(({ name, id }) => {
+                    return (
+                      <MenuItem key={id} value={name}>
+                        {name}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">
+                  Categorias
+                </InputLabel>
+                <Select
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   multiple
                   value={input.boxCategories || []}
-                  name='boxCategories'
+                  name="boxCategories"
                   onChange={(e) => handleChange(e)}
-                  // input={<OutlinedInput label="Name" />}
                   MenuProps={MenuProps}
                 >
-                  {categories.category?.map(({name, id}) => {
+                  {categories.category?.map(({ name, id }) => {
                     return (
-                      <MenuItem key={id} value={name} 
-                      // styled={getStyles(name, input.boxCategories, theme)}
-                      >
-                      {name}
-                    </MenuItem>)
+                      <MenuItem key={id} value={name}>
+                        {name}
+                      </MenuItem>
+                    );
                   })}
                 </Select>
               </FormControl>
             </div>
-            <Button type='submit' variant="outlined">Submit</Button>
+            <Button type="submit" variant="outlined">
+              CREATE
+            </Button>
           </form>
         </div>
       </Box>
