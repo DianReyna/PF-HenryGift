@@ -4,6 +4,9 @@ const BoxFactory = require("../models/Box");
 const ProductFactory = require("../models/Product");
 const ProviderFactory = require("../models/Provider");
 const CategoryFactory = require("../models/Category");
+const UserFactory = require("../models/User");
+const GiftFactory = require("../models/Gift");
+const OrderDetailFactory = require("../models/OrderDetail");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
@@ -18,6 +21,9 @@ const Box = BoxFactory(sequelize);
 const Products = ProductFactory(sequelize);
 const Provider = ProviderFactory(sequelize);
 const Category = CategoryFactory(sequelize);
+const User = UserFactory(sequelize);
+const Gift = GiftFactory(sequelize);
+const OrderDetail = OrderDetailFactory(sequelize);
 
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
@@ -34,4 +40,7 @@ module.exports = {
   Category,
   Products,
   Provider,
+  User,
+  Gift,
+  OrderDetail
 };
