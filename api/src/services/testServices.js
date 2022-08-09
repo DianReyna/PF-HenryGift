@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const getAllBoxes = async (condition) => {
   
-    const findBoxes = await Box.findAll(condition);
+    const findBoxes = await Box.findAndCountAll(condition);
     return findBoxes;
   } 
     

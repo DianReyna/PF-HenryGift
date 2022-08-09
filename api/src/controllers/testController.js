@@ -23,7 +23,7 @@ const getAllBoxes = async (req, res, next) => {
     },
   }
 
-  if(num) condition.where.person = num
+  if(num) condition.where.person = { [Op.eq]: num}
   console.log(offset)
 
   try {
