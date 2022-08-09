@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import {filterCategory} from '../../redux/actions/filtersActions'
+import {filterCategory} from '../../redux/actions/queryActions'
 
 
 export default function BasicSelect() {
