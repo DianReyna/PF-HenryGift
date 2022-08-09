@@ -18,7 +18,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { NavLink } from "react-router-dom";
 import styles from './NavBar.module.css'
-
+import { queryName } from '../../redux/actions/queryActions';
 const pages = ['Home'];
 const settings = ['Admin'];
 
@@ -83,13 +83,11 @@ const ResponsiveAppBar = () => {
 
   function handleInputChange(event){
     event.preventDefault()
-    if(event.target.value){
+    
 
-      dispatch(searchBox(event.target.value))
-    }else {
-      
-      dispatch(getBoxesPerPage(0))
-    }
+      dispatch(queryName(event.target.value))
+    
+    
   }
 
   return (
