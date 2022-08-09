@@ -4,21 +4,25 @@ import { getBoxesPerPage } from "../../redux/actions/boxesActions";
 import BoxCard from "../BoxCard/BoxCard";
 import AppPagination from "../AppPagination/AppPagination";
 import { Grid, Stack } from "@mui/material";
-
+import { queryPage } from "../../redux/actions/queryActions";
 export default function BoxCards() {
   const dispatch = useDispatch();
   const { boxes } = useSelector((state) => state.boxes);
-  const stateSort = useSelector(state => state.sort)
+  const query = useSelector((state)=>state.query)
   const [page, setPage] = useState(0);
-
+  console.log(query)
   useEffect(() => {
-    dispatch(getBoxesPerPage(page,stateSort.col,stateSort.dir));
-  }, [page,stateSort]);
+    dispatch(queryPage(page))
+  }, [page]);
+
+  useEffect(()=>{
+    dispatch(getBoxesPerPage(query))
+  },[query])
 
   return (
     <div className="Cards-container">
       <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
-        {boxes?.map((box) => (
+        {boxes.rows?.map((box) => (
           <Grid key={box.id} item xs={3}>
             <BoxCard
               key={box.id}

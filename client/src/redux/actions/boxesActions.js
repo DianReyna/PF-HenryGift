@@ -7,11 +7,11 @@ export const getBoxes = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getBoxesPerPage = (pag,col,dir) => (dispatch) => {
+export const getBoxesPerPage = (query) => (dispatch) => {
 
-  console.log(col)
+  
 
-    axios(`http://localhost:3001/boxes?offset=${pag}&limit=4&col=${col}&dir=${dir}`)
+    axios(`http://localhost:3001/test?offset=${query.page}&limit=4&name=${query.name}&col=${query.sort.col}&dir=${query.sort.dir}&category=${query.filters.category}&num=${query.filters.person}`)
 
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
@@ -51,9 +51,4 @@ export const detailProduct = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const sortBoxes = (col,dir) => (dispatch) => {
-    axios(`http://localhost:3001/sort?col=${col}&dir=${dir}`)
-    .then((res)=>dispatch(getAllBoxes(res.data)))
-    .catch((err)=>console.log(err))
-}
 
