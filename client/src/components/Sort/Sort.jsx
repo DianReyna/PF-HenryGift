@@ -6,8 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {sortBoxes} from '../../redux/actions/boxesActions'
-import { sortCol,sortDir } from '../../redux/actions/sortActions';
+
+import { sortCol,sortDir } from '../../redux/actions/queryActions';
 
 export default function BasicSelect() {
 
