@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {filterPerson} from '../../redux/actions/filtersActions'
+import {filterPerson} from '../../redux/actions/queryActions'
 
 export default function FilterPerson() {
   const [person, setPerson] = React.useState('');

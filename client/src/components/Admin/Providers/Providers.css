@@ -1,0 +1,28 @@
+.providerinfo {
+  display: flex;
+  align-items: center;
+}
+
+.span {
+  margin-left: 20px;
+  text-align: center;
+}
+.containerspan {
+  display: flex;
+  width: 150px;
+  align-content: space-around;
+  align-items: center;
+  margin-left: 10px;
+  text-align: center;
+}
+.containerspanid {
+  display: flex;
+  width: 50px;
+  align-content: space-around;
+  align-items: center;
+  margin-left: 10px;
+  text-align: center;
+}
+.containerspandescription {
+  width: 300px;
+}
