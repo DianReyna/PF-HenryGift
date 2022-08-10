@@ -278,8 +278,8 @@
     "ranking": 4.8,
     "person": "1 - 2",
     "expiration date": "02-09-22",
-    "detail": "busca de que pais te gusta su cultura de comidas por todo el mundo",
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_obQxiyvRsw2i3YhRr3jp1a5ZtMQELyJNbw&usqp=CAU",
+    "detail": "Para los amantes de esta centenaria infusión, el café representa un mundo lleno de aromas y sabores que no tiene parangón.",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQp-oAtTVo-RBGZYE9icXPdghuy9J9JxIvXQ&usqp=CAU",
     "gift": "asdfaev1234",
     "product": [
       {
@@ -440,7 +440,7 @@
         "price": 340,
         "description": "Viví la experiencia única y exclusiva de sentirte 'Piloto por un día'",
         "imagen": "https://www.qualityfly.com/wp-content/uploads/slide-4-new-generation-fleet-768x512.jpg",
-        "location": "Ruta 202 y Balcarce",
+        "location": "Buenos Aires",
         "provider": {
           "idProvider": "0000035r4",
           "name": " Fly On BA",
