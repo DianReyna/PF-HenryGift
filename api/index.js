@@ -7,6 +7,7 @@ const setHeaders = require('./src/middlewares/setHeaders');
 const { loadMockCategories } = require('./src/utils/categoriesMock');
 const { loadMockProviders } = require('./src/utils/providersMock');
 const { loadMockBoxes } = require('./src/utils/boxesMock');
+const { loadMockUsers } = require('./src/utils/usersMock');
 
 const PORT = process.env.PORT || 3001;
 
@@ -35,6 +36,7 @@ async function start() {
       console.log("Server listening on port", PORT);
       await loadMockCategories()
       await loadMockBoxes()
+      await loadMockUsers()
     });
   } catch (error) {
     console.log('Unable to connect to the database:', error);
