@@ -18,7 +18,9 @@ import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
+import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart, SendBox, Checkout } from "./components";
+
 
 const ContainerApp = styled.div`
   width: 90rem;
@@ -37,6 +39,7 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
+          <Route path="/userprofile" element={<UserProfileCreate />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/checkout" element={<Checkout />} />
