@@ -34,9 +34,15 @@ const getBox = async (req, res, next) => {
 };
 
 const getAllBoxes = async (req, res, next) => {
-  const { name, offset, limit,col,dir } = req.query;
+  const { name, offset, limit, col, dir } = req.query;
   try {
-    const allBoxes = await boxServices.getAllBoxes(name, offset, limit,col,dir);
+    const allBoxes = await boxServices.getAllBoxes(
+      name,
+      offset,
+      limit,
+      col,
+      dir
+    );
 
     if (allBoxes || allBoxes.length > 0) {
       res.status(200).send(allBoxes);
@@ -47,8 +53,27 @@ const getAllBoxes = async (req, res, next) => {
     next(error);
   }
 };
+
+const deleteBox = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const box = await boxServices.getBox(id);
+    if (!box) {
+      return res.status(404).send("Product not found...");
+    }
+    const destroy = await boxServices.deleteBox(id);
+    if (destroy) {
+      res.status(200).send("Box deleted!");
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   createNewBox,
   getBox,
   getAllBoxes,
+  deleteBox,
 };

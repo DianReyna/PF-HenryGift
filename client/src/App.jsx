@@ -18,7 +18,13 @@ import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
+import FormProvider from "./components/Form/FormProvider";
+import FormBox from "./components/Form/FormBox";
+import FormProduct from "./components/Form/FormProduct";
+import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart, SendBox, Checkout } from "./components";
+
+
 
 const ContainerApp = styled.div`
   width: 90rem;
@@ -37,6 +43,7 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
+          <Route path="/userprofile" element={<UserProfileCreate />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />
@@ -44,15 +51,15 @@ function App() {
           <Route path="/admin" element={<Dashboard />}>
             <Route path="home" element={<HomeAdmin />} />
             <Route path="boxes" element={<Boxes />}>
-              <Route path="create-box" element={<CreateProvider />} />
+              <Route path="create-box" element={<FormBox />} />
             </Route>
             <Route path="products" element={<Products />}>
               <Route index element={<ProductsList />} />
-              <Route path="create-product" element={<CreateProvider />} />
+              <Route path="create-product" element={<FormProduct />} />
             </Route>
             <Route path="providers" element={<Providers />}>
               <Route index element={<ProvidersList />} />
-              <Route path="create-provider" element={<CreateProvider />} />
+              <Route path="create-provider" element={<FormProvider />} />
             </Route>
             <Route path="users" element={<Users />}>
               <Route path="create-user" element={<CreateProvider />} />
