@@ -1,3 +1,4 @@
+import Login from "./components/Login/Login"
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail"
@@ -18,6 +19,7 @@ function App() {
     <NavBar/>
     <ContainerApp>
       <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
