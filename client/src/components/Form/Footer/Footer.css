@@ -1,0 +1,27 @@
+.footer{
+    background-color: black;
+
+}
+.containerFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    color: white;
+    padding: 1rem 2rem;
+}
+.informationFooter{
+    color: white;
+}
+.columnFooter{
+    align-items: center;
+}
+.redes{
+    display: flex;
+    font-size: 4rem;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.enlaces{
+    text-decoration: none;
+}

@@ -1,1 +1,3 @@
-//importar todos los componentes
+import Cart from "./Cart/Cart";
+
+export { Cart };
