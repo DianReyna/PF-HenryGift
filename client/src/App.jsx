@@ -1,3 +1,4 @@
+import Login from "./components/Login/Login"
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail"
@@ -28,14 +29,15 @@ const ContainerApp = styled.div`
 function App() {
   return (
     <>
-        <ToastContainer />
+      <ToastContainer />
       <NavBar />
       <ContainerApp>
-        <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
+          
           <Route path="/admin" element={<Dashboard />}>
             <Route path="home" element={<HomeAdmin />} />
             <Route path="boxes" element={<Boxes />}>
