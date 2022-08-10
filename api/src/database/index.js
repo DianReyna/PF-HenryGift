@@ -7,6 +7,8 @@ const CategoryFactory = require("../models/Category");
 const UserFactory = require("../models/User");
 const GiftFactory = require("../models/Gift");
 const OrderDetailFactory = require("../models/OrderDetail");
+const AuthenticationFactory = require("../models/Authentication");
+const StockFactory = require("../models/Stock")
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
@@ -24,6 +26,8 @@ const Category = CategoryFactory(sequelize);
 const User = UserFactory(sequelize);
 const Gift = GiftFactory(sequelize);
 const OrderDetail = OrderDetailFactory(sequelize);
+const Authentication = AuthenticationFactory(sequelize)
+const Stock = StockFactory(sequelize)
 
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
@@ -37,6 +41,20 @@ Box.belongsToMany(Category, { through: "box_category" });
 User.hasMany(OrderDetail, { foreignKey: "order_id" });
 OrderDetail.belongsTo(User, { foreignKey: "order_id" });
 
+User.hasMany(Authentication, { foreignKey: "auth_id" });
+Authentication.belongsTo(User, { foreignKey: "auth_id" });
+
+User.hasMany(Gift, { foreignKey: "gift_code" });
+Gift.belongsTo(User, { foreignKey: "gift_code" });
+
+OrderDetail.hasMany(Box, { foreignKey: "box_id" });
+Box.belongsTo(OrderDetail, { foreignKey: "box_id" });
+
+Products.hasMany(Stock, { foreignKey: "stock_id" });
+Stock.belongsTo(Products, { foreignKey: "stock_id" });
+
+
+
 module.exports = {
   sequelize,
   Box,
@@ -45,5 +63,7 @@ module.exports = {
   Provider,
   User,
   Gift,
-  OrderDetail
+  OrderDetail,
+  Stock,
+  Authentication
 };

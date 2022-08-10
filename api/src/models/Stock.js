@@ -1,21 +1,17 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = BoxFactory = (sequelize) => {
-  return sequelize.define("Gift", {
+  return sequelize.define("Stocks", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    code: {
-        type: DataTypes.STRING,
+    amount: {
+        type: DataTypes.FLOAT,
         allowNull: false,
-      },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
+    },
   },
   {
     timestamps: false,

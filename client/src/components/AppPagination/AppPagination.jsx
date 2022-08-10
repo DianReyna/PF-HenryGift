@@ -8,7 +8,7 @@ export default function AppPagination({setPage,page}) {
       const{ boxes} = useSelector((state) => state.boxes)
       const [pages, setPages] = useState(0)
       const dispatch = useDispatch()
-
+      const query = useSelector((state) => state.query)
       useEffect(()=>{
         
           if(typeof boxes.count != 'undefined'){
@@ -18,8 +18,14 @@ export default function AppPagination({setPage,page}) {
       },[boxes.count])
 
       useEffect(()=>{
+       
         setPage(0)
       },[pages])
+
+      useEffect(()=>{
+        if(query.sort.col && query.sort.dir)
+            setPage(0)
+      },[query.sort])
 
       return (
         <Box justifyContent={"center"} alignItems="center" display={"flex"} 
