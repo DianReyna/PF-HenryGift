@@ -29,7 +29,7 @@ export default function ProductCard({
     imagen,
 }) {
     return (
-     
+    
         <SupCardProduct>
             <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 345 }}>
