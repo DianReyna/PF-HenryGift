@@ -26,3 +26,22 @@
 .searchbar {
     margin-right: 20px;
 }
+
+.bagQuantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: rgb(217, 79, 15);
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    margin-left: 5px;
+  }
+
+  .navBag {
+    display: flex;
+    align-items: center;
+  }
