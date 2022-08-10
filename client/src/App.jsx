@@ -18,7 +18,6 @@ import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
 import { Cart } from "./components";
-// import styled from 'styled-components'
 
 const ContainerApp = styled.div`
   width: 90rem;
