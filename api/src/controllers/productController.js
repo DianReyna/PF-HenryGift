@@ -53,21 +53,60 @@ const getProductById = async (req, res, next) => {
   }
 };
 
-const getAllProducts = async (req,res,next) => {
-
+const getAllProducts = async (req, res, next) => {
   try {
-
-    const allProducts = await productServices.getAllProducts()
-    res.status(200).send(allProducts)
-    
+    const allProducts = await productServices.getAllProducts();
+    res.status(200).send(allProducts);
   } catch (error) {
-    next (error)
+    next(error);
   }
+};
 
-}
+const deleteProduct = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const product = await productServices.getProductById(id);
+    if (!product) {
+      return res.status(404).send("Product not found...");
+    }
+    const destroy = await productServices.deleteProduct(id);
+    if (destroy) {
+      res.status(200).send("Product deleted!");
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateProduct = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const product = await productServices.getProductById(id);
+    const prov = await productServices.findProvider(body.provider);
+    !product
+      ? res.status(404).send("Product not found...")
+      : !prov
+      ? res.status(404).send("Provider not found...")
+      : null;
+
+    const update = await productServices.updateProduct(id, body);
+    if (update) {
+      res.status(200).send("Product update!");
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   createNewProduct,
   getProductById,
-  getAllProducts
+  getAllProducts,
+  deleteProduct,
+  updateProduct,
 };
