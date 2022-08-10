@@ -18,7 +18,7 @@ import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
-import UserProfile from "./components/User/UserProfile";
+import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart } from "./components";
 
 const ContainerApp = styled.div`
@@ -38,7 +38,7 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/userprofile" element={<UserProfileCreate />} />
           <Route path="/cart" element={<Cart />} />
           //Dashboard
           <Route path="/admin" element={<Dashboard />}>
