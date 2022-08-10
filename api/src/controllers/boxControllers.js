@@ -34,9 +34,9 @@ const getBox = async (req, res, next) => {
 };
 
 const getAllBoxes = async (req, res, next) => {
-  const { name, offset, limit } = req.query;
+  const { name, offset, limit,col,dir } = req.query;
   try {
-    const allBoxes = await boxServices.getAllBoxes(name, offset, limit);
+    const allBoxes = await boxServices.getAllBoxes(name, offset, limit,col,dir);
 
     if (allBoxes || allBoxes.length > 0) {
       res.status(200).send(allBoxes);

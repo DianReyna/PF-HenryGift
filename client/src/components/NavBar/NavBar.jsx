@@ -26,9 +26,13 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
-
 const pages = ["Home"];
 const settings = ["Admin"];
+import styles from './NavBar.module.css'
+import { queryName } from '../../redux/actions/queryActions';
+const pages = ['Home'];
+const settings = ['Admin'];
+
 
 const ResponsiveAppBar = () => {
   const Search = styled("div")(({ theme }) => ({
@@ -90,6 +94,7 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const dispatch = useDispatch();
 
   function handleInputChange(event) {
@@ -99,6 +104,7 @@ const ResponsiveAppBar = () => {
     } else {
       dispatch(getBoxesPerPage(0));
     }
+
   }
 
   useEffect(() => {

@@ -44,11 +44,11 @@ const ContainerFilters = () => {
         <ContainerFiltersAndButton>
           <FilterCategory />
           <FilterPersons />
-          <Button variant="contained" onClick={() => aplicationFilters()}>Aplicar Cambios</Button>
+         {/*  <Button variant="contained" onClick={() => aplicationFilters()}>Aplicar Cambios</Button> */}
           {/* <Button variant="contained" onClick={() => clean()}>Limpiar filtros</Button> */}
         </ContainerFiltersAndButton>
         <ContainerSort>
-          {/* <Sort /> */}
+          <Sort />
         </ContainerSort>
       </ContainerFiltersContain>
     </>
