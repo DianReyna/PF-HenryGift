@@ -30,7 +30,45 @@ const createNewProvider = async (req, res, next) => {
   }
 };
 
+const deleteProvider = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const provider = await providerServices.getProviderById(id);
+    if (!provider) {
+      return res.status(404).send("Provider not found...");
+    }
+    const destroy = await providerServices.deleteProvider(id);
+    if (destroy) {
+      res.status(200).send("Provider deleted!");
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateProvider = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const provider = await providerServices.getProviderById(id);
+    if (!provider) {
+      return res.status(404).send("Provider not found...");
+    }
+    const update = await providerServices.updateProvider(id);
+    if (update) {
+      res.status(200).send("Provider update!");
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllProviders,
   createNewProvider,
+  deleteProvider,
+  updateProvider,
 };
