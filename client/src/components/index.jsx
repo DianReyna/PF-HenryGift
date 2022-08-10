@@ -1,1 +1,3 @@
-//importar todos los cgitomponentes
+import Cart from "./Cart/Cart";
+
+export { Cart };
