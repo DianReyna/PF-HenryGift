@@ -14,7 +14,7 @@ export default configureStore({
         providers,
         categories,
         products,
-        cart: cartReducer
+        cart: cartReducer,
         query
     }
 })

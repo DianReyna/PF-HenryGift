@@ -21,15 +21,14 @@ import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import styles from "./NavBar.module.css";
+import  "./NavBar.module.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
-const pages = ["Home"];
-const settings = ["Admin"];
 import styles from './NavBar.module.css'
 import { queryName } from '../../redux/actions/queryActions';
+
 const pages = ['Home'];
 const settings = ['Admin'];
 
