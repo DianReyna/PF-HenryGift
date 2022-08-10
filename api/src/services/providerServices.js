@@ -13,7 +13,34 @@ const createNewProvider = async (newProvider) => {
 
   return createdProvider;
 };
+
+const getProviderById = async (id) => {
+  const providerById = await Provider.findByPk(id);
+  return providerById;
+};
+
+const deleteProvider = async (id) => {
+  const destroy = await Provider.destroy({
+    where: {
+      id: id,
+    },
+  });
+  return destroy;
+};
+
+const updateProvider = async (id, body) => {
+  const update = await Provider.update(body, {
+    where: {
+      id: id,
+    },
+  });
+  return update;
+};
+
 module.exports = {
   getAllProviders,
   createNewProvider,
+  getProviderById,
+  deleteProvider,
+  updateProvider,
 };
