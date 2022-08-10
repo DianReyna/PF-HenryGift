@@ -10,7 +10,6 @@ export default function BoxCards() {
   const { boxes } = useSelector((state) => state.boxes);
   const query = useSelector((state)=>state.query)
   const [page, setPage] = useState(0);
-  console.log(query)
   useEffect(() => {
     dispatch(queryPage(page))
   }, [page]);
@@ -34,6 +33,7 @@ export default function BoxCards() {
               person={box.person}
               price={box.price}
               expiration_date={box.expiration_date}
+              box={box}
             />
           </Grid>
         ))}
