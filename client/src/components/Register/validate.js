@@ -4,7 +4,6 @@ export function validate(input){
     else if(!/^[a-zA-Z'-]+$/.test(input.first_name)) errors.first_name='*name is invalid';
     else if(!input.last_name) errors.last_name='*lastName is required';
     else if(!/^[a-zA-Z'-]+$/.test(input.last_name)) errors.last_name='*lastName is invalid';
-    else if(!input.birthDay) errors.birthDay='*birthDay is required';
     else if(!input.phone) errors.phone='*phone is required';
     else if(!input.email) errors.email='*email is required';
     else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)

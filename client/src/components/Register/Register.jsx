@@ -17,7 +17,6 @@ export default function Register() {
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
-    birthDay: "",
     phone: "",
     email: "",
     password: "",
@@ -93,26 +92,7 @@ export default function Register() {
                     </Typography>
                   )}
                 </Grid>
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    id="date"
-                    label="Birthday"
-                    type="date"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    onChange={handleChange("birthDay")}
-                  />
-                  {errors.birthDay && (
-                    <Typography
-                      component={"p"}
-                      sx={{ fontSize: 13, color: "red" }}
-                    >
-                      {errors.birthDay}
-                    </Typography>
-                  )}
-                </Grid>
-                <Grid xs={12} sm={6} item>
+                <Grid item xs={12}>
                   <TextField
                     type="tel"
                     placeholder="Enter phone number"
@@ -196,6 +176,14 @@ export default function Register() {
                   labelPlacement="end"
                   sx={{ color: "blue" }}
                 />
+                 {errors.accept && (
+                    <Typography
+                      component={"p"}
+                      sx={{ fontSize: 13, color: "red" }}
+                    >
+                      {errors.accept}
+                    </Typography>
+                  )}
                 <Grid item xs={12}>
                   <Button
                     type="submit"
