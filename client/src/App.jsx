@@ -1,4 +1,5 @@
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
@@ -34,6 +35,7 @@ function App() {
       <ContainerApp>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
