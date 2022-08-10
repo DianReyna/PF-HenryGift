@@ -6,18 +6,18 @@
 // Regalos recibidos
 // Compras realizadas
 
-
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Paper } from "@mui/material";
-import Grid from "@mui/material";
-import Button from "@mui/material";
-// import Box from '@mui/material/Box';
-import TextField from '@mui/material';
-import { useState } from "react";
-// import { textAlign } from "@mui/system";
+import {Grid} from "@mui/material";
+import {TextField} from '@mui/material';
+import {Button} from '@mui/material';
+import { getAllBoxes } from "../../redux/reducer/boxesSlice";
 
 const UserProfile = () => {
 
-    const [ user, setUser] = useState({
+       
+    const [ users, setUsers] = useState({
         first_name: "",
         last_name: "",
         email:"",
@@ -28,22 +28,25 @@ const UserProfile = () => {
         gifts:[]
     });
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
     }
 
     const handleChange = (e) =>{
-        setUser({
-            ...user, 
+        setUsers({
+            ...users, 
             [e.target.name]: e.target.value,
         })
     };
 
     return(
+        
+        
         <Paper
         sx={{
             p: 3,
-        }}
+        }} 
         >  
         <Grid container spacing={2} component="form"  onSubmit={handleSubmit}
         sx={{mt: 3, justifyContent: 'Center'}}
@@ -54,8 +57,8 @@ const UserProfile = () => {
                     name="first_name"
                     required
                     fullWidth
-                    lebel="Nombre"
-                    value={user.first_name}
+                    label="Nombre"
+                    value={users.first_name}
                     onChange={handleChange}
                     autoFocus
                     />
@@ -65,8 +68,8 @@ const UserProfile = () => {
                     name="last_name"
                     required
                     fullWidth
-                    lebel="Apellido"
-                    value={user.last_name}
+                    label="Apellido"
+                    value={users.last_name}
                     onChange={handleChange}
                     />
                 </Grid>
@@ -76,28 +79,19 @@ const UserProfile = () => {
                     type="email"
                     required
                     fullWidth
-                    lebel="Email"
-                    value={user.email}
+                    label="Email"
+                    value={users.email}
                     onChange={handleChange}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    name="access_level"
-                    required
-                    fullWidth
-                    lebel="Nivel de acceso"
-                    value={user.access_level}
-                    onChange={handleChange}
-                    />
-                </Grid>
+                
                 <Grid item xs={12}>
                     <TextField
                     name="phone"
                     required
                     fullWidth
-                    lebel="Phone"
-                    value={user.phone}
+                    label="Telefono"
+                    value={users.phone}
                     onChange={handleChange}
                     />
                 </Grid>
@@ -106,38 +100,124 @@ const UserProfile = () => {
                     name="password"
                     required
                     fullWidth
-                    lebel="Contraseña"
-                    value={user.password}
+                    label="Contraseña"
+                    value={users.password}
                     onChange={handleChange}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    name="shopping"
-                    fullWidth
-                    lebel="Compras realizadas"
-                    value={user.shopping}
-                    onChange={handleChange}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    name="gifts"
-                    fullWidth
-                    lebel="Regalos recibidos"
-                    value={user.gifts}
-                    onChange={handleChange}
-                    autoFocus
-                    />
-                </Grid>
-                <Grid item xs={12} sx={{m: 5, textAlign:"center"}}>
+                <Grid item xs={12} sx={{ m: 5, textAlingn:'center'}}>
                     <Button 
                     type="submit">GUARDAR CAMBIOS</Button>
-
                 </Grid>
             </Grid>
         </Grid>
         </Paper>
     )
 }
+
+
+
 export default UserProfile;
+                    //         <div>
+                    
+                    //         <form onSubmit={(e) => handleSubmit(e)}>
+                    //              <div>
+                    //                 <label>Nombre: </label>
+                    //                 <input
+                    //                     type='text'  
+                    //                     name="first_name"
+                    //                     required
+                    //                     value={users.first_name}
+                    //                     onChange={handleChange}
+                    //                     autoFocus/>
+                    //             </div>
+                    //             <div>
+                    //                 <label>Apellido: </label>
+                    //                 <input
+                    //                     type='text'   
+                    //                     name="last_name"
+                    //                     required
+                    //                     fullWidth
+                    //                     lebel="Apellido"
+                    //                     value={users.last_name}
+                    //                     onChange={handleChange}/>
+                    //                 </div>  
+                    //                 <div>
+                    //                 <label>Email: </label>
+                    //                 <input
+                    //                     name="email"
+                    //                     type="email"
+                    //                     required
+                    //                     fullWidth
+                    //                     lebel="Email"
+                    //                     value={users.email}
+                    //                     onChange={handleChange}/>
+                    //                  </div>  
+                    //                  <div>
+                    //                 <label>Nivel de acceso: </label>
+                    //                 <input  
+                    //                     type='text'
+                    //                     name="access_level"
+                    //                     required
+                    //                     fullWidth
+                    //                     lebel="Nivel de acceso"
+                    //                     value={users.access_level}
+                    //                     onChange={handleChange}/>
+                    //                  </div>  
+                    //                  <div>
+                    //                 <label>Telefono: </label>
+                    //                 <input  
+                    //                     type='text'
+                    //                     name="phone"
+                    //                     required
+                    //                     fullWidth
+                    //                     lebel="Telefono"
+                    //                     value={users.phone}
+                    //                     onChange={handleChange}/>
+                    //                  </div>  
+                    //                  <div>
+                    //                 <label>Contraseña: </label>
+                    //                 <input  
+                    //                     type='text'
+                    //                     name="password"
+                    //                     required
+                    //                     fullWidth
+                    //                     lebel="Contraseña"
+                    //                     value={users.password}
+                    //                     onChange={handleChange}/>
+                    //                  </div>  
+                    //                  <div>
+                    //                 <label>Compras realizadas: </label>
+                    //                 <input  
+                    //                     type='text'
+                    //                     name="shopping"
+                    //                     fullWidth
+                    //                     lebel="Compras realizadas"
+                    //                     value={users.shopping}
+                    //                     onChange={handleChange}/>
+                    //                  </div>  
+                    //                  <div>
+                    //                 <label>Regalos recibidos: </label>
+                    //                 <input 
+                    //                     required
+                    //                     fullWidth
+                    //                     lebel="Nombre"
+                    //                     value={users.first_name}
+                    //                     onChange={handleChange}
+                    //                     autoFocus/>
+                    //                  </div>  
+                    //                  <div>
+                    //                 <label>Apellido: </label>
+                    //                 <input 
+                    //                     name="gifts"
+                    //                     fullWidth
+                    //                     lebel="Regalos recibidos"
+                    //                     value={users.gifts}
+                    //                     onChange={handleChange}
+                    //                     autoFocus/>
+                    //                  </div>  
+                    //                  <button type="submit">GUARDAR CAMBIOS</button>
+                    //         </form>
+                    //         </div>
+                    //     )
+                    // }
