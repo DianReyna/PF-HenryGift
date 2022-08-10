@@ -14,6 +14,8 @@
     "@mui/styled-engine-sc": "^5.9.3",
     "@mui/x-data-grid": "^5.15.1",
     "@reduxjs/toolkit": "^1.8.3",
+    "@stripe/react-stripe-js": "^1.10.0",
+    "@stripe/stripe-js": "^1.35.0",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
