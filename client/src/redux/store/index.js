@@ -4,6 +4,7 @@ import filters from "../reducer/filtersSlice"
 import providers from "../reducer/providerSlice"
 import categories from "../reducer/categorySlice"
 import products from '../reducer/productsSlice'
+import cartReducer from "../reducer/cartSlice";
 
 export default configureStore({
     reducer:{
@@ -11,6 +12,7 @@ export default configureStore({
         filters,
         providers,
         categories,
-        products
+        products,
+        cart: cartReducer
     }
 })
