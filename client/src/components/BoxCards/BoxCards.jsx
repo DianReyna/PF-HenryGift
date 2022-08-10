@@ -34,6 +34,7 @@ export default function BoxCards() {
               person={box.person}
               price={box.price}
               expiration_date={box.expiration_date}
+              box={box}
             />
           </Grid>
         ))}
