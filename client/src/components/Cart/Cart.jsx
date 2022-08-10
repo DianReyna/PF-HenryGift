@@ -5,32 +5,38 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonIcon from "@mui/icons-material/Person";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { removeFromCart, decreaseCart, addToCart, clearCart, getTotals } from "../../redux/reducer/cartSlice";
+import {
+  removeFromCart,
+  decreaseCart,
+  addToCart,
+  clearCart,
+  getTotals,
+} from "../../redux/reducer/cartSlice";
 import "./Cart.css";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTotals())
-  } , [cart, dispatch])
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   const handleRemoveFromCart = (cartItem) => {
-    dispatch(removeFromCart(cartItem))
-  }
+    dispatch(removeFromCart(cartItem));
+  };
 
   const handleDecreaseCart = (cartItem) => {
-    dispatch(decreaseCart(cartItem))
-  }
+    dispatch(decreaseCart(cartItem));
+  };
 
   const handleIncreaseCart = (cartItem) => {
-    dispatch(addToCart(cartItem))
-  }
+    dispatch(addToCart(cartItem));
+  };
 
   const handleClearCart = (e) => {
-    dispatch(clearCart())
-  }
+    dispatch(clearCart());
+  };
 
   return (
     <div className="cart-container">
@@ -63,14 +69,20 @@ const Cart = () => {
                     <p className="make-eaven-cart">
                       <PersonIcon /> Para {cartItem.person} persona/s
                     </p>
-                    <button onClick={()=> handleRemoveFromCart(cartItem)}>Eliminar</button>
+                    <button onClick={() => handleRemoveFromCart(cartItem)}>
+                      Eliminar
+                    </button>
                   </div>
                 </div>
                 <div className="cart-product-price">${cartItem.price}</div>
                 <div className="cart-product-quantity">
-                  <button onClick={()=> handleDecreaseCart(cartItem) } >-</button>
+                  <button onClick={() => handleDecreaseCart(cartItem)}>
+                    -
+                  </button>
                   <div className="count">{cartItem.cartQuantity}</div>
-                  <button onClick={()=> handleIncreaseCart(cartItem)}>+</button>
+                  <button onClick={() => handleIncreaseCart(cartItem)}>
+                    +
+                  </button>
                 </div>
                 <div className="cart-product-total-price">
                   ${cartItem.cartQuantity * cartItem.price}
@@ -80,7 +92,7 @@ const Cart = () => {
           </div>
           <div className="cart-summary">
             <Button
-            onClick={()=> handleClearCart()}
+              onClick={() => handleClearCart()}
               className="clear-btn"
               variant="outlined"
               startIcon={<DeleteIcon />}
@@ -93,7 +105,9 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Impuestos incluidos</p>
-              <button>Check out</button>
+              <Link to="/send">
+                <button>Continuar</button>
+              </Link>
               <div className="continue-shopping">
                 <Link to="/">
                   <ArrowBackIcon />
