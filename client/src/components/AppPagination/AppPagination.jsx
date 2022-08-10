@@ -8,27 +8,33 @@ export default function AppPagination({setPage,page}) {
       const{ boxes} = useSelector((state) => state.boxes)
       const [pages, setPages] = useState(0)
       const dispatch = useDispatch()
-
+      const query = useSelector((state) => state.query)
       useEffect(()=>{
         
-          setPages(Math.ceil(boxes.count/4))
+          if(typeof boxes.count != 'undefined'){
+            setPages(Math.ceil(boxes.count/4))
+          }
           dispatch(queryPage(0))
-         console.log(pages)
       },[boxes.count])
 
       useEffect(()=>{
+       
         setPage(0)
       },[pages])
+
+      useEffect(()=>{
+        if(query.sort.col && query.sort.dir)
+            setPage(0)
+      },[query.sort])
 
       return (
         <Box justifyContent={"center"} alignItems="center" display={"flex"} 
         sx={{margin:"20px 0px"}}>
 
         {/*  <Pagination count={8} variant="outlined" color="primary" shape="rounded" onChange={(e,value)=>{setPage(value);window.scroll(0,0)}}/> */}
-         <Typography>Page: {page+1}</Typography>
-         <Pagination count={pages} page={page+1} variant="outlined" color="primary" shape="rounded" onChange={(e,value)=>{setPage(value-1);window.scroll(0,0)}}/>
+        <Typography>Page: {page+1}</Typography>
+        <Pagination count={pages} page={page+1} variant="outlined" color="primary" shape="rounded" onChange={(e,value)=>{setPage(value-1);window.scroll(0,0)}}/>
 
         </Box>
       )
     }
-         

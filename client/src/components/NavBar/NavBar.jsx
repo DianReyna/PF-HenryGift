@@ -98,12 +98,9 @@ const ResponsiveAppBar = () => {
 
   function handleInputChange(event) {
     event.preventDefault();
-    if (event.target.value) {
-      dispatch(searchBox(event.target.value));
-    } else {
-      dispatch(getBoxesPerPage(0));
-    }
-
+      if(event.target.value.trim().length>=3 || event.target.value.length === 0)
+      dispatch(queryName(event.target.value));
+    
   }
 
   useEffect(() => {
