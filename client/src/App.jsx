@@ -17,14 +17,13 @@ import Providers from "./components/Admin/Providers/Providers";
 import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
-import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
+import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import FormProvider from "./components/Form/FormProvider";
 import FormBox from "./components/Form/FormBox";
 import FormProduct from "./components/Form/FormProduct";
 import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart, SendBox, Checkout } from "./components";
-
-
+import UsersList from "./components/Admin/Users/UsersList";
 
 const ContainerApp = styled.div`
   width: 90rem;
@@ -62,7 +61,7 @@ function App() {
               <Route path="create-provider" element={<FormProvider />} />
             </Route>
             <Route path="users" element={<Users />}>
-              <Route path="create-user" element={<CreateProvider />} />
+              <Route index element={<UsersList />} />
             </Route>
           </Route>
           // End Dashboard
