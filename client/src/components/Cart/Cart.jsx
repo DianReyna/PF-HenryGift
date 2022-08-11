@@ -105,8 +105,8 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Impuestos incluidos</p>
-              <Link to="/payment">
-                <button>Pagar ahora</button>
+              <Link to="/send">
+                <button>Siguiente</button>
               </Link>
               <div className="continue-shopping">
                 <Link to="/">

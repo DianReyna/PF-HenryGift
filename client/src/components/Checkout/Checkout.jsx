@@ -16,7 +16,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +28,8 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    setLoading(true);
+    // setLoading(true);
+
 
     if (!error) {
       const { id } = paymentMethod;
@@ -42,7 +43,7 @@ const CheckoutForm = () => {
       } catch (error) {
         console.log(error);
       }
-      setLoading(false);
+      // setLoading(false);
       toast.success(`Importe abonado correctamente`, {
         position: "bottom-left",
       });
@@ -51,7 +52,7 @@ const CheckoutForm = () => {
     }
   };
 
-  console.log(!stripe || loading);
+  console.log(!stripe);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -61,13 +62,13 @@ const CheckoutForm = () => {
       </div>
 
       <button variant="outlined" disabled={!stripe}>
-        {loading ? (
+        {/* {loading ? (
           <div role="status">
             <span>Loading...</span>
           </div>
-        ) : (
-          "Buy"
-        )}
+        ) : ( */}
+          Buy
+        {/* )} */}
       </button>
     </form>
   );
