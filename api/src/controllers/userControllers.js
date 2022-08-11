@@ -23,7 +23,25 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+const updateAdmin = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const admin = await userServices.updateAdmin(body, id);
+
+    if (admin) {
+      const newList = await userServices.getAllUsers();
+      res.status(200).send(newList);
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllUsers,
-  createNewUser
+  createNewUser,
+  updateAdmin,
 };

@@ -7,13 +7,23 @@ const createNewUser = async (user) => {
 };
 
 const getAllUsers = async () => {
-    var findAllBoxes = User.findAll({
-    include: [{ model: OrderDetail }]
-    });
-    return findAllBoxes;
+  var findAllBoxes = User.findAll({
+    include: [{ model: OrderDetail }],
+  });
+  return findAllBoxes;
 };
 
+const updateAdmin = async (body, id) => {
+  const updateAdmin = await User.update(body, {
+    where: {
+      email: id,
+    },
+  });
+  // console.log(updateAdmin);
+  return updateAdmin;
+};
 module.exports = {
   getAllUsers,
-  createNewUser
+  createNewUser,
+  updateAdmin,
 };
