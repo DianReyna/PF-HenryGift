@@ -7,7 +7,6 @@ import products from "../reducer/productsSlice";
 import cartReducer from "../reducer/cartSlice";
 import query from "../reducer/querySlice";
 import users from "../reducer/userSlice";
-import productDelete from "../reducer/productsSlice";
 
 export default configureStore({
   reducer: {
@@ -19,6 +18,5 @@ export default configureStore({
     cart: cartReducer,
     query,
     users,
-    productDelete,
   },
 });
