@@ -1,4 +1,4 @@
-const {User, OrderDetail} = require("../database/index")
+const {User, OrderDetail, Authentication, Gift} = require("../database/index")
 
 const users = [{
   "email": "drowet0@4shared.com",
@@ -359,6 +359,10 @@ const users = [{
       await User.bulkCreate(users, {
         include: [{
           model: OrderDetail,
+        },{
+          model:Authentication,
+        },{
+          model:Gift,
         }],
       })
   

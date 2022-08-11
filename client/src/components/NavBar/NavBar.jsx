@@ -21,7 +21,12 @@ import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+<<<<<<< HEAD
 import "./NavBar.module.css";
+=======
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import  "./NavBar.module.css";
+>>>>>>> origin/dev
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -154,6 +159,12 @@ const ResponsiveAppBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          
+          
+          <Link to="/login" style={{textDecoration:"none", margin:5,color:"black"}}>
+          <AccountBoxIcon sx={{fontSize:40}}/>
+          </Link>
+
 
           <Link to="/cart">
             <div className={styles.navBag}>

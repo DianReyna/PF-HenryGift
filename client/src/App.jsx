@@ -24,10 +24,15 @@ import FormBox from "./components/Form/FormBox";
 import FormProduct from "./components/Form/FormProduct";
 import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart, SendBox, Checkout } from "./components";
+<<<<<<< HEAD
 import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
 import PrivateRoute from "./components/PrivateRoute";
+=======
+
+
+>>>>>>> origin/dev
 
 const ContainerApp = styled.div`
   /* width: 90rem; */
