@@ -1,9 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProvider } from "../../../redux/actions/providerActions";
+import {
+  getProvider,
+  destroyProvider,
+} from "../../../redux/actions/providerActions";
 import { DataGrid } from "@mui/x-data-grid";
-import { Action, Delete, View } from "../CommonStyled.js";
+import { Action, Delete } from "../CommonStyled.js";
 
 export default function ProvidersList() {
   const dispatch = useDispatch();
@@ -12,11 +15,15 @@ export default function ProvidersList() {
     dispatch(getProvider());
   }, [dispatch]);
 
+  const handleDelete = (id) => {
+    dispatch(destroyProvider(id));
+  };
   const rows =
     itemsProvider &&
     itemsProvider.providers?.map((item, index) => {
       return {
         id: index + 1,
+        id_provider: item.id,
         name: item.name,
         phone: item.phone,
         address: item.address,
@@ -38,8 +45,9 @@ export default function ProvidersList() {
       renderCell: (params) => {
         return (
           <Action>
-            <Delete>Delete</Delete>
-            <View>View</View>
+            <Delete onClick={() => handleDelete(params.row.id_provider)}>
+              Delete
+            </Delete>
           </Action>
         );
       },
@@ -54,6 +62,7 @@ export default function ProvidersList() {
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
+        disableSelectionOnClick
       />
     </div>
   );

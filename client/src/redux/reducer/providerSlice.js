@@ -9,8 +9,11 @@ export const providerSlice = createSlice({
     getAllProviders: (state, action) => {
       state.providers = action.payload;
     },
+    deleteProvider: (state, action) => {
+      state.providers = action.payload;
+    },
   },
 });
 
-export const { getAllProviders } = providerSlice.actions;
+export const { getAllProviders, deleteProvider } = providerSlice.actions;
 export default providerSlice.reducer;
