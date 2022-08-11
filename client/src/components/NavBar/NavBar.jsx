@@ -154,11 +154,8 @@ const ResponsiveAppBar = () => {
           
           
           <Link to="/login" style={{textDecoration:"none", margin:5,color:"black"}}>
-          <AccountBoxIcon/>
-            My profile
+          <AccountBoxIcon sx={{fontSize:40}}/>
           </Link>
-        
-          
 
 
           <Link to="/cart">

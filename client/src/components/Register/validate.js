@@ -1,9 +1,15 @@
 export function validate(input){
+    const date = new Date();
+    const currentYear = date.getFullYear();
+    let yearOfBirth=input.dateBirth.split('-')[0];
+    let diference=currentYear-yearOfBirth;
     let errors={};
     if(!input.first_name) errors.first_name='*name is required';
     else if(!/^[a-zA-Z'-]+$/.test(input.first_name)) errors.first_name='*name is invalid';
     else if(!input.last_name) errors.last_name='*lastName is required';
     else if(!/^[a-zA-Z'-]+$/.test(input.last_name)) errors.last_name='*lastName is invalid';
+    else if(!input.dateBirth) errors.dateBirth='*date of Birth is required';
+    else if(diference<18) errors.dateBirth='*date of Birth is invalid';
     else if(!input.phone) errors.phone='*phone is required';
     else if(!input.email) errors.email='*email is required';
     else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)
