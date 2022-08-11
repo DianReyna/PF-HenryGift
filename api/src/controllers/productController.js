@@ -71,7 +71,8 @@ const deleteProduct = async (req, res, next) => {
     }
     const destroy = await productServices.deleteProduct(id);
     if (destroy) {
-      res.status(200).send("Product deleted!");
+      const newlist = await productServices.getAllProducts();
+      res.status(200).send(newlist);
     } else {
       res.status(404).send("Error");
     }
