@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import {filterCategory} from '../../redux/actions/queryActions'
 
 
+
 export default function BasicSelect() {
   const [category, setCategory] = React.useState('');
 
@@ -25,13 +26,21 @@ export default function BasicSelect() {
     setCategory(event.target.value);
   };
 
+  const tema = {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  };
+  
+
+
   //styled={{background: 'blue'}}
   //sx={{ background: '#F1F1F1', borderRadius: 2}}
+  
   return (
-    <Box sx={{ background: '#F1F1F1', borderRadius: 2 }}>
+    <Box sx={{ background: 'rgba(16, 15, 15, 0)', color: 'white !important', borderRadius: 2 }}>
       <FormControl sx={{ width: 200 }} >
-        <InputLabel id="demo-simple-select-label" >Category</InputLabel>
-        <Select
+        <InputLabel id="demo-simple-select-label"  sx={{ color: 'gold !important' }} >Category</InputLabel>
+        
+        <Select  sx={{ color: 'white !important' }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={category}
