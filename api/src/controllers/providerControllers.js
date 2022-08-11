@@ -39,7 +39,8 @@ const deleteProvider = async (req, res, next) => {
     }
     const destroy = await providerServices.deleteProvider(id);
     if (destroy) {
-      res.status(200).send("Provider deleted!");
+      const newlist = await providerServices.getAllProviders();
+      res.status(200).send(newlist);
     } else {
       res.status(404).send("Error");
     }
