@@ -14,7 +14,7 @@ export default function Dashboard() {
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
-                to="/admin/home"
+                to="/admin"
               >
                 <li className="sidebarListItem">Home</li>
               </NavLink>

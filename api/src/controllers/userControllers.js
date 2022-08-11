@@ -24,24 +24,22 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
-const createUser = async (req, res, next) => {
-  const {first_name, last_name, email, phone} = req.body;
+const updateAdmin = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
   try {
-    const createUser = await userServices.createUser(first_name, last_name, email, phone)
-      if(!createUser){
-        res.status(400).send({
-          status:'error', 
-          message: 'Person failed creates'
-        })
-      }
-      res.status(201).send({
-        status:'success', 
-        data: 'createUser'
-      })
+    const admin = await userServices.updateAdmin(body, id);
+
+    if (admin) {
+      const newList = await userServices.getAllUsers();
+      res.status(200).send(newList);
+    } else {
+      res.status(404).send("Error");
+    }
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
 const getUserById = async (req, res, next) => {
   const {id, email} = req.params;  
@@ -59,23 +57,7 @@ const getUserById = async (req, res, next) => {
   }
 }
 
-const updateUser =  async (req, res, next) => {
-  const { id } = req.params;
-  try {
-    const user = await userServices.getUserById(id);
-    if (!user) {
-      return res.status(404).send("User not found...");
-    }
-    const update = await userServices.updateUser(id);
-    if (update) {
-      res.status(200).send("User update!");
-    } else {
-      res.status(404).send("Error");
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+
 //     try {
 //     const { id } = req.params;
 //     const {first_name, last_name, email, phone} = req.body;    const findUserById = await User.findone({
@@ -118,11 +100,13 @@ const updateUser =  async (req, res, next) => {
 
 
 
+
+
 module.exports = {
   getAllUsers, 
   createNewUser,
-  createUser,
-  getUserById,
   updateUser, 
+   getUserById,
+
 
 };

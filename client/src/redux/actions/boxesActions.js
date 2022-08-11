@@ -4,6 +4,7 @@ import {
   getDetailBox,
   getDetailProduct,
   deleteBox,
+  getAllBoxesAdmin,
 } from "../reducer/boxesSlice";
 
 export const getBoxes = () => (dispatch) => {
