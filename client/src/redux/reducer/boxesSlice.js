@@ -17,13 +17,21 @@ export const boxesSlice = createSlice({
     getDetailProduct: (state, action) => {
       state.detailProd = action.payload;
     },
+    getAllBoxesAdmin: (state, action) => {
+      state.boxes = action.payload;
+    },
     deleteBox: (state, action) => {
       state.boxes = action.payload;
     },
   },
 });
 
-export const { getAllBoxes, getDetailBox, getDetailProduct, deleteBox } =
-  boxesSlice.actions;
+export const {
+  getAllBoxes,
+  getDetailBox,
+  getDetailProduct,
+  deleteBox,
+  getAllBoxesAdmin,
+} = boxesSlice.actions;
 
 export default boxesSlice.reducer;
