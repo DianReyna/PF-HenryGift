@@ -22,7 +22,6 @@ const updateAdmin = async (body, id) => {
   return updateAdmin;
 };
 
-
 const getUserById = async (id, email) => {
   const userById = await User.findByPk(id, email);
   return userById;
@@ -37,11 +36,10 @@ const updateUser = async (id, body) => {
   return update;
 };
 
-
 module.exports = {
   getAllUsers,
   createNewUser,
   updateAdmin,
-  createUser,
-  getUserById
+  updateUser,
+  getUserById,
 };

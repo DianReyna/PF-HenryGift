@@ -42,21 +42,20 @@ const updateAdmin = async (req, res, next) => {
 };
 
 const getUserById = async (req, res, next) => {
-  const {id, email} = req.params;  
+  const { id, email } = req.params;
   try {
-    const userId = await userServices.getUserById(id, email)
-    if(!userId){
+    const userId = await userServices.getUserById(id, email);
+    if (!userId) {
       res.status(400).send({
-        status:'error', 
-        message: 'User not found'
-      })
+        status: "error",
+        message: "User not found",
+      });
     }
-    res.status(201).send(userId)
-} catch (error) {
-  next(error)
+    res.status(201).send(userId);
+  } catch (error) {
+    next(error);
   }
-}
-
+};
 
 //     try {
 //     const { id } = req.params;
@@ -68,7 +67,7 @@ const getUserById = async (req, res, next) => {
 
 //     if(!findUserById){
 //       res.status(400).send({
-//         status:'error', 
+//         status:'error',
 //         message: 'Person not found'
 //       })
 //     };
@@ -84,29 +83,23 @@ const getUserById = async (req, res, next) => {
 //     }, update)
 //     if (!updateUserInfo){
 //       res.status(400).send({
-//         status:'error', 
+//         status:'error',
 //         message: 'Data user falled update'
 //       });
 //     }
 //     res.status(201).send({
-//       status:'success', 
+//       status:'success',
 //       data: 'Update User'
 //     })
-    
+
 //   } catch (error) {
 //     next(error)
 //   }
 // }
 
-
-
-
-
 module.exports = {
-  getAllUsers, 
+  getAllUsers,
   createNewUser,
-  updateUser, 
-   getUserById,
-
-
+  updateAdmin,
+  getUserById,
 };

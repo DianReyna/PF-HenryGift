@@ -4,18 +4,12 @@ const {
   getAllUsers,
   createNewUser,
   updateAdmin,
-  updateUser,
+  // updateUser,
 } = require("../controllers/userControllers");
-const { route } = require("./providerRoutes");
 
 router.get("/", getAllUsers);
 router.post("/", createNewUser);
 router.put("/admin/:id", updateAdmin);
-
-
-router.put("/:id", updateUser);
-router.post("/", createNewUser);
-
-
+// router.put("/:id", updateUser);
 
 module.exports = router;
