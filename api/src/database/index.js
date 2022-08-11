@@ -40,8 +40,6 @@ Products.belongsToMany(Box, { through: "box_products" });
 Category.belongsToMany(Box, { through: "box_category" });
 Box.belongsToMany(Category, { through: "box_category" });
 
-User.hasMany(OrderDetail, { foreignKey: "order_id" });
-OrderDetail.belongsTo(User, { foreignKey: "order_id" });
 
 User.hasMany(Authentication, { foreignKey: "auth_id" });
 Authentication.belongsTo(User, { foreignKey: "auth_id" });
@@ -49,14 +47,18 @@ Authentication.belongsTo(User, { foreignKey: "auth_id" });
 User.hasMany(Gift, { foreignKey: "gift_code" });
 Gift.belongsTo(User, { foreignKey: "gift_code" });
 
-OrderDetail.hasMany(Box, { foreignKey: "box_id" });
-Box.belongsTo(OrderDetail, { foreignKey: "box_id" });
+Order.hasMany(OrderDetail, { foreignKey: "order_id" });
+OrderDetail.belongsTo(Order, { foreignKey: "order_id" });
+
+User.hasMany(OrderDetail);
+OrderDetail.belongsTo(User);
 
 Products.hasMany(Stock, { foreignKey: "stock_id" });
 Stock.belongsTo(Products, { foreignKey: "stock_id" });
 
-Box.belongsToMany(Order, { through: "box_order" });
-Order.belongsToMany(Box, { through: "box_order" });
+Box.hasMany(OrderDetail, { foreignKey: "box_id" });
+OrderDetail.belongsTo(Box, { foreignKey: "box_id" });
+
 Order.belongsTo(User)
 User.hasMany(Order)
 

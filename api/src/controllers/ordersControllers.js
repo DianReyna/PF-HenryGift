@@ -1,3 +1,5 @@
+const { Box,User,Order,OrderDetail } = require("../database/index");
+const { Op, UUID } = require("sequelize");
 const ordersServices = require("../services/ordersServices");
 
 const createNewOrder = async (req, res, next) => {
@@ -7,8 +9,17 @@ const createNewOrder = async (req, res, next) => {
 
     const boxes = req.body.boxes;
     const  userId = req.body.userId
-
-    const createdOrder = await ordersServices.createNewOrder(boxes,userId,req.body.amount);
+    
+    const createdOrder = await ordersServices.createNewOrder(userId,req.body.amount);
+   
+    let arrPromises = boxes.map(box=>OrderDetail.create({
+      box_id:box.id,
+      quantity:box.quantity,
+      is_gift:box.isGift,
+      UserEmail:userId,
+      order_id:createdOrder.dataValues.id
+    }))
+    await Promise.all(arrPromises)
 
     if (createdOrder) {
       res.status(201).send(createdOrder);
@@ -36,7 +47,7 @@ const getAllOrders = async (req, res, next) => {
   }
 };
 
-const getUserOrders = async(req,res,next)=>{
+/* const getUserOrders = async(req,res,next)=>{
 
   const {user} = req.query
 
@@ -52,10 +63,10 @@ const getUserOrders = async(req,res,next)=>{
   } catch (error) {
     next(error);
   }
-}
+} */
 
 module.exports={
   getAllOrders,
   createNewOrder,
-  getUserOrders
+  
 }

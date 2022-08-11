@@ -6,5 +6,5 @@ router.get("/",getAllOrders)
 
 router.post('/',createNewOrder );
 
-router.get("/user",getUserOrders)
+//router.get("/user",getUserOrders)
 module.exports = router;
