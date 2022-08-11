@@ -1,13 +1,29 @@
-
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Home from "./components/Home/Home";
+import BoxDetail from "./components/BoxDetail/BoxDetail";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import styled from "styled-components";
 import { Footer } from "./components/Form/Footer/Footer";
-import { Cart, SendBox, Checkout, Login, Home	,BoxDetail	,ProductDetail	,NavBar	,Form	
-	,Dashboard	,Boxes	,Products	,Users	,Providers	,CreateProvider	,ProvidersList
-	,ProductsList	,HomeAdmin	,FormProvider	,FormBox	,FormProduct	,UserProfileCreate, UsersList, Register } from "./components";
+import NavBar from "./components/NavBar/NavBar";
+import Form from "./components/Form/Form";
 import styled from "styled-components";
+import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Boxes from "./components/Admin/Boxes/Boxes";
+import Products from "./components/Admin/Products/Products";
+import Users from "./components/Admin/Users/Users";
+import Providers from "./components/Admin/Providers/Providers";
+import CreateProvider from "./components/Admin/Providers/CreateProvider";
+import ProvidersList from "./components/Admin/Providers/ProvidersList";
+import ProductsList from "./components/Admin/Products/ProductsList";
+import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
+import FormProvider from "./components/Form/FormProvider";
+import FormBox from "./components/Form/FormBox";
+import FormProduct from "./components/Form/FormProduct";
+import UserProfileCreate from "./components/User/UserProfileCreate";
+import { Cart, SendBox, Checkout } from "./components";
 
 
 
