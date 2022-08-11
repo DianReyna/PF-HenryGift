@@ -58,6 +58,7 @@ Stock.belongsTo(Products, { foreignKey: "stock_id" });
 Box.belongsToMany(Order, { through: "box_order" });
 Order.belongsToMany(Box, { through: "box_order" });
 Order.belongsTo(User)
+User.hasMany(Order)
 
 module.exports = {
   sequelize,
@@ -69,5 +70,6 @@ module.exports = {
   Gift,
   OrderDetail,
   Stock,
-  Authentication
+  Authentication,
+  Order
 };
