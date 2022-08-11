@@ -1,4 +1,5 @@
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
@@ -17,17 +18,16 @@ import Providers from "./components/Admin/Providers/Providers";
 import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
-import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
+import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import FormProvider from "./components/Form/FormProvider";
 import FormBox from "./components/Form/FormBox";
 import FormProduct from "./components/Form/FormProduct";
 import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart, SendBox, Checkout } from "./components";
-
-
+import UsersList from "./components/Admin/Users/UsersList";
 
 const ContainerApp = styled.div`
-  width: 90rem;
+  /* width: 90rem; */
   overflow: hidden;
   margin: 2rem auto;
 `;
@@ -40,6 +40,7 @@ function App() {
       <ContainerApp>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
@@ -62,7 +63,7 @@ function App() {
               <Route path="create-provider" element={<FormProvider />} />
             </Route>
             <Route path="users" element={<Users />}>
-              <Route path="create-user" element={<CreateProvider />} />
+              <Route index element={<UsersList />} />
             </Route>
           </Route>
           // End Dashboard

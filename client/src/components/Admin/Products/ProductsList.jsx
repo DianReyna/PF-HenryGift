@@ -1,22 +1,32 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../redux/actions/productsActions";
+import {
+  getProducts,
+  destroyProduct,
+} from "../../../redux/actions/productsActions";
 import { DataGrid } from "@mui/x-data-grid";
 import { Action, Delete, View, ImageContainer } from "../CommonStyled";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export default function ProductsList() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const itemsProducts = useSelector((state) => state.products);
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const handleDelete = (id) => {
+    dispatch(destroyProduct(id));
+  };
+
   const rows =
     itemsProducts &&
     itemsProducts.products?.map((item, index) => {
       return {
         id: index + 1,
+        id_product: item.id,
         name: item.name,
         price: item.price,
         image: item.image,
@@ -29,7 +39,7 @@ export default function ProductsList() {
   const columns = [
     { field: "id", headerName: "ID", width: 60 },
     { field: "name", headerName: "Name", width: 160 },
-    { field: "price", headerName: "Price", width: 100 },
+    { field: "price", headerName: "Price", width: 90 },
     {
       field: "image",
       headerName: "Image",
@@ -53,8 +63,16 @@ export default function ProductsList() {
       renderCell: (params) => {
         return (
           <Action>
-            <Delete>Delete</Delete>
-            <View>View</View>
+            <Delete onClick={() => handleDelete(params.row.id_product)}>
+              Delete
+            </Delete>
+            <View
+              onClick={() => {
+                navigate(`/product/${params.row.id_product}`);
+              }}
+            >
+              View
+            </View>
           </Action>
         );
       },
@@ -63,12 +81,14 @@ export default function ProductsList() {
 
   return (
     <div style={{ height: 450, width: "100%" }}>
+      {console.log(itemsProducts)}
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
+        disableSelectionOnClick
       />
     </div>
   );

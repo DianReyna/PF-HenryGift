@@ -34,15 +34,9 @@ const getBox = async (req, res, next) => {
 };
 
 const getAllBoxes = async (req, res, next) => {
-  const { name, offset, limit, col, dir } = req.query;
+ 
   try {
-    const allBoxes = await boxServices.getAllBoxes(
-      name,
-      offset,
-      limit,
-      col,
-      dir
-    );
+    const allBoxes = await boxServices.getAllBoxes();
 
     if (allBoxes || allBoxes.length > 0) {
       res.status(200).send(allBoxes);
@@ -63,7 +57,8 @@ const deleteBox = async (req, res, next) => {
     }
     const destroy = await boxServices.deleteBox(id);
     if (destroy) {
-      res.status(200).send("Box deleted!");
+      const newlist = await boxServices.getAllBoxes();
+      res.status(200).send(newlist);
     } else {
       res.status(404).send("Error");
     }

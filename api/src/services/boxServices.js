@@ -31,36 +31,15 @@ const findCategory = async (category) => {
   return findAllCategory;
 };
 
-const getAllBoxes = async (name, offset, limit, col, dir) => {
-  if (name) {
-    const getOneBox = await Box.findAll({
-      include: [{ model: Category }],
-      limit: 4,
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`,
-        },
-      },
-    });
-    return getOneBox;
-  } else {
-    if (col && dir && col !== "undefined") {
-      var findAllBoxes = Box.findAll({
+const getAllBoxes = async () => {
+  
+      const findAllBoxes = Box.findAll({
         include: [{ model: Category }],
-        offset: limit * offset,
-        limit,
-        order: [[col, dir]],
-      });
-    } else {
-      var findAllBoxes = Box.findAll({
-        include: [{ model: Category }],
-        offset: limit * offset,
-        limit,
-      });
-    }
+      })
+       
     return findAllBoxes;
   }
-};
+
 
 const deleteBox = async (id) => {
   const destroy = await Box.destroy({

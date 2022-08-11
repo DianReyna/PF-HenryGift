@@ -1,4 +1,5 @@
 import React ,{useState} from 'react';
+import { Link } from 'react-router-dom';
 import {Visibility,VisibilityOff,Email,Google,Facebook} from '@mui/icons-material';
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,IconButton,Box, Typography} from '@mui/material';
 import { validate } from './validate';
@@ -46,7 +47,7 @@ export default function Login() {
             }
             label="Email"
           />
-          {errors.email&&(<Typography component={"p"} sx={{ fontSize: 13 }} >{errors.email}</Typography>)}
+          {errors.email&&(<Typography component={"p"} sx={{ fontSize: 13,color:"red" }} >{errors.email}</Typography>)}
         </FormControl>
         <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
@@ -69,12 +70,12 @@ export default function Login() {
             }
             label="Password"
           />
-          {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 }}>{errors.password}</Typography>)} 
+          {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
-        <Button sx={{ m: 1,width: '40ch'}} variant="contained">Login</Button>
+        <Button sx={{ m: 1,width: '40ch'}} type="submit" variant="contained">Login</Button>
         <Box>
         <Typography sx={{ m: 1 }} variant="h7" >Do not you have an account yet?</Typography>
-        <Button sx={{ m: 1 }}  >Sign up</Button>
+        <Button sx={{ m: 1 }} ><Link to="/register" style={{ textDecoration: 'none',color:"blue" }} >Sign up</Link></Button>
         </Box>
         </Box>
         
