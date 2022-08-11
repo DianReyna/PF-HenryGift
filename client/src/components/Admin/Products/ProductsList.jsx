@@ -18,11 +18,7 @@ export default function ProductsList() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    console.log(itemsProducts);
     dispatch(destroyProduct(id));
-
-    dispatch(getProducts());
-    console.log("se volvio a despachar");
   };
 
   const rows =
