@@ -35,9 +35,13 @@ const updateUser = async (id, body) => {
 
 module.exports = {
   getAllUsers,
+<<<<<<< HEAD
   createNewUser,
   createUser,
   getUserById
 
 
+=======
+  createNewUser
+>>>>>>> origin/dev
 };

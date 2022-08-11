@@ -17,11 +17,19 @@ export default function Register() {
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
+<<<<<<< HEAD
+=======
+    dateBirth:"",
+>>>>>>> origin/dev
     phone: "",
     email: "",
     password: "",
     accept: false,
     passwordAgain: "",
+<<<<<<< HEAD
+=======
+    access_level:false
+>>>>>>> origin/dev
   });
   const [errors, setErrors] = useState({ first_name: "*name is required" });
   const handleChange = (prop) => (event) => {
@@ -92,7 +100,30 @@ export default function Register() {
                     </Typography>
                   )}
                 </Grid>
+<<<<<<< HEAD
                 <Grid item xs={12}>
+=======
+                <Grid xs={12} sm={6} item>
+                  <TextField
+                    id="date"
+                    label="Birthday"
+                    type="date"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    onChange={handleChange("dateBirth")}
+                  />
+                  {errors.dateBirth && (
+                    <Typography
+                      component={"p"}
+                      sx={{ fontSize: 13, color: "red" }}
+                    >
+                      {errors.dateBirth}
+                    </Typography>
+                  )}
+                </Grid>
+                <Grid xs={12} sm={6} item>
+>>>>>>> origin/dev
                   <TextField
                     type="tel"
                     placeholder="Enter phone number"
@@ -170,6 +201,7 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
+<<<<<<< HEAD
                     />
                   }
                   label="I accept"
@@ -184,6 +216,26 @@ export default function Register() {
                       {errors.accept}
                     </Typography>
                   )}
+=======
+                      style={{
+                        backgroundColor: "#448AFF",
+                        padding: 1,
+                      }}
+                    />
+                  }
+                  label="I accept the privacy terms and conditions of the site"
+                  labelPlacement="end"
+                  sx={{ color: "blue" }}
+                />
+                {errors.accept && (
+                  <Typography
+                    component={"p"}
+                    sx={{ fontSize: 13, color: "red" }}
+                  >
+                    {errors.accept}
+                  </Typography>
+                )}
+>>>>>>> origin/dev
                 <Grid item xs={12}>
                   <Button
                     type="submit"

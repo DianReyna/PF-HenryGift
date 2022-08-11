@@ -24,6 +24,7 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+<<<<<<< HEAD
 const createUser = async (req, res, next) => {
   const {first_name, last_name, email, phone} = req.body;
   try {
@@ -125,4 +126,9 @@ module.exports = {
   getUserById,
   updateUser, 
 
+=======
+module.exports = {
+  getAllUsers,
+  createNewUser
+>>>>>>> origin/dev
 };

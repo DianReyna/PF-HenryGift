@@ -1,0 +1,100 @@
+.main-send-cont{
+    display: flex;
+    flex-direction: column;
+    /* align-items: baseline; */
+    /* background-color: lightblue; */
+    border: 1px solid #ccc;
+}
+
+.card-bottom-send{
+    display: flex;
+}
+
+.main-top-cont{
+    width: auto;
+    display: flex;
+    justify-content: space-evenly;
+    /* background-color: lightcoral; */
+}
+
+.main-bott-cont{
+    margin-left: 13rem;
+    margin-top: 3rem;
+    /* background-color: lightgreen; */
+    display: flex;
+}
+
+.email-place{
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.total-summary{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.left-send-side{
+    /* background-color: lightcoral; */
+    width: 482px;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.summary-cart-box{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid black;
+}
+
+.right-side{
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.go-payment{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.summary-cart-title{
+    border-bottom: 0.5px solid black;
+}
+
+
+.container-all-send{
+    border: 1px solid black;
+    width: 30rem;
+    margin-top: 3rem;
+    border-radius: 5px;
+}
+
+.box-info{
+    display: flex;
+}
+
+.product-image img{
+    width: 125px;
+    height: 125px;
+    object-fit: contain;
+    margin-left: 2rem;
+}
+
+.box-title-send{
+    padding-left: 2rem;
+    margin-top: 0.5rem;
+    background-color: rgb(219, 27, 77);
+}
+
+
+.purchase-detail{
+    margin-left: 1rem;
+    display: grid;
+}
