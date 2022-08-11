@@ -109,9 +109,9 @@ const ResponsiveAppBar = () => {
   } , [cart, dispatch])
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <AppBar position="static"  sx={{ background: 'transparent', boxShadow: '0' }} >
+      <Container maxWidth="xl" >
+        <Toolbar disableGutters  >
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -125,6 +125,7 @@ const ResponsiveAppBar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              // background: 'red'
             }}
           >
             Henry-Gift

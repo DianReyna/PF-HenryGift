@@ -28,7 +28,7 @@ import { Cart, SendBox, Checkout } from "./components";
 
 
 const ContainerApp = styled.div`
-  width: 90rem;
+  /* width: 90rem; */
   overflow: hidden;
   margin: 2rem auto;
 `;

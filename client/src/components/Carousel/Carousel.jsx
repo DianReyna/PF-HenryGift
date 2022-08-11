@@ -1,11 +1,37 @@
 import React from "react";
 import { useState } from "react";
-
 import style from "./Carousel.module.css";
-import { Button } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import styled from 'styled-components'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
+const Container = styled.div`
+  width: 100%;
+  height: 40rem;
+  position: relative;
+`
+const BtnLeft = styled.div`
+  /* border: 1px solid gold; */
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 1rem;
+  top: 45%;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+`
+const BtnRight = styled.div`
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  right: 1rem;
+  top: 45%;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+`
 export default function Carrusel() {
   const images = [
     "https://www.zadar.hr/datastore/imagestore/1920x900/1920x900_1563031946adventure_and_outdoor.jpg?v=1563032988",
@@ -21,14 +47,14 @@ export default function Carrusel() {
     index <= 0 ? setIndex(images.length - 1) : setIndex(index - 1); //  0-1-2-0-1-2 <---
 
   return (
-    <div className={style.slide}>
-      <Button className={style.buttonPrev} onClick={() => buttonPrevius()}>
-        <ArrowBackIosNewIcon />
-      </Button>
+    <Container className={style.slide}>
       <img src={images[index]} alt="slider-image" width="900" height="400" />
-      <Button className={style.buttonNext} onClick={() => buttonNext()}>
-        <ArrowForwardIosIcon />
-      </Button>
-    </div>
+      <BtnLeft className={style.buttonPrev} onClick={() => buttonPrevius()}>
+        <ArrowBackIosIcon sx={{padding: '0', margin:'0',fontSize: '30px'}} />
+      </BtnLeft>
+      <BtnRight className={style.buttonNext} onClick={() => buttonNext()}>
+        <ArrowForwardIosIcon sx={{padding: '0', margin:'0',fontSize: '30px'}} />
+      </BtnRight>
+    </Container>
   );
 }

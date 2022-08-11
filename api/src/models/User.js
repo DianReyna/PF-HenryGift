@@ -7,6 +7,10 @@ module.exports = BoxFactory = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
+    dateBirth: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
