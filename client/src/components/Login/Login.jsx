@@ -58,6 +58,7 @@ export default function Login() {
               </InputAdornment>
             }
             label="Email"
+            sx={{ fontSize: 20 ,color:"white"}}
           />
           {errors.email&&(<Typography component={"p"} sx={{ fontSize: 13,color:"red" }} >{errors.email}</Typography>)}
         </FormControl>
@@ -81,6 +82,7 @@ export default function Login() {
               </InputAdornment>
             }
             label="Password"
+            sx={{ fontSize: 18 ,color:"white"}}
           />
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
@@ -90,7 +92,6 @@ export default function Login() {
         <Button sx={{ m: 1 }} ><Link to="/register" style={{ textDecoration: 'none',color:"blue" }} >Sign up</Link></Button>
         </Box>
           </Form>
-         
         </Box>
         
       );
