@@ -21,6 +21,7 @@ import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import  "./NavBar.module.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -108,9 +109,9 @@ const ResponsiveAppBar = () => {
   } , [cart, dispatch])
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <AppBar position="static"  sx={{ background: 'transparent', boxShadow: '0' }} >
+      <Container maxWidth="xl" >
+        <Toolbar disableGutters  >
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -124,6 +125,7 @@ const ResponsiveAppBar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              // background: 'red'
             }}
           >
             Henry-Gift
@@ -149,6 +151,12 @@ const ResponsiveAppBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          
+          
+          <Link to="/login" style={{textDecoration:"none", margin:5,color:"black"}}>
+          <AccountBoxIcon sx={{fontSize:40}}/>
+          </Link>
+
 
           <Link to="/cart">
             <div className={styles.navBag}>

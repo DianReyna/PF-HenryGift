@@ -1,15 +1,18 @@
+
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import styled from "styled-components";
 import { Footer } from "./components/Form/Footer/Footer";
 import { Cart, SendBox, Checkout, Login, Home	,BoxDetail	,ProductDetail	,NavBar	,Form	
 	,Dashboard	,Boxes	,Products	,Users	,Providers	,CreateProvider	,ProvidersList
-	,ProductsList	,HomeAdmin	,FormProvider	,FormBox	,FormProduct	,UserProfileCreate } from "./components";
+	,ProductsList	,HomeAdmin	,FormProvider	,FormBox	,FormProduct	,UserProfileCreate, UsersList, Register } from "./components";
 import styled from "styled-components";
 
 
+
 const ContainerApp = styled.div`
-  width: 90rem;
+  /* width: 90rem; */
   overflow: hidden;
   margin: 2rem auto;
 `;
@@ -22,6 +25,7 @@ function App() {
       <ContainerApp>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
@@ -44,7 +48,7 @@ function App() {
               <Route path="create-provider" element={<FormProvider />} />
             </Route>
             <Route path="users" element={<Users />}>
-              <Route path="create-user" element={<CreateProvider />} />
+              <Route index element={<UsersList />} />
             </Route>
           </Route>
           // End Dashboard

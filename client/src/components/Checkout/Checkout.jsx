@@ -17,6 +17,7 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   // const [loading, setLoading] = useState(false);
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const CheckoutForm = () => {
         console.log(error);
       }
       // setLoading(false);
+
       toast.success(`Importe abonado correctamente`, {
         position: "bottom-left",
       });
@@ -61,8 +63,9 @@ const CheckoutForm = () => {
         <CardElement />
       </div>
 
-      <button variant="outlined" disabled={!stripe}>
+      <button variant="outlined" disabled={!stripe}
         {/* {loading ? (
+
           <div role="status">
             <span>Loading...</span>
           </div>

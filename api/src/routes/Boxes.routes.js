@@ -7,7 +7,7 @@ const {
   deleteBox,
 } = require("../controllers/boxControllers");
 
-router.get("/", getAllBoxes);
+router.get("/admin", getAllBoxes);
 
 router.get("/:id", getBox);
 

@@ -107,6 +107,7 @@ const Cart = () => {
               <p>Impuestos incluidos</p>
               <Link to="/send">
                 <button>Siguiente</button>
+
               </Link>
               <div className="continue-shopping">
                 <Link to="/">
