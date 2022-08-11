@@ -13,6 +13,6 @@ export function validate(input){
     errors.password='*password must have at least one letter,at least one number,at least one uppercase letter,at least 8 characters-spaces are not allowed';
     else if(!input.passwordAgain) errors.passwordAgain='*type the password again'
     else if(input.passwordAgain!==input.password) errors.passwordAgain='*password does not match or is invalid';  
-    else if(!input.accept) errors.accept='*I have read and accept all the terms and conditions of the site.';
+    else if(!input.accept) errors.accept='*I accept';
     return errors;
     }

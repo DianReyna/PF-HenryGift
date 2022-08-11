@@ -172,7 +172,7 @@ export default function Register() {
                       onChange={handleCheck("accept")}
                     />
                   }
-                  label="I accept"
+                  label="I accept the privacy terms and conditions of the site"
                   labelPlacement="end"
                   sx={{ color: "blue" }}
                 />
