@@ -9,7 +9,7 @@ module.exports = OrderFactory = (sequelize) => {
       primaryKey: true,
     },
     amount: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     
