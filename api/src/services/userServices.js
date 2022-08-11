@@ -7,16 +7,20 @@ const createNewUser = async (user) => {
 };
 
 const getAllUsers = async () => {
-    var findAllBoxes = User.findAll({
-    include: [{ model: OrderDetail }]
-    });
-    return findAllBoxes;
+  var findAllBoxes = User.findAll({
+    include: [{ model: OrderDetail }],
+  });
+  return findAllBoxes;
 };
 
-const createUser = async (newUser) =>{
-  const createNewUser = await User.create(newUser);
-  return createNewUser;
-}
+const updateAdmin = async (body, id) => {
+  const updateAdmin = await User.update(body, {
+    where: {
+      email: id,
+    },
+  });
+  return updateAdmin;
+};
 
 const getUserById = async (id, email) => {
   const userById = await User.findByPk(id, email);
@@ -32,16 +36,10 @@ const updateUser = async (id, body) => {
   return update;
 };
 
-
 module.exports = {
   getAllUsers,
-<<<<<<< HEAD
   createNewUser,
-  createUser,
-  getUserById
-
-
-=======
-  createNewUser
->>>>>>> origin/dev
+  updateAdmin,
+  updateUser,
+  getUserById,
 };

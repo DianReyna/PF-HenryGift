@@ -1,26 +1,15 @@
 const { Router } = require("express");
 const router = Router();
 const {
-<<<<<<< HEAD
   getAllUsers,
   createNewUser,
-  createUser,
-  updateUser,
-
-=======
-  getAllUsers, createNewUser,
->>>>>>> origin/dev
+  updateAdmin,
+  // updateUser,
 } = require("../controllers/userControllers");
-const { route } = require("./providerRoutes");
 
 router.get("/", getAllUsers);
 router.post("/", createNewUser);
-router.post("/", createUser);
-router.put("/:id", updateUser);
-
-
-
-router.post("/", createNewUser);
-
+router.put("/admin/:id", updateAdmin);
+// router.put("/:id", updateUser);
 
 module.exports = router;

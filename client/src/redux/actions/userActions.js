@@ -1,9 +1,8 @@
 import axios from "axios";
-import { getAllUsers } from "../reducer/userSlice";
+import { getAllUsers, userAdmin } from "../reducer/userSlice";
 
 export const getUsers = () => (dispatch) => {
   axios("http://localhost:3001/getAllUsers")
-<<<<<<< HEAD
     .then((res) => dispatch(getAllUsers(res.data)))
     .catch((err) => console.log(err));
 };
@@ -14,16 +13,9 @@ export const getUsersAdmin = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getUsersAdmin = () => (dispatch) => {
-  axios("http://localhost:3001/users")
-=======
->>>>>>> origin/dev
-    .then((res) => dispatch(getAllUsers(res.data)))
-    .catch((err) => console.log(err));
-};
-
-export const getUsersAdmin = () => (dispatch) => {
-  axios("http://localhost:3001/users")
-    .then((res) => dispatch(getAllUsers(res.data)))
+export const putUsersAdmin = (id) => (dispatch) => {
+  axios
+    .put(`http://localhost:3001/users/admin/${id}`)
+    .then((res) => dispatch(userAdmin(res.data)))
     .catch((err) => console.log(err));
 };

@@ -17,19 +17,13 @@ export default function Register() {
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
-<<<<<<< HEAD
-=======
-    dateBirth:"",
->>>>>>> origin/dev
+    dateBirth: "",
     phone: "",
     email: "",
     password: "",
     accept: false,
     passwordAgain: "",
-<<<<<<< HEAD
-=======
-    access_level:false
->>>>>>> origin/dev
+    access_level: false,
   });
   const [errors, setErrors] = useState({ first_name: "*name is required" });
   const handleChange = (prop) => (event) => {
@@ -100,9 +94,6 @@ export default function Register() {
                     </Typography>
                   )}
                 </Grid>
-<<<<<<< HEAD
-                <Grid item xs={12}>
-=======
                 <Grid xs={12} sm={6} item>
                   <TextField
                     id="date"
@@ -123,7 +114,6 @@ export default function Register() {
                   )}
                 </Grid>
                 <Grid xs={12} sm={6} item>
->>>>>>> origin/dev
                   <TextField
                     type="tel"
                     placeholder="Enter phone number"
@@ -201,26 +191,6 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
-<<<<<<< HEAD
-                    />
-                  }
-                  label="I accept"
-                  labelPlacement="end"
-                  sx={{ color: "blue" }}
-                />
-                 {errors.accept && (
-                    <Typography
-                      component={"p"}
-                      sx={{ fontSize: 13, color: "red" }}
-                    >
-                      {errors.accept}
-                    </Typography>
-                  )}
-=======
-                      style={{
-                        backgroundColor: "#448AFF",
-                        padding: 1,
-                      }}
                     />
                   }
                   label="I accept the privacy terms and conditions of the site"
@@ -234,8 +204,20 @@ export default function Register() {
                   >
                     {errors.accept}
                   </Typography>
+                )}{" "}
+                style=
+                {{
+                  backgroundColor: "#448AFF",
+                  padding: 1,
+                }}
+                {errors.accept && (
+                  <Typography
+                    component={"p"}
+                    sx={{ fontSize: 13, color: "red" }}
+                  >
+                    {errors.accept}
+                  </Typography>
                 )}
->>>>>>> origin/dev
                 <Grid item xs={12}>
                   <Button
                     type="submit"

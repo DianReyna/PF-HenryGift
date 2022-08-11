@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
-import {  Elements,  CardElement,  useStripe,  useElements,} from "@stripe/react-stripe-js";
+import {
+  Elements,
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 import axios from "axios";
 import { clearCart } from "../../redux/reducer/cartSlice";
 import { toast } from "react-toastify";
@@ -30,7 +35,6 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement),
     });
     // setLoading(true);
-
 
     if (!error) {
       const { id } = paymentMethod;
@@ -63,14 +67,14 @@ const CheckoutForm = () => {
         <CardElement />
       </div>
 
-      <button variant="outlined" disabled={!stripe}
+      <button variant="outlined" disabled={!stripe}>
         {/* {loading ? (
 
           <div role="status">
             <span>Loading...</span>
           </div>
         ) : ( */}
-          Buy
+        Buy
         {/* )} */}
       </button>
     </form>
