@@ -63,7 +63,8 @@ const deleteBox = async (req, res, next) => {
     }
     const destroy = await boxServices.deleteBox(id);
     if (destroy) {
-      res.status(200).send("Box deleted!");
+      const newlist = await boxServices.getAllBoxes();
+      res.status(200).send(newlist);
     } else {
       res.status(404).send("Error");
     }
