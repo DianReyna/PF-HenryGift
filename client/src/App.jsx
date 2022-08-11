@@ -1,4 +1,5 @@
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
@@ -26,7 +27,7 @@ import { Cart, SendBox, Checkout } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
 
 const ContainerApp = styled.div`
-  width: 90rem;
+  /* width: 90rem; */
   overflow: hidden;
   margin: 2rem auto;
 `;
@@ -39,6 +40,7 @@ function App() {
       <ContainerApp>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />

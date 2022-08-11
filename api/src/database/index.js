@@ -8,7 +8,8 @@ const UserFactory = require("../models/User");
 const GiftFactory = require("../models/Gift");
 const OrderDetailFactory = require("../models/OrderDetail");
 const AuthenticationFactory = require("../models/Authentication");
-const StockFactory = require("../models/Stock")
+const StockFactory = require("../models/Stock");
+const OrderFactory = require("../models/Order");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
@@ -28,6 +29,7 @@ const Gift = GiftFactory(sequelize);
 const OrderDetail = OrderDetailFactory(sequelize);
 const Authentication = AuthenticationFactory(sequelize)
 const Stock = StockFactory(sequelize)
+const Order = OrderFactory(sequelize)
 
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
@@ -53,7 +55,9 @@ Box.belongsTo(OrderDetail, { foreignKey: "box_id" });
 Products.hasMany(Stock, { foreignKey: "stock_id" });
 Stock.belongsTo(Products, { foreignKey: "stock_id" });
 
-
+Box.belongsToMany(Order, { through: "box_order" });
+Order.belongsToMany(Box, { through: "box_order" });
+Order.belongsTo(User)
 
 module.exports = {
   sequelize,
