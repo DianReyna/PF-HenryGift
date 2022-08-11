@@ -1,5 +1,14 @@
 const userServices = require("../services/userServices");
 
+const createNewUser = async (req, res, next) => {
+  try {
+    const newUser = await userServices.createNewUser(req.body);
+    res.send(newUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getAllUsers = async (req, res, next) => {
   try {
     const allUsers = await userServices.getAllUsers();
@@ -15,5 +24,6 @@ const getAllUsers = async (req, res, next) => {
 };
 
 module.exports = {
-  getAllUsers
+  getAllUsers,
+  createNewUser
 };
