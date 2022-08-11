@@ -8,6 +8,19 @@ const getAllUsers = async () => {
     return findAllBoxes;
 };
 
+const createUser = async (newUser) =>{
+  const createNewUser = await User.create(newUser);
+  return createNewUser;
+}
+
+const getUserById = async (id) => {
+  const userById = await User.findByPk(id);
+  return userById;
+};
+
+
 module.exports = {
   getAllUsers,
+  createUser,
+  getUserById
 };
