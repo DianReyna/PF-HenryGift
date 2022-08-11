@@ -21,7 +21,7 @@ import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel
 import { Cart } from "./components";
 
 const ContainerApp = styled.div`
-  width: 90rem;
+  /* width: 90rem; */
   overflow: hidden;
   margin: 2rem auto;
 `;
