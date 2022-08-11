@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersAdmin } from "../../../redux/actions/userActions";
+import {
+  getUsersAdmin,
+  putUsersAdmin,
+} from "../../../redux/actions/userActions";
 import { DataGrid } from "@mui/x-data-grid";
 
 export default function UsersList() {
@@ -10,9 +13,11 @@ export default function UsersList() {
   useEffect(() => {
     dispatch(getUsersAdmin());
   }, [dispatch]);
-  console.log("entreee");
-  console.log(itemsUser);
 
+  console.log();
+  const handleUpdate = (id) => {
+    dispatch(putUsersAdmin(id));
+  };
   const rows =
     itemsUser &&
     itemsUser.users?.map((item, index) => {
@@ -39,17 +44,32 @@ export default function UsersList() {
     { field: "phone", headerName: "Phone", width: 150 },
     { field: "email", headerName: "Email", width: 200 },
     { field: "access_level", headerName: "Rol", width: 100 },
+    {
+      field: "actions",
+      headerName: "Actions",
+      sortable: false,
+      width: 300,
+      renderCell: (params) => {
+        return (
+          <Action>
+            <Delete onClick={() => handleUpdate(params.row.email)}>
+              Admin
+            </Delete>
+          </Action>
+        );
+      },
+    },
   ];
 
   return (
     <div style={{ height: 450, width: "100%" }}>
-      <DataGrid
+      {/* <DataGrid
         rows={rows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
-      />
+      /> */}
     </div>
   );
 }

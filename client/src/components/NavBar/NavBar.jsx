@@ -21,18 +21,21 @@ import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+<<<<<<< HEAD
+import "./NavBar.module.css";
+=======
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import  "./NavBar.module.css";
+>>>>>>> origin/dev
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
-import styles from './NavBar.module.css'
-import { queryName } from '../../redux/actions/queryActions';
+import styles from "./NavBar.module.css";
+import { queryName } from "../../redux/actions/queryActions";
 
-const pages = ['Home'];
-const settings = ['Admin'];
-
+const pages = ["Home"];
+const settings = ["Admin"];
 
 const ResponsiveAppBar = () => {
   const Search = styled("div")(({ theme }) => ({
@@ -99,19 +102,24 @@ const ResponsiveAppBar = () => {
 
   function handleInputChange(event) {
     event.preventDefault();
-      if(event.target.value.trim().length>=3 || event.target.value.length === 0)
+    if (
+      event.target.value.trim().length >= 3 ||
+      event.target.value.length === 0
+    )
       dispatch(queryName(event.target.value));
-    
   }
 
   useEffect(() => {
-    dispatch(getTotals())
-  } , [cart, dispatch])
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   return (
-    <AppBar position="static"  sx={{ background: 'transparent', boxShadow: '0' }} >
-      <Container maxWidth="xl" >
-        <Toolbar disableGutters  >
+    <AppBar
+      position="static"
+      sx={{ background: "transparent", boxShadow: "0" }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -194,7 +202,7 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting, i) => (
-                <NavLink to={"/form"} className={styles.navlink} key={i}>
+                <NavLink to={"/admin"} className={styles.navlink} key={i}>
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>

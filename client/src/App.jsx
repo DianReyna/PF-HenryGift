@@ -24,8 +24,15 @@ import FormBox from "./components/Form/FormBox";
 import FormProduct from "./components/Form/FormProduct";
 import UserProfileCreate from "./components/User/UserProfileCreate";
 import { Cart, SendBox, Checkout } from "./components";
+<<<<<<< HEAD
+import UsersList from "./components/Admin/Users/UsersList";
+import BoxesList from "./components/Admin/Boxes/BoxesList";
+import Error404 from "./components/Error/Error404";
+import PrivateRoute from "./components/PrivateRoute";
+=======
 
 
+>>>>>>> origin/dev
 
 const ContainerApp = styled.div`
   /* width: 90rem; */
@@ -50,25 +57,29 @@ function App() {
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />
           //Dashboard
-          <Route path="/admin" element={<Dashboard />}>
-            <Route path="home" element={<HomeAdmin />} />
-            <Route path="boxes" element={<Boxes />}>
-              <Route path="create-box" element={<FormBox />} />
-            </Route>
-            <Route path="products" element={<Products />}>
-              <Route index element={<ProductsList />} />
-              <Route path="create-product" element={<FormProduct />} />
-            </Route>
-            <Route path="providers" element={<Providers />}>
-              <Route index element={<ProvidersList />} />
-              <Route path="create-provider" element={<FormProvider />} />
-            </Route>
-            <Route path="users" element={<Users />}>
-              <Route index element={<UsersList />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/admin" element={<Dashboard />}>
+              <Route index element={<HomeAdmin />} />
+              <Route path="boxes" element={<Boxes />}>
+                <Route index element={<BoxesList />} />
+                <Route path="create-box" element={<FormBox />} />
+              </Route>
+              <Route path="products" element={<Products />}>
+                <Route index element={<ProductsList />} />
+                <Route path="create-product" element={<FormProduct />} />
+              </Route>
+              <Route path="providers" element={<Providers />}>
+                <Route index element={<ProvidersList />} />
+                <Route path="create-provider" element={<FormProvider />} />
+              </Route>
+              <Route path="users" element={<Users />}>
+                <Route index element={<UsersList />} />
+              </Route>
             </Route>
           </Route>
           // End Dashboard
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </ContainerApp>
       {/* <Footer /> */}
