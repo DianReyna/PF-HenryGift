@@ -29,6 +29,7 @@ import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
 import PrivateRoute from "./components/PrivateRoute";
 
+
 const ContainerApp = styled.div`
   /* width: 90rem; */
   overflow: hidden;

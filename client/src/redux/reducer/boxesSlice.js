@@ -34,4 +34,5 @@ export const {
   getAllBoxesAdmin,
 } = boxesSlice.actions;
 
+
 export default boxesSlice.reducer;

@@ -191,6 +191,7 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
+                    />
                       style={{
                         backgroundColor: "#448AFF",
                         padding: 1,
