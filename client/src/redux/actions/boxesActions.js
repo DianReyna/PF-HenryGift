@@ -57,10 +57,13 @@ export const detailProduct = (id) => (dispatch) => {
 };
 
 export const getBoxesAdmin = () => (dispatch) => {
-  axios("http://localhost:3001/boxes/admin")
+  axios(`http://localhost:3001/boxes/admin`)
     .then((res) => dispatch(getAllBoxesAdmin(res.data)))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
+
 export const destroyBox = (id) => (dispatch) => {
   axios
     .delete(`http://localhost:3001/boxes/${id}`)

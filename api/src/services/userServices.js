@@ -19,11 +19,28 @@ const updateAdmin = async (body, id) => {
       email: id,
     },
   });
-  // console.log(updateAdmin);
   return updateAdmin;
 };
+
+const getUserById = async (id, email) => {
+  const userById = await User.findByPk(id, email);
+  return userById;
+};
+
+const updateUser = async (id, body) => {
+  const update = await Provider.update(body, {
+    where: {
+      id: id,
+      email: email,
+    },
+  });
+  return update;
+};
+
 module.exports = {
   getAllUsers,
   createNewUser,
   updateAdmin,
+  updateUser,
+  getUserById,
 };

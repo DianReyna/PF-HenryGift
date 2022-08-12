@@ -1,3 +1,4 @@
+const User = require("../models/User");
 const userServices = require("../services/userServices");
 
 const createNewUser = async (req, res, next) => {
@@ -40,8 +41,46 @@ const updateAdmin = async (req, res, next) => {
   }
 };
 
+
+const getUserById = async (req, res, next) => {
+  const {id, email} = req.params;  
+  try {
+    const userId = await userServices.getUserById(id, email)
+    if(!userId){
+      res.status(400).send({
+        status:'error', 
+        message: 'User not found'
+      })
+    }
+    res.status(201).send(userId)
+} catch (error) {
+  next(error)
+  }
+}
+
+const updateUser =  async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await userServices.getUserById(id);
+    if (!user) {
+      return res.status(404).send("User not found...");
+    }
+    const update = await userServices.updateUser(id);
+    if (update) {
+      res.status(200).send("User update!");
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = {
   getAllUsers,
   createNewUser,
   updateAdmin,
+  getUserById,
+  updateUser,
 };

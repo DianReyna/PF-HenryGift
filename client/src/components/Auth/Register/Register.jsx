@@ -22,13 +22,13 @@ export default function Register() {
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
-    dateBirth:"",
+    dateBirth: "",
     phone: "",
     email: "",
     password: "",
     accept: false,
     passwordAgain: "",
-    access_level:false
+    access_level: false,
   });
   const [errors, setErrors] = useState({ first_name: "*name is required" });
   const handleChange = (prop) => (event) => {
@@ -202,16 +202,25 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
-                      style={{
-                        backgroundColor: "#448AFF",
-                        padding: 1,
-                      }}
                     />
                   }
                   label="I accept the privacy terms and conditions of the site"
                   labelPlacement="end"
                   sx={{ color: "blue" }}
                 />
+                {errors.accept && (
+                  <Typography
+                    component={"p"}
+                    sx={{ fontSize: 13, color: "red" }}
+                  >
+                    {errors.accept}
+                  </Typography>
+                )}{" "}
+                style=
+                {{
+                  backgroundColor: "#448AFF",
+                  padding: 1,
+                }}
                 {errors.accept && (
                   <Typography
                     component={"p"}

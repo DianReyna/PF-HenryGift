@@ -9,6 +9,8 @@ const providerRouter = require("./providerRoutes");
 const sortRouter = require("./sortRoutes");
 const testRouter = require("./testRoutes");
 const payment = require("./stripe");
+const register = require('./Register.routes.js')
+const login = require('./Login.routes')
 // const orderRouter = require("./ordersRoutes")
 router.use("/boxes", AllBoxes);
 router.use("/products", products);
@@ -20,4 +22,6 @@ router.use("/sort", sortRouter);
 router.use("/test", testRouter);
 router.use("/users", AllUsers);
 router.use("/payment", payment);
+router.use('/register', register)
+router.use('/login', login)
 module.exports = router;

@@ -5,6 +5,7 @@ import {
   getUsersAdmin,
   putUsersAdmin,
 } from "../../../redux/actions/userActions";
+
 import { DataGrid } from "@mui/x-data-grid";
 
 export default function UsersList() {
@@ -13,11 +14,11 @@ export default function UsersList() {
   useEffect(() => {
     dispatch(getUsersAdmin());
   }, [dispatch]);
-
-  console.log();
+  
   const handleUpdate = (id) => {
     dispatch(putUsersAdmin(id));
   };
+
   const rows =
     itemsUser &&
     itemsUser.users?.map((item, index) => {
@@ -63,13 +64,13 @@ export default function UsersList() {
 
   return (
     <div style={{ height: 450, width: "100%" }}>
-      {/* <DataGrid
+      <DataGrid
         rows={rows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
-      /> */}
+      />
     </div>
   );
 }
