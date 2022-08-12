@@ -19,10 +19,12 @@ const ContainerFiltersAndButton = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 2rem;
+  gap: 0.5rem;
 `
 const ContainerSort = styled.div`
-  
+  display: flex;
+  justify-content: right;
+  align-items: center;
 `
 
 const ContainerFilters = () => {
