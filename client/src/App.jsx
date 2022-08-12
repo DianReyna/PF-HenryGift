@@ -1,5 +1,5 @@
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+import Login from "./components/Auth/Login/Login";
+import Register from "./components/Auth/Register/Register";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";

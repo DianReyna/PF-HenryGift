@@ -1,4 +1,7 @@
-import React ,{useState} from 'react';
+import React ,{useState,useEffect} from 'react';
+// import { useDispatch, useSelector } from "react-redux";
+// import { loginUser } from "../../../redux/reducer/authSlice";
+// import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import {Visibility,VisibilityOff,Email,Google,Facebook} from '@mui/icons-material';
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,IconButton,Box, Typography} from '@mui/material';
@@ -12,6 +15,10 @@ const Form = styled.form`
 `;
 
 export default function Login() {
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const auth = useSelector((state) => state.auth);
+
     const [values, setValues] = useState({
         email:'',
         password: '',
@@ -22,6 +29,12 @@ export default function Login() {
         setValues({ ...values, [prop]: event.target.value });
         setErrors(validate({ ...values, [prop]: event.target.value }))
       };
+      // useEffect(() => {
+      //   if (auth._id) {
+      //     navigate("/cart");
+      //   }
+      // }, [auth._id, navigate]);
+    
       const handleClickShowPassword = () => {
         setValues({
           ...values,
@@ -37,6 +50,7 @@ export default function Login() {
         e.preventDefault();
         console.log(values);
         console.log(errors);
+        // dispatch(loginUser(values));
       };
     return (
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
@@ -86,8 +100,11 @@ export default function Login() {
           />
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
-        <Button sx={{ m: 1,width: '40ch'}} type="submit" variant="contained">Login</Button>
+        <Button sx={{ m: 1,width: '40ch'}} type="submit" variant="contained">
+        {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
+          </Button>
         <Box>
+        {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
         <Typography sx={{ m: 1 }} variant="h7" >Do not you have an account yet?</Typography>
         <Button sx={{ m: 1 }} ><Link to="/register" style={{ textDecoration: 'none',color:"blue" }} >Sign up</Link></Button>
         </Box>

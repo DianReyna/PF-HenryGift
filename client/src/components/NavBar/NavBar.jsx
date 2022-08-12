@@ -109,6 +109,9 @@ const ResponsiveAppBar = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
+
+  const auth = useSelector((state) => state.auth);
+
   return (
     <AppBar
       position="static"
@@ -156,12 +159,28 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
-          <Link
+        //Login and LogOut
+          {auth._id ? (
+        <Logout
+          onClick={() => {
+            dispatch(logoutUser(null));
+            // toast.warning("Logged out!", { position: "bottom-left" });
+          }}
+        >
+          Logout
+        </Logout>
+      ) : (
+        <div>
+          <Link to="/login">Login</Link>
+          <Link to="register">Register</Link>
+        </div>
+      )}
+          {/* <Link
             to="/login"
             style={{ textDecoration: "none", margin: 5, color: "black" }}
           >
-            <AccountBoxIcon sx={{ fontSize: 40 }} />
-          </Link>
+            <AccountBoxIcon sx={{ color:"white",fontSize: 40 }} />
+          </Link> */}
 
           <Link to="/cart">
             <div className={styles.navBag}>

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../../redux/reducer/authSlice";
+import { Link,useNavigate  } from "react-router-dom";
 import { Google, Facebook } from "@mui/icons-material";
 import {
   Grid,
@@ -14,6 +16,9 @@ import {
 import { validate } from "./validate";
 
 export default function Register() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
@@ -34,12 +39,18 @@ export default function Register() {
     setInput({ ...input, [prop]: event.target.checked });
     setErrors(validate({ ...input, [prop]: event.target.checked }));
   };
+
+  useEffect(() => {
+    if (auth._id) {
+      navigate("/cart");
+    }
+  }, [auth._id, navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
-    console.log(errors);
+    console.log(errors)
+    dispatch(registerUser(input));
   };
-
   return (
     <>
       <Typography variant="h3" color="primary" align="center" sx={{ m: 1 }}>
@@ -48,7 +59,7 @@ export default function Register() {
       <Grid>
         <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={ handleSubmit}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <Button fullWidth variant="outlined" startIcon={<Google />}>
@@ -217,11 +228,12 @@ export default function Register() {
                     fullWidth
                     disabled={Object.keys(errors).length > 0}
                   >
-                    Submit
+                    {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
                   </Button>
                 </Grid>
               </Grid>
             </form>
+            {auth.registerStatus === "rejected" ? (<p>{auth.registerError}</p>) : null}
             <Typography variant="h7">
               Do you have an account Henry-Gift?
             </Typography>
