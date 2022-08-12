@@ -1,32 +1,53 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./SendBox.css";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
+  //console.log(cart.cartItems);
 
-  const [input, setInput] = useState( Array(cart.cartItems.length).fill(''));
+  const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
+  console.log(input);
 
-  const handleEmailChange = (e,position) => {
-    console.log(e.target.value,position)
-    console.log(cart)
-    setInput(prev=>prev.map((el,index)=>{
-      if(index === position) el=e.target.value
-      return el
-    }));
+  const handleEmailChange = (e, position) => {
+    //console.log(e.target.value, position);
+    //console.log(cart);
+    setInput((prev) =>
+      prev.map((el, index) => {
+        if (index === position) el = e.target.value;
+        return el;
+      })
+    );
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(input);
+    // e.preventDefault();
+    try {
+      let total = cart.cartItems.map((item, i) => {
+        const id = item.id;
+        const quantity = item.cartQuantity;
+        const name = item.name;
+        const recipient = input[i];
+        return { id, quantity, name, recipient };
+      });
+
+      axios.post("http://localhost:3001/orders", {
+        amount: cart.cartTotalAmount,
+        userId: "drowet0@4shared.com",
+        boxes: total,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="main-send-cont">
       <div className="main-top-cont">
         <div className="left-send-side">
-          {cart?.cartItems.map((cartItem,index) => (
+          {cart?.cartItems.map((cartItem, index) => (
             <div className="all-card-sed">
               <div className="container-all-send">
                 <div className="box-title-send">
@@ -54,8 +75,7 @@ const SendBox = () => {
                 <div className="email-place">
                   <form onSubmit={handleSubmit}>
                     <input
-                      onChange={(e) => handleEmailChange(e,index)}
-                     
+                      onChange={(e) => handleEmailChange(e, index)}
                       value={input[index]}
                       type="text"
                       placeholder="Ingrese el email del agasajado"
@@ -87,7 +107,9 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             <Link to="/payment">
-              <button className="go-payment-btn">Ir al pago</button>
+              <button onClick={handleSubmit} className="go-payment-btn">
+                Ir al pago
+              </button>
             </Link>
           </div>
         </div>

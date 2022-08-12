@@ -16,6 +16,7 @@ module.exports = OrderDetailFactory = (sequelize) => {
     
     is_gift: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     }
   },
