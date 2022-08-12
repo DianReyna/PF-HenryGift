@@ -12,13 +12,22 @@ const createNewOrder = async (req, res, next) => {
     
     const createdOrder = await ordersServices.createNewOrder(userId,req.body.amount);
    
-    let arrPromises = boxes.map(box=>OrderDetail.create({
-      box_id:box.id,
-      quantity:box.quantity,
-      is_gift:box.isGift,
-      UserEmail:userId,
-      order_id:createdOrder.dataValues.id
-    }))
+    let arrPromises = boxes.map(async(box)=>{
+      let findBox = await Box.findOne({
+        where:{
+          name: box.name
+        }
+      })
+      let newItem = OrderDetail.create({
+        box_id:findBox.dataValues.id,
+        quantity:box.quantity,
+        is_gift:box.isGift,
+        UserEmail:userId,
+        order_id:createdOrder.dataValues.id
+      })
+      return newItem
+    })
+    
     await Promise.all(arrPromises)
 
     if (createdOrder) {

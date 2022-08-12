@@ -11,12 +11,13 @@ const testRouter = require("./testRoutes");
 const payment = require("./stripe");
 const register = require('./Register.routes.js')
 const login = require('./Login.routes')
-// const orderRouter = require("./ordersRoutes")
+const orderRouter = require("./ordersRoutes")
+
 router.use("/boxes", AllBoxes);
 router.use("/products", products);
 router.use("/categories", categotyRouter);
 router.use("/providers", providerRouter);
-// router.use("/orders",orderRouter)
+router.use("/orders",orderRouter)
 router.use("/filters", filtersRoutes);
 router.use("/sort", sortRouter);
 router.use("/test", testRouter);
