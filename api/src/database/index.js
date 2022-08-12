@@ -41,7 +41,7 @@ Category.belongsToMany(Box, { through: "box_category" });
 Box.belongsToMany(Category, { through: "box_category" });
 
 
-User.hasMany(Authentication, { foreignKey: "auth_id" });
+User.hasOne(Authentication, { foreignKey: "auth_id" });
 Authentication.belongsTo(User, { foreignKey: "auth_id" });
 
 User.hasMany(Gift, { foreignKey: "gift_code" });
