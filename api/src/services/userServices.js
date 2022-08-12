@@ -31,6 +31,7 @@ const updateUser = async (id, body) => {
   const update = await Provider.update(body, {
     where: {
       id: id,
+      email: email,
     },
   });
   return update;
