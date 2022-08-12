@@ -6,15 +6,15 @@ import "./SendBox.css";
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
 
-  const [input, setInput] = useState({
-    email: [],
-  });
+  const [input, setInput] = useState( Array(cart.cartItems.length).fill(''));
 
-  const handleEmailChange = (e) => {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+  const handleEmailChange = (e,position) => {
+    console.log(e.target.value,position)
+    console.log(cart)
+    setInput(prev=>prev.map((el,index)=>{
+      if(index === position) el=e.target.value
+      return el
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -26,7 +26,7 @@ const SendBox = () => {
     <div className="main-send-cont">
       <div className="main-top-cont">
         <div className="left-send-side">
-          {cart?.cartItems.map((cartItem) => (
+          {cart?.cartItems.map((cartItem,index) => (
             <div className="all-card-sed">
               <div className="container-all-send">
                 <div className="box-title-send">
@@ -54,8 +54,9 @@ const SendBox = () => {
                 <div className="email-place">
                   <form onSubmit={handleSubmit}>
                     <input
-                      onChange={(e) => handleEmailChange(e)}
-                      name={input.email}
+                      onChange={(e) => handleEmailChange(e,index)}
+                     
+                      value={input[index]}
                       type="text"
                       placeholder="Ingrese el email del agasajado"
                       className="place-email"
