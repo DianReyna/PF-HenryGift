@@ -15,7 +15,6 @@ import Boxes from "./components/Admin/Boxes/Boxes";
 import Products from "./components/Admin/Products/Products";
 import Users from "./components/Admin/Users/Users";
 import Providers from "./components/Admin/Providers/Providers";
-import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
@@ -28,7 +27,6 @@ import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
 import PrivateRoute from "./components/PrivateRoute";
-
 
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */

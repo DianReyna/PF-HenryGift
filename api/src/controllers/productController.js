@@ -92,10 +92,10 @@ const updateProduct = async (req, res, next) => {
       : !prov
       ? res.status(404).send("Provider not found...")
       : null;
-
     const update = await productServices.updateProduct(id, body);
     if (update) {
-      res.status(200).send("Product update!");
+      const newList = await productServices.getAllProducts();
+      res.status(200).send(newList);
     } else {
       res.status(404).send("Error");
     }
