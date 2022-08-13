@@ -23,6 +23,9 @@ export const boxesSlice = createSlice({
     deleteBox: (state, action) => {
       state.boxes = action.payload;
     },
+    editBoxes: (state, action) => {
+      state.boxes = action.payload;
+    },
   },
 });
 
@@ -32,7 +35,7 @@ export const {
   getDetailProduct,
   deleteBox,
   getAllBoxesAdmin,
+  editBoxes,
 } = boxesSlice.actions;
-
 
 export default boxesSlice.reducer;

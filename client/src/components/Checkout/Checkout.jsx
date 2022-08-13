@@ -43,6 +43,7 @@ const CheckoutForm = () => {
           id,
           amount: cart.cartTotalAmount, //cents
         });
+
         console.log(data);
         elements.getElement(CardElement).clear();
       } catch (error) {

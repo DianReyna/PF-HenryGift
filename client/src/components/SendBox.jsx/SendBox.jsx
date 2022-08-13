@@ -1,42 +1,54 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./SendBox.css";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
+  console.log(cart.cartTotalQuantity);
 
-  
+  const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
+  //console.log(input);
 
-  // email: [...input.email, e.target.value],
-  const [input, setInput] = useState([]);
-
-  // const handleEmailChange = (e) => {
-  //   setInput({
-  //     ...input,
-  //     [e.target.name]:e.target.value
-  //   });
-  // };
-
-  const handleEmailChange = (e) => {
-    console.log(e.target.id);
-    setInput(input[e.target.id] = e.target.value);
-    console.log(input)
+  const handleEmailChange = (e, position) => {
+    //console.log(e.target.value, position);
+    //console.log(cart);
+    setInput((prev) =>
+      prev.map((el, index) => {
+        if (index === position) el = e.target.value;
+        return el;
+      })
+    );
   };
-  console.log(input);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(input.email);
+    // e.preventDefault();
+    try {
+      let total = cart.cartItems.map((item, i) => {
+        const id = item.id;
+        const quantity = item.cartQuantity;
+        const name = item.name;
+        const recipient = input[i];
+        return { id, quantity, name, recipient };
+      });
+
+      axios.post("http://localhost:3001/orders", {
+        amount: cart.cartTotalAmount,
+        userId: "drowet0@4shared.com",
+        boxes: total,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  let i = 0;
+
   return (
     <div className="main-send-cont">
       <div className="main-top-cont">
         <div className="left-send-side">
-          {/* {console.log(cart.cartItems)} */}
-          {cart?.cartItems.map((cartItem, i) => (
-            <div key={cartItem.id} className="all-card-sed">
+          {cart?.cartItems.map((cartItem, index) => (
+            <div className="all-card-sed">
               <div className="container-all-send">
                 <div className="box-title-send">
                   <h2>{cartItem.name}</h2>
@@ -63,13 +75,11 @@ const SendBox = () => {
                 <div className="email-place">
                   <form onSubmit={handleSubmit}>
                     <input
-                      onChange={(e) => handleEmailChange(e)}
-                      name='email'
-                      id={i++}
+                      onChange={(e) => handleEmailChange(e, index)}
+                      value={input[index]}
                       type="text"
                       placeholder="Ingrese el email del agasajado"
                       className="place-email"
-                      value={input.email}
                     />
                   </form>
                 </div>
@@ -83,7 +93,7 @@ const SendBox = () => {
               <h3>Resumen de Compra</h3>
             </div>
             {cart?.cartItems.map((cartItem) => (
-              <div key={cartItem.id} className="summary-cart-box">
+              <div className="summary-cart-box">
                 <h3>
                   {cartItem.name} x{cartItem.cartQuantity}
                 </h3>
@@ -97,11 +107,14 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             <Link to="/payment">
-              <button className="go-payment-btn">Ir al pago</button>
+              <button onClick={handleSubmit} className="go-payment-btn">
+                Ir al pago
+              </button>
             </Link>
           </div>
         </div>
       </div>
+      PROBANDO COSAS
     </div>
   );
 };

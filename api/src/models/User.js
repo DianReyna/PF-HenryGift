@@ -11,23 +11,24 @@ module.exports = BoxFactory = (sequelize) => {
       },
       dateBirth: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
       first_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       last_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       access_level: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       banned: {
         type: DataTypes.BOOLEAN,
