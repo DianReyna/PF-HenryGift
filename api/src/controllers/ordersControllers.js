@@ -30,6 +30,10 @@ const createNewOrder = async (req, res, next) => {
     
     await Promise.all(arrPromises)
 
+    await ordersServices.createGiftList(boxes)
+
+    
+
     if (createdOrder) {
       res.status(201).send(createdOrder);
     } else {
