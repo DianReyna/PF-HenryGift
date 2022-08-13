@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 export const setHeaders = () => {
@@ -14,7 +14,6 @@ export const setHeaders = () => {
 const initialState = {
   token: localStorage.getItem("token"),
   email: "",
-  _id: "",
   registerStatus: "",
   registerError: "",
   loginStatus: "",
@@ -26,7 +25,7 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (input, { rejectWithValue }) => {
     try {
-      const token = await axios.post('http://localhost:3001/registerUser', {
+      const token = await axios.post('http://localhost:3001/register', {
         first_name: input.first_name,
         last_name: input.last_name,
         dateBirth: input.dateBirth,
@@ -50,7 +49,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (user, { rejectWithValue }) => {
     try {
-      const token = await axios.post('http://localhost:3001/auth', {
+      const token = await axios.post('http://localhost:3001/login', {
         email: user.email,
         password: user.password,
       });
@@ -67,7 +66,7 @@ export const getUser = createAsyncThunk(
   "auth/getUser",
   async (id, { rejectWithValue }) => {
     try {
-      const token = await axios.get(`$http://localhost:3001/user/${id}`, setHeaders());
+      const token = await axios.get(`$http://localhost:3001/users/user${id}`, setHeaders());
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error) {
@@ -85,12 +84,11 @@ export const authSlice = createSlice({
       const token = state.token;
 
       if (token) {
-        const user = jwtDecode(token);
+        const user = token;//jwtDecode
         return {
           ...state,
           token,
           email: user.email,
-          _id: user._id,
           userLoaded: true,
         };
       } else return { ...state, userLoaded: true };
@@ -101,7 +99,6 @@ export const authSlice = createSlice({
         ...state,
         token: "",
         email: "",
-        _id: "",
         registerStatus: "",
         registerError: "",
         loginStatus: "",
@@ -115,13 +112,11 @@ export const authSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user = jwtDecode(action.payload);
+        const user = action.payload;//jwtDecode(
         return {
           ...state,
           token: action.payload,
-          name: user.name,
           email: user.email,
-          _id: user._id,
           registerStatus: "success",
         };
       } else return state;
@@ -138,12 +133,11 @@ export const authSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user = jwtDecode(action.payload);
+        const user = action.payload;//jwtDecode(
         return {
           ...state,
           token: action.payload,
           email: user.email,
-          _id: user._id,
           loginStatus: "success",
         };
       } else return state;
@@ -163,12 +157,11 @@ export const authSlice = createSlice({
     });
     builder.addCase(getUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user = jwtDecode(action.payload);
+        const user = action.payload;//jwtDecode
         return {
           ...state,
           token: action.payload,
           email: user.email,
-          _id: user._id,
           getUserStatus: "success",
         };
       } else return state;

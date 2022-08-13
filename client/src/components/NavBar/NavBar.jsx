@@ -30,6 +30,9 @@ import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
 
+import { logoutUser } from "../../redux/reducer/authSlice";
+import { toast } from "react-toastify";
+
 const pages = ["Home"];
 const settings = ["Admin"];
 
@@ -109,9 +112,8 @@ const ResponsiveAppBar = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-
   const auth = useSelector((state) => state.auth);
-
+console.log(auth)
   return (
     <AppBar
       position="static"
@@ -159,20 +161,20 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
-        //Login and LogOut
-          {auth._id ? (
-        <Logout
+        {/* //Login and LogOut */}
+          {auth.email ? (
+        <button
           onClick={() => {
             dispatch(logoutUser(null));
-            // toast.warning("Logged out!", { position: "bottom-left" });
+             toast.warning("Logged out!", { position: "bottom-left" });
           }}
         >
           Logout
-        </Logout>
+        </button>
       ) : (
         <div>
           <Link to="/login">Login</Link>
-          <Link to="register">Register</Link>
+          <Link to="/register">Register</Link>
         </div>
       )}
           {/* <Link

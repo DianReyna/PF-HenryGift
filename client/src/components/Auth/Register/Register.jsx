@@ -41,10 +41,10 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (auth._id) {
+    if (auth.email) {
       navigate("/cart");
     }
-  }, [auth._id, navigate]);
+  }, [auth.email, navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
@@ -202,6 +202,11 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
+                      style=
+                      {{
+                        backgroundColor: "#448AFF",
+                        padding: 1,
+                      }}
                     />
                   }
                   label="I accept the privacy terms and conditions of the site"
@@ -216,19 +221,6 @@ export default function Register() {
                     {errors.accept}
                   </Typography>
                 )}{" "}
-                style=
-                {{
-                  backgroundColor: "#448AFF",
-                  padding: 1,
-                }}
-                {errors.accept && (
-                  <Typography
-                    component={"p"}
-                    sx={{ fontSize: 13, color: "red" }}
-                  >
-                    {errors.accept}
-                  </Typography>
-                )}
                 <Grid item xs={12}>
                   <Button
                     type="submit"
@@ -242,7 +234,7 @@ export default function Register() {
                 </Grid>
               </Grid>
             </form>
-            {auth.registerStatus === "rejected" ? (<p>{auth.registerError}</p>) : null}
+            {auth.registerStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.registerError}</Typography>) :null}
             <Typography variant="h7">
               Do you have an account Henry-Gift?
             </Typography>
