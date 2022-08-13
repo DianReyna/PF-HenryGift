@@ -22,7 +22,7 @@ import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import FormProvider from "./components/Form/FormProvider";
 import FormBox from "./components/Form/FormBox";
 import FormProduct from "./components/Form/FormProduct";
-import UserProfileCreate from "./components/User/UserProfileCreate";
+import UserProfileEdit from "./components/User/UserProfileEdit";
 import { Cart, SendBox, Checkout } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
@@ -48,7 +48,7 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          <Route path="/userprofile" element={<UserProfileCreate />} />
+          <Route path="/userprofile" element={<UserProfileEdit />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />
