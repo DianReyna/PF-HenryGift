@@ -59,15 +59,13 @@ const getUserById = async (req, res, next) => {
 }
 
 const updateUser =  async (req, res, next) => {
-  const { id } = req.params;
+  const {id} = req.params;
+  const {body} = req
   try {
-    const user = await userServices.getUserById(id);
-    if (!user) {
-      return res.status(404).send("User not found...");
-    }
-    const update = await userServices.updateUser(id);
+    const update = await userServices.updateUser(id, body)
     if (update) {
-      res.status(200).send("User update!");
+      const newInfo = await userServices.getAllUsers();
+      res.status(200).send(newInfo);
     } else {
       res.status(404).send("Error");
     }
@@ -75,7 +73,6 @@ const updateUser =  async (req, res, next) => {
     next(error);
   }
 };
-
 
 module.exports = {
   getAllUsers,
