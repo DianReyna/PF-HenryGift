@@ -6,10 +6,10 @@ import "./SendBox.css";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-  //console.log(cart.cartItems);
+  console.log(cart.cartTotalQuantity);
 
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
-  console.log(input);
+  //console.log(input);
 
   const handleEmailChange = (e, position) => {
     //console.log(e.target.value, position);
@@ -114,6 +114,7 @@ const SendBox = () => {
           </div>
         </div>
       </div>
+      PROBANDO COSAS
     </div>
   );
 };
