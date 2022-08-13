@@ -112,7 +112,7 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar
       position="static"
-      sx={{ background: "transparent", boxShadow: "0" }}
+      sx={{ background: "#E16428", boxShadow: "0", borderBottom: "1px solid #e0e0e0", marginBottom: "2.5rem" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -156,6 +156,7 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
+            <div className={styles.groupNav}>
           <Link
             to="/login"
             style={{ textDecoration: "none", margin: 5, color: "black" }}
@@ -171,16 +172,10 @@ const ResponsiveAppBar = () => {
               </span>
             </div>
           </Link>
+          </div>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://c8.alamy.com/compes/2b3hrwb/plantilla-vectorial-de-diseno-de-logotipo-pf-con-letra-de-monograma-inicial-resumen-del-diseno-del-logotipo-de-la-letra-pf-2b3hrwb.jpg"
-                />
-              </IconButton>
-            </Tooltip>
+            
 
             <Menu
               sx={{ mt: "45px" }}

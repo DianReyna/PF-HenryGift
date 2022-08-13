@@ -32,7 +32,7 @@ export default function AppPagination({setPage,page}) {
         sx={{margin:"20px 0px"}}>
 
         {/*  <Pagination count={8} variant="outlined" color="primary" shape="rounded" onChange={(e,value)=>{setPage(value);window.scroll(0,0)}}/> */}
-        <Typography>Page: {page+1}</Typography>
+        {/* <Typography>Page: {page+1}</Typography> */}
         <Pagination count={pages} page={page+1} variant="outlined" color="primary" shape="rounded" onChange={(e,value)=>{setPage(value-1);window.scroll(0,0)}}/>
 
         </Box>
