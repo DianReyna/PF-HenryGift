@@ -28,18 +28,18 @@ import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
 import PrivateRoute from "./components/PrivateRoute";
 
-const ContainerApp = styled.div`
-  /* width: 90rem; */
-  overflow: hidden;
-  margin: 2rem auto;
-`;
+// const ContainerApp = styled.div`
+//   /* width: 90rem; */
+//   overflow: hidden;
+//   margin: 2rem auto;
+// `;
 
 function App() {
   return (
     <>
       <ToastContainer />
       <NavBar />
-      <ContainerApp>
+      <body>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -75,8 +75,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </ContainerApp>
-      {/* <Footer /> */}
+      </body>
+      <Footer />
     </>
   );
 }

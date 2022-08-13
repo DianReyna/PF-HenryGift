@@ -1,7 +1,9 @@
 import React from 'react'
 import './Footer.css'
 import { Link } from "react-router-dom";
-// import FacebookIcon from '@mui/icons-material/Facebook';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 export const Footer = () => {
     return (
@@ -17,9 +19,9 @@ export const Footer = () => {
                 </div>
                 <div className="columnFooter">
                     <div className="redes">
-                        <Link  to ='https://www.facebook.com/' className='enlaces'><p>F </p></Link>
-                        <Link  to ='https://twitter.com/?lang=es' className='enlaces'><p>T </p></Link>
-                        <Link  to ='https://www.instagram.com/' className='enlaces'><p>I </p></Link>
+                        <Link  to ='https://www.facebook.com/' className='enlaces'> <FacebookIcon/> </Link>
+                        <Link  to ='https://twitter.com/?lang=es' className='enlaces'> <InstagramIcon/> </Link>
+                        <Link  to ='https://www.instagram.com/' className='enlaces'> <TwitterIcon/> </Link>
                     </div>
                 </div>
                 
