@@ -14,9 +14,9 @@ export const getUsersAdmin = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const putUsersAdmin = (id) => (dispatch) => {
+export const putUsersAdmin = (data) => (dispatch) => {
   axios
-    .put(`http://localhost:3001/users/admin/${id}`)
+    .put(`http://localhost:3001/users/admin/${data.id}`, data)
     .then((res) => dispatch(userAdmin(res.data)))
     .catch((err) => console.log(err));
 };

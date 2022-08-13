@@ -7,6 +7,7 @@ import {
 } from "../../../redux/actions/providerActions";
 import { DataGrid } from "@mui/x-data-grid";
 import { Action, Delete } from "../CommonStyled.js";
+import EditProvider from "./EditProvider";
 
 export default function ProvidersList() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export default function ProvidersList() {
       renderCell: (params) => {
         return (
           <Action>
+            <EditProvider provId={params.row.id_provider} />
             <Delete onClick={() => handleDelete(params.row.id_provider)}>
               Delete
             </Delete>

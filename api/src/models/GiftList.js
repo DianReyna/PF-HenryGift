@@ -1,22 +1,24 @@
 const { DataTypes } = require("sequelize");
 
-module.exports = OrderDetailFactory = (sequelize) => {
-  return sequelize.define("OrderDetail", {
+module.exports = GiftListFactory = (sequelize) => {
+  return sequelize.define("GiftList", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-   
-    quantity: {
-      type: DataTypes.INTEGER,
+    code: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    recipient: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    
-    is_gift: {
+    redeemed: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue:false,
       allowNull: false,
     }
   },

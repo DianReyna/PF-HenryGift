@@ -1,6 +1,7 @@
-const { Box,User,Order,OrderDetail } = require("../database/index");
+const { Box,User,Order,OrderDetail,GiftList } = require("../database/index");
 const { Op, UUID } = require("sequelize");
-
+const crypto = require('crypto');
+const {sendCode} = require("../utils/sendEmail")
 const createNewOrder = async (userId,amount) => {
     
 
@@ -36,8 +37,43 @@ const createNewOrder = async (userId,amount) => {
     return userOrders
   } */
 
+  const createGiftList = async (boxes) => {
+    
+
+    try {
+      
+      let arrGiftList = boxes.map(async(box)=>{
+        let findBox = await Box.findOne({
+          where:{
+            name: box.name
+          }
+        })
+        let code = crypto.randomBytes(4).toString('hex')
+        let newGiftList = GiftList.create({
+          box_id : findBox.dataValues.id,
+          code,
+          recipient:box.recipient
+        
+        })
+
+        await sendCode(box.recipient,code)
+
+        return newGiftList
+      })
+
+      await Promise.all(arrGiftList)
+    
+
+    } catch (error) {
+      console.log(error)
+    }
+  
+   
+  };
+
 module.exports = {
   createNewOrder,
-  getAllOrders
+  getAllOrders,
+  createGiftList
   
 };
