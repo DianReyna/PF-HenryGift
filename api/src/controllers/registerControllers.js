@@ -15,12 +15,12 @@ const registerUser = async (req, res, next) => {
     // const hashedPassword = await bcrypt.hash(password, salt)
 
     const auth = await Authentication.create({email: email, password: password})
-
+  console.log(auth)
     const registerUser = await User.create({auth_id: auth.dataValues.id, email: email, dateBirth, first_name, last_name, phone})
-
-    const token = genAuthToken(registerUser)
+ console.log(registerUser)
+    // const token = genAuthToken(registerUser)
     
-    res.send(token)
+   return  res.send(registerUser)
 
   } catch (error) {
     next(error);
