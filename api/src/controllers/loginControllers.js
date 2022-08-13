@@ -11,15 +11,16 @@ const loginUser = async (req, res, next) => {
 
     let auth = await Authentication.findOne({ where: {email: email, password: password} })
     console.log(auth)
-    if (!auth) return res.status(400).send('Invalid email or password..1')
+    if (!auth) return res.status(400).send('Invalid email or password..!!')
 
     // const isValid = await bcrypt.compare(hashedPassword, auth.password)
     
     // if (!isValid) return res.status(400).send('Invalid email or password..2')
 
-    const token = genAuthToken(auth)
+    // const token = genAuthToken(auth)
+
     
-    res.send(token)
+    res.send(auth)
   } catch (error) {
     next(error);
   } 
