@@ -22,16 +22,15 @@ const updateAdmin = async (body, id) => {
   return updateAdmin;
 };
 
-const getUserById = async (id, email) => {
-  const userById = await User.findByPk(id, email);
+const getUserById = async (id) => {
+  const userById = await User.findByPk(id);
   return userById;
 };
 
 const updateUser = async (id, body) => {
-  const update = await Provider.update(body, {
+  const update = await User.update(body, {
     where: {
-      id: id,
-      email: email,
+      email: id,      
     },
   });
   return update;
