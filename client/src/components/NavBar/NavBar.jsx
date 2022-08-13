@@ -113,7 +113,7 @@ const ResponsiveAppBar = () => {
   }, [cart, dispatch]);
 
   const auth = useSelector((state) => state.auth);
-console.log(auth)
+// console.log(auth)
   return (
     <AppBar
       position="static"
