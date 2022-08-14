@@ -15,20 +15,20 @@ import Boxes from "./components/Admin/Boxes/Boxes";
 import Products from "./components/Admin/Products/Products";
 import Users from "./components/Admin/Users/Users";
 import Providers from "./components/Admin/Providers/Providers";
-import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import FormProvider from "./components/Form/FormProvider";
 import FormBox from "./components/Form/FormBox";
 import FormProduct from "./components/Form/FormProduct";
-import UserProfileCreate from "./components/User/UserProfileCreate";
+import ProfilePanel from "./components/User/ProfilePanel";
 import { Cart, SendBox, Checkout } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
 import PrivateRoute from "./components/PrivateRoute";
-
+import UserProfileEdit from "./components/User/UserProfileEdit";
+import RedeemCoupon from "./components/User/RedeemCoupon";
 
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
@@ -48,7 +48,10 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          <Route path="/userprofile" element={<UserProfileCreate />} />
+          <Route path="/userprofile" element={<ProfilePanel />} />
+          <Route path="/codebox" element={<RedeemCoupon/>} />
+          <Route path="/editprofile" element={<UserProfileEdit />} />
+          <Route path="/userprofile" element={<ProfilePanel />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />

@@ -5,6 +5,7 @@ import { getBoxesAdmin, destroyBox } from "../../../redux/actions/boxesActions";
 import { Outlet, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { Action, Delete, View, ImageContainer } from "../CommonStyled";
+import EditBox from "./EditBoxes";
 
 export default function BoxesList() {
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ export default function BoxesList() {
             <Delete onClick={() => handleDelete(params.row.id_box)}>
               Delete
             </Delete>
+            <EditBox boxId={params.row.id_box} />
             <View
               onClick={() => {
                 navigate(`/box/${params.row.id_box}`);

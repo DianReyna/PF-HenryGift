@@ -14,7 +14,7 @@ const getBox = async (id) => {
 };
 
 const findProducts = async (products) => {
-  const findAllProducts = Products.findAll({
+  const findAllProducts = await Products.findAll({
     where: {
       name: products,
     },
@@ -23,7 +23,7 @@ const findProducts = async (products) => {
 };
 
 const findCategory = async (category) => {
-  const findAllCategory = Category.findAll({
+  const findAllCategory = await Category.findAll({
     where: {
       name: { [Op.iLike]: `%${category}` },
     },
@@ -32,14 +32,20 @@ const findCategory = async (category) => {
 };
 
 const getAllBoxes = async () => {
-  
-      const findAllBoxes = Box.findAll({
-        include: [{ model: Category }],
-      })
-       
-    return findAllBoxes;
-  }
+  const findAllBoxes = await Box.findAll({
+    include: [{ model: Category }],
+  });
 
+  return findAllBoxes;
+};
+
+const getAdminBoxes = async () => {
+  const findAllBoxes = await Box.findAll({
+    include: [Category, Products],
+  });
+
+  return findAllBoxes;
+};
 
 const deleteBox = async (id) => {
   const destroy = await Box.destroy({
@@ -50,6 +56,15 @@ const deleteBox = async (id) => {
   return destroy;
 };
 
+const updateBox = async (id, body) => {
+  const update = await Box.update(body, {
+    where: {
+      id: id,
+    },
+  });
+  return update;
+};
+
 module.exports = {
   createNewBox,
   getBox,
@@ -57,4 +72,6 @@ module.exports = {
   findCategory,
   getAllBoxes,
   deleteBox,
+  updateBox,
+  getAdminBoxes,
 };

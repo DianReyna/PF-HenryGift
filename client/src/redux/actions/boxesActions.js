@@ -5,6 +5,7 @@ import {
   getDetailProduct,
   deleteBox,
   getAllBoxesAdmin,
+  editBoxes,
 } from "../reducer/boxesSlice";
 
 export const getBoxes = () => (dispatch) => {
@@ -71,4 +72,19 @@ export const destroyBox = (id) => (dispatch) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const updateBoxes = (data) => (dispatch) => {
+  axios
+    .put(`http://localhost:3001/boxes/${data.id}`, data.boxes)
+    .then((res) => dispatch(editBoxes(res.data)))
+    .catch((err) => {
+      console.log(err);
+    });
+  console.log(data);
+};
+export const getBox = (id) => (dispatch) => {
+  axios(`http://localhost:3001/boxes/${id}` + id)
+    .then((res) => dispatch(getBoxId(res.data)))
+    .catch((err) => console.log(err));
 };

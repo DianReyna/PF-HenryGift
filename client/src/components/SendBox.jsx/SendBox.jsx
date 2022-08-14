@@ -3,17 +3,30 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./SendBox.css";
+import { useEffect } from "react";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-  //console.log(cart.cartItems);
 
-  const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
-  console.log(input);
+  const [input, setInput] = useState(Array(cart.cartItems.length).fill("holaparchero@gmail.com"));
+  const [gifts, setGifts] = useState([]);
+  let gatillo = false;
+
+
+  useEffect(()=>{
+    if(gatillo == false){
+      cart?.cartItems.forEach(element => {
+        for(let i = 0;i < element.cartQuantity;i++){
+          setGifts( (oldGifts) => [...oldGifts, element] )
+        }
+      });
+      gatillo = true;
+    }
+  },[])
+  
+
 
   const handleEmailChange = (e, position) => {
-    //console.log(e.target.value, position);
-    //console.log(cart);
     setInput((prev) =>
       prev.map((el, index) => {
         if (index === position) el = e.target.value;
@@ -47,8 +60,8 @@ const SendBox = () => {
     <div className="main-send-cont">
       <div className="main-top-cont">
         <div className="left-send-side">
-          {cart?.cartItems.map((cartItem, index) => (
-            <div className="all-card-sed">
+          {gifts?.map((cartItem, index) => (
+            <div className="all-card-sed" key={index}>
               <div className="container-all-send">
                 <div className="box-title-send">
                   <h2>{cartItem.name}</h2>
@@ -92,8 +105,8 @@ const SendBox = () => {
             <div className="summary-cart-title">
               <h3>Resumen de Compra</h3>
             </div>
-            {cart?.cartItems.map((cartItem) => (
-              <div className="summary-cart-box">
+            {cart?.cartItems.map((cartItem, index) => (
+              <div key={index} className="summary-cart-box">
                 <h3>
                   {cartItem.name} x{cartItem.cartQuantity}
                 </h3>
@@ -114,6 +127,7 @@ const SendBox = () => {
           </div>
         </div>
       </div>
+      PROBANDO COSAS
     </div>
   );
 };

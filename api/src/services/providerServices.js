@@ -1,10 +1,10 @@
 const { Provider } = require("../database/index");
 
 const getAllProviders = async () => {
-  let allProviders = await Provider.findAll({
-    attributes: ["id", "name", "phone", "address", "email"],
-  });
-
+  let allProviders = await Provider.findAll();
+  //   {
+  //   attributes: ["id", "name", "phone", "address", "email", "active"],
+  // }
   return allProviders;
 };
 
@@ -28,7 +28,7 @@ const deleteProvider = async (id) => {
   return destroy;
 };
 
-const updateProvider = async (id, body) => {
+const updateProvider = async (body, id) => {
   const update = await Provider.update(body, {
     where: {
       id: id,
