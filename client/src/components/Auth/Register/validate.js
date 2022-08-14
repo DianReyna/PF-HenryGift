@@ -7,7 +7,7 @@ export function validate(input) {
   if (!input.first_name) errors.first_name = "*name is required";
   else if (!/^[a-zA-Z'-]+$/.test(input.first_name))
     errors.first_name = "*name is invalid";
-  else if (!input.last_name) errors.last_name = "*lastName is required";
+  else if (!input.last_name) errors.last_name = "*last name is required";
   else if (!/^[a-zA-Z'-]+$/.test(input.last_name))
     errors.last_name = "*lastName is invalid";
   else if (!input.dateBirth) errors.dateBirth = "*date of Birth is required";

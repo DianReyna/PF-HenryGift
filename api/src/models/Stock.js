@@ -8,7 +8,7 @@ module.exports = BoxFactory = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    amount: {
+    quantity: {
         type: DataTypes.FLOAT,
         allowNull: false,
     },

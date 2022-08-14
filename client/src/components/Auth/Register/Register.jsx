@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from "react";
+import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../../redux/reducer/authSlice";
 import { Link,useNavigate  } from "react-router-dom";
-import { Google, Facebook } from "@mui/icons-material";
+import { Google, Facebook, TonalitySharp } from "@mui/icons-material";
+import Spinner from "../spinner";
+import {register,reset} from "../../../redux/reducer/authSlice";
 import {
   Grid,
   TextField,
@@ -18,7 +20,8 @@ import { validate } from "./validate";
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const auth = useSelector((state) => state.auth);
+  const {user,isLoading,isError,isSuccess,message}= useSelector((state) => state.auth);
+  
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
@@ -27,9 +30,9 @@ export default function Register() {
     email: "",
     password: "",
     accept: false,
-    passwordAgain: "",
-    access_level: false,
+    passwordAgain: ""
   });
+  
   const [errors, setErrors] = useState({ first_name: "*name is required" });
   const handleChange = (prop) => (event) => {
     setInput({ ...input, [prop]: event.target.value });
@@ -40,17 +43,39 @@ export default function Register() {
     setErrors(validate({ ...input, [prop]: event.target.checked }));
   };
 
+
   useEffect(() => {
-    if (auth.email) {
-      navigate("/cart");
+    if (isError) {
+      toast.error(message)
     }
-  }, [auth.email, navigate]);
+    if (isSuccess || user) {
+      navigate('/cart')
+    }
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+ 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
-    console.log(errors)
-    dispatch(registerUser(input));
+    if(input.password!==input.passwordAgain){
+      toast.error('Passwords do not match')
+    }else{
+      const userData={
+        first_name:input.first_name,
+        last_name:input.last_name,
+        dateBirth: input.dateBirth,
+        phone: input.phone,
+        email: input.email,
+        password: input.password,
+      }
+      dispatch(register(userData));
+    }
   };
+  if (isLoading){
+    return <Spinner/>
+  }
+
   return (
     <>
       <Typography variant="h3" color="primary" align="center" sx={{ m: 1 }}>
@@ -61,16 +86,6 @@ export default function Register() {
           <CardContent>
             <form onSubmit={ handleSubmit}>
               <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Button fullWidth variant="outlined" startIcon={<Google />}>
-                    Sign up with Gmail
-                  </Button>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button fullWidth variant="outlined" startIcon={<Facebook />}>
-                    Sign up with Gmail
-                  </Button>
-                </Grid>
                 <Grid xs={12} sm={6} item>
                   <TextField
                     placeholder="Enter first name"
@@ -229,12 +244,13 @@ export default function Register() {
                     fullWidth
                     disabled={Object.keys(errors).length > 0}
                   >
-                    {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
+                    {/* {auth.registerStatus === "pending" ? "Submitting..." : "Register"} */}
+                    Register
                   </Button>
                 </Grid>
               </Grid>
             </form>
-            {auth.registerStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.registerError}</Typography>) :null}
+            {/* {auth.registerStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.registerError}</Typography>) :null} */}
             <Typography variant="h7">
               Do you have an account Henry-Gift?
             </Typography>

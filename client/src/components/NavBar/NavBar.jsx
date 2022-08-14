@@ -19,7 +19,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useDispatch } from "react-redux";
 import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import "./NavBar.module.css";
@@ -29,6 +29,10 @@ import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
+
+
+import { logout,reset } from "../../redux/reducer/authSlice";
+import { toast } from "react-toastify";
 
 const pages = ["Home"];
 const settings = ["Admin"];
@@ -78,6 +82,7 @@ const ResponsiveAppBar = () => {
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const cart = useSelector((state) => state.cart);
+  const navigate=useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -108,6 +113,13 @@ const ResponsiveAppBar = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
+
+  const {user} = useSelector((state) => state.auth);
+  const onLogout=()=>{
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/')
+  }
 
   return (
     <AppBar
@@ -156,12 +168,20 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
-          <Link
-            to="/login"
-            style={{ textDecoration: "none", margin: 5, color: "black" }}
-          >
-            <AccountBoxIcon sx={{ fontSize: 40 }} />
-          </Link>
+
+        {/* //Login and LogOut */}
+          {user ? (
+        <Button sx={{color:"white"}}
+          onClick={onLogout }
+        >
+          Logout
+        </Button>
+      ) : (
+        <Button variant="text">
+          <Link to="/login" style={{color:"white",textDecoration: "none"}}>Login</Link>
+        </Button>
+      )}
+
 
           <Link to="/cart">
             <div className={styles.navBag}>
