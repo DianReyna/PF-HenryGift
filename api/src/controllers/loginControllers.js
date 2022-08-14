@@ -11,7 +11,7 @@ const loginUser = async (req, res, next) => {
     if (!auth) return res.status(400).send('Invalid email')
 
     const isValid = await bcrypt.compare(password, auth.password)
-    console.log(isValid)
+
     if (!isValid) return res.status(400).send('Invalid email or password')
 
     const token = genAuthToken(auth)
