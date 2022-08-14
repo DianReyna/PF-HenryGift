@@ -14,7 +14,7 @@ const getBox = async (id) => {
 };
 
 const findProducts = async (products) => {
-  const findAllProducts = Products.findAll({
+  const findAllProducts = await Products.findAll({
     where: {
       name: products,
     },
@@ -23,7 +23,7 @@ const findProducts = async (products) => {
 };
 
 const findCategory = async (category) => {
-  const findAllCategory = Category.findAll({
+  const findAllCategory = await Category.findAll({
     where: {
       name: { [Op.iLike]: `%${category}` },
     },
@@ -31,37 +31,38 @@ const findCategory = async (category) => {
   return findAllCategory;
 };
 
-const getAllBoxes = async (name, offset, limit,col,dir) => {
-  if (name) {
-    const getOneBox = await Box.findAll({
-      include: [{ model: Category }],limit:4,
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`,
-        },
-      },
-    });
-    return getOneBox;
-  } else {
+const getAllBoxes = async () => {
+  const findAllBoxes = await Box.findAll({
+    include: [{ model: Category }],
+  });
 
-    if(col && dir && col!=="undefined"){
-      
-      var findAllBoxes = Box.findAll({
-        include: [{ model: Category }],
-        offset: limit * offset,
-        limit,
-        order: [ [col, dir]]
-      });
-    }else {
-      var findAllBoxes = Box.findAll({
-        include: [{ model: Category }],
-        offset: limit * offset,
-        limit,
-        
-      });
-    }
-    return findAllBoxes;
-  }
+  return findAllBoxes;
+};
+
+const getAdminBoxes = async () => {
+  const findAllBoxes = await Box.findAll({
+    include: [Category, Products],
+  });
+
+  return findAllBoxes;
+};
+
+const deleteBox = async (id) => {
+  const destroy = await Box.destroy({
+    where: {
+      id: id,
+    },
+  });
+  return destroy;
+};
+
+const updateBox = async (id, body) => {
+  const update = await Box.update(body, {
+    where: {
+      id: id,
+    },
+  });
+  return update;
 };
 
 module.exports = {
@@ -70,4 +71,7 @@ module.exports = {
   findProducts,
   findCategory,
   getAllBoxes,
+  deleteBox,
+  updateBox,
+  getAdminBoxes,
 };

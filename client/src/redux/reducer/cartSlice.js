@@ -32,6 +32,8 @@ export const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+
+
     removeFromCart: (state, action) => {
       const nextCartItems = state.cartItems.filter(
         (cartItem) => cartItem.id !== action.payload.id
@@ -44,6 +46,8 @@ export const cartSlice = createSlice({
         position: "bottom-left",
       });
     },
+
+
     decreaseCart: (state, action) => {
       const itemIndex = state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
@@ -69,6 +73,8 @@ export const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+
+
     clearCart: (state) => {
       state.cartItems = [];
       toast.error(`El carrito se encuentra vacio`, {
@@ -76,6 +82,8 @@ export const cartSlice = createSlice({
       });
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+
+    
     getTotals(state, action) {
       let { total, quantity } = state.cartItems.reduce(
         (cartTotal, cartItem) => {

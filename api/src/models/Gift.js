@@ -11,7 +11,6 @@ module.exports = BoxFactory = (sequelize) => {
     code: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
       },
     email: {
       type: DataTypes.STRING,

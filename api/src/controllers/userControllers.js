@@ -1,4 +1,14 @@
+const User = require("../models/User");
 const userServices = require("../services/userServices");
+
+const createNewUser = async (req, res, next) => {
+  try {
+    const newUser = await userServices.createNewUser(req.body);
+    res.send(newUser);
+  } catch (error) {
+    next(error);
+  }
+};
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -14,6 +24,60 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+const updateAdmin = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const admin = await userServices.updateAdmin(body, id);
+
+    if (admin) {
+      const newList = await userServices.getAllUsers();
+      res.status(200).send(newList);
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+const getUserById = async (req, res, next) => {
+  const {id, email} = req.params;  
+  try {
+    const userId = await userServices.getUserById(id, email)
+    if(!userId){
+      res.status(400).send({
+        status:'error', 
+        message: 'User not found'
+      })
+    }
+    res.status(201).send(userId)
+} catch (error) {
+  next(error)
+  }
+}
+
+const updateUser =  async (req, res, next) => {
+  const {id} = req.params;
+  const {body} = req
+  try {
+    const update = await userServices.updateUser(id, body)
+    if (update) {
+      const newInfo = await userServices.getAllUsers();
+      res.status(200).send(newInfo);
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
-  getAllUsers
+  getAllUsers,
+  createNewUser,
+  updateAdmin,
+  getUserById,
+  updateUser,
 };

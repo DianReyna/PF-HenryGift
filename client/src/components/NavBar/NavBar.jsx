@@ -19,19 +19,23 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useDispatch } from "react-redux";
 import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import  "./NavBar.module.css";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import "./NavBar.module.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
-import styles from './NavBar.module.css'
-import { queryName } from '../../redux/actions/queryActions';
+import styles from "./NavBar.module.css";
+import { queryName } from "../../redux/actions/queryActions";
 
-const pages = ['Home'];
-const settings = ['Admin'];
 
+import { logout,reset } from "../../redux/reducer/authSlice";
+import { toast } from "react-toastify";
+
+const pages = ["Home"];
+const settings = ["Admin"];
 
 const ResponsiveAppBar = () => {
   const Search = styled("div")(({ theme }) => ({
@@ -78,6 +82,7 @@ const ResponsiveAppBar = () => {
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const cart = useSelector((state) => state.cart);
+  const navigate=useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -98,17 +103,29 @@ const ResponsiveAppBar = () => {
 
   function handleInputChange(event) {
     event.preventDefault();
-   
+    if (
+      event.target.value.trim().length >= 3 ||
+      event.target.value.length === 0
+    )
       dispatch(queryName(event.target.value));
-    
   }
 
   useEffect(() => {
-    dispatch(getTotals())
-  } , [cart, dispatch])
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
+  const {user} = useSelector((state) => state.auth);
+  const onLogout=()=>{
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/')
+  }
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{ background: "#E16428", boxShadow: "0", borderBottom: "1px solid #e0e0e0", marginBottom: "2.5rem" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -124,6 +141,7 @@ const ResponsiveAppBar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              // background: 'red'
             }}
           >
             Henry-Gift
@@ -150,6 +168,21 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
+
+        {/* //Login and LogOut */}
+          {user ? (
+        <Button sx={{color:"white"}}
+          onClick={onLogout }
+        >
+          Logout
+        </Button>
+      ) : (
+        <Button variant="text">
+          <Link to="/login" style={{color:"white",textDecoration: "none"}}>Login</Link>
+        </Button>
+      )}
+
+
           <Link to="/cart">
             <div className={styles.navBag}>
               <CardGiftcardIcon />
@@ -158,16 +191,11 @@ const ResponsiveAppBar = () => {
               </span>
             </div>
           </Link>
+        
 
+            
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://c8.alamy.com/compes/2b3hrwb/plantilla-vectorial-de-diseno-de-logotipo-pf-con-letra-de-monograma-inicial-resumen-del-diseno-del-logotipo-de-la-letra-pf-2b3hrwb.jpg"
-                />
-              </IconButton>
-            </Tooltip>
+            
 
             <Menu
               sx={{ mt: "45px" }}
@@ -186,7 +214,7 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting, i) => (
-                <NavLink to={"/form"} className={styles.navlink} key={i}>
+                <NavLink to={"/admin"} className={styles.navlink} key={i}>
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>

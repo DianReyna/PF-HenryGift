@@ -33,7 +33,8 @@
 }
 .sidebarListItem.active,
 .sidebarListItem:hover {
-  background-color: rgb(240, 240, 255);
+  /* background-color: rgb(240, 240, 255); */
+  background-color: #f66b0e;
 }
 .sidebarIcon {
   margin-right: 5px;
@@ -46,15 +47,4 @@
   box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.67);
   -webkit-box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.67);
   -moz-box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.67);
-}
-
-.link-active {
-  color: #4b70e2;
-}
-.link-inactive {
-  color: rgb(97, 97, 97);
-}
-
-.sidebarList NavLink {
-  text-decoration: none;
 }
