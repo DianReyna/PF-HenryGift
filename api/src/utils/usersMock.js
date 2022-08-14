@@ -1,306 +1,356 @@
-const {User, OrderDetail} = require("../database/index")
+const {User, OrderDetail, Authentication, Gift} = require("../database/index")
 
 const users = [{
-    "email": "kgabotti0@mashable.com",
-    "first_name": "Karol",
-    "last_name": "Gabotti",
-    "access_level": true,
-    "phone": "4953815438"
-  }, {
-    "email": "pastlet1@de.vu",
-    "first_name": "Perle",
-    "last_name": "Astlet",
-    "access_level": false,
-    "phone": "9554042886"
-  }, {
-    "email": "bcoulman2@hibu.com",
-    "first_name": "Berty",
-    "last_name": "Coulman",
-    "access_level": false,
-    "phone": "1001900828"
-  }, {
-    "email": "dlowrance3@hatena.ne.jp",
-    "first_name": "Dido",
-    "last_name": "Lowrance",
-    "access_level": false,
-    "phone": "9604882342"
-  }, {
-    "email": "npighills4@marriott.com",
-    "first_name": "Nicholle",
-    "last_name": "Pighills",
-    "access_level": true,
-    "phone": "3372058262"
-  }, {
-    "email": "fmitkin5@washingtonpost.com",
-    "first_name": "Fayina",
-    "last_name": "Mitkin",
-    "access_level": false,
-    "phone": "4027496288"
-  }, {
-    "email": "saxtens6@rakuten.co.jp",
-    "first_name": "Selie",
-    "last_name": "Axtens",
-    "access_level": false,
-    "phone": "4996195460"
-  }, {
-    "email": "cmasedon7@lycos.com",
-    "first_name": "Colan",
-    "last_name": "Masedon",
-    "access_level": true,
-    "phone": "2439553281"
-  }, {
-    "email": "glockley8@howstuffworks.com",
-    "first_name": "Garrek",
-    "last_name": "Lockley",
-    "access_level": false,
-    "phone": "1301224276"
-  }, {
-    "email": "vberringer9@cargocollective.com",
-    "first_name": "Venus",
-    "last_name": "Berringer",
-    "access_level": true,
-    "phone": "2417360348"
-  }, {
-    "email": "nmckanea@microsoft.com",
-    "first_name": "Nap",
-    "last_name": "McKane",
-    "access_level": true,
-    "phone": "3849778387"
-  }, {
-    "email": "lfountianb@dropbox.com",
-    "first_name": "Lenee",
-    "last_name": "Fountian",
-    "access_level": false,
-    "phone": "9962693216"
-  }, {
-    "email": "pglayzerc@reuters.com",
-    "first_name": "Philippa",
-    "last_name": "Glayzer",
-    "access_level": true,
-    "phone": "3959791508"
-  }, {
-    "email": "chaggartd@barnesandnoble.com",
-    "first_name": "Curran",
-    "last_name": "Haggart",
-    "access_level": false,
-    "phone": "6845134422"
-  }, {
-    "email": "lgarriee@sitemeter.com",
-    "first_name": "Lydie",
-    "last_name": "Garrie",
-    "access_level": true,
-    "phone": "8275833913"
-  }, {
-    "email": "dfollitf@storify.com",
-    "first_name": "Doralin",
-    "last_name": "Follit",
-    "access_level": true,
-    "phone": "8135702757"
-  }, {
-    "email": "fjerremsg@mapquest.com",
-    "first_name": "Forrester",
-    "last_name": "Jerrems",
-    "access_level": true,
-    "phone": "8265220857"
-  }, {
-    "email": "lhartleh@t-online.de",
-    "first_name": "Lara",
-    "last_name": "Hartle",
-    "access_level": false,
-    "phone": "6564599770"
-  }, {
-    "email": "iduseyi@comcast.net",
-    "first_name": "Irma",
-    "last_name": "Dusey",
-    "access_level": false,
-    "phone": "8529108729"
-  }, {
-    "email": "cmayorj@sphinn.com",
-    "first_name": "Charo",
-    "last_name": "Mayor",
-    "access_level": true,
-    "phone": "6244030715"
-  }, {
-    "email": "rkeek@loc.gov",
-    "first_name": "Ruby",
-    "last_name": "Kee",
-    "access_level": true,
-    "phone": "3369542989"
-  }, {
-    "email": "scanetel@ezinearticles.com",
-    "first_name": "Saw",
-    "last_name": "Canete",
-    "access_level": false,
-    "phone": "2039687837"
-  }, {
-    "email": "ghullyerm@eepurl.com",
-    "first_name": "Gary",
-    "last_name": "Hullyer",
-    "access_level": false,
-    "phone": "1951593204"
-  }, {
-    "email": "rloodyn@stumbleupon.com",
-    "first_name": "Rosalinda",
-    "last_name": "Loody",
-    "access_level": false,
-    "phone": "1443268302"
-  }, {
-    "email": "tbroadbereo@ifeng.com",
-    "first_name": "Trey",
-    "last_name": "Broadbere",
-    "access_level": false,
-    "phone": "3575672452"
-  }, {
-    "email": "fcicerop@google.nl",
-    "first_name": "Fayina",
-    "last_name": "Cicero",
-    "access_level": true,
-    "phone": "2344389124"
-  }, {
-    "email": "nbillettq@scientificamerican.com",
-    "first_name": "Nehemiah",
-    "last_name": "Billett",
-    "access_level": false,
-    "phone": "6664905491"
-  }, {
-    "email": "mbrafieldr@youku.com",
-    "first_name": "Mirella",
-    "last_name": "Brafield",
-    "access_level": false,
-    "phone": "6517169188"
-  }, {
-    "email": "lblannins@accuweather.com",
-    "first_name": "Libbie",
-    "last_name": "Blannin",
-    "access_level": true,
-    "phone": "7238492268"
-  }, {
-    "email": "dsyalvestert@icio.us",
-    "first_name": "Danie",
-    "last_name": "Syalvester",
-    "access_level": false,
-    "phone": "8066306937"
-  }, {
-    "email": "galiboneu@google.com.au",
-    "first_name": "Gabriel",
-    "last_name": "Alibone",
-    "access_level": false,
-    "phone": "3258181918"
-  }, {
-    "email": "afilkovv@odnoklassniki.ru",
-    "first_name": "Arlen",
-    "last_name": "Filkov",
-    "access_level": true,
-    "phone": "2663776684"
-  }, {
-    "email": "lcastendaw@webmd.com",
-    "first_name": "Layla",
-    "last_name": "Castenda",
-    "access_level": false,
-    "phone": "3144621172"
-  }, {
-    "email": "lduddlex@fotki.com",
-    "first_name": "Lenna",
-    "last_name": "Duddle",
-    "access_level": true,
-    "phone": "8607528962"
-  }, {
-    "email": "jgilbeey@ebay.com",
-    "first_name": "Jethro",
-    "last_name": "Gilbee",
-    "access_level": true,
-    "phone": "3483034926"
-  }, {
-    "email": "pfilipsonz@feedburner.com",
-    "first_name": "Pru",
-    "last_name": "Filipson",
-    "access_level": true,
-    "phone": "1387785814"
-  }, {
-    "email": "pnelius10@topsy.com",
-    "first_name": "Paulo",
-    "last_name": "Nelius",
-    "access_level": true,
-    "phone": "6045070875"
-  }, {
-    "email": "lgeorg11@canalblog.com",
-    "first_name": "Lolly",
-    "last_name": "Georg",
-    "access_level": true,
-    "phone": "5892145429"
-  }, {
-    "email": "kventom12@unesco.org",
-    "first_name": "King",
-    "last_name": "Ventom",
-    "access_level": false,
-    "phone": "6543668568"
-  }, {
-    "email": "fmannie13@google.ca",
-    "first_name": "Fancy",
-    "last_name": "Mannie",
-    "access_level": false,
-    "phone": "1366074495"
-  }, {
-    "email": "wmackereth14@cornell.edu",
-    "first_name": "Wynn",
-    "last_name": "MacKereth",
-    "access_level": false,
-    "phone": "7015259972"
-  }, {
-    "email": "khealey15@usa.gov",
-    "first_name": "Koenraad",
-    "last_name": "Healey",
-    "access_level": false,
-    "phone": "7126612311"
-  }, {
-    "email": "ffilippucci16@godaddy.com",
-    "first_name": "Fonz",
-    "last_name": "Filippucci",
-    "access_level": true,
-    "phone": "4712091970"
-  }, {
-    "email": "mlinley17@amazon.de",
-    "first_name": "Melantha",
-    "last_name": "Linley",
-    "access_level": true,
-    "phone": "4736533712"
-  }, {
-    "email": "dbollard18@miibeian.gov.cn",
-    "first_name": "Daven",
-    "last_name": "Bollard",
-    "access_level": true,
-    "phone": "3241623473"
-  }, {
-    "email": "mfishlock19@bigcartel.com",
-    "first_name": "Maxim",
-    "last_name": "Fishlock",
-    "access_level": true,
-    "phone": "9633410601"
-  }, {
-    "email": "rsimkovich1a@geocities.jp",
-    "first_name": "Rozanne",
-    "last_name": "Simkovich",
-    "access_level": false,
-    "phone": "1432160451"
-  }, {
-    "email": "mapple1b@clickbank.net",
-    "first_name": "Mattias",
-    "last_name": "Apple",
-    "access_level": false,
-    "phone": "3309299968"
-  }, {
-    "email": "rizzett1c@chron.com",
-    "first_name": "Rodolphe",
-    "last_name": "Izzett",
-    "access_level": false,
-    "phone": "3033590587"
-  }, {
-    "email": "kjon1d@techcrunch.com",
-    "first_name": "Krissy",
-    "last_name": "Jon",
-    "access_level": true,
-    "phone": "7038826589"
-  }]
+  "email": "drowet0@4shared.com",
+  "dateBirth": "1982-09-26",
+  "first_name": "Dasie",
+  "last_name": "Rowet",
+  "access_level": true,
+  "phone": "4788653120"
+}, {
+  "email": "lchalker1@scribd.com",
+  "dateBirth": "1996-12-05",
+  "first_name": "Lindon",
+  "last_name": "Chalker",
+  "access_level": true,
+  "phone": "4549891206"
+}, {
+  "email": "kmansel2@blogger.com",
+  "dateBirth": "1992-07-11",
+  "first_name": "Kip",
+  "last_name": "Mansel",
+  "access_level": false,
+  "phone": "5539105730"
+}, {
+  "email": "ptriggs3@nbcnews.com",
+  "dateBirth": "1995-04-13",
+  "first_name": "Penrod",
+  "last_name": "Triggs",
+  "access_level": true,
+  "phone": "8977183265"
+}, {
+  "email": "gmcguigan4@wordpress.org",
+  "dateBirth": "1992-04-24",
+  "first_name": "George",
+  "last_name": "McGuigan",
+  "access_level": true,
+  "phone": "8084436152"
+}, {
+  "email": "tnolleth5@google.es",
+  "dateBirth": "1990-01-18",
+  "first_name": "Terrijo",
+  "last_name": "Nolleth",
+  "access_level": true,
+  "phone": "2596115600"
+}, {
+  "email": "jdines6@flavors.me",
+  "dateBirth": "1985-11-09",
+  "first_name": "Justus",
+  "last_name": "Dines",
+  "access_level": false,
+  "phone": "5283798488"
+}, {
+  "email": "tastupenas7@lycos.com",
+  "dateBirth": "1980-12-02",
+  "first_name": "Teodoor",
+  "last_name": "Astupenas",
+  "access_level": false,
+  "phone": "9941970499"
+}, {
+  "email": "sconwell8@ihg.com",
+  "dateBirth": "1989-10-29",
+  "first_name": "Shaina",
+  "last_name": "Conwell",
+  "access_level": true,
+  "phone": "4522723937"
+}, {
+  "email": "bculham9@is.gd",
+  "dateBirth": "1983-06-20",
+  "first_name": "Burke",
+  "last_name": "Culham",
+  "access_level": false,
+  "phone": "8076638390"
+}, {
+  "email": "zwardingtona@globo.com",
+  "dateBirth": "1984-03-22",
+  "first_name": "Zared",
+  "last_name": "Wardington",
+  "access_level": true,
+  "phone": "8775715935"
+}, {
+  "email": "mgairdnerb@netlog.com",
+  "dateBirth": "1989-07-07",
+  "first_name": "Mikey",
+  "last_name": "Gairdner",
+  "access_level": true,
+  "phone": "9986436690"
+}, {
+  "email": "abridgmanc@studiopress.com",
+  "dateBirth": "1983-05-13",
+  "first_name": "Adrea",
+  "last_name": "Bridgman",
+  "access_level": false,
+  "phone": "8668461727"
+}, {
+  "email": "ggoldthorped@plala.or.jp",
+  "dateBirth": "1993-11-07",
+  "first_name": "Graham",
+  "last_name": "Goldthorpe",
+  "access_level": false,
+  "phone": "5364955207"
+}, {
+  "email": "wornelese@blinklist.com",
+  "dateBirth": "1987-08-13",
+  "first_name": "Wendall",
+  "last_name": "Orneles",
+  "access_level": true,
+  "phone": "4221223263"
+}, {
+  "email": "ddelahayf@pen.io",
+  "dateBirth": "1998-02-06",
+  "first_name": "Del",
+  "last_name": "De La Hay",
+  "access_level": true,
+  "phone": "3254619994"
+}, {
+  "email": "pvanbrughg@cpanel.net",
+  "dateBirth": "1985-07-11",
+  "first_name": "Preston",
+  "last_name": "VanBrugh",
+  "access_level": true,
+  "phone": "8922422135"
+}, {
+  "email": "gmessitth@loc.gov",
+  "dateBirth": "1984-01-03",
+  "first_name": "Gusti",
+  "last_name": "Messitt",
+  "access_level": true,
+  "phone": "3182528572"
+}, {
+  "email": "iigguldeni@domainmarket.com",
+  "dateBirth": "1991-07-09",
+  "first_name": "Isiahi",
+  "last_name": "Iggulden",
+  "access_level": false,
+  "phone": "6761833746"
+}, {
+  "email": "ldewburyj@ucsd.edu",
+  "dateBirth": "1992-04-22",
+  "first_name": "Lorry",
+  "last_name": "Dewbury",
+  "access_level": false,
+  "phone": "5626406778"
+}, {
+  "email": "mvautierk@un.org",
+  "dateBirth": "1985-10-11",
+  "first_name": "Melli",
+  "last_name": "Vautier",
+  "access_level": false,
+  "phone": "8903062388"
+}, {
+  "email": "abrinsfordl@comsenz.com",
+  "dateBirth": "1986-09-16",
+  "first_name": "Anna-maria",
+  "last_name": "Brinsford",
+  "access_level": true,
+  "phone": "3149449931"
+}, {
+  "email": "mstanleym@msu.edu",
+  "dateBirth": "1987-10-10",
+  "first_name": "Minta",
+  "last_name": "Stanley",
+  "access_level": false,
+  "phone": "9446325154"
+}, {
+  "email": "abummfreyn@springer.com",
+  "dateBirth": "1993-09-04",
+  "first_name": "Audra",
+  "last_name": "Bummfrey",
+  "access_level": false,
+  "phone": "7047428987"
+}, {
+  "email": "oellenso@berkeley.edu",
+  "dateBirth": "1996-08-12",
+  "first_name": "Oswell",
+  "last_name": "Ellens",
+  "access_level": false,
+  "phone": "3329327191"
+}, {
+  "email": "shazelbyp@quantcast.com",
+  "dateBirth": "1999-07-15",
+  "first_name": "Sigismond",
+  "last_name": "Hazelby",
+  "access_level": true,
+  "phone": "8809066855"
+}, {
+  "email": "csportonq@hostgator.com",
+  "dateBirth": "1996-04-08",
+  "first_name": "Coralyn",
+  "last_name": "Sporton",
+  "access_level": false,
+  "phone": "6111924012"
+}, {
+  "email": "ffriattr@imdb.com",
+  "dateBirth": "1980-12-14",
+  "first_name": "Freddie",
+  "last_name": "Friatt",
+  "access_level": false,
+  "phone": "8168645152"
+}, {
+  "email": "alegrices@independent.co.uk",
+  "dateBirth": "1998-04-23",
+  "first_name": "Alon",
+  "last_name": "Le Grice",
+  "access_level": false,
+  "phone": "5763151587"
+}, {
+  "email": "vvaunt@wikimedia.org",
+  "dateBirth": "1994-10-12",
+  "first_name": "Valene",
+  "last_name": "Vaun",
+  "access_level": true,
+  "phone": "9166087064"
+}, {
+  "email": "bsuffieldu@bbc.co.uk",
+  "dateBirth": "1985-01-06",
+  "first_name": "Berny",
+  "last_name": "Suffield",
+  "access_level": true,
+  "phone": "1767865525"
+}, {
+  "email": "amogiev@sun.com",
+  "dateBirth": "1981-07-06",
+  "first_name": "Ahmed",
+  "last_name": "Mogie",
+  "access_level": false,
+  "phone": "4339762824"
+}, {
+  "email": "bfrantzeniw@prlog.org",
+  "dateBirth": "1999-12-30",
+  "first_name": "Belva",
+  "last_name": "Frantzeni",
+  "access_level": false,
+  "phone": "4175512568"
+}, {
+  "email": "gpaulinx@latimes.com",
+  "dateBirth": "1982-05-07",
+  "first_name": "Garvin",
+  "last_name": "Paulin",
+  "access_level": false,
+  "phone": "1021175126"
+}, {
+  "email": "rmoizery@liveinternet.ru",
+  "dateBirth": "1997-06-06",
+  "first_name": "Russ",
+  "last_name": "Moizer",
+  "access_level": false,
+  "phone": "3085849288"
+}, {
+  "email": "mglennyz@nydailynews.com",
+  "dateBirth": "1988-10-27",
+  "first_name": "Mohammed",
+  "last_name": "Glenny",
+  "access_level": false,
+  "phone": "5381167429"
+}, {
+  "email": "dravel10@deliciousdays.com",
+  "dateBirth": "1986-02-22",
+  "first_name": "Daryl",
+  "last_name": "Ravel",
+  "access_level": true,
+  "phone": "1709548090"
+}, {
+  "email": "korigan11@jalbum.net",
+  "dateBirth": "1993-06-15",
+  "first_name": "Kenna",
+  "last_name": "Origan",
+  "access_level": false,
+  "phone": "3974513257"
+}, {
+  "email": "bfawcus12@dagondesign.com",
+  "dateBirth": "1981-04-05",
+  "first_name": "Bearnard",
+  "last_name": "Fawcus",
+  "access_level": true,
+  "phone": "5088849639"
+}, {
+  "email": "icastanho13@washingtonpost.com",
+  "dateBirth": "1996-11-18",
+  "first_name": "Ivie",
+  "last_name": "Castanho",
+  "access_level": false,
+  "phone": "3608921795"
+}, {
+  "email": "awharram14@uiuc.edu",
+  "dateBirth": "1986-10-14",
+  "first_name": "Antoni",
+  "last_name": "Wharram",
+  "access_level": false,
+  "phone": "5835355526"
+}, {
+  "email": "aleebeter15@sohu.com",
+  "dateBirth": "2000-06-11",
+  "first_name": "Amil",
+  "last_name": "Leebeter",
+  "access_level": true,
+  "phone": "7859734944"
+}, {
+  "email": "ablack16@weebly.com",
+  "dateBirth": "1997-01-21",
+  "first_name": "Auroora",
+  "last_name": "Black",
+  "access_level": true,
+  "phone": "8745074667"
+}, {
+  "email": "eskettles17@cdc.gov",
+  "dateBirth": "1984-06-05",
+  "first_name": "Electra",
+  "last_name": "Skettles",
+  "access_level": true,
+  "phone": "3956295094"
+}, {
+  "email": "awolfers18@fda.gov",
+  "dateBirth": "1987-05-22",
+  "first_name": "Arly",
+  "last_name": "Wolfers",
+  "access_level": true,
+  "phone": "5127534667"
+}, {
+  "email": "fmelwall19@wp.com",
+  "dateBirth": "1985-05-10",
+  "first_name": "Faber",
+  "last_name": "Melwall",
+  "access_level": true,
+  "phone": "6192330804"
+}, {
+  "email": "glamasna1a@drupal.org",
+  "dateBirth": "1996-09-05",
+  "first_name": "Gabey",
+  "last_name": "Lamasna",
+  "access_level": false,
+  "phone": "5279064284"
+}, {
+  "email": "nmccrea1b@virginia.edu",
+  "dateBirth": "1997-11-07",
+  "first_name": "Natty",
+  "last_name": "McCrea",
+  "access_level": false,
+  "phone": "8748488254"
+}, {
+  "email": "aciani1c@vk.com",
+  "dateBirth": "1987-02-25",
+  "first_name": "Ardine",
+  "last_name": "Ciani",
+  "access_level": false,
+  "phone": "5502649178"
+}, {
+  "email": "xevitt1d@ft.com",
+  "dateBirth": "1985-04-19",
+  "first_name": "Xenos",
+  "last_name": "Evitt",
+  "access_level": true,
+  "phone": "7199559502"
+}]
 
   async function loadMockUsers(){
 
@@ -309,6 +359,10 @@ const users = [{
       await User.bulkCreate(users, {
         include: [{
           model: OrderDetail,
+        },{
+          model:Authentication,
+        },{
+          model:Gift,
         }],
       })
   

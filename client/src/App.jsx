@@ -1,4 +1,5 @@
-import Login from "./components/Login/Login";
+import Login from "./components/Auth/Login/Login";
+import Register from "./components/Auth/Register/Register";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
@@ -14,51 +15,72 @@ import Boxes from "./components/Admin/Boxes/Boxes";
 import Products from "./components/Admin/Products/Products";
 import Users from "./components/Admin/Users/Users";
 import Providers from "./components/Admin/Providers/Providers";
-import CreateProvider from "./components/Admin/Providers/CreateProvider";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
-import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin"; // Home de panel admin
-import { Cart } from "./components";
+import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
+import FormProvider from "./components/Form/FormProvider";
+import FormBox from "./components/Form/FormBox";
+import FormProduct from "./components/Form/FormProduct";
+import ProfilePanel from "./components/User/ProfilePanel";
+import { Cart, SendBox, Checkout } from "./components";
+import UsersList from "./components/Admin/Users/UsersList";
+import BoxesList from "./components/Admin/Boxes/BoxesList";
+import Error404 from "./components/Error/Error404";
+import PrivateRoute from "./components/PrivateRoute";
+import UserProfileEdit from "./components/User/UserProfileEdit";
+import RedeemCoupon from "./components/User/RedeemCoupon";
 
-const ContainerApp = styled.div`
-  width: 90rem;
-  overflow: hidden;
-  margin: 2rem auto;
-`;
+// const ContainerApp = styled.div`
+//   /* width: 90rem; */
+//   overflow: hidden;
+//   margin: 2rem auto;
+// `;
 
 function App() {
   return (
     <>
       <ToastContainer />
       <NavBar />
-      <ContainerApp>
+      <body>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
+          <Route path="/userprofile" element={<ProfilePanel />} />
+          <Route path="/codebox" element={<RedeemCoupon/>} />
+          <Route path="/editprofile" element={<UserProfileEdit />} />
+          <Route path="/userprofile" element={<ProfilePanel />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/send" element={<SendBox />} />
+          <Route path="/payment" element={<Checkout />} />
           //Dashboard
-          <Route path="/admin" element={<Dashboard />}>
-            <Route path="home" element={<HomeAdmin />} />
-            <Route path="boxes" element={<Boxes />}>
-              <Route path="create-box" element={<CreateProvider />} />
-            </Route>
-            <Route path="products" element={<Products />}>
-              <Route index element={<ProductsList />} />
-              <Route path="create-product" element={<CreateProvider />} />
-            </Route>
-            <Route path="providers" element={<Providers />}>
-              <Route index element={<ProvidersList />} />
-              <Route path="create-provider" element={<CreateProvider />} />
-            </Route>
-            <Route path="users" element={<Users />}>
-              <Route path="create-user" element={<CreateProvider />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/admin" element={<Dashboard />}>
+              <Route index element={<HomeAdmin />} />
+              <Route path="boxes" element={<Boxes />}>
+                <Route index element={<BoxesList />} />
+                <Route path="create-box" element={<FormBox />} />
+              </Route>
+              <Route path="products" element={<Products />}>
+                <Route index element={<ProductsList />} />
+                <Route path="create-product" element={<FormProduct />} />
+              </Route>
+              <Route path="providers" element={<Providers />}>
+                <Route index element={<ProvidersList />} />
+                <Route path="create-provider" element={<FormProvider />} />
+              </Route>
+              <Route path="users" element={<Users />}>
+                <Route index element={<UsersList />} />
+              </Route>
             </Route>
           </Route>
+          // End Dashboard
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
-      </ContainerApp>
+      </body>
       <Footer />
     </>
   );
