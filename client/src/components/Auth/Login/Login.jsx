@@ -48,8 +48,6 @@ export default function Login() {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values);
-        console.log(errors);
         dispatch(loginUser(values));
       };
     return (
@@ -105,7 +103,6 @@ export default function Login() {
           </Button>
         <Box>
         {auth.loginStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.loginError}</Typography>) : null}
-        {console.log(auth.loginError)}
         <Typography sx={{ m: 1 }} variant="h7" >Do not you have an account yet?</Typography>
         <Button sx={{ m: 1 }} ><Link to="/register" style={{ textDecoration: 'none',color:"blue" }} >Sign up</Link></Button>
         </Box>

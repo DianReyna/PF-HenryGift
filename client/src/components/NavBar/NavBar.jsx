@@ -30,6 +30,7 @@ import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
 
+
 import { logoutUser } from "../../redux/reducer/authSlice";
 import { toast } from "react-toastify";
 
@@ -164,19 +165,18 @@ console.log(auth)
 
         {/* //Login and LogOut */}
           {auth.email ? (
-        <button
+        <Button sx={{color:"white"}}
           onClick={() => {
             dispatch(logoutUser(null));
              toast.warning("Logged out!", { position: "bottom-left" });
           }}
         >
           Logout
-        </button>
+        </Button>
       ) : (
-        <div>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </div>
+        <Button variant="text">
+          <Link to="/login" style={{color:"white",textDecoration: "none"}}>Login</Link>
+        </Button>
       )}
 
 

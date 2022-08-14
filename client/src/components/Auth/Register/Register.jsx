@@ -27,8 +27,7 @@ export default function Register() {
     email: "",
     password: "",
     accept: false,
-    passwordAgain: "",
-    access_level: false,
+    passwordAgain: ""
   });
   const [errors, setErrors] = useState({ first_name: "*name is required" });
   const handleChange = (prop) => (event) => {
@@ -61,16 +60,6 @@ export default function Register() {
           <CardContent>
             <form onSubmit={ handleSubmit}>
               <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Button fullWidth variant="outlined" startIcon={<Google />}>
-                    Sign up with Gmail
-                  </Button>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button fullWidth variant="outlined" startIcon={<Facebook />}>
-                    Sign up with Gmail
-                  </Button>
-                </Grid>
                 <Grid xs={12} sm={6} item>
                   <TextField
                     placeholder="Enter first name"

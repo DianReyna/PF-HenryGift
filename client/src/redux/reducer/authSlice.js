@@ -32,14 +32,11 @@ export const registerUser = createAsyncThunk(
         phone:input.phone,
         email: input.email,
         password: input.password,
-        access_level:input.access_level
       });
 
       localStorage.setItem("token", token.data);
-
       return token.data;
     } catch (error) {
-      console.log(error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
@@ -56,7 +53,6 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error) {
-      console.log(error.response);
       return rejectWithValue(error.response.data);
     }
   }
@@ -70,7 +66,6 @@ export const getUser = createAsyncThunk(
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error) {
-      console.log(error.response);
       return rejectWithValue(error.response.data);
     }
   }
