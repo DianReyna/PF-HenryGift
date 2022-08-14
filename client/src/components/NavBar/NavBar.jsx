@@ -120,6 +120,7 @@ const ResponsiveAppBar = () => {
     dispatch(reset());
     navigate('/')
   }
+
   return (
     <AppBar
       position="static"
