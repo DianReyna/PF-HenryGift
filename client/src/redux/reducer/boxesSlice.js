@@ -26,6 +26,9 @@ export const boxesSlice = createSlice({
     editBoxes: (state, action) => {
       state.boxes = action.payload;
     },
+    getBoxId: (state, action) => {
+      state.boxes = action.payload;
+    },
   },
 });
 

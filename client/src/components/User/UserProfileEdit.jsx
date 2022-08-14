@@ -74,6 +74,7 @@ export default function UserProfileEdit({userId}) {
     <Grid container spacing={2} component="form"  
     sx={{mt: 3, justifyContent: 'Center'}}
     >
+        <Button variant="Abrir mi Box" href='/userprofile'>Volver</Button>
         <Grid item container xs={12} ms={6} spacing={2}>
             <Grid item xs={12}>
                 <TextField

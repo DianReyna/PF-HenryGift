@@ -83,3 +83,8 @@ export const updateBoxes = (data) => (dispatch) => {
     });
   console.log(data);
 };
+export const getBox = (id) => (dispatch) => {
+  axios(`http://localhost:3001/boxes/${id}` + id)
+    .then((res) => dispatch(getBoxId(res.data)))
+    .catch((err) => console.log(err));
+};
