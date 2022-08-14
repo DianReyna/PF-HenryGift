@@ -12,6 +12,7 @@ const payment = require("./stripe");
 const register = require('./Register.routes.js')
 const login = require('./Login.routes')
 const orderRouter = require("./ordersRoutes")
+const redeem = require("./giftRoutes")
 
 router.use("/boxes", AllBoxes);
 router.use("/products", products);
@@ -25,4 +26,5 @@ router.use("/users", AllUsers);
 router.use("/payment", payment);
 router.use('/register', register)
 router.use('/login', login)
+router.use("/redeem",redeem)
 module.exports = router;

@@ -1,6 +1,7 @@
-const { Box,User,Order,OrderDetail } = require("../database/index");
+const { Box,User,Order,OrderDetail,GiftList } = require("../database/index");
 const { Op, UUID } = require("sequelize");
 const ordersServices = require("../services/ordersServices");
+const { sendCode } = require("../utils/sendEmail");
 
 const createNewOrder = async (req, res, next) => {
   
@@ -23,7 +24,8 @@ const createNewOrder = async (req, res, next) => {
         quantity:box.quantity,
         is_gift:box.isGift,
         UserEmail:userId,
-        order_id:createdOrder.dataValues.id
+        order_id:createdOrder.dataValues.id,
+        recipient:box.recipient
       })
       return newItem
     })
@@ -78,8 +80,42 @@ const getAllOrders = async (req, res, next) => {
   }
 } */
 
+const sendEmailCode = async (req, res, next) => {
+  
+  const {userId} = req.body
+  
+
+  try {
+  
+    const customer = await Order.findOne({
+      where:{
+        UserEmail:userId
+      },
+      include:{model:OrderDetail}
+    })
+
+    //console.log(customer.OrderDetails)
+    const orderDetails = customer.OrderDetails
+    let arrSendMail = orderDetails.map(async(detail)=>{
+      let findGift = await GiftList.findOne({
+        where:{
+          recipient:detail.dataValues.recipient
+        }
+      })
+      //console.log(findGift)
+      await sendCode(findGift.dataValues.recipient,findGift.dataValues.code)
+    })
+    await Promise.all(arrSendMail)
+    res.send("Code send to Recipient")
+
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports={
   getAllOrders,
   createNewOrder,
+  sendEmailCode
   
 }

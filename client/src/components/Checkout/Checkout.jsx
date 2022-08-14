@@ -45,6 +45,14 @@ const CheckoutForm = () => {
         });
 
         console.log(data);
+        if(data.message === "Successful Payment"){
+         await axios.post("http://localhost:3001/orders/sendcode", {
+        
+        userId: "drowet0@4shared.com",
+      
+      });
+        }
+        
         elements.getElement(CardElement).clear();
       } catch (error) {
         console.log(error);

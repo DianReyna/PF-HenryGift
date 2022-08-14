@@ -53,7 +53,7 @@ OrderDetail.belongsTo(Order, { foreignKey: "order_id" });
 User.hasMany(OrderDetail);
 OrderDetail.belongsTo(User);
 
-Products.hasMany(Stock, { foreignKey: "stock_id" });
+Products.hasOne(Stock, { foreignKey: "stock_id" });
 Stock.belongsTo(Products, { foreignKey: "stock_id" });
 
 Box.hasMany(OrderDetail, { foreignKey: "box_id" });
