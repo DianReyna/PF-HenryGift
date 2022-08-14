@@ -1,11 +1,13 @@
 import React ,{useState,useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../redux/reducer/authSlice";
+import { toast } from 'react-toastify'
+import { login,reset } from "../../../redux/reducer/authSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import {Visibility,VisibilityOff,Email,Google,Facebook} from '@mui/icons-material';
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,IconButton,Box, Typography} from '@mui/material';
 import { validate } from './validate';
+import Spinner from "../spinner";
 import styled from "styled-components";
 const Form = styled.form`
    display:flex;
@@ -17,7 +19,9 @@ const Form = styled.form`
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
 
     const [values, setValues] = useState({
         email:'',
@@ -29,11 +33,17 @@ export default function Login() {
         setValues({ ...values, [prop]: event.target.value });
         setErrors(validate({ ...values, [prop]: event.target.value }))
       };
+
       useEffect(() => {
-        if (auth.email) {
-          navigate("/cart");
+        if (isError) {
+          toast.error(message)
         }
-      }, [auth.email, navigate]);
+        if (isSuccess || user) {
+          navigate('/cart')
+        }
+        dispatch(reset())
+      }, [user, isError, isSuccess, message, navigate, dispatch])
+
     
       const handleClickShowPassword = () => {
         setValues({
@@ -48,8 +58,17 @@ export default function Login() {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(loginUser(values));
+        const userData = {
+          email:values.email,
+          password:values.password,
+        }
+        dispatch(login(userData))
       };
+
+      if (isLoading){
+        return <Spinner/>
+      }
+    
     return (
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
           <Form onSubmit={(e) => handleSubmit(e)}>
@@ -99,10 +118,11 @@ export default function Login() {
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
         <Button sx={{ m: 1,width: '40ch' }} type="submit" variant="contained">
-        {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
+        {/* {auth.loginStatus === "pending" ? "Submitting..." : "Login"} */}
+        Login
           </Button>
         <Box>
-        {auth.loginStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.loginError}</Typography>) : null}
+        {/* {auth.loginStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.loginError}</Typography>) : null} */}
         <Typography sx={{ m: 1 }} variant="h7" >Do not you have an account yet?</Typography>
         <Button sx={{ m: 1 }} ><Link to="/register" style={{ textDecoration: 'none',color:"blue" }} >Sign up</Link></Button>
         </Box>
