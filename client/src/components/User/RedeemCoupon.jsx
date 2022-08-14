@@ -5,7 +5,7 @@ import { Paper} from "@mui/material";
 import {Grid} from "@mui/material";
 import {TextField} from '@mui/material';
 import {Button, Link} from '@mui/material';
-
+import axios from "axios";
 export default function RedeemCoupon() { 
     const dispatch = useDispatch()
     const [code, setCode] = useState("") 
@@ -18,7 +18,8 @@ export default function RedeemCoupon() {
 
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(getBox(code))
+        axios.post("http://localhost:3001/redeem",{code:code})
+        .then(res=>console.log(res))
     } 
 
     return(
@@ -38,7 +39,7 @@ export default function RedeemCoupon() {
                 fullWidth
                 label="Codigo"
                 placeholder = "Ingrese codigo de canje..."
-                type="number"
+                type="text"
                 value={code}
                 onChange={(e)=> handleInputChange(e)}
                 autoFocus
