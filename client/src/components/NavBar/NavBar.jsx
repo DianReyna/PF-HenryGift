@@ -19,7 +19,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useDispatch } from "react-redux";
 import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import "./NavBar.module.css";
@@ -30,7 +30,8 @@ import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
 
-import { logoutUser } from "../../redux/reducer/authSlice";
+
+import { logout,reset } from "../../redux/reducer/authSlice";
 import { toast } from "react-toastify";
 
 const pages = ["Home"];
@@ -81,6 +82,7 @@ const ResponsiveAppBar = () => {
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const cart = useSelector((state) => state.cart);
+  const navigate=useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -112,8 +114,13 @@ const ResponsiveAppBar = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  const auth = useSelector((state) => state.auth);
-// console.log(auth)
+  const {user} = useSelector((state) => state.auth);
+  const onLogout=()=>{
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/')
+  }
+
   return (
     <AppBar
       position="static"
@@ -163,20 +170,16 @@ const ResponsiveAppBar = () => {
 
 
         {/* //Login and LogOut */}
-          {auth.email ? (
-        <button
-          onClick={() => {
-            dispatch(logoutUser(null));
-             toast.warning("Logged out!", { position: "bottom-left" });
-          }}
+          {user ? (
+        <Button sx={{color:"white"}}
+          onClick={onLogout }
         >
           Logout
-        </button>
+        </Button>
       ) : (
-        <div>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </div>
+        <Button variant="text">
+          <Link to="/login" style={{color:"white",textDecoration: "none"}}>Login</Link>
+        </Button>
       )}
 
 
