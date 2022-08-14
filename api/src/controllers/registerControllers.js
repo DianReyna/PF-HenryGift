@@ -11,16 +11,16 @@ const registerUser = async (req, res, next) => {
 
     if (user) return res.status(400).send('User already exists')
 
-    // const salt = await bcrypt.genSalt(10)
-    // const hashedPassword = await bcrypt.hash(password, salt)
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
 
-    const auth = await Authentication.create({email: email, password: password})
-  console.log(auth)
+    const auth = await Authentication.create({email: email, password: hashedPassword})
+
     const registerUser = await User.create({auth_id: auth.dataValues.id, email: email, dateBirth, first_name, last_name, phone})
- console.log(registerUser)
-    // const token = genAuthToken(registerUser)
+
+    const token = genAuthToken(registerUser)
     
-   return  res.send(registerUser)
+    res.send(token)
 
   } catch (error) {
     next(error);
