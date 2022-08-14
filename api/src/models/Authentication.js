@@ -13,7 +13,7 @@ module.exports = BoxFactory = (sequelize) => {
         allowNull: false,
       },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     }
   },
