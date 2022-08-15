@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -11,6 +11,7 @@ import axios from "axios";
 import { clearCart } from "../../redux/reducer/cartSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import "./Checkout.css";
 
 const stripePromise = loadStripe(
   "pk_test_51LVI0BEPq0jIoDO7fqMHkFIjYIZQJsboSluhKkWa0CCsU6GeCUsWOBFXCbSh294vG6sgbRKaVTmUIJs0T6kHmPm600kFKSmBLS"
@@ -19,8 +20,6 @@ const stripePromise = loadStripe(
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-
-  // const [loading, setLoading] = useState(false);
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -33,7 +32,6 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    // setLoading(true);
 
     if (!error) {
       const { id } = paymentMethod;
@@ -44,8 +42,6 @@ const CheckoutForm = () => {
         });
 
         console.log(data);
-
-
 
         if (data.message === "Successful Payment") {
           await axios.post("http://localhost:3001/orders/sendcode", {
@@ -66,7 +62,6 @@ const CheckoutForm = () => {
       } catch (error) {
         console.log(error);
       }
-      // setLoading(false);
     }
   };
 
@@ -78,16 +73,8 @@ const CheckoutForm = () => {
       <div>
         <CardElement />
       </div>
-
       <button variant="outlined" disabled={!stripe}>
-        {/* {loading ? (
-
-          <div role="status">
-            <span>Loading...</span>
-          </div>
-        ) : ( */}
         Buy
-        {/* )} */}
       </button>
     </form>
   );
@@ -97,8 +84,8 @@ function Checkout() {
   return (
     <Elements stripe={stripePromise}>
       <div>
-        <div>
-          <div>
+        <div className="center">
+          <div className="diome">
             <CheckoutForm />
           </div>
         </div>
