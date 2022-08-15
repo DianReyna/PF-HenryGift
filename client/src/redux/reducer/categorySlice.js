@@ -7,10 +7,17 @@ export const categorySlice = createSlice({
   },
   reducers: {
     getAllCategories: (state, action) => {
-      state.category = action.payload;
+      state.categories = action.payload;
+    },
+    editCategory: (state, action) => {
+      state.categories = action.payload;
+    },
+    deleteCategory: (state, action) => {
+      state.categories = action.payload;
     },
   },
 });
 
-export const { getAllCategories } = categorySlice.actions;
+export const { getAllCategories, editCategory, deleteCategory } =
+  categorySlice.actions;
 export default categorySlice.reducer;

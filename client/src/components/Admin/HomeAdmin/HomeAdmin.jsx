@@ -1,7 +1,16 @@
 import React from "react";
 import "./HomeAdmin.css";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersAdmin } from "../../../redux/actions/userActions";
 export default function HomeAdmin() {
+  const dispatch = useDispatch();
+  const itemsUser = useSelector((state) => state.users);
+
+  useEffect(() => {
+    dispatch(getUsersAdmin());
+  }, [dispatch]);
+
   return (
     <>
       <h1>Welcome Home</h1>
@@ -9,26 +18,10 @@ export default function HomeAdmin() {
         <div className="featuredItem">
           <span className="featuredTitle">Users</span>
           <div className="featuredMoneyContainer">
-            <span className="featuredMoney">815</span>
+            <span className="featuredMoney">{itemsUser.users.length}</span>
             <span className="featuredMoneyRate">registered</span>
           </div>
-          <span className="featuredSub">Compare to last month</span>
-        </div>
-        <div className="featuredItem">
-          <span className="featuredTitle">Sale</span>
-          <div className="featuredMoneyContainer">
-            <span className="featuredMoney">$2,115</span>
-            <span className="featuredMoneyRate">-1.4</span>
-          </div>
-          <span className="featuredSub">Compare to last month</span>
-        </div>
-        <div className="featuredItem">
-          <span className="featuredTitle">Cost</span>
-          <div className="featuredMoneyContainer">
-            <span className="featuredMoney">$1,015</span>
-            <span className="featuredMoneyRate">+2.34</span>
-          </div>
-          <span className="featuredSub">Compare to last month</span>
+          <span className="featuredSub">in this month</span>
         </div>
       </div>
     </>

@@ -20,22 +20,28 @@ import {
   PrimaryButton,
   ImagePreview,
 } from "../CommonStyled";
+import { DialogContentText } from "@mui/material";
+import { toast } from "react-toastify";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditBox({ boxId }) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState(false);
 
-  const [currentProv, setCurrentProv] = useState({});
+  const [currentBox, setCurrentBox] = useState({});
   const [preview, setPreview] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [person, setPerson] = useState("");
-  const [detail, setDetail] = useState("");
-  const [ranking, setRanking] = useState("");
-  const [expiration, setExpiration] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    price: "",
+    image: "",
+    person: "",
+    detail: "",
+    ranking: "",
+    expiration: "",
+  });
 
   const itemsBox = useSelector((state) => state.boxes);
 
@@ -45,18 +51,21 @@ export default function EditBox({ boxId }) {
 
   const handleClickOpen = () => {
     setOpen(true);
+
     let selectBox = itemsBox.boxes.filter((el) => el.id === boxId);
     selectBox = selectBox[0];
-    setCurrentProv(selectBox);
-    setName(selectBox.name);
-    setPrice(selectBox.price);
-    setImage(selectBox.image);
+
+    setCurrentBox(selectBox);
     setPreview(selectBox.image);
-    setPerson(selectBox.person);
-    setDetail(selectBox.detail);
-    setRanking(selectBox.ranking);
-    setExpiration(selectBox.expiration_date);
-    console.log(boxId);
+    setInput({
+      name: selectBox.name,
+      price: selectBox.price,
+      image: selectBox.image,
+      person: selectBox.person,
+      detail: selectBox.detail,
+      ranking: selectBox.ranking,
+      expiration: selectBox.expiration_date,
+    });
   };
 
   const handleClose = () => {
@@ -64,34 +73,77 @@ export default function EditBox({ boxId }) {
   };
   const handleChange = (e) => {
     const { value } = e.target;
-    setPreview(value);
-    setImage(value);
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(
-      updateBoxes({
-        id: boxId,
-        provider: {
-          name: name,
-          price: price,
-          image: image,
-          person: person,
-          detail: detail,
-          ranking: ranking,
-          expiration_date: expiration,
-        },
+    setPreview(value);
+    setInput({
+      ...input,
+      [e.target.name]: value,
+    });
+    setErrors(
+      validateForm({
+        ...input,
+        [e.target.name]: value,
       })
     );
+  };
 
-    setStatus(true);
-    handleClose();
+  const handleCompare = () => {
+    if (
+      input.name !== currentBox.name ||
+      input.price !== currentBox.price ||
+      input.person !== currentBox.person ||
+      input.image !== currentBox.image ||
+      input.detail !== currentBox.detail ||
+      input.expiration !== currentBox.expiration ||
+      input.ranking !== currentBox.ranking
+    ) {
+      return true;
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (Object.keys(errors).length === 0 && handleCompare()) {
+      dispatch(
+        updateBoxes({
+          id: boxId,
+          boxes: {
+            name: input.name,
+            price: input.price,
+            image: input.image,
+            person: input.person,
+            detail: input.detail,
+            ranking: input.ranking,
+            expiration_date: input.expiration,
+          },
+        })
+      );
+      setTimeout(() => {
+        dispatch(getBoxesAdmin());
+      }, 2000);
+      setStatus(true);
+      toast.success("Save data update", {
+        position: "top-right",
+      });
+      handleClose();
+    } else if (Object.keys(errors).length >= 1) {
+      setStatus(false);
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    } else {
+      setStatus(false);
+      toast.error("No field was updated", {
+        position: "top-right",
+      });
+    }
   };
 
   return (
-    <div>
-      <Edit onClick={handleClickOpen}>Edit</Edit>
+    <>
+      <Edit onClick={handleClickOpen}>
+        <EditIcon />
+      </Edit>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -102,72 +154,95 @@ export default function EditBox({ boxId }) {
         <DialogContent>
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
-              <Input
+              <input
                 type="text"
                 name="image"
                 placeholder="Image"
                 onChange={(e) => handleChange(e)}
                 label="Image"
               />
-              <Input
+              {errors.image && (
+                <DialogContentText>{errors.image}</DialogContentText>
+              )}
+              <input
                 type="text"
                 name="name"
-                value={name}
+                defaultValue={input.name}
                 placeholder="Name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
                 label="Name"
               />
+              {errors.name && (
+                <DialogContentText>{errors.name}</DialogContentText>
+              )}
               <Input
                 type="number"
                 id="standard-adornment-amount"
-                value={price}
+                defaultValue={input.price}
                 lable="Price"
+                name="price"
                 placeholder="Price"
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
                 startAdornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
               />
+              {errors.price && (
+                <DialogContentText>{errors.price}</DialogContentText>
+              )}
 
-              <Input
+              <input
                 type="number"
                 name="person"
-                value={person}
+                defaultValue={input.person}
                 placeholder="Person"
-                onChange={(e) => setPerson(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
                 label="Person"
               />
-              <Input
+              {errors.person && (
+                <DialogContentText>{errors.person}</DialogContentText>
+              )}
+              <input
                 type="text"
                 name="ranking"
-                value={ranking}
+                defaultValue={input.ranking}
                 placeholder="Ranking"
-                onChange={(e) => setRanking(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
                 label="Ranking"
               />
+              {errors.ranking && (
+                <DialogContentText>{errors.ranking}</DialogContentText>
+              )}
 
-              <Input
+              <input
                 id="date"
                 label="Expiration Date"
                 type="date"
-                defaultValue={expiration}
+                name="expiration"
+                defaultValue={input.expiration}
                 sx={{ width: 220 }}
-                onChange={(e) => setExpiration(e.target.value)}
+                onChange={(e) => handleChange(e)}
               />
-
+              {errors.expiration && (
+                <DialogContentText>{errors.expiration}</DialogContentText>
+              )}
               <TextareaAutosize
                 maxRows={4}
                 aria-label="maximum height"
                 placeholder="Maximum 4 rows"
-                onChange={(e) => setDetail(e.target.value)}
-                value={detail}
+                onChange={(e) => handleChange(e)}
+                defaultValue={input.detail}
+                name="detail"
                 style={{ width: 200 }}
                 label="Detail"
               />
+              {errors.detail && (
+                <DialogContentText>{errors.detail}</DialogContentText>
+              )}
 
               <PrimaryButton type="submit">
                 {status ? "Submitting" : "Submit"}
@@ -188,6 +263,17 @@ export default function EditBox({ boxId }) {
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
+
+const validateForm = (input) => {
+  let errors = {};
+  if (!input.name.trim()) {
+    errors.name = "Name is required";
+  } else if (input.name.length < 4) {
+    errors.name = "name must have more than 4 letters";
+  }
+
+  return errors;
+};

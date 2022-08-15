@@ -15,16 +15,13 @@ export const userSlice = createSlice({
     },
     userById: (state, action) => {
       state.userDetail = action.payload;
-     // console.log(state.userDetail)
-      
     },
-    profileUpdate: (state, action)=> {
+    profileUpdate: (state, action) => {
       state.users = action.payload;
-      console.log(action.payload)
-
-    }
+    },
   },
 });
 
-export const { getAllUsers, userAdmin, userById, profileUpdate } = userSlice.actions;
+export const { getAllUsers, userAdmin, userById, profileUpdate } =
+  userSlice.actions;
 export default userSlice.reducer;
