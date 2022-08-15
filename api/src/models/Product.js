@@ -28,6 +28,11 @@ module.exports = ProductsFactory = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      quantity: {
+        type: DataTypes.INTEGER,
+        defaultValue:5,
+        allowNull: false,
+      },
     },
     {
       timestamps: false,

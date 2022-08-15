@@ -8,7 +8,11 @@ const createNewBox = async (box) => {
 
 const getBox = async (id) => {
   const findBox = await Box.findByPk(id, {
-    include: [{ model: Products }],
+    include: [{ model: Products,where:{
+      quantity:{
+        [Op.gt]: 4
+      }
+    } }],
   });
   return findBox;
 };
