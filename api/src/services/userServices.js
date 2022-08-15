@@ -22,6 +22,14 @@ const updateAdmin = async (body, id) => {
   return updateAdmin;
 };
 
+const getUserAdmin = async () => {
+  const userAdmin = await User.findAll({
+    where: {
+      access_level: true,
+    },
+  });
+  return userAdmin;
+};
 const getUserById = async (id) => {
   const userById = await User.findByPk(id);
   return userById;
@@ -30,7 +38,7 @@ const getUserById = async (id) => {
 const updateUser = async (id, body) => {
   const update = await User.update(body, {
     where: {
-      email: id,      
+      email: id,
     },
   });
   return update;
@@ -42,4 +50,5 @@ module.exports = {
   updateAdmin,
   updateUser,
   getUserById,
+  getUserAdmin,
 };
