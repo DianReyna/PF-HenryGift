@@ -18,18 +18,19 @@ export const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      if (itemIndex >= 0) {
+      if (itemIndex >= 0 && state.cartItems[itemIndex].cartQuantity<=4) {
         state.cartItems[itemIndex].cartQuantity += 1;
         toast.info(`Cantidad de ${state.cartItems[itemIndex].name} aumentada`, {
           position: "bottom-left",
         });
-      } else {
+      } else if(state.cartItems.length===0) {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
         toast.success(`${action.payload.name} agregado al carrito`, {
           position: "bottom-left",
         });
       }
+     
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 

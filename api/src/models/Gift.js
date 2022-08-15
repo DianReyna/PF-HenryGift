@@ -8,11 +8,15 @@ module.exports = BoxFactory = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    code: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    redeemed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue:false,
       },
     email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    box_id: {
       type: DataTypes.STRING,
       allowNull: false,
     }
