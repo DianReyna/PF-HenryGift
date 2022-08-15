@@ -7,37 +7,29 @@ const registerUser = async (req, res, next) => {
   const {email, password, dateBirth, first_name, last_name, phone} = req.body;
   try {
     if(!email || !password || !dateBirth || !first_name || !last_name || !phone) {
-      res.status(400)
-      throw new Error("Please add all fields")
+      return res.status(400).json({message:"Please add all fields"})
     }
-
     let user = await User.findOne({ where: {email: email} })
-
-    if (user) {
-      res.status(400)
-      throw new Error('User already exists')
-    }
-
+    if (user) return res.status(400).json({message:'User already exists'})
+    
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    const auth = await Authentication.create({email: email, password: hashedPassword})
-
-    const registerUser = await User.create({auth_id: auth.dataValues.id, email: email, dateBirth, first_name, last_name, phone})
-
-    const token = genAuthToken(registerUser)
-
+    await Authentication.create({email: email, password: hashedPassword})
+    const registerUser = await User.create({ email: email, dateBirth, first_name, last_name, phone})
+  
     if(registerUser) {
-      res.status(201).json({
+     return res.status(201).json({
         _id: registerUser.email,
-        first_name: registerUser.first_name
+        first_name: registerUser.first_name,
+        last_name: registerUser.last_name,
+        is_Admin: registerUser.access_level,
+        is_banned:registerUser.banned,
+        token:genAuthToken(registerUser._id)
       })
-      // res.send(token)
     }else{
-      res.status(400)
-      throw new Error("Invalid user data")
+      return res.status(400).json({message:"Invalid user data"})
     }
-
   } catch (error) {
     next(error);
   }
