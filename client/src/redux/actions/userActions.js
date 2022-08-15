@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
-import { getAllUsers, userAdmin, userById, profileUpdate } from "../reducer/userSlice";
+import { getAllUsers, userAdmin, userById, profileUpdate,getGiftUser } from "../reducer/userSlice";
 
 export const getUsers = () => (dispatch) => {
   axios("http://localhost:3001/getAllUsers")
@@ -29,5 +29,11 @@ export const getUsersById = (id) => (dispatch) => {
 export const putUsersUpdate = (id, user) => (dispatch) => {
   axios.put(`http://localhost:3001/users/user/${id}`, user)
     .then((res) => dispatch(profileUpdate(res.data)))
+    .catch((err) => console.log(err));
+};
+
+export const getUserGift = (user) => (dispatch) => {
+  axios(`http://localhost:3001/redeem/usergifts?user=${user}`)
+    .then((res) => dispatch(getGiftUser(res.data)))
     .catch((err) => console.log(err));
 };
