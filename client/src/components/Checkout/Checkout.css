@@ -1,0 +1,14 @@
+.diome{
+    width: 35rem;
+}
+
+.center{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+.diome h3{
+    color: black;
+}

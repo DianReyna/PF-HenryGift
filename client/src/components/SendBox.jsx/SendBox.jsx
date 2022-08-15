@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
 
-  const [input, setInput] = useState(Array(cart.cartItems.length).fill("holaparchero@gmail.com"));
+  const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
   const [gifts, setGifts] = useState([]);
   let gatillo = false;
 
@@ -36,7 +36,7 @@ const SendBox = () => {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    console.log(input)
     try {
       let total = cart.cartItems.map((item, i) => {
         const id = item.id;
@@ -127,7 +127,6 @@ const SendBox = () => {
           </div>
         </div>
       </div>
-      PROBANDO COSAS
     </div>
   );
 };
