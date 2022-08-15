@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     const payment = await stripe.paymentIntents.create({
       amount,
       currency: "USD",
-      description: "Gaming Keyboard",
+      description: "Henry Gift",
       payment_method: id,
       confirm: true, //confirm the payment at the same time
     });

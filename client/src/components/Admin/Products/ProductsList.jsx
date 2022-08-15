@@ -9,6 +9,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Action, Delete, View, ImageContainer } from "../CommonStyled";
 import { Outlet, useNavigate } from "react-router-dom";
 import EditProduct from "./EditProduct";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export default function ProductsList() {
   const navigate = useNavigate();
@@ -64,17 +66,17 @@ export default function ProductsList() {
       renderCell: (params) => {
         return (
           <Action>
-            <Delete onClick={() => handleDelete(params.row.id_product)}>
-              Delete
-            </Delete>
             <EditProduct prodId={params.row.id_product} />
             <View
               onClick={() => {
                 navigate(`/product/${params.row.id_product}`);
               }}
             >
-              View
+              <VisibilityIcon />
             </View>
+            <Delete onClick={() => handleDelete(params.row.id_product)}>
+              <DeleteIcon />
+            </Delete>
           </Action>
         );
       },
@@ -84,6 +86,7 @@ export default function ProductsList() {
   return (
     <div style={{ height: 450, width: "100%" }}>
       <DataGrid
+        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}

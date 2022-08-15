@@ -1,7 +1,9 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = ProviderFactory = (sequelize) => {
-  return sequelize.define("Provider", {
+  return sequelize.define(
+    "Provider",
+    {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -23,6 +25,11 @@ module.exports = ProviderFactory = (sequelize) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
     },
     {

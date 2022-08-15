@@ -9,6 +9,7 @@ import { Action } from "../CommonStyled.js";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import "./Users.css";
+import { toast } from "react-toastify";
 
 export default function UsersList() {
   const dispatch = useDispatch();
@@ -20,7 +21,17 @@ export default function UsersList() {
   }, [dispatch]);
 
   const handleAccess = (id, access) => {
-    access ? (access = false) : (access = true);
+    if (access) {
+      access = false;
+      toast.success("User role changed to Client", {
+        position: "top-right",
+      });
+    } else {
+      access = true;
+      toast.success("User role changed to Admin", {
+        position: "top-right",
+      });
+    }
     const data = {
       id,
       access_level: access,
@@ -28,7 +39,17 @@ export default function UsersList() {
     dispatch(putUsersAdmin(data));
   };
   const handleBanned = (id, banned) => {
-    banned ? (banned = false) : (banned = true);
+    if (banned) {
+      banned = false;
+      toast.success("Activated user", {
+        position: "top-right",
+      });
+    } else {
+      banned = true;
+      toast.success("Banned userr", {
+        position: "top-right",
+      });
+    }
     const value = {
       id,
       banned: banned,

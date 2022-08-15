@@ -29,6 +29,9 @@ import Error404 from "./components/Error/Error404";
 import PrivateRoute from "./components/PrivateRoute";
 import UserProfileEdit from "./components/User/UserProfileEdit";
 import RedeemCoupon from "./components/User/RedeemCoupon";
+import Category from "./components/Admin/Category/Category";
+import CategoryList from "./components/Admin/Category/CategoryList";
+import FormCategory from "./components/Admin/Category/FormCategory";
 
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
@@ -49,7 +52,7 @@ function App() {
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
-          <Route path="/codebox" element={<RedeemCoupon/>} />
+          <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
           <Route path="/cart" element={<Cart />} />
@@ -70,6 +73,10 @@ function App() {
               <Route path="providers" element={<Providers />}>
                 <Route index element={<ProvidersList />} />
                 <Route path="create-provider" element={<FormProvider />} />
+              </Route>
+              <Route path="categories" element={<Category />}>
+                <Route index element={<CategoryList />} />
+                <Route path="create-categories" element={<FormCategory />} />
               </Route>
               <Route path="users" element={<Users />}>
                 <Route index element={<UsersList />} />

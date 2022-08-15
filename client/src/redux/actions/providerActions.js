@@ -29,3 +29,10 @@ export const updateProvider = (data) => (dispatch) => {
     });
   console.log(data);
 };
+
+export const putActiveProvider = (data) => (dispatch) => {
+  axios
+    .put(`http://localhost:3001/providers/${data.id}`, data)
+    .then((res) => dispatch(editProvider(res.data)))
+    .catch((err) => console.log(err));
+};
