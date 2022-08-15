@@ -6,6 +6,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { Action, Delete, View, ImageContainer } from "../CommonStyled";
 import EditBox from "./EditBoxes";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export default function BoxesList() {
   const navigate = useNavigate();
@@ -63,17 +65,17 @@ export default function BoxesList() {
       renderCell: (params) => {
         return (
           <Action>
-            <Delete onClick={() => handleDelete(params.row.id_box)}>
-              Delete
-            </Delete>
             <EditBox boxId={params.row.id_box} />
             <View
               onClick={() => {
                 navigate(`/box/${params.row.id_box}`);
               }}
             >
-              View
+              <VisibilityIcon />
             </View>
+            <Delete onClick={() => handleDelete(params.row.id_box)}>
+              <DeleteIcon />
+            </Delete>
           </Action>
         );
       },
@@ -83,6 +85,7 @@ export default function BoxesList() {
   return (
     <div style={{ height: 450, width: "100%" }}>
       <DataGrid
+        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}

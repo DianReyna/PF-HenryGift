@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useRef } from "react";
-import { getAllUsers, userAdmin, userById, profileUpdate } from "../reducer/userSlice";
+import {
+  getAllUsers,
+  userAdmin,
+  userById,
+  profileUpdate,
+} from "../reducer/userSlice";
 
 export const getUsers = () => (dispatch) => {
   axios("http://localhost:3001/getAllUsers")
@@ -27,7 +32,8 @@ export const getUsersById = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 export const putUsersUpdate = (id, user) => (dispatch) => {
-  axios.put(`http://localhost:3001/users/user/${id}`, user)
+  axios
+    .put(`http://localhost:3001/users/user/${id}`, user)
     .then((res) => dispatch(profileUpdate(res.data)))
     .catch((err) => console.log(err));
 };
