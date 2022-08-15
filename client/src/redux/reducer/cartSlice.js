@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
         toast.info(`Cantidad de ${state.cartItems[itemIndex].name} aumentada`, {
           position: "bottom-left",
         });
-      } else if(state.cartItems.length===0) {
+      } else if(!state.cartItems[itemIndex]) {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
         toast.success(`${action.payload.name} agregado al carrito`, {
