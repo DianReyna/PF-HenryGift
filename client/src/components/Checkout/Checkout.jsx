@@ -11,7 +11,6 @@ import axios from "axios";
 import { clearCart } from "../../redux/reducer/cartSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
 
 const stripePromise = loadStripe(
   "pk_test_51LVI0BEPq0jIoDO7fqMHkFIjYIZQJsboSluhKkWa0CCsU6GeCUsWOBFXCbSh294vG6sgbRKaVTmUIJs0T6kHmPm600kFKSmBLS"
@@ -45,25 +44,29 @@ const CheckoutForm = () => {
         });
 
         console.log(data);
-        if(data.message === "Successful Payment"){
-         await axios.post("http://localhost:3001/orders/sendcode", {
-        
-        userId: "drowet0@4shared.com",
-      
-      });
+
+
+
+        if (data.message === "Successful Payment") {
+          await axios.post("http://localhost:3001/orders/sendcode", {
+            userId: "drowet0@4shared.com",
+          });
+          toast.success(`Importe abonado correctamente`, {
+            position: "bottom-left",
+          });
+          dispatch(clearCart());
+          navigate("/");
+        } else {
+          toast.error(`Error al abonar importe`, {
+            position: "bottom-left",
+          });
         }
-        
+
         elements.getElement(CardElement).clear();
       } catch (error) {
         console.log(error);
       }
       // setLoading(false);
-
-      toast.success(`Importe abonado correctamente`, {
-        position: "bottom-left",
-      });
-      dispatch(clearCart());
-      navigate("/");
     }
   };
 
