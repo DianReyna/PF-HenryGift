@@ -93,13 +93,11 @@ const CheckoutForm = () => {
 function Checkout() {
   return (
     <Elements stripe={stripePromise}>
-      <div>
         <div className="center">
           <div className="diome">
             <CheckoutForm />
           </div>
         </div>
-      </div>
     </Elements>
   );
 }
