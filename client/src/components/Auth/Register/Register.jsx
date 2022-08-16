@@ -49,7 +49,7 @@ export default function Register() {
       toast.error(message)
     }
     if (isSuccess || user) {
-      navigate('/cart')
+      navigate('/')
     }
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
