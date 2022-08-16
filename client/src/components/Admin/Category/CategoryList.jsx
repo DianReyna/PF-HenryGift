@@ -20,7 +20,6 @@ export default function CategoryList() {
   const handleDelete = (id) => {
     dispatch(destroyCategory(id));
   };
-  console.log(itemsCategory);
   const rows =
     itemsCategory &&
     itemsCategory.categories?.map((item, index) => {
@@ -53,7 +52,7 @@ export default function CategoryList() {
   ];
 
   return (
-    <div style={{ height: 450, width: "100%" }}>
+    <div style={{ height: 450, width: "80%" }}>
       <DataGrid
         style={{ color: "white" }}
         rows={rows}
