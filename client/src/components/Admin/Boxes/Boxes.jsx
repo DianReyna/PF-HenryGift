@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AdminHeaders, PrimaryButton } from "../CommonStyled.js";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
 export default function Boxes() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function Boxes() {
       <AdminHeaders>
         <h2 className="boxTitle">Boxes</h2>
         <PrimaryButton onClick={() => navigate("/admin/boxes/create-box")}>
-          Create
+          <LibraryAddIcon />
         </PrimaryButton>
       </AdminHeaders>
       <Outlet />
