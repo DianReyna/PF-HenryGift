@@ -148,7 +148,7 @@ export default function EditBox({ boxId }) {
         open={open}
         onClose={handleClose}
         fullWidth={true}
-        maxWidth={"mx"}
+        maxWidth={"md"}
       >
         <DialogTitle>Edit Box</DialogTitle>
         <DialogContent>
