@@ -4,7 +4,7 @@ const genAuthToken = require('../utils/genAuthToken')
 // const registerServices = require("../services/registerervices");
 
 const registerUser = async (req, res, next) => {
-  const {email, password, dateBirth, first_name, last_name, phone} = req.body;
+  const {email, password, dateBirth, first_name, last_name, phone, banned, access_level} = req.body;
   try {
     if(!email || !password || !dateBirth || !first_name || !last_name || !phone) {
       return res.status(400).json({message:"Please add all fields"})
@@ -16,7 +16,7 @@ const registerUser = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     await Authentication.create({email: email, password: hashedPassword})
-    const registerUser = await User.create({ email: email, dateBirth, first_name, last_name, phone})
+    const registerUser = await User.create({ email: email, dateBirth, first_name, last_name, phone, banned, access_level})
   
     if(registerUser) {
      return res.status(201).json({

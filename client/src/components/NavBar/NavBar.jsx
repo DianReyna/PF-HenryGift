@@ -157,6 +157,22 @@ const ResponsiveAppBar = () => {
                 </Button>
               </NavLink>
             ))}
+            <NavLink to={"/userprofile"} className={styles.navlink} >
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {'Perfil'}
+                </Button>
+              </NavLink>
+              <NavLink to={"/admin"} className={styles.navlink} >
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {'Admin'}
+                </Button>
+              </NavLink>
           </Box>
           <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
