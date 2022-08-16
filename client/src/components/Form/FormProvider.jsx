@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, DialogContentText } from "@mui/material";
 import { getProvider } from "../../redux/actions/providerActions";
 import { getCategory } from "../../redux/actions/categoryActions";
 import { getProducts } from "../../redux/actions/productsActions";
@@ -70,7 +70,13 @@ export default function FormProvider() {
                   },
                 }}
               />
-              {errors.providerName && <p>{errors.providerName}</p>}
+              {errors.providerName && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.providerName}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -85,8 +91,13 @@ export default function FormProvider() {
                   },
                 }}
               />
-              {errors.providerPhone && <p>{errors.providerPhone}</p>}
-
+              {errors.providerPhone && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.providerPhone}
+                </DialogContentText>
+              )}
               <TextField
                 onChange={(e) => handleChange(e)}
                 name="providerAddress"
@@ -100,7 +111,13 @@ export default function FormProvider() {
                   },
                 }}
               />
-              {errors.providerAddress && <p>{errors.providerAddress}</p>}
+              {errors.providerAddress && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.providerAddress}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -115,7 +132,13 @@ export default function FormProvider() {
                   },
                 }}
               />
-              {errors.providerEmail && <p>{errors.providerEmail}</p>}
+              {errors.providerEmail && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.providerEmail}
+                </DialogContentText>
+              )}
             </div>
             <Button variant="outlined" type="submit">
               CREATE

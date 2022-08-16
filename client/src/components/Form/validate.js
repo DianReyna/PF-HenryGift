@@ -12,12 +12,12 @@ export default function validate(input) {
   let validNum = /^[0-9]+$/;
 
   if (!input.providerName.trim()) {
-    errors.providerName = "Nombre requerido";
+    errors.providerName = "Name is required";
   } else if (input.providerName.length < 4) {
-    errors.providerName = "Nombre tiene que tener al menos 4 caracteres";
+    errors.providerName = "Name must have more than 4 letters";
   }
 
-  if (!input.providerPhone.trim()) {
+  if (!input.providerPhone) {
     errors.providerPhone = "You must provide a phone number";
   } else if (!validPhone.test(input.providerPhone)) {
     errors.providerPhone = "Phone number should have a valid format";
@@ -36,69 +36,70 @@ export default function validate(input) {
   //--------------------- PRODUCT -------------------------------
 
   if (!input.productName.trim()) {
-    errors.productName = "Nombre requerido";
+    errors.productName = "Name is required";
   } else if (input.productName.length < 4) {
-    errors.productName = "Nombre tiene que tener al menos 4 caracteres";
+    errors.productName = "Name must have more than 4 letters";
   }
   if (!input.productDescription.trim()) {
-    errors.productDescription = "Describa el detalle de su producto ";
+    errors.productDescription = "Describe the detail of your product ";
   } else if (input.productDescription.length < 25) {
     errors.productDescription =
-      "La descripcion tiene que tener al menos 25 caracteres";
+      "The description must have at least 25 characters";
   }
-  if (!input.productPrice.trim()) {
-    errors.productPrice = "Ingrese el precio del producto";
+  if (!input.productPrice) {
+    errors.productPrice = "Enter product price";
   } else if (!validPrice.test(input.productPrice)) {
-    errors.productPrice = "Ingrese un formato válido";
+    errors.productPrice = "Please enter a valid format";
   }
   if (!input.productLocation.trim()) {
     errors.productLocation =
-      "Debe ingresar la ubicacion dodnde se provee el servicio";
+      "You must enter the location where the service is provided";
   } else if (input.productLocation.length < 10) {
-    errors.productLocation = "La dirección debe tener al menos 10 letras";
+    errors.productLocation = "The address must have at least 10 letters";
   }
   if (!input.productImage.trim()) {
-    errors.productImage = "Ingrese una imagen";
+    errors.productImage = "Required field, enter an image";
   } else if (!validUrl.test(input.productImage)) {
-    errors.productImage = "Ingrese una URL valida para la imagen";
+    errors.productImage = "Enter a valid URL for the image";
   }
 
   //-----------BOX-----------
 
   if (!input.boxName.trim()) {
-    errors.boxName = "Nombre requerido";
+    errors.boxName = "Name is required";
   } else if (input.boxName.length < 4) {
-    errors.boxName = "Nombre tiene que tener al menos 4 caracteres";
+    errors.boxName = "Name must have more than 4 letters";
   }
-  if (!input.boxPrice.trim()) {
-    errors.boxPrice = "Ingrese el precio de la boxo";
+  if (!input.boxPrice) {
+    errors.boxPrice = "Enter box price";
   } else if (!validPrice.test(input.boxPrice)) {
-    errors.boxPrice = "Ingrese un formato válido";
+    errors.boxPrice = "Please enter a valid format";
   }
   if (!input.boxDetail.trim()) {
-    errors.boxDetail = "Describa el detalle de la box ";
+    errors.boxDetail = "Describe the detail of the box";
   } else if (input.boxDetail.length < 25) {
-    errors.boxDetail = "La descripcion tiene que tener al menos 25 caracteres";
+    errors.boxDetail = "The description must have at least 25 characters";
   }
-  if (!input.boxRanking.trim()) {
-    errors.boxRanking = "Ingrese un su valoracion";
+  if (!input.boxRanking) {
+    errors.boxRanking = "Enter your rating";
   } else if (!validNum.test(input.boxRanking)) {
-    errors.boxRanking = "Ingrese un valor del 1 al 5";
+    errors.boxRanking = "Enter a value from 1 to 5";
   }
-  if (!input.boxExpirationDate.trim()) {
-    errors.boxExpirationDate = "Ingrese la fecha de vencimiento";
-  } else if (!valiDate.test(input.boxExpirationDate)) {
-    errors.boxExpirationDate = "Ingrese un formato válido (dd/mm/yyyy)";
+  if (!input.boxExpirationDate) {
+    errors.boxExpirationDate = "Enter the expiration date";
   }
+  // else if (!valiDate.test(input.boxExpirationDate)) {
+  //   errors.boxExpirationDate = "Ingrese un formato válido (dd/mm/yyyy)";
+  // }
   if (!input.boxImage.trim()) {
-    errors.boxImage = "Ingrese una imagen";
+    errors.boxImage = "Required field, enter an image";
   } else if (!validUrl.test(input.boxImage)) {
-    errors.boxImage = "Ingrese una URL valida para la imagen";
+    errors.boxImage = "Enter a valid URL for the image";
   }
-  if (!input.boxPerson.trim()) {
-    errors.boxImage = "Ingrese la cantidad de personas";
+  if (!input.boxPerson) {
+    errors.boxPerson = "Enter the number of people";
   } else if (!validPerson.test(input.boxPerson)) {
-    errors.boxPerson = "Ingrese un formato valido(solo numero enteros)";
+    errors.boxPerson = "Enter a valid format (only integers)";
   }
 
   return errors;
