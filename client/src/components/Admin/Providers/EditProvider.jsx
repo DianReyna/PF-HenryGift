@@ -17,7 +17,7 @@ import {
   PrimaryButton,
 } from "../CommonStyled";
 import { toast } from "react-toastify";
-import { DialogContentText } from "@mui/material";
+import { DialogContentText, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditProvider({ provId }) {
@@ -128,54 +128,81 @@ export default function EditProvider({ provId }) {
         style={{ color: "white" }}
         open={open}
         onClose={handleClose}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "transparent !Important",
+            },
+          },
+        }}
       >
         <DialogTitle>Edit Provider</DialogTitle>
         <DialogContent>
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
-              <input
+              <TextField
                 type="text"
                 name="name"
                 defaultValue={input.name}
                 placeholder="Name"
                 onChange={(e) => handleOnChange(e)}
+                size="small"
                 required
               />
               {errors.name && (
-                <DialogContentText>{errors.name}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.name}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="phone"
                 defaultValue={input.phone}
                 placeholder="Phone"
                 onChange={(e) => handleOnChange(e)}
+                size="small"
                 required
               />
               {errors.phone && (
-                <DialogContentText>{errors.phone}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.phone}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="address"
                 defaultValue={input.address}
                 placeholder="Address"
                 onChange={(e) => handleOnChange(e)}
+                size="small"
                 required
               />
               {errors.address && (
-                <DialogContentText>{errors.address}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.address}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="email"
                 value={input.email}
                 placeholder="Email"
                 onChange={(e) => handleOnChange(e)}
+                size="small"
                 required
               />
               {errors.email && (
-                <DialogContentText>{errors.email}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.email}
+                </DialogContentText>
               )}
               <PrimaryButton type="submit">
                 {status ? "Submitting" : "Submit"}
