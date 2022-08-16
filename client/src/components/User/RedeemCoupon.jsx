@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
-import { getBox } from "../../redux/actions/boxesActions";
 import { Paper} from "@mui/material";
 import {Grid} from "@mui/material";
 import {TextField} from '@mui/material';
 import {Button, Link} from '@mui/material';
 import axios from "axios";
+import {getUserGift} from '../../redux/actions/userActions';
+
+
+import GiftCards from "./Gift/GiftCards";
+
 export default function RedeemCoupon() { 
     const dispatch = useDispatch()
     const [code, setCode] = useState("") 
@@ -21,6 +25,10 @@ export default function RedeemCoupon() {
         axios.post("http://localhost:3001/redeem",{code:code})
         .then(res=>console.log(res))
     } 
+    useEffect(() => {
+        dispatch(getUserGift('tamaraber9@gmail.com'))
+      }, [dispatch]);
+    
 
     return(
         <Paper 
@@ -49,6 +57,7 @@ export default function RedeemCoupon() {
                     <Button onClick={handleSubmit}
                     type="submit"> ABRIR MI BOX </Button>
                 </Grid>
+                <GiftCards/>
             </Grid>
         </Grid>
        </Paper>        

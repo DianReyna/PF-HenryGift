@@ -41,6 +41,7 @@ export const putUsersUpdate = (id, user) => (dispatch) => {
 };
 
 export const getUserGift = (user) => (dispatch) => {
+  console.log(user)
   axios(`http://localhost:3001/redeem/usergifts?user=${user}`)
     .then((res) => dispatch(getGiftUser(res.data)))
     .catch((err) => console.log(err));
