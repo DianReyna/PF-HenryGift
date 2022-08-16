@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, Button, FormControl } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Button,
+  FormControl,
+  DialogContentText,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { postCategory } from "../../../redux/actions/categoryActions";
@@ -28,7 +34,7 @@ export default function FormCategory() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length === 0 && input.name !== "") {
       dispatch(
         postCategory({
           name: input.name,
@@ -73,9 +79,8 @@ export default function FormCategory() {
         <FormControl>
           <TextField
             onChange={(e) => handleOnChange(e)}
-            name="providerName"
+            name="name"
             value={input.name}
-            required
             label="Nombre del proveedor"
             sx={{
               input: {
@@ -83,7 +88,11 @@ export default function FormCategory() {
               },
             }}
           />
-          {errors.name && <p sx={{ color: "red !Important" }}>{errors.name}</p>}
+          {errors.name && (
+            <DialogContentText sx={{ color: "red !Important", fontSize: 13 }}>
+              {errors.name}
+            </DialogContentText>
+          )}
           <Button variant="outlined" type="submit">
             CREATE
           </Button>

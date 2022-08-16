@@ -11,7 +11,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import InputAdornment from "@mui/material/InputAdornment";
-import Input from "@mui/material/Input";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import {
   Edit,
@@ -20,7 +19,7 @@ import {
   PrimaryButton,
   ImagePreview,
 } from "../CommonStyled";
-import { DialogContentText } from "@mui/material";
+import { DialogContentText, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -39,7 +38,6 @@ export default function EditBox({ boxId }) {
     image: "",
     person: "",
     detail: "",
-    ranking: "",
     expiration: "",
   });
 
@@ -63,7 +61,6 @@ export default function EditBox({ boxId }) {
       image: selectBox.image,
       person: selectBox.person,
       detail: selectBox.detail,
-      ranking: selectBox.ranking,
       expiration: selectBox.expiration_date,
     });
   };
@@ -74,7 +71,6 @@ export default function EditBox({ boxId }) {
   const handleChange = (e) => {
     const { value } = e.target;
 
-    setPreview(value);
     setInput({
       ...input,
       [e.target.name]: value,
@@ -85,6 +81,9 @@ export default function EditBox({ boxId }) {
         [e.target.name]: value,
       })
     );
+    if (input.image !== currentBox.image && input.image !== "") {
+      setPreview(value);
+    }
   };
 
   const handleCompare = () => {
@@ -94,8 +93,7 @@ export default function EditBox({ boxId }) {
       input.person !== currentBox.person ||
       input.image !== currentBox.image ||
       input.detail !== currentBox.detail ||
-      input.expiration !== currentBox.expiration ||
-      input.ranking !== currentBox.ranking
+      input.expiration !== currentBox.expiration
     ) {
       return true;
     }
@@ -113,7 +111,6 @@ export default function EditBox({ boxId }) {
             image: input.image,
             person: input.person,
             detail: input.detail,
-            ranking: input.ranking,
             expiration_date: input.expiration,
           },
         })
@@ -149,76 +146,91 @@ export default function EditBox({ boxId }) {
         onClose={handleClose}
         fullWidth={true}
         maxWidth={"md"}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "transparent !Important",
+            },
+          },
+        }}
       >
         <DialogTitle>Edit Box</DialogTitle>
         <DialogContent>
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
-              <input
+              <TextField
                 type="text"
                 name="image"
                 placeholder="Image"
                 onChange={(e) => handleChange(e)}
                 label="Image"
+                size="small"
               />
               {errors.image && (
-                <DialogContentText>{errors.image}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.image}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="name"
                 defaultValue={input.name}
                 placeholder="Name"
                 onChange={(e) => handleChange(e)}
                 required
+                size="small"
                 label="Name"
               />
               {errors.name && (
-                <DialogContentText>{errors.name}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.name}
+                </DialogContentText>
               )}
-              <Input
-                type="number"
+              <TextField
+                type="text"
                 id="standard-adornment-amount"
                 defaultValue={input.price}
-                lable="Price"
+                label="Price"
                 name="price"
+                size="small"
                 placeholder="Price"
                 onChange={(e) => handleChange(e)}
                 required
-                startAdornment={
+                startadornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
               />
               {errors.price && (
-                <DialogContentText>{errors.price}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.price}
+                </DialogContentText>
               )}
 
-              <input
-                type="number"
+              <TextField
+                type="text"
                 name="person"
                 defaultValue={input.person}
                 placeholder="Person"
                 onChange={(e) => handleChange(e)}
                 required
                 label="Person"
+                size="small"
               />
               {errors.person && (
-                <DialogContentText>{errors.person}</DialogContentText>
-              )}
-              <input
-                type="text"
-                name="ranking"
-                defaultValue={input.ranking}
-                placeholder="Ranking"
-                onChange={(e) => handleChange(e)}
-                required
-                label="Ranking"
-              />
-              {errors.ranking && (
-                <DialogContentText>{errors.ranking}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.person}
+                </DialogContentText>
               )}
 
-              <input
+              <TextField
                 id="date"
                 label="Expiration Date"
                 type="date"
@@ -226,22 +238,30 @@ export default function EditBox({ boxId }) {
                 defaultValue={input.expiration}
                 sx={{ width: 220 }}
                 onChange={(e) => handleChange(e)}
+                size="small"
               />
               {errors.expiration && (
-                <DialogContentText>{errors.expiration}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.expiration}
+                </DialogContentText>
               )}
               <TextareaAutosize
+                type="text-area"
                 maxRows={4}
-                aria-label="maximum height"
-                placeholder="Maximum 4 rows"
                 onChange={(e) => handleChange(e)}
                 defaultValue={input.detail}
-                name="detail"
-                style={{ width: 200 }}
                 label="Detail"
+                name="detail"
+                style={{ width: 200, height: 90 }}
               />
               {errors.detail && (
-                <DialogContentText>{errors.detail}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.detail}
+                </DialogContentText>
               )}
 
               <PrimaryButton type="submit">
@@ -268,11 +288,35 @@ export default function EditBox({ boxId }) {
 }
 
 const validateForm = (input) => {
-  let errors = {};
+  const errors = {};
   if (!input.name.trim()) {
     errors.name = "Name is required";
   } else if (input.name.length < 4) {
-    errors.name = "name must have more than 4 letters";
+    errors.name = "Name must have more than 4 letters";
+  }
+  if (!input.price) {
+    errors.price = "Enter box price";
+  } else if (
+    !/^([1-9][0-9]{,2}(,[0-9]{3})*|[0-9]+)(.[0-9]{1,9})?$/.test(input.price)
+  ) {
+    errors.price = "Please enter a valid format";
+  }
+
+  if (!input.image.trim()) {
+    errors.image = "Required field, enter an image";
+  }
+  if (!input.detail.trim()) {
+    errors.detail = "Describe the detail of the box";
+  } else if (input.detail.length < 25) {
+    errors.detail = "The description must have at least 25 characters";
+  }
+  if (!input.expiration) {
+    errors.expiration = "Enter the expiration date";
+  }
+  if (!input.person) {
+    errors.person = "Enter the number of people";
+  } else if (!/^[0-9]+$/.test(input.person)) {
+    errors.person = "Enter a valid format (only integers)";
   }
 
   return errors;

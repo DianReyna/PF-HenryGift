@@ -8,6 +8,7 @@ import {
   FormControl,
   Select,
   FormLabel,
+  DialogContentText,
 } from "@mui/material";
 import { getProvider } from "../../redux/actions/providerActions";
 import { getCategory } from "../../redux/actions/categoryActions";
@@ -85,9 +86,11 @@ export default function FormBox() {
                 }}
               />
               {errors.boxName && (
-                <p sx={{ fontSize: 13, color: "red !Important" }}>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
                   {errors.boxName}
-                </p>
+                </DialogContentText>
               )}
 
               <TextField
@@ -103,7 +106,13 @@ export default function FormBox() {
                   },
                 }}
               />
-              {errors.boxDescription && <p>{errors.boxDescription}</p>}
+              {errors.boxDetail && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxDetail}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -118,7 +127,13 @@ export default function FormBox() {
                   },
                 }}
               />
-              {errors.boxPrice && <p>{errors.boxPrice}</p>}
+              {errors.boxPrice && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxPrice}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -133,7 +148,13 @@ export default function FormBox() {
                   },
                 }}
               />
-              {errors.boxRanking && <p>{errors.boxRanking}</p>}
+              {errors.boxRanking && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxRanking}
+                </DialogContentText>
+              )}
               <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
               <TextField
                 id="date"
@@ -150,7 +171,13 @@ export default function FormBox() {
                 }}
               />
 
-              {errors.boxExpirationDate && <p>{errors.boxExpirationDate}</p>}
+              {errors.boxExpirationDate && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxExpirationDate}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -165,7 +192,13 @@ export default function FormBox() {
                   },
                 }}
               />
-              {errors.boxImage && <p>{errors.boxImage}</p>}
+              {errors.boxImage && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxImage}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -180,7 +213,13 @@ export default function FormBox() {
                   },
                 }}
               />
-              {errors.boxPerson && <p>{errors.boxPerson}</p>}
+              {errors.boxPerson && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxPerson}
+                </DialogContentText>
+              )}
 
               <FormControl sx={{ m: 1, width: 300, color: "white" }}>
                 <InputLabel id="demo-multiple-name-label">Productos</InputLabel>

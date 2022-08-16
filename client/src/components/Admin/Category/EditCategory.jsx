@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import { DialogContentText } from "@mui/material";
+import { DialogContentText, TextField } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import EditIcon from "@mui/icons-material/Edit";
 import { toast } from "react-toastify";
@@ -109,12 +109,19 @@ export default function EditCategory({ catId }) {
         onClose={handleClose}
         fullWidth={true}
         maxWidth={"sm"}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "transparent !Important",
+            },
+          },
+        }}
       >
         <DialogTitle>Edit Categoria</DialogTitle>
         <DialogContent>
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
-              <input
+              <TextField
                 type="text"
                 name="name"
                 defaultValue={input.name}
@@ -123,7 +130,11 @@ export default function EditCategory({ catId }) {
                 required
               />
               {errors.name && (
-                <DialogContentText>{errors.name}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.name}
+                </DialogContentText>
               )}
 
               <PrimaryButton type="submit">

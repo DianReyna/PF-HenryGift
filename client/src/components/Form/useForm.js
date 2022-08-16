@@ -5,6 +5,7 @@ import {
   createProduct,
   createBox,
 } from "../../redux/actions/boxesActions";
+import { toast } from "react-toastify";
 
 export default function useForm(validate) {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export default function useForm(validate) {
 
   const handleProviderSubmit = (e) => {
     e.preventDefault();
+
     dispatch(
       createProvider({
         name: input.providerName,
@@ -59,12 +61,15 @@ export default function useForm(validate) {
         address: input.providerAddress,
       })
     );
-    // alert('Provider created!')
     cleanInputs();
+    toast.success("Save data", {
+      position: "top-right",
+    });
   };
 
   const handleProductSubmit = (e) => {
     e.preventDefault();
+
     dispatch(
       createProduct({
         name: input.productName,
@@ -75,12 +80,15 @@ export default function useForm(validate) {
         provider: input.productProvider,
       })
     );
-    // alert('Product created!')
     cleanInputs();
+    toast.success("Save data", {
+      position: "top-right",
+    });
   };
 
   const handleBoxSubmit = (e) => {
     e.preventDefault();
+
     dispatch(
       createBox({
         name: input.boxName,
@@ -94,8 +102,10 @@ export default function useForm(validate) {
         category: input.boxCategories,
       })
     );
-    // alert('Box created!')
     cleanInputs();
+    toast.success("Save data", {
+      position: "top-right",
+    });
   };
 
   const handleProductChange = (e) => {

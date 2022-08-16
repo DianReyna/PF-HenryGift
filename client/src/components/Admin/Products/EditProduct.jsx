@@ -10,7 +10,12 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import { DialogContentText } from "@mui/material";
+import {
+  DialogContentText,
+  FormLabel,
+  TextareaAutosize,
+  TextField,
+} from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import EditIcon from "@mui/icons-material/Edit";
 import { toast } from "react-toastify";
@@ -71,7 +76,6 @@ export default function EditProduct({ prodId }) {
 
   const handleOnChange = (e) => {
     const { value } = e.target;
-    setPreview(value);
     setInput({
       ...input,
       [e.target.name]: value,
@@ -82,6 +86,9 @@ export default function EditProduct({ prodId }) {
         [e.target.name]: value,
       })
     );
+    if (input.image !== currentProd.image && input.image !== "") {
+      setPreview(value);
+    }
   };
   const handleCompare = () => {
     if (
@@ -142,55 +149,89 @@ export default function EditProduct({ prodId }) {
         onClose={handleClose}
         fullWidth={true}
         maxWidth={"sm"}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "transparent !Important",
+            },
+          },
+        }}
       >
         <DialogTitle>Edit Product</DialogTitle>
         <DialogContent>
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
-              <input
+              <TextField
                 type="text"
                 name="image"
+                label="Image"
+                size="small"
                 placeholder="Image"
                 onChange={(e) => handleOnChange(e)}
               />
               {errors.image && (
-                <DialogContentText>{errors.image}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.image}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="name"
                 defaultValue={input.name}
                 onChange={(e) => handleOnChange(e)}
+                size="small"
+                label="Name"
                 placeholder="Name"
                 required
               />
               {errors.name && (
-                <DialogContentText>{errors.name}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.name}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="price"
+                size="small"
                 placeholder="Price"
+                label="Price"
                 defaultValue={input.price}
                 onChange={(e) => handleOnChange(e)}
                 required
               />
               {errors.price && (
-                <DialogContentText>{errors.price}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.price}
+                </DialogContentText>
               )}
-              <input
+              <TextField
                 type="text"
                 name="location"
+                size="small"
+                label="Location"
                 placeholder="Location"
                 defaultValue={input.location}
                 onChange={(e) => handleOnChange(e)}
                 required
               />
               {errors.location && (
-                <DialogContentText>{errors.location}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.location}
+                </DialogContentText>
               )}
+
               <select
                 onChange={(e) => handleOnChange(e)}
+                size="small"
+                label="Provider"
                 defaultValue={input.provider}
                 name="provider"
               >
@@ -203,18 +244,30 @@ export default function EditProduct({ prodId }) {
                 })}
               </select>
               {errors.provider && (
-                <DialogContentText>{errors.provider}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.provider}
+                </DialogContentText>
               )}
-              <input
+
+              <TextareaAutosize
+                maxRows={5}
                 type="text-area"
                 name="description"
+                label="Description"
                 placeholder="Description"
                 defaultValue={input.description}
                 onChange={(e) => handleOnChange(e)}
                 required
+                style={{ width: 200, height: 90 }}
               />
               {errors.description && (
-                <DialogContentText>{errors.description}</DialogContentText>
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.description}
+                </DialogContentText>
               )}
               <PrimaryButton type="submit">
                 {status ? "Submitting" : "Submit"}
@@ -240,11 +293,32 @@ export default function EditProduct({ prodId }) {
 }
 
 const validateForm = (input) => {
-  let errors = {};
+  const errors = {};
   if (!input.name.trim()) {
     errors.name = "Name is required";
   } else if (input.name.length < 4) {
-    errors.name = "name must have more than 4 letters";
+    errors.name = "Name must have more than 4 letters";
+  }
+  if (!input.description.trim()) {
+    errors.description = "Describe the detail of your product ";
+  } else if (input.description.length < 25) {
+    errors.description = "The description must have at least 25 characters";
+  }
+  if (!input.price) {
+    errors.price = "Enter product price";
+  } else if (
+    !/^([1-9][0-9]{,2}(,[0-9]{3})*|[0-9]+)(.[0-9]{1,9})?$/.test(input.price)
+  ) {
+    errors.price = "Please enter a valid format";
+  }
+  if (!input.location.trim()) {
+    errors.location =
+      "You must enter the location where the service is provided";
+  } else if (input.location.length < 10) {
+    errors.location = "The address must have at least 10 letters";
+  }
+  if (!input.image.trim()) {
+    errors.image = "Required field, enter an image";
   }
 
   return errors;

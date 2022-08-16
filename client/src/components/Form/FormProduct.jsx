@@ -7,6 +7,7 @@ import {
   MenuItem,
   FormControl,
   Select,
+  DialogContentText,
 } from "@mui/material";
 import { getProvider } from "../../redux/actions/providerActions";
 import { getCategory } from "../../redux/actions/categoryActions";
@@ -89,7 +90,13 @@ export default function FormProduct() {
                   },
                 }}
               />
-              {errors.productName && <p>{errors.productName}</p>}
+              {errors.productName && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.productName}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -104,7 +111,13 @@ export default function FormProduct() {
                   },
                 }}
               />
-              {errors.productDescription && <p>{errors.productDescription}</p>}
+              {errors.productDescription && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.productDescription}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -119,7 +132,13 @@ export default function FormProduct() {
                   },
                 }}
               />
-              {errors.productPrice && <p>{errors.productPrice}</p>}
+              {errors.productPrice && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.productPrice}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -134,7 +153,13 @@ export default function FormProduct() {
                   },
                 }}
               />
-              {errors.productLocation && <p>{errors.productLocation}</p>}
+              {errors.productLocation && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.productLocation}
+                </DialogContentText>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -149,7 +174,13 @@ export default function FormProduct() {
                   },
                 }}
               />
-              {errors.productImage && <p>{errors.productImage}</p>}
+              {errors.productImage && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.productImage}
+                </DialogContentText>
+              )}
 
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Proveedor</InputLabel>
