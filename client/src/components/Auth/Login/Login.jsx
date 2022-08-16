@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify'
-import { login,reset } from "../../../redux/reducer/authSlice";
+import { login,reset,register } from "../../../redux/reducer/authSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import {Visibility,VisibilityOff,Email,Google,Facebook} from '@mui/icons-material';
@@ -9,6 +9,7 @@ import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,IconButton,Bo
 import { validate } from './validate';
 import Spinner from "../spinner";
 import styled from "styled-components";
+// import jwt_decode from 'jwt-decode'
 const Form = styled.form`
    display:flex;
    flex-direction:column;
@@ -22,6 +23,32 @@ export default function Login() {
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   )
+
+  // function handleCallbackResponse(response){
+  //   console.log('Encoded JWT ID token: ' + response.credential)
+  //   var userObject = jwt_decode(response.credential);
+  //   console.log(userObject)
+  //   const userData={
+  //     first_name:userObject.given_name,
+  //     last_name:userObject.family_name,
+  //     email: userObject.email,
+  //   }
+  //   dispatch(register(userData));
+  //   // dispatch(login(userData))
+  // }
+
+  // useEffect(() => {
+  //   /* global google */
+  //   google.accounts.id.initialize({
+  //     client_id: '202012578012-g8ttescfal7fbd7blsnl2i3si6i6acha.apps.googleusercontent.com',
+  //     callback: handleCallbackResponse
+  //   });
+
+  //   google.accounts.id.renderButton(
+  //     document.getElementById('signInDiv'),
+  //     {theme: "outline", size: "large"}
+  //   )
+  // }, []);
 
     const [values, setValues] = useState({
         email:'',
@@ -39,7 +66,11 @@ export default function Login() {
           toast.error(message)
         }
         if (isSuccess || user) {
-          navigate('/cart')
+          if(user.is_admin){
+            navigate('/admin')
+          }else{
+            navigate('/')
+          }
         }
         dispatch(reset())
       }, [user, isError, isSuccess, message, navigate, dispatch])
@@ -73,9 +104,10 @@ export default function Login() {
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
           <Form onSubmit={(e) => handleSubmit(e)}>
           <Typography variant="h3" sx={{margin:3}} color="primary">Login Here</Typography>
-          <Button sx={{ m: 1, width: '40ch' }} variant="outlined" startIcon={<Google />}>Login with Gmail</Button>
-          <Button sx={{ m: 1, width: '40ch' }} variant="outlined" startIcon={<Facebook />}>Login with Facebook</Button>
-          <Typography variant="h7" >or</Typography>
+          {/* <Button sx={{ m: 1, width: '40ch' }} variant="outlined" startIcon={<Google />}>Login with Gmail</Button>
+          <Button sx={{ m: 1, width: '40ch' }} variant="outlined" startIcon={<Facebook />}>Login with Facebook</Button> */}
+          {/* <div id='signInDiv'></div>
+          <Typography variant="h7" >or</Typography> */}
         <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
           <OutlinedInput
