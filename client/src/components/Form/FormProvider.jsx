@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Box,
-  TextField,
-  Button,  
-} from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 import { getProvider } from "../../redux/actions/providerActions";
 import { getCategory } from "../../redux/actions/categoryActions";
 import { getProducts } from "../../redux/actions/productsActions";
@@ -11,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Form.module.css";
 import useForm from "./useForm";
 import validate from "./validate";
-
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -27,12 +22,8 @@ const MenuProps = {
 export default function FormProvider() {
   const dispatch = useDispatch();
 
-  const {
-    handleChange,
-    input,
-    handleProviderSubmit,
-    errors,
-  } = useForm(validate);
+  const { handleChange, input, handleProviderSubmit, errors } =
+    useForm(validate);
 
   useEffect(() => {
     dispatch(getProvider());
@@ -50,10 +41,20 @@ export default function FormProvider() {
         className={styles.formsContainer}
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "white !Important",
+            },
+          },
+          "& label.Mui-focused": {
+            color: "white",
+          },
+          "& .MuiFormLabel-root ": {
+            color: "white !important",
+          },
         }}
       >
         <div className={styles.formContainer}>
-          <h2>PROVIDER</h2>
           <form autoComplete="off" onSubmit={(e) => handleProviderSubmit(e)}>
             <div className={styles.formContainer}>
               <TextField
@@ -62,7 +63,12 @@ export default function FormProvider() {
                 value={input.providerName || ""}
                 required
                 label="Nombre del proveedor"
-                variant="standard"
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.providerName && <p>{errors.providerName}</p>}
 
@@ -72,7 +78,12 @@ export default function FormProvider() {
                 value={input.providerPhone || ""}
                 required
                 label="Numero de Telefono"
-                variant="standard"
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.providerPhone && <p>{errors.providerPhone}</p>}
 
@@ -82,7 +93,12 @@ export default function FormProvider() {
                 value={input.providerAddress || ""}
                 required
                 label="Direccion"
-                variant="standard"
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.providerAddress && <p>{errors.providerAddress}</p>}
 
@@ -92,13 +108,18 @@ export default function FormProvider() {
                 value={input.providerEmail || ""}
                 required
                 label="Email"
-                variant="standard"
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.providerEmail && <p>{errors.providerEmail}</p>}
             </div>
             <Button variant="outlined" type="submit">
               CREATE
-              </Button>
+            </Button>
           </form>
         </div>
       </Box>

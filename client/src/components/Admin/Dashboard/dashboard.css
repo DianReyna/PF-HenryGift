@@ -18,6 +18,7 @@
 }
 .sidebarTitle {
   font-size: 16px;
+  color: white;
 }
 
 .sidebarList {
@@ -30,6 +31,7 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
+  color: white;
 }
 .sidebarListItem.active,
 .sidebarListItem:hover {
