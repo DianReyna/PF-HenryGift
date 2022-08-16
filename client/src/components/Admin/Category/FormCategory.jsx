@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, FormControl } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { postCategory } from "../../../redux/actions/categoryActions";
@@ -49,36 +49,47 @@ export default function FormCategory() {
     }
   };
   return (
-    <div>
-      <Box
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
+    <Box
+      sx={{
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        "& .MuiOutlinedInput-root": {
+          "& fieldset": {
+            borderColor: "white !Important",
+          },
+        },
+        "& label.Mui-focused": {
+          color: "white",
+        },
+        "& .MuiFormLabel-root ": {
+          color: "white !important",
+        },
+      }}
+    >
+      <form
+        sx={{ color: "white !Important" }}
+        autoComplete="off"
+        onSubmit={(e) => handleSubmit(e)}
       >
-        <div>
-          <form
-            style={{ color: "white" }}
-            autoComplete="off"
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            <div>
-              <TextField
-                onChange={(e) => handleOnChange(e)}
-                name="providerName"
-                value={input.name}
-                required
-                label="Nombre del proveedor"
-                variant="standard"
-              />
-              {errors.name && <p>{errors.name}</p>}
-            </div>
-            <Button variant="outlined" type="submit">
-              CREATE
-            </Button>
-          </form>
-        </div>
-      </Box>
-    </div>
+        <FormControl>
+          <TextField
+            onChange={(e) => handleOnChange(e)}
+            name="providerName"
+            value={input.name}
+            required
+            label="Nombre del proveedor"
+            sx={{
+              input: {
+                color: "white",
+              },
+            }}
+          />
+          {errors.name && <p sx={{ color: "red !Important" }}>{errors.name}</p>}
+          <Button variant="outlined" type="submit">
+            CREATE
+          </Button>
+        </FormControl>
+      </form>
+    </Box>
   );
 }
 
