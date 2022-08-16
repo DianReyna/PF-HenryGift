@@ -32,6 +32,8 @@ import RedeemCoupon from "./components/User/RedeemCoupon";
 import Category from "./components/Admin/Category/Category";
 import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
+import GiftDetail from "./components/User/Gift/GiftDetail";
+
 
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
@@ -55,6 +57,7 @@ function App() {
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
+          <Route path="/giftdetail" element={<GiftDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />

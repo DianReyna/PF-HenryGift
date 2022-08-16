@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components'
 import axios from 'axios';
+import { Typography, Box} from '@mui/material';
+import GiftCards from './Gift/GiftCards'
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -52,6 +54,7 @@ export default function ProfilePanel(props) {
 
   const dispatch = useDispatch();
   const [userDetail, setUserDetail]  = useState([]);
+  
 
   const getUsersById = async () => {
       const oneUser = await axios.get('http://localhost:3001/users/alegrices@independent.co.uk')
@@ -101,6 +104,9 @@ export default function ProfilePanel(props) {
       <Container >
           <DetailBox>
             <InfoDetailBox >
+            <Typography variant="h5" component="div" gutterBottom>
+              Informacion de usuario
+            </Typography>
               <ItemBox>
               <p>Nombre: {userDetail.first_name}</p>
                 </ItemBox>
@@ -117,7 +123,10 @@ export default function ProfilePanel(props) {
           </DetailBox>
         <CardsProducts>
           <Grid>
-                {userDetail.Products && userDetail.Products.map((product)=>{
+            <Typography variant="h5" component="div" gutterBottom>
+              Mis Boxes
+            </Typography>
+                {/* {userDetail.Products && userDetail.Products.map((product)=>{
                   return <ItemProduct key={product.id}>
                     <ProductCard 
                       id={product.id}
@@ -126,8 +135,8 @@ export default function ProfilePanel(props) {
                       description={product.description}
                       location={product.location}/>
                     </ItemProduct>
-                })}
-              
+                })} */}
+              <GiftCards/>
           </Grid>
         </CardsProducts>
       </Container>
