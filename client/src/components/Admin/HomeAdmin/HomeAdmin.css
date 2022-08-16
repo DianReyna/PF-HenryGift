@@ -2,6 +2,8 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  width: 50px;
+  margin-top: 1rem;
 }
 
 .featuredItem {
@@ -10,9 +12,9 @@
   padding: 30px;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: -3px 3px 5px 0px rgba(0, 0, 0, 0.52);
-  -webkit-box-shadow: -3px 3px 5px 0px rgba(0, 0, 0, 0.52);
-  -moz-box-shadow: -3px 3px 5px 0px rgba(0, 0, 0, 0.52);
+  box-shadow: -3px 3px 5px 0px rgba(237, 237, 237, 0.52);
+  -webkit-box-shadow: -3px 3px 5px 0px rgba(247, 247, 247, 0.52);
+  -moz-box-shadow: -3px 3px 5px 0px rgba(244, 244, 244, 0.52);
 }
 
 .featuredTitle {
