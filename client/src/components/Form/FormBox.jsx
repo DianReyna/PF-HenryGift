@@ -7,6 +7,7 @@ import {
   MenuItem,
   FormControl,
   Select,
+  FormLabel,
 } from "@mui/material";
 import { getProvider } from "../../redux/actions/providerActions";
 import { getCategory } from "../../redux/actions/categoryActions";
@@ -15,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Form.module.css";
 import useForm from "./useForm";
 import validate from "./validate";
-
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,12 +31,7 @@ const MenuProps = {
 export default function FormBox() {
   const dispatch = useDispatch();
 
-  const {
-    handleChange,
-    input,
-    errors, 
-    handleBoxSubmit,
-  } = useForm(validate);
+  const { handleChange, input, errors, handleBoxSubmit } = useForm(validate);
 
   useEffect(() => {
     dispatch(getProvider());
@@ -50,25 +45,50 @@ export default function FormBox() {
 
   return (
     <div>
-    <Box
-      className={styles.formsContainer}
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
-    >
-      <div className={styles.formContainer}>
-      <h2>BOX</h2>
-          <form autoComplete="off" onSubmit={handleBoxSubmit}>
+      <Box
+        sx={{
+          "& .MuiTextField-root": {
+            m: 1,
+            width: "23ch",
+          },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "white !Important",
+            },
+          },
+          "& label.Mui-focused": {
+            color: "white",
+          },
+          "& .MuiFormLabel-root ": {
+            color: "white !important",
+          },
+        }}
+      >
+        <div className={styles.formContainer}>
+          <form
+            sx={{ color: "white !Important" }}
+            autoComplete="off"
+            onSubmit={handleBoxSubmit}
+          >
             <div className={styles.formContainer}>
               <TextField
                 onChange={(e) => handleChange(e)}
                 name="boxName"
                 value={input.boxName || ""}
                 required
+                size="small"
                 label="Nombre de la nueva box"
-                variant="standard"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
-              {errors.boxName && <p>{errors.boxName}</p>}
+              {errors.boxName && (
+                <p sx={{ fontSize: 13, color: "red !Important" }}>
+                  {errors.boxName}
+                </p>
+              )}
 
               <TextField
                 onChange={(e) => handleChange(e)}
@@ -76,7 +96,12 @@ export default function FormBox() {
                 value={input.boxDetail || ""}
                 required
                 label="Descripcion de la box"
-                variant="standard"
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.boxDescription && <p>{errors.boxDescription}</p>}
 
@@ -85,8 +110,13 @@ export default function FormBox() {
                 name="boxPrice"
                 value={input.boxPrice || ""}
                 required
+                size="small"
                 label="Precio"
-                variant="standard"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.boxPrice && <p>{errors.boxPrice}</p>}
 
@@ -95,19 +125,31 @@ export default function FormBox() {
                 name="boxRanking"
                 value={input.boxRanking || ""}
                 required
+                size="small"
                 label="Ranking de la box"
-                variant="standard"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.boxRanking && <p>{errors.boxRanking}</p>}
-
+              <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
               <TextField
-                onChange={(e) => handleChange(e)}
+                id="date"
+                // label="Expiration Date"
+                type="date"
                 name="boxExpirationDate"
                 value={input.boxExpirationDate || ""}
-                required
-                label="Fecha de vencimiento"
-                variant="standard"
+                onChange={(e) => handleChange(e)}
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                  color: "white",
+                }}
               />
+
               {errors.boxExpirationDate && <p>{errors.boxExpirationDate}</p>}
 
               <TextField
@@ -115,8 +157,13 @@ export default function FormBox() {
                 name="boxImage"
                 value={input.boxImage || ""}
                 required
+                size="small"
                 label="Imagen"
-                variant="standard"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.boxImage && <p>{errors.boxImage}</p>}
 
@@ -125,12 +172,17 @@ export default function FormBox() {
                 name="boxPerson"
                 value={input.boxPerson || ""}
                 required
+                size="small"
                 label="Cantidad de personas"
-                variant="standard"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
               />
               {errors.boxPerson && <p>{errors.boxPerson}</p>}
 
-              <FormControl sx={{ m: 1, width: 300 }}>
+              <FormControl sx={{ m: 1, width: 300, color: "white" }}>
                 <InputLabel id="demo-multiple-name-label">Productos</InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
@@ -140,6 +192,11 @@ export default function FormBox() {
                   name="boxProducts"
                   onChange={(e) => handleChange(e)}
                   MenuProps={MenuProps}
+                  size="small"
+                  color="primary"
+                  sx={{
+                    color: "white",
+                  }}
                 >
                   {products.products?.map(({ name, id }) => {
                     return (
@@ -163,8 +220,12 @@ export default function FormBox() {
                   name="boxCategories"
                   onChange={(e) => handleChange(e)}
                   MenuProps={MenuProps}
+                  size="small"
+                  sx={{
+                    color: "white",
+                  }}
                 >
-                  {categories.category?.map(({ name, id }) => {
+                  {categories.categories?.map(({ name, id }) => {
                     return (
                       <MenuItem key={id} value={name}>
                         {name}
