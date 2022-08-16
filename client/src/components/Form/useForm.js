@@ -99,20 +99,21 @@ export default function useForm(validate) {
   };
 
   const handleProductChange = (e) => {
-    if (input.productProvider.includes(e.target.value)) {
-      return alert("You have already selected that product");
-    } else {
-      setInput({
+    console.log(input.productProvider);
+    // if (input.productProvider.includes(e.target.value)) {
+    //   return alert("You have already selected that product");
+    // } else {
+    setInput({
+      ...input,
+      productProvider: [...input.productProvider, e.target.value],
+    });
+    setErrors(
+      validate({
         ...input,
         productProvider: [...input.productProvider, e.target.value],
-      });
-      setErrors(
-        validate({
-          ...input,
-          productProvider: [...input.productProvider, e.target.value],
-        })
-      );
-    }
+      })
+    );
+    // }
   };
 
   const handleDelete = (dietDelete) => {
@@ -130,10 +131,28 @@ export default function useForm(validate) {
 
   const cleanInputs = () => {
     setInput({
+      //PROVIDER
       providerName: "",
       providerPhone: "",
       providerAddress: "",
       providerEmail: "",
+      //PRODUCT
+      productName: "",
+      productDescription: "",
+      productPrice: "",
+      productLocation: "",
+      productImage: "",
+      productProvider: [],
+      //BOX
+      boxName: "",
+      boxPrice: "",
+      boxDetail: "",
+      boxRanking: "",
+      boxExpirationDate: "",
+      boxImage: "",
+      boxPerson: "",
+      boxProducts: [],
+      boxCategories: [],
     });
   };
 
