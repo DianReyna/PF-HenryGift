@@ -183,3 +183,7 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+.cart-product-quantity button{
+	color: white
+}
