@@ -44,14 +44,14 @@ function App() {
     <>
       <ToastContainer />
       <NavBar />
-      <body>
+      <div>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          <Route path="/userprofile" element={<ProfilePanel />} />
+          {/* <Route path="/userprofile" element={<ProfilePanel />} /> */}
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
@@ -87,7 +87,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </body>
+      </div>
       <Footer />
     </>
   );
