@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -21,6 +21,8 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const [loading, setLoading] = useState(false);
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
+    setLoading(true);
 
     if (!error) {
       const { id } = paymentMethod;
@@ -62,6 +65,7 @@ const CheckoutForm = () => {
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     }
   };
 
@@ -73,8 +77,14 @@ const CheckoutForm = () => {
       <div>
         <CardElement />
       </div>
-      <button variant="outlined" disabled={!stripe}>
-        Buy
+      <button disabled={!stripe}>
+        {loading ? (
+          <div className="spinner-border text-light" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        ) : (
+          "Buy"
+        )}
       </button>
     </form>
   );
