@@ -1,7 +1,7 @@
 const { Box,User,Order,OrderDetail,GiftList } = require("../database/index");
 const { Op, UUID } = require("sequelize");
 const ordersServices = require("../services/ordersServices");
-const { sendCode } = require("../utils/sendEmail");
+const { sendCode,confirmPay } = require("../utils/sendEmail");
 
 const createNewOrder = async (req, res, next) => {
   
@@ -93,9 +93,9 @@ const sendEmailCode = async (req, res, next) => {
       },
      
     })
-
+    await confirmPay(userId)
     //console.log(customer)
-   
+    
     let arrSendMail = recipientsList.map(async(r)=>{
       let findGift = await GiftList.findOne({
         where:{
