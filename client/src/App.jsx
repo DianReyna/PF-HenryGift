@@ -1,5 +1,7 @@
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
+import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
@@ -50,6 +52,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
