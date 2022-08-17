@@ -6,7 +6,7 @@ import ProductDetail from "./components/ProductDetail/ProductDetail";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Footer } from "./components/Form/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import Form from "./components/Form/Form";
 import styled from "styled-components";
