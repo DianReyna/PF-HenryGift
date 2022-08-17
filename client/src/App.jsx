@@ -34,7 +34,6 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 
-
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
 //   overflow: hidden;
@@ -44,7 +43,17 @@ import GiftDetail from "./components/User/Gift/GiftDetail";
 function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+        //theme="dark"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
       <NavBar />
       <div>
         <Routes>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./SendBox.css";
 import { useEffect } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
@@ -124,9 +124,13 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             <Link to="/payment">
-              <button onClick={handleSubmit} className="go-payment-btn">
+              <Button 
+              className="go-payment-btn"
+              sx={{ color: "white", border: "1px solid white" }}
+              variant="outlined" 
+              onClick={handleSubmit} >
                 Ir al pago
-              </button>
+              </Button>
             </Link>
           </div>
         </div>
