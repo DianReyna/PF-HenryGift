@@ -2,8 +2,7 @@ import React ,{useState,useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify'
 import { login,reset,register } from "../../../redux/reducer/authSlice";
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { useNavigate,Link } from "react-router-dom";
 import {Visibility,VisibilityOff,Email,Google,Facebook} from '@mui/icons-material';
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,IconButton,Box, Typography} from '@mui/material';
 import { validate } from './validate';
@@ -149,6 +148,7 @@ export default function Login() {
           />
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
+        <Typography variant="h7" ><Link to="/forgot-password" style={{ textDecoration: 'none',color:"#f44336" }}>Forgot password?</Link></Typography>
         <Button sx={{ m: 1,width: '40ch' }} type="submit" variant="contained">
         {/* {auth.loginStatus === "pending" ? "Submitting..." : "Login"} */}
         Login

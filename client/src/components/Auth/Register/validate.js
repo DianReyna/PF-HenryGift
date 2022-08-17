@@ -21,7 +21,7 @@ export function validate(input) {
       input.email
     )
   )
-    errors.email = "*email must be valid-example:xxxx@xxxx.com";
+    errors.email = "*email must be valid : example@site.com";
   else if (!input.password) errors.password = "*password is required";
   else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(input.password))
     errors.password =
