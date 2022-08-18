@@ -1,7 +1,7 @@
 const { CORS_URL } = process.env;
 
 function setHeaders(req, res, next) {
-  res.header("Access-Control-Allow-Origin", CORS_URL); // update * when deploy
+  res.header("Access-Control-Allow-Origin", "https://henry-gift.vercel.app/"); // update * when deploy
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
