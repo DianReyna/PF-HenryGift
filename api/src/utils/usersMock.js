@@ -350,13 +350,6 @@ const users = [{
   "last_name": "Evitt",
   "access_level": true,
   "phone": "7199559502"
-}, {
-  "email": "tamaraber9@gmail.com",
-  "dateBirth": "20-11-1988",
-  "first_name": "Tamara",
-  "last_name": "Berim",
-  "access_level": true,
-  "phone": "111111111"
 }]
 
   async function loadMockUsers(){

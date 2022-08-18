@@ -64,9 +64,22 @@ const updateUser = async (req, res, next) => {
     const update = await userServices.updateUser(id, body);
     if (update) {
       const newInfo = await userServices.getAllUsers();
-      res.status(200).send(newInfo);
+      res.status(200).send("Successful update");
     } else {
       res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const remove = await userServices.deleteUser(id);
+    if (remove) {
+        res.status(200).send("successfully deleted user");
+    } else {
+      res.status(404).send("sdelete user error!");
     }
   } catch (error) {
     next(error);
@@ -79,4 +92,5 @@ module.exports = {
   updateAdmin,
   getUserById,
   updateUser,
+  deleteUser,
 };

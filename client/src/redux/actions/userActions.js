@@ -6,6 +6,7 @@ import {
   userById,
   profileUpdate,
   getGiftUser,
+  deleteUser,
 } from "../reducer/userSlice";
 
 
@@ -46,4 +47,11 @@ export const getUserGift = (user) => (dispatch) => {
     .then((res) => dispatch(getGiftUser(res.data)))
     .catch((err) => console.log(err));
 };
-
+export const removeUser = (id) => (dispatch) => {
+  axios
+    .delete(`http://localhost:3001/users/${id}`)
+    .then((res) => dispatch(deleteUser(res.data)))
+    .catch((err) => {
+      console.log(err);
+    });
+};
