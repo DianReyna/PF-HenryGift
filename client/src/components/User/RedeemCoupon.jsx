@@ -1,3 +1,4 @@
+const { URL } = process.env;
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getBox } from "../../redux/actions/boxesActions";
@@ -18,7 +19,7 @@ export default function RedeemCoupon() {
 
     function handleSubmit(e){
         e.preventDefault()
-        axios.post("http://localhost:3001/redeem",{code:code})
+        axios.post(`${URL}redeem`,{code:code})
         .then(res=>console.log(res))
     } 
 

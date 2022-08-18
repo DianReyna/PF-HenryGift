@@ -1,3 +1,4 @@
+const { URL } = process.env;
 import axios from "axios";
 import {
   getAllProviders,
@@ -6,14 +7,14 @@ import {
 } from "../reducer/providerSlice";
 
 export const getProvider = () => (dispatch) => {
-  axios("http://localhost:3001/providers")
+  axios(`${URL}providers`)
     .then((res) => dispatch(getAllProviders(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const destroyProvider = (id) => (dispatch) => {
   axios
-    .delete(`http://localhost:3001/providers/${id}`)
+    .delete(`${URL}providers/${id}`)
     .then((res) => dispatch(deleteProvider(res.data)))
     .catch((err) => {
       console.log(err);
@@ -22,7 +23,7 @@ export const destroyProvider = (id) => (dispatch) => {
 
 export const updateProvider = (data) => (dispatch) => {
   axios
-    .put(`http://localhost:3001/providers/${data.id}`, data.provider)
+    .put(`${URL}providers/${data.id}`, data.provider)
     .then((res) => dispatch(editProvider(res.data)))
     .catch((err) => {
       console.log(err);

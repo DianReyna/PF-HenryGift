@@ -1,3 +1,4 @@
+const { URL } = process.env;
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
@@ -39,20 +40,18 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post("http://localhost:3001/payment", {
+        const { data } = await axios.post(`${URL}payment`, {
           id,
           amount: cart.cartTotalAmount, //cents
         });
 
         console.log(data);
-        if(data.message === "Successful Payment"){
-         await axios.post("http://localhost:3001/orders/sendcode", {
-        
-        userId: "drowet0@4shared.com",
-      
-      });
+        if (data.message === "Successful Payment") {
+          await axios.post(`${URL}orders/sendcode`, {
+            userId: "drowet0@4shared.com",
+          });
         }
-        
+
         elements.getElement(CardElement).clear();
       } catch (error) {
         console.log(error);
