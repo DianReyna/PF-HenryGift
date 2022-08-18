@@ -1,3 +1,4 @@
+require("dotenv").config();
 import axios from "axios";
 const { URL } = process.env;
 import { setCategory, setPerson, clean } from "../reducer/filtersSlice";

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { URL } = process.env;
 import axios from "axios";
 import { useRef } from "react";
