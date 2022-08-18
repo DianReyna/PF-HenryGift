@@ -6,7 +6,7 @@ const categotyRouter = require("./categoryRoutes");
 const products = require("../routes/Products.routes.js");
 const filtersRoutes = require("./filtersRoutes.js");
 const providerRouter = require("./providerRoutes");
-const sortRouter = require("./sortRoutes");
+
 const testRouter = require("./testRoutes");
 const payment = require("./stripe");
 const register = require('./Register.routes.js')
@@ -21,7 +21,7 @@ router.use("/categories", categotyRouter);
 router.use("/providers", providerRouter);
 router.use("/orders",orderRouter)
 router.use("/filters", filtersRoutes);
-router.use("/sort", sortRouter);
+
 router.use("/test", testRouter);
 router.use("/users", AllUsers);
 router.use("/payment", payment);

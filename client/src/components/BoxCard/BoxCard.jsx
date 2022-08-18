@@ -80,8 +80,8 @@ export default function BoxCard({
               </CardContent>
             </Link>
             <FooterCardProduct>
-              <Button variant="outlined" onClick={() => handleAddToCart(box)}>
-                Agregar al <AddShoppingCartSharpIcon color="disabled" />
+              <Button sx={{color: 'black', border: '1px solid black', marginLeft: '3.8rem'}} variant="outlined" onClick={() => handleAddToCart(box)}>
+                Agregar al Carrito
               </Button>
             </FooterCardProduct>
           </CardWidth>

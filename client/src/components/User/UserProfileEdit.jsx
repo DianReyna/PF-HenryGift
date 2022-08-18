@@ -27,7 +27,7 @@ export default function UserProfileEdit({userId}) {
     
 
     useEffect(() => {
-        dispatch(getUsersById('alegrices@independent.co.uk')); 
+        dispatch(getUsersById('tamaraber9@gmail.com')); 
         // setTimeout(()=>{
             // },1000)
         }, [dispatch])

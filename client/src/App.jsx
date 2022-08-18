@@ -1,12 +1,14 @@
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
+import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Footer } from "./components/Form/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import Form from "./components/Form/Form";
 import styled from "styled-components";
@@ -34,7 +36,6 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 
-
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
 //   overflow: hidden;
@@ -44,16 +45,28 @@ import GiftDetail from "./components/User/Gift/GiftDetail";
 function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+        //theme="dark"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
       <NavBar />
-      <body>
+      <div>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          <Route path="/userprofile" element={<ProfilePanel />} />
+          {/* <Route path="/userprofile" element={<ProfilePanel />} /> */}
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
@@ -90,7 +103,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </body>
+      </div>
       <Footer />
     </>
   );

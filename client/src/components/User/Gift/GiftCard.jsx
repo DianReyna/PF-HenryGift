@@ -45,10 +45,10 @@ export default function GiftCard({
     const dispatch = useDispatch();
     //const history = useHistory();
   
-    const handleAddToCart = (box) => {
-      dispatch(addToCart(box));
-      //history.push("/cart")
-    };
+    // const handleAddToCart = (box) => {
+    //   dispatch(addToCart(box));
+    //   //history.push("/cart")
+    // };
   
 
   return (

@@ -57,7 +57,7 @@ export default function ProfilePanel(props) {
   
 
   const getUsersById = async () => {
-      const oneUser = await axios.get('http://localhost:3001/users/alegrices@independent.co.uk')
+      const oneUser = await axios.get('http://localhost:3001/users/tamaraber9@gmail.com')
       setUserDetail(oneUser.data)
   }
   useEffect(()=>{
