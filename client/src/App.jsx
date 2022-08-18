@@ -21,7 +21,7 @@ import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import FormProvider from "./components/Form/FormProvider";
-import FormBox from "./components/Form/FormBox";
+import FormBox from "./components/Form/FormBox/FormBox";
 import FormProduct from "./components/Form/FormProduct";
 import ProfilePanel from "./components/User/ProfilePanel";
 import { Cart, SendBox, Checkout } from "./components";

@@ -32,22 +32,19 @@ export default function FormProduct() {
   const dispatch = useDispatch();
 
   const {
-    handleChange,
-    input,
+    product,
     errors,
+    dataProduct,
     handleProductSubmit,
     handleProductChange,
   } = useForm(validate);
 
   useEffect(() => {
     dispatch(getProvider());
-    dispatch(getCategory());
-    dispatch(getProducts());
   }, [dispatch]);
 
   const providers = useSelector((state) => state.providers);
-  const categories = useSelector((state) => state.categories);
-  const products = useSelector((state) => state.products);
+
   return (
     <div>
       <Box
@@ -78,9 +75,9 @@ export default function FormProduct() {
             <div className={styles.formContainer}>
               <TextField
                 className="textField"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productName"
-                value={input.productName || ""}
+                value={product.productName || ""}
                 required
                 label="Nombre del producto"
                 size="small"
@@ -99,9 +96,9 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productDescription"
-                value={input.productDescription || ""}
+                value={product.productDescription || ""}
                 required
                 label="Descripcion del producto"
                 size="small"
@@ -120,9 +117,9 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productPrice"
-                value={input.productPrice || ""}
+                value={product.productPrice || ""}
                 required
                 label="Precio"
                 size="small"
@@ -141,9 +138,9 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productLocation"
-                value={input.productLocation || ""}
+                value={product.productLocation || ""}
                 required
                 label="Direccion"
                 size="small"
@@ -162,9 +159,9 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productImage"
-                value={input.productImage || ""}
+                value={product.productImage || ""}
                 required
                 label="Imagen"
                 size="small"
@@ -187,7 +184,7 @@ export default function FormProduct() {
 
                 <Select
                   onChange={(e) => handleProductChange(e)}
-                  value={input.productProvider || ""}
+                  value={product.productProvider || ""}
                   MenuProps={MenuProps}
                   sx={{
                     color: "white",

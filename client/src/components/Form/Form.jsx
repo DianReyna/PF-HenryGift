@@ -1,20 +1,17 @@
-
-import React from "react";
-import FormProduct from "./FormProduct";
-import FormProvider from "./FormProvider";
-import FormBox from "./FormBox";
-
+// import React from "react";
+// import FormProduct from "./FormProduct";
+// import FormProvider from "./FormProvider";
+// import FormBox from "./FormBox";
 
 export default function Form() {
   return (
     <div>
       <FormProvider />
-      <FormProduct/>
-      <FormBox/>
+      <FormProduct />
+      <FormBox />
     </div>
   );
 }
-
 
 // import React, { useEffect } from "react";
 // import {
@@ -33,7 +30,6 @@ export default function Form() {
 // import styles from "./Form.module.css";
 // import useForm from "./useForm";
 // import validate from "./validate";
-
 
 // const ITEM_HEIGHT = 48;
 // const ITEM_PADDING_TOP = 8;

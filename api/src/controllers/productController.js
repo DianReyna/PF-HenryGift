@@ -104,10 +104,27 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
+const putStatusProduct = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const status = await productServices.productUpdate(id, body);
+    if (status) {
+      const newListProd = await productServices.getAllProducts();
+      res.status(200).send(newListProd);
+    } else {
+      res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createNewProduct,
   getProductById,
   getAllProducts,
   deleteProduct,
   updateProduct,
+  putStatusProduct,
 };
