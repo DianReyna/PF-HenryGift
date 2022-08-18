@@ -49,6 +49,15 @@ const findProvider = async (provider) => {
   return find;
 };
 
+const productUpdate = async (id, body) => {
+  const prodUpdate = await Products.update(body, {
+    where: {
+      id: id,
+    },
+  });
+  return prodUpdate;
+};
+
 const updateProduct = async (id, body) => {
   const find = await getProductById(id);
 
@@ -67,11 +76,8 @@ const updateProduct = async (id, body) => {
     return updateProvider;
   }
 
-  const update = await Products.update(body, {
-    where: {
-      id: id,
-    },
-  });
+  const update = await productUpdate(id, body);
+
   return update;
 };
 module.exports = {
@@ -81,4 +87,5 @@ module.exports = {
   deleteProduct,
   findProvider,
   updateProduct,
+  productUpdate,
 };
