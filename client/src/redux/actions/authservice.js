@@ -1,6 +1,6 @@
-import("dotenv").config();
 import axios from "axios";
-const { URL } = process.env;
+const URL = process.env.REACT_APP_URL;
+
 
 // Register user
 const register = async (userData) => {

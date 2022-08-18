@@ -1,5 +1,4 @@
-import("dotenv").config();
-const { URL } = process.env;
+const URL = process.env.REACT_APP_URL;
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";

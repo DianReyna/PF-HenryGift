@@ -1,5 +1,4 @@
-import("dotenv").config();
-const { URL } = process.env;
+const URL = process.env.REACT_APP_URL;
 import axios from "axios";
 import {
   getAllProviders,

@@ -1,6 +1,5 @@
-import("dotenv").config();
+const URL = process.env.REACT_APP_URL;
 import axios from "axios";
-const { URL } = process.env;
 import { setCategory, setPerson, clean } from "../reducer/filtersSlice";
 import { getAllBoxes } from "../reducer/boxesSlice";
 

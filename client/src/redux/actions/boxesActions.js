@@ -1,4 +1,4 @@
-import("dotenv").config();
+const URL = process.env.REACT_APP_URL;
 import axios from "axios";
 import {
   getAllBoxes,
@@ -8,7 +8,7 @@ import {
   getAllBoxesAdmin,
   editBoxes,
 } from "../reducer/boxesSlice";
-const { URL } = process.env;
+
 
 export const getBoxes = () => (dispatch) => {
   axios(`${URL}boxes`)

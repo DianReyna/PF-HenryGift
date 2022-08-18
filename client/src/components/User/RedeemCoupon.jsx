@@ -1,5 +1,4 @@
-import("dotenv").config();
-const { URL } = process.env;
+const URL = process.env.REACT_APP_URL;
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getBox } from "../../redux/actions/boxesActions";
