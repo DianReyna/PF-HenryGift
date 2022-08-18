@@ -12,7 +12,7 @@ export default function useForm(validate) {
   const [errors, setErrors] = useState({});
 
   //BOX
-  const [box, setBox] = useState({
+  const [input, setInput] = useState({
     boxName: "",
     boxPrice: "",
     boxDetail: "",
@@ -24,26 +24,41 @@ export default function useForm(validate) {
   });
 
   const handleChangeBox = (e) => {
-    setBox({
-      ...box,
+    setInput({
+      ...input,
       [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
-        ...box,
+        ...input,
         [e.target.name]: e.target.value,
       })
     );
   };
+
+  const handleChangeProd = (e) => {
+    setInput({
+      ...input,
+      boxProducts: [...e.target.value],
+    });
+  };
+
+  const handleChangeCat = (e) => {
+    setInput({
+      ...input,
+      boxCategories: [...e.target.value],
+    });
+  };
+
   const dataBox = {
-    name: box.boxName,
-    detail: box.boxDetail,
-    price: box.boxPrice,
-    expiration_date: box.boxExpirationDate,
-    image: box.boxImage,
-    person: box.boxPerson,
-    products: box.boxProducts,
-    category: box.boxCategories,
+    name: input.boxName,
+    detail: input.boxDetail,
+    price: input.boxPrice,
+    expiration_date: input.boxExpirationDate,
+    image: input.boxImage,
+    person: input.boxPerson,
+    products: input.boxProducts,
+    category: input.boxCategories,
   };
   const handleBoxSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +67,7 @@ export default function useForm(validate) {
       toast.success("Save data", {
         position: "top-right",
       });
-      setBox({
+      setInput({
         boxName: "",
         boxPrice: "",
         boxDetail: "",
@@ -158,17 +173,18 @@ export default function useForm(validate) {
 
   return {
     errors,
-    box,
+    input,
     product,
     provider,
     dataBox,
     dataProduct,
     dataProvider,
     handleChangeBox,
+    handleChangeProd,
+    handleChangeCat,
     handleProductChange,
     handleProviderChange,
     handleBoxSubmit,
     handleProductSubmit,
-    handleProviderSubmit,
   };
 }

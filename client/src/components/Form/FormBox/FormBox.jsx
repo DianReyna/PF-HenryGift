@@ -34,8 +34,15 @@ const MenuProps = {
 export default function FormBox() {
   const dispatch = useDispatch();
 
-  const { box, errors, dataBox, handleBoxSubmit, handleChangeBox } =
-    useForm(validate);
+  const {
+    input,
+    errors,
+    dataBox,
+    handleBoxSubmit,
+    handleChangeBox,
+    handleChangeProd,
+    handleChangeCat,
+  } = useForm(validate);
 
   useEffect(() => {
     dispatch(getCategory());
@@ -76,7 +83,7 @@ export default function FormBox() {
               <TextField
                 onChange={(e) => handleChangeBox(e)}
                 name="boxImage"
-                value={box.boxImage || ""}
+                value={input.boxImage || ""}
                 required
                 size="small"
                 label="Imagen"
@@ -96,7 +103,7 @@ export default function FormBox() {
               <TextField
                 onChange={(e) => handleChangeBox(e)}
                 name="boxName"
-                value={box.boxName || ""}
+                value={input.boxName || ""}
                 required
                 size="small"
                 label="Nombre de la nueva box"
@@ -119,7 +126,7 @@ export default function FormBox() {
                 multiline
                 rows={4}
                 name="boxDetail"
-                value={box.boxDetail || ""}
+                value={input.boxDetail || ""}
                 required
                 label="Descripcion de la box"
                 size="small"
@@ -139,7 +146,7 @@ export default function FormBox() {
               <TextField
                 onChange={(e) => handleChangeBox(e)}
                 name="boxPerson"
-                value={box.boxPerson || ""}
+                value={input.boxPerson || ""}
                 required
                 size="small"
                 label="Cantidad de personas"
@@ -159,7 +166,7 @@ export default function FormBox() {
               <TextField
                 onChange={(e) => handleChangeBox(e)}
                 name="boxPrice"
-                value={box.boxPrice || ""}
+                value={input.boxPrice || ""}
                 required
                 size="small"
                 label="Precio"
@@ -182,7 +189,7 @@ export default function FormBox() {
                 // label="Expiration Date"
                 type="date"
                 name="boxExpirationDate"
-                value={box.boxExpirationDate || ""}
+                value={input.boxExpirationDate || ""}
                 onChange={(e) => handleChangeBox(e)}
                 sx={{
                   input: {
@@ -204,9 +211,9 @@ export default function FormBox() {
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   multiple
-                  value={box.boxProducts || []}
+                  value={input.boxProducts || []}
                   name="boxProducts"
-                  onChange={(e) => handleChangeBox(e)}
+                  onChange={(e) => handleChangeProd(e)}
                   MenuProps={MenuProps}
                   size="small"
                   color="primary"
@@ -232,9 +239,9 @@ export default function FormBox() {
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   multiple
-                  value={box.boxCategories || []}
+                  value={input.boxCategories || []}
                   name="boxCategories"
-                  onChange={(e) => handleChangeBox(e)}
+                  onChange={(e) => handleChangeCat(e)}
                   MenuProps={MenuProps}
                   size="small"
                   sx={{

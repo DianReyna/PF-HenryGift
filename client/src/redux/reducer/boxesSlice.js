@@ -31,7 +31,6 @@ export const boxesSlice = createSlice({
     },
     postBox: (state, action) => {
       state.boxes = action.payload;
-      console.log("slice", state.boxes);
     },
   },
 });
