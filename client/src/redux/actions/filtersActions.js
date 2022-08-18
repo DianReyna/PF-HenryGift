@@ -1,4 +1,3 @@
-const { REACT_APP_URL } = process.env;
 import axios from "axios";
 import { setCategory, setPerson, clean } from "../reducer/filtersSlice";
 import { getAllBoxes } from "../reducer/boxesSlice";
@@ -14,7 +13,9 @@ export const filterPerson = (person) => (dispatch) => {
 export const filterBoxes = (filters) => (dispatch) => {
   console.log(filters);
   axios
-    .get(`${REACT_APP_URL}filters?category=${filters.category}&num=${filters.person}`)
+    .get(
+      ` https://henrygift-api.herokuapp.com/filters?category=${filters.category}&num=${filters.person}`
+    )
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
 };
@@ -23,4 +24,4 @@ export const cleanFilters = () => (dispatch) => {
   dispatch(clean());
 };
 
-//${REACT_APP_URL}filters?num=2&category=aventura&min=100&max=100000
+// https://henrygift-api.herokuapp.com/filters?num=2&category=aventura&min=100&max=100000

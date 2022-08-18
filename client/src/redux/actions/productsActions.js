@@ -1,4 +1,3 @@
-const { REACT_APP_URL } = process.env;
 import axios from "axios";
 import {
   getAllProduct,
@@ -7,14 +6,14 @@ import {
 } from "../reducer/productsSlice";
 
 export const getProducts = () => (dispatch) => {
-  axios(`${REACT_APP_URL}products`)
+  axios(` https://henrygift-api.herokuapp.com/products`)
     .then((res) => dispatch(getAllProduct(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const destroyProduct = (id) => (dispatch) => {
   axios
-    .delete(`${REACT_APP_URL}products/${id}`)
+    .delete(` https://henrygift-api.herokuapp.com/products/${id}`)
     .then((res) => dispatch(deleteProduct(res.data)))
     .catch((err) => {
       console.log(err);
@@ -23,7 +22,10 @@ export const destroyProduct = (id) => (dispatch) => {
 export const updateProduct = (data) => (dispatch) => {
   console.log(data);
   axios
-    .put(`${REACT_APP_URL}products/${data.id}`, data.product)
+    .put(
+      ` https://henrygift-api.herokuapp.com/products/${data.id}`,
+      data.product
+    )
     .then((res) => dispatch(editProduct(res.data)))
     .catch((err) => {
       console.log(err);

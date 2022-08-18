@@ -1,5 +1,3 @@
-const { REACT_APP_URL } = process.env;
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getBox } from "../../redux/actions/boxesActions";
@@ -19,7 +17,9 @@ export default function RedeemCoupon() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post(`${REACT_APP_URL}redeem`, { code: code }).then((res) => console.log(res));
+    axios
+      .post("https://henrygift-api.herokuapp.com/redeem", { code: code })
+      .then((res) => console.log(res));
   }
 
   return (

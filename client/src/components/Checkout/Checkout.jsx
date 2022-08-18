@@ -1,4 +1,3 @@
-const { REACT_APP_URL } = process.env;
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
@@ -40,10 +39,13 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post(`${REACT_APP_URL}payment`, {
-          id,
-          amount: cart.cartTotalAmount, //cents
-        });
+        const { data } = await axios.post(
+          "https://henrygift-api.herokuapp.com/payment",
+          {
+            id,
+            amount: cart.cartTotalAmount, //cents
+          }
+        );
 
         console.log(data);
         if (data.message === "Successful Payment") {

@@ -1,4 +1,3 @@
-const { REACT_APP_URL } = process.env;
 import axios from "axios";
 import {
   getAllProviders,
@@ -7,14 +6,14 @@ import {
 } from "../reducer/providerSlice";
 
 export const getProvider = () => (dispatch) => {
-  axios(`${REACT_APP_URL}providers`)
+  axios(` https://henrygift-api.herokuapp.com/providers`)
     .then((res) => dispatch(getAllProviders(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const destroyProvider = (id) => (dispatch) => {
   axios
-    .delete(`${REACT_APP_URL}providers/${id}`)
+    .delete(` https://henrygift-api.herokuapp.com/providers/${id}`)
     .then((res) => dispatch(deleteProvider(res.data)))
     .catch((err) => {
       console.log(err);
@@ -23,7 +22,10 @@ export const destroyProvider = (id) => (dispatch) => {
 
 export const updateProvider = (data) => (dispatch) => {
   axios
-    .put(`${REACT_APP_URL}providers/${data.id}`, data.provider)
+    .put(
+      ` https://henrygift-api.herokuapp.com/providers/${data.id}`,
+      data.provider
+    )
     .then((res) => dispatch(editProvider(res.data)))
     .catch((err) => {
       console.log(err);
