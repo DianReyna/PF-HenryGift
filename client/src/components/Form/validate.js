@@ -11,57 +11,57 @@ export default function validate(input) {
   let validPerson = /^[0-9]+$/;
   let validNum = /^[0-9]+$/;
 
-  if (!input.providerName.trim()) {
-    errors.providerName = "Name is required";
-  } else if (input.providerName.length < 4) {
-    errors.providerName = "Name must have more than 4 letters";
-  }
+  // if (!input.providerName.trim()) {
+  //   errors.providerName = "Name is required";
+  // } else if (input.providerName.length < 4) {
+  //   errors.providerName = "Name must have more than 4 letters";
+  // }
 
-  if (!input.providerPhone) {
-    errors.providerPhone = "You must provide a phone number";
-  } else if (!validPhone.test(input.providerPhone)) {
-    errors.providerPhone = "Phone number should have a valid format";
-  }
+  // if (!input.providerPhone) {
+  //   errors.providerPhone = "You must provide a phone number";
+  // } else if (!validPhone.test(input.providerPhone)) {
+  //   errors.providerPhone = "Phone number should have a valid format";
+  // }
 
-  if (!input.providerAddress.trim()) {
-    errors.providerAddress = "You must provide an address";
-  } else if (input.providerAddress.length < 10) {
-    errors.providerAddress = "Address should have at least 10 letters";
-  }
+  // if (!input.providerAddress.trim()) {
+  //   errors.providerAddress = "You must provide an address";
+  // } else if (input.providerAddress.length < 10) {
+  //   errors.providerAddress = "Address should have at least 10 letters";
+  // }
 
-  if (!validEmail.test(input.providerEmail)) {
-    errors.providerEmail = "Insert a valid email format";
-  }
+  // if (!validEmail.test(input.providerEmail)) {
+  //   errors.providerEmail = "Insert a valid email format";
+  // }
 
-  //--------------------- PRODUCT -------------------------------
+  // //--------------------- PRODUCT -------------------------------
 
-  if (!input.productName.trim()) {
-    errors.productName = "Name is required";
-  } else if (input.productName.length < 4) {
-    errors.productName = "Name must have more than 4 letters";
-  }
-  if (!input.productDescription.trim()) {
-    errors.productDescription = "Describe the detail of your product ";
-  } else if (input.productDescription.length < 25) {
-    errors.productDescription =
-      "The description must have at least 25 characters";
-  }
-  if (!input.productPrice) {
-    errors.productPrice = "Enter product price";
-  } else if (!validPrice.test(input.productPrice)) {
-    errors.productPrice = "Please enter a valid format";
-  }
-  if (!input.productLocation.trim()) {
-    errors.productLocation =
-      "You must enter the location where the service is provided";
-  } else if (input.productLocation.length < 10) {
-    errors.productLocation = "The address must have at least 10 letters";
-  }
-  if (!input.productImage.trim()) {
-    errors.productImage = "Required field, enter an image";
-  } else if (!validUrl.test(input.productImage)) {
-    errors.productImage = "Enter a valid URL for the image";
-  }
+  // if (!input.productName.trim()) {
+  //   errors.productName = "Name is required";
+  // } else if (input.productName.length < 4) {
+  //   errors.productName = "Name must have more than 4 letters";
+  // }
+  // if (!input.productDescription.trim()) {
+  //   errors.productDescription = "Describe the detail of your product ";
+  // } else if (input.productDescription.length < 25) {
+  //   errors.productDescription =
+  //     "The description must have at least 25 characters";
+  // }
+  // if (!input.productPrice) {
+  //   errors.productPrice = "Enter product price";
+  // } else if (!validPrice.test(input.productPrice)) {
+  //   errors.productPrice = "Please enter a valid format";
+  // }
+  // if (!input.productLocation.trim()) {
+  //   errors.productLocation =
+  //     "You must enter the location where the service is provided";
+  // } else if (input.productLocation.length < 10) {
+  //   errors.productLocation = "The address must have at least 10 letters";
+  // }
+  // if (!input.productImage.trim()) {
+  //   errors.productImage = "Required field, enter an image";
+  // } else if (!validUrl.test(input.productImage)) {
+  //   errors.productImage = "Enter a valid URL for the image";
+  // }
 
   //-----------BOX-----------
 
@@ -80,11 +80,7 @@ export default function validate(input) {
   } else if (input.boxDetail.length < 25) {
     errors.boxDetail = "The description must have at least 25 characters";
   }
-  if (!input.boxRanking) {
-    errors.boxRanking = "Enter your rating";
-  } else if (!validNum.test(input.boxRanking)) {
-    errors.boxRanking = "Enter a value from 1 to 5";
-  }
+
   if (!input.boxExpirationDate) {
     errors.boxExpirationDate = "Enter the expiration date";
   }

@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import { Box, TextField, Button, DialogContentText } from "@mui/material";
-import { getProvider } from "../../redux/actions/providerActions";
-import { getCategory } from "../../redux/actions/categoryActions";
-import { getProducts } from "../../redux/actions/productsActions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Form.module.css";
 import useForm from "./useForm";
@@ -22,18 +19,13 @@ const MenuProps = {
 export default function FormProvider() {
   const dispatch = useDispatch();
 
-  const { handleChange, input, handleProviderSubmit, errors } =
-    useForm(validate);
-
-  useEffect(() => {
-    dispatch(getProvider());
-    dispatch(getCategory());
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  const providers = useSelector((state) => state.providers);
-  const categories = useSelector((state) => state.categories);
-  const products = useSelector((state) => state.products);
+  const {
+    provider,
+    errors,
+    dataProvider,
+    handleProviderChange,
+    handleProviderSubmit,
+  } = useForm(validate);
 
   return (
     <div>
@@ -58,9 +50,9 @@ export default function FormProvider() {
           <form autoComplete="off" onSubmit={(e) => handleProviderSubmit(e)}>
             <div className={styles.formContainer}>
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerName"
-                value={input.providerName || ""}
+                value={provider.providerName || ""}
                 required
                 label="Nombre del proveedor"
                 size="small"
@@ -79,9 +71,9 @@ export default function FormProvider() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerPhone"
-                value={input.providerPhone || ""}
+                value={provider.providerPhone || ""}
                 required
                 label="Numero de Telefono"
                 size="small"
@@ -99,9 +91,9 @@ export default function FormProvider() {
                 </DialogContentText>
               )}
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerAddress"
-                value={input.providerAddress || ""}
+                value={provider.providerAddress || ""}
                 required
                 label="Direccion"
                 size="small"
@@ -120,9 +112,9 @@ export default function FormProvider() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerEmail"
-                value={input.providerEmail || ""}
+                value={provider.providerEmail || ""}
                 required
                 label="Email"
                 size="small"
