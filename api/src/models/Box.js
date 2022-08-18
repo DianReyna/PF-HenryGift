@@ -20,7 +20,6 @@ module.exports = BoxFactory = (sequelize) => {
       },
       ranking: {
         type: DataTypes.FLOAT,
-        allowNull: false,
       },
       expiration_date: {
         type: DataTypes.STRING,
