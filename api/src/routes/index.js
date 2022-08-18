@@ -13,6 +13,7 @@ const register = require('./Register.routes.js')
 const login = require('./Login.routes')
 const orderRouter = require("./ordersRoutes")
 const redeem = require("./giftRoutes")
+const googleLogin = require("./googleLogin.routes.js")
 
 router.use("/boxes", AllBoxes);
 router.use("/products", products);
@@ -27,4 +28,6 @@ router.use("/payment", payment);
 router.use('/register', register)
 router.use('/login', login)
 router.use("/redeem",redeem)
+router.use("/googleLogin",googleLogin)
+
 module.exports = router;
