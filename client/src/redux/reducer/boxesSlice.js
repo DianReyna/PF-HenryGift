@@ -29,6 +29,10 @@ export const boxesSlice = createSlice({
     getBoxId: (state, action) => {
       state.boxes = action.payload;
     },
+    postBox: (state, action) => {
+      state.boxes = action.payload;
+      console.log("slice", state.boxes);
+    },
   },
 });
 
@@ -39,6 +43,7 @@ export const {
   deleteBox,
   getAllBoxesAdmin,
   editBoxes,
+  postBox,
 } = boxesSlice.actions;
 
 export default boxesSlice.reducer;

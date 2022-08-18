@@ -5,12 +5,15 @@ import {
   getCategory,
   updateCategory,
 } from "../../../redux/actions/categoryActions";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import { DialogContentText, TextField } from "@mui/material";
-import DialogTitle from "@mui/material/DialogTitle";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogTitle,
+} from "@mui/material/";
 import EditIcon from "@mui/icons-material/Edit";
 import { toast } from "react-toastify";
 import {

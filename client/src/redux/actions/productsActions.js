@@ -20,9 +20,18 @@ export const destroyProduct = (id) => (dispatch) => {
     });
 };
 export const updateProduct = (data) => (dispatch) => {
-  console.log(data);
   axios
     .put(`http://localhost:3001/products/${data.id}`, data.product)
+    .then((res) => dispatch(editProduct(res.data)))
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const putStateProduct = (data) => (dispatch) => {
+  console.log(data);
+  axios
+    .put(`http://localhost:3001/products/status/${data.id}`, data.product)
     .then((res) => dispatch(editProduct(res.data)))
     .catch((err) => {
       console.log(err);
