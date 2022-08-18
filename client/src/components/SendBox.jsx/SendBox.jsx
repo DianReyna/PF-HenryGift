@@ -1,4 +1,4 @@
-const URL = process.env.REACT_APP_URL;
+const { REACT_APP_URL } = process.env;
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -46,7 +46,7 @@ const SendBox = () => {
         return { id, quantity, name, recipient };
       });
 
-      axios.post(`${URL}orders`, {
+      axios.post(`${REACT_APP_URL}orders`, {
         amount: cart.cartTotalAmount,
         userId: "drowet0@4shared.com",
         boxes: total,

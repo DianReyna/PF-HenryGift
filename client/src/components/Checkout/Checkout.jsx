@@ -1,4 +1,4 @@
-const URL = process.env.REACT_APP_URL;
+const { REACT_APP_URL } = process.env;
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
@@ -40,14 +40,14 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post(`${URL}payment`, {
+        const { data } = await axios.post(`${REACT_APP_URL}payment`, {
           id,
           amount: cart.cartTotalAmount, //cents
         });
 
         console.log(data);
         if (data.message === "Successful Payment") {
-          await axios.post(`${URL}orders/sendcode`, {
+          await axios.post(`${REACT_APP_URL}orders/sendcode`, {
             userId: "drowet0@4shared.com",
           });
         }

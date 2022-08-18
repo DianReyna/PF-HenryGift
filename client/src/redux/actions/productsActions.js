@@ -1,4 +1,4 @@
-const URL = process.env.REACT_APP_URL;
+const { REACT_APP_URL } = process.env;
 import axios from "axios";
 import {
   getAllProduct,
@@ -7,14 +7,14 @@ import {
 } from "../reducer/productsSlice";
 
 export const getProducts = () => (dispatch) => {
-  axios(`${URL}products`)
+  axios(`${REACT_APP_URL}products`)
     .then((res) => dispatch(getAllProduct(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const destroyProduct = (id) => (dispatch) => {
   axios
-    .delete(`${URL}products/${id}`)
+    .delete(`${REACT_APP_URL}products/${id}`)
     .then((res) => dispatch(deleteProduct(res.data)))
     .catch((err) => {
       console.log(err);
@@ -23,7 +23,7 @@ export const destroyProduct = (id) => (dispatch) => {
 export const updateProduct = (data) => (dispatch) => {
   console.log(data);
   axios
-    .put(`${URL}products/${data.id}`, data.product)
+    .put(`${REACT_APP_URL}products/${data.id}`, data.product)
     .then((res) => dispatch(editProduct(res.data)))
     .catch((err) => {
       console.log(err);

@@ -1,10 +1,9 @@
 import axios from "axios";
-const URL = process.env.REACT_APP_URL;
-
+const { REACT_APP_URL } = process.env;
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(`${URL}register`, userData);
+  const response = await axios.post(`${REACT_APP_URL}register`, userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -15,7 +14,7 @@ const register = async (userData) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(`${URL}login`, userData);
+  const response = await axios.post(`${REACT_APP_URL}login`, userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
