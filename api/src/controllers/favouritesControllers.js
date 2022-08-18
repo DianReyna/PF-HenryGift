@@ -1,12 +1,11 @@
-const { Favourite } = require("../database");
-//import favouriteServices from "../services/favouritesServices";
+const favouriteServices = require("../services/favouritesServices");
 
 const createFavourite = async (req, res, next) => {
   const { query } = req;
   try {
-    const createFavourite = await Favourite.create(query);
+    const createFavourite = await favouriteServices.newFavourite(query);
     if (createFavourite) {
-      const findFavourites = await Favourite.findAll();
+      const findFavourites = await favouriteServices.findFavourites();
 
       res.status(201).send(findFavourites);
     } else {
@@ -21,11 +20,7 @@ const findFavourite = async (req, res, next) => {
   //id = userId
   const { user_id } = req.query;
   try {
-    const favourite = await Favourite.findAll({
-      where: {
-        user_id,
-      },
-    });
+    const favourite = await favouriteServices.findFavourite(user_id);
     if (favourite) {
       res.status(201).send(favourite);
     } else {
@@ -40,11 +35,7 @@ const deleteFavourite = async (req, res, next) => {
   const { id } = req.params;
   console.log(id);
   try {
-    const deleteFavourite = await Favourite.destroy({
-      where: {
-        id,
-      },
-    });
+    const deleteFavourite = await favouriteServices.deleteFavourite(id);
     if (deleteFavourite) {
       res.status(201).send(id);
     } else {
