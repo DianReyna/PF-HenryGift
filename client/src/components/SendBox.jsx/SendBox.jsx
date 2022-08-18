@@ -1,3 +1,5 @@
+import("dotenv").config();
+const { URL } = process.env;
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,23 +10,22 @@ import { useEffect } from "react";
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
 
-  const [input, setInput] = useState(Array(cart.cartItems.length).fill("holaparchero@gmail.com"));
+  const [input, setInput] = useState(
+    Array(cart.cartItems.length).fill("holaparchero@gmail.com")
+  );
   const [gifts, setGifts] = useState([]);
   let gatillo = false;
 
-
-  useEffect(()=>{
-    if(gatillo == false){
-      cart?.cartItems.forEach(element => {
-        for(let i = 0;i < element.cartQuantity;i++){
-          setGifts( (oldGifts) => [...oldGifts, element] )
+  useEffect(() => {
+    if (gatillo == false) {
+      cart?.cartItems.forEach((element) => {
+        for (let i = 0; i < element.cartQuantity; i++) {
+          setGifts((oldGifts) => [...oldGifts, element]);
         }
       });
       gatillo = true;
     }
-  },[])
-  
-
+  }, []);
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -46,7 +47,7 @@ const SendBox = () => {
         return { id, quantity, name, recipient };
       });
 
-      axios.post("http://localhost:3001/orders", {
+      axios.post(`${URL}orders`, {
         amount: cart.cartTotalAmount,
         userId: "drowet0@4shared.com",
         boxes: total,

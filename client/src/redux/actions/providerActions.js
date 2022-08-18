@@ -1,4 +1,4 @@
-require("dotenv").config();
+import("dotenv").config();
 const { URL } = process.env;
 import axios from "axios";
 import {

@@ -1,4 +1,4 @@
-require("dotenv").config();
+import("dotenv").config();
 import axios from "axios";
 import {
   getAllBoxes,
