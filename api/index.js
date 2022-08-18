@@ -20,7 +20,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(morgan("dev"));
 
 var corsOptions = {
-  origin: "https://henry-gift.vercel.app/",
+  origin: "https://henry-gift.vercel.app",
 };
 //set headers
 app.use(cors(corsOptions));
