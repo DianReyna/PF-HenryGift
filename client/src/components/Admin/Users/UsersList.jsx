@@ -46,7 +46,7 @@ export default function UsersList() {
       });
     } else {
       banned = true;
-      toast.success("Banned userr", {
+      toast.success("Banned user", {
         position: "top-right",
       });
     }
@@ -111,7 +111,7 @@ export default function UsersList() {
     },
     {
       field: "banned",
-      headerName: "Banned",
+      headerName: "Status",
       width: 100,
       renderCell: (params) => {
         return (

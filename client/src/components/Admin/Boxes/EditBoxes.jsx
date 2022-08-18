@@ -5,13 +5,18 @@ import {
   getBoxesAdmin,
   updateBoxes,
 } from "../../../redux/actions/boxesActions";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { toast } from "react-toastify";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  InputAdornment,
+  DialogContentText,
+  TextField,
+} from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Edit,
   StyledEditProvider,
@@ -19,9 +24,6 @@ import {
   PrimaryButton,
   ImagePreview,
 } from "../CommonStyled";
-import { DialogContentText, TextField } from "@mui/material";
-import { toast } from "react-toastify";
-import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditBox({ boxId }) {
   const dispatch = useDispatch();
@@ -52,7 +54,6 @@ export default function EditBox({ boxId }) {
 
     let selectBox = itemsBox.boxes.filter((el) => el.id === boxId);
     selectBox = selectBox[0];
-
     setCurrentBox(selectBox);
     setPreview(selectBox.image);
     setInput({
@@ -247,14 +248,21 @@ export default function EditBox({ boxId }) {
                   {errors.expiration}
                 </DialogContentText>
               )}
-              <TextareaAutosize
-                type="text-area"
-                maxRows={4}
+              <TextField
+                id="outlined-textarea"
+                multiline
+                rows={4}
                 onChange={(e) => handleChange(e)}
                 defaultValue={input.detail}
                 label="Detail"
                 name="detail"
-                style={{ width: 200, height: 90 }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "lightGrey !Important",
+                    },
+                  },
+                }}
               />
               {errors.detail && (
                 <DialogContentText
