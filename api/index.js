@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const { sequelize } = require("./src/database/index");
 const routes = require("./src/routes/index");
 const errorHandler = require("./src/middlewares/errorHandler");
-// const setHeaders = require('./src/middlewares/setHeaders');
+const setHeaders = require("./src/middlewares/setHeaders");
 const { loadMockCategories } = require("./src/utils/categoriesMock");
 const { loadMockProviders } = require("./src/utils/providersMock");
 const { loadMockBoxes } = require("./src/utils/boxesMock");
@@ -19,11 +19,11 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));
 app.use(morgan("dev"));
 
-var corsOptions = {
-  origin: "https://henry-gift.vercel.app",
-};
-//set headers
-app.use(cors(corsOptions));
+app.use(setHeaders);
+// var corsOptions = {
+//   origin: "https://henry-gift.vercel.app",
+// };
+// app.use(cors(corsOptions));
 
 //centralize routes (bring routes from my index in src/routes)
 app.use("/", routes);
