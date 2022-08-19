@@ -1,8 +1,8 @@
 const giftServices = require("../services/giftServices");
 const boxServices = require("../services/boxServices");
 const { GiftList,Gift } = require("../database/index");
-
-
+const QrCode = require("qrcode")
+const { sendQr } = require("../utils/sendEmail");
 const redeemGift = async (req, res, next) => {
   const { code} = req.body;
   try {
@@ -22,10 +22,18 @@ const redeemGift = async (req, res, next) => {
 };
 
   const productPicked = async(req,res,next) => {
-    const {productId} = req.body
+    const {productId,userId} = req.body
+
+
     try{
 
-      await giftServices.productPicked(productId)
+
+      await giftServices.createNewPick(userId,productId)
+
+      await giftServices.updateProductStock(productId)
+
+      let img = await QrCode.toDataURL(`http://127.0.0.1:5173/onlyproviders?user=${userId}&product=${productId}`);
+      await sendQr(userId,img)
 
       res.send("Product redeem")
 
@@ -49,8 +57,22 @@ const redeemGift = async (req, res, next) => {
     }
   }
   
+  const getQrInformation = async(req,res,next)=>{
+    let {userId,productId} = req.query
+
+    try{
+
+      let qrInformation = await giftServices.getQrInformation(userId,productId)
+      res.send(qrInformation)
+      
+    }catch(error){
+      next(error)
+    }
+  }
+
 module.exports = {
  redeemGift,
  productPicked,
- getUserGifts
+ getUserGifts,
+ getQrInformation
 };

@@ -8,7 +8,7 @@ import cartReducer from "../reducer/cartSlice";
 import query from "../reducer/querySlice";
 import users from "../reducer/userSlice";
 import auth from "../reducer/authSlice"
-
+import qr from "../reducer/qrSlice"
 export default configureStore({
   reducer: {
     boxes,
@@ -19,6 +19,7 @@ export default configureStore({
     cart: cartReducer,
     query,
     users,
-    auth
+    auth,
+    qr
   },
 });

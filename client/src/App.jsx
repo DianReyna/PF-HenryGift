@@ -33,6 +33,7 @@ import Category from "./components/Admin/Category/Category";
 import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
+import QRCode from "./components/QRCode/QRCode";
 
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
@@ -70,6 +71,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />
+          <Route path="/onlyproviders" element={<QRCode />} />
           //Dashboard
           <Route element={<PrivateRoute />}>
             <Route path="/admin" element={<Dashboard />}>

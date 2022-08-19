@@ -11,6 +11,8 @@ const AuthenticationFactory = require("../models/Authentication");
 const StockFactory = require("../models/Stock");
 const OrderFactory = require("../models/Order");
 const GiftListFactory = require("../models/GiftList");
+const PicksFactory = require("../models/Picks");
+
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
@@ -31,6 +33,7 @@ const Authentication = AuthenticationFactory(sequelize)
 const Stock = StockFactory(sequelize)
 const Order = OrderFactory(sequelize)
 const GiftList = GiftListFactory(sequelize);
+const Picks = PicksFactory(sequelize)
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
 
@@ -65,6 +68,8 @@ User.hasMany(Order)
 Box.hasMany(GiftList, { foreignKey: "box_id" });
 GiftList.belongsTo(Box, { foreignKey: "box_id" });
 
+
+
 module.exports = {
   sequelize,
   Box,
@@ -77,5 +82,6 @@ module.exports = {
   Stock,
   Authentication,
   Order,
-  GiftList
+  GiftList,
+  Picks
 };
