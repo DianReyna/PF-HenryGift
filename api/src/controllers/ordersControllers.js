@@ -1,13 +1,13 @@
 const { Box,User,Order,OrderDetail,GiftList } = require("../database/index");
 const { Op, UUID } = require("sequelize");
 const ordersServices = require("../services/ordersServices");
-const { sendCode,confirmPay } = require("../utils/sendEmail");
+const { sendCode,confirmPay,sendQr } = require("../utils/sendEmail");
 
 const createNewOrder = async (req, res, next) => {
   
   try {
    
-
+   
     const boxes = req.body.boxes;
     const  userId = req.body.userId
     
@@ -83,8 +83,7 @@ const getAllOrders = async (req, res, next) => {
 const sendEmailCode = async (req, res, next) => {
   
   const {userId} = req.body
-  
-
+ 
   try {
   
     const recipientsList = await OrderDetail.findAll({
@@ -104,7 +103,7 @@ const sendEmailCode = async (req, res, next) => {
           box_id:r.dataValues.box_id
         }
       })
-      console.log(findGift)
+      //console.log(findGift)
      
       await sendCode(findGift.dataValues.recipient,findGift.dataValues.code)
     })

@@ -11,7 +11,9 @@ const AuthenticationFactory = require("../models/Authentication");
 const StockFactory = require("../models/Stock");
 const OrderFactory = require("../models/Order");
 const GiftListFactory = require("../models/GiftList");
+const PicksFactory = require("../models/Picks");
 const FavouriteFactory = require("../models/Favourite");
+
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 // initialize sequelize with the right credentials
@@ -34,6 +36,7 @@ const Authentication = AuthenticationFactory(sequelize);
 const Stock = StockFactory(sequelize);
 const Order = OrderFactory(sequelize);
 const GiftList = GiftListFactory(sequelize);
+const Picks = PicksFactory(sequelize)
 const Favourite = FavouriteFactory(sequelize);
 
 // create the associations
@@ -84,5 +87,6 @@ module.exports = {
   Authentication,
   Order,
   GiftList,
+  Picks,
   Favourite,
 };
