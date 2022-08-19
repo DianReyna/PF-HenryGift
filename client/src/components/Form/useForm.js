@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  createProvider,
-  createProduct,
-  createBox,
-} from "../../redux/actions/boxesActions";
+import { createProvider, createBox } from "../../redux/actions/boxesActions";
+import { createProduct } from "../../redux/actions/productsActions";
 import { toast } from "react-toastify";
 
 export default function useForm(validate) {
@@ -78,7 +75,6 @@ export default function useForm(validate) {
         boxCategories: [],
       });
     } else {
-      setStatus(false);
       toast.error("Incorrect data, check againt", {
         position: "top-right",
       });
@@ -92,21 +88,21 @@ export default function useForm(validate) {
     productPrice: "",
     productLocation: "",
     productImage: "",
-    productProvider: [],
+    productProvider: "",
   });
   const handleProductChange = (e) => {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
-      productProvider: [...product.productProvider, e.target.value],
     });
     setErrors(
       validate({
         ...product,
-        productProvider: [...product.productProvider, e.target.value],
+        [e.target.name]: e.target.value,
       })
     );
   };
+
   const dataProduct = {
     name: product.productName,
     description: product.productDescription,
@@ -115,20 +111,27 @@ export default function useForm(validate) {
     image: product.productImage,
     provider: product.productProvider,
   };
+
   const handleProductSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct(dataProduct));
-    setProduct({
-      productName: "",
-      productDescription: "",
-      productPrice: "",
-      productLocation: "",
-      productImage: "",
-      productProvider: [],
-    });
-    toast.success("Save data", {
-      position: "top-right",
-    });
+    if (Object.keys(errors).length === 0) {
+      dispatch(createProduct(dataProduct));
+      setProduct({
+        productName: "",
+        productDescription: "",
+        productPrice: "",
+        productLocation: "",
+        productImage: "",
+        productProvider: "",
+      });
+      toast.success("Save data", {
+        position: "top-right",
+      });
+    } else {
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    }
   };
 
   //PROVIDER
@@ -159,16 +162,22 @@ export default function useForm(validate) {
   const handleProviderSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createProvider(dataProvider));
-    setProvider({
-      providerName: "",
-      providerPhone: "",
-      providerAddress: "",
-      providerEmail: "",
-    });
-    toast.success("Save data", {
-      position: "top-right",
-    });
+    if (Object.keys(errors).length === 0) {
+      dispatch(createProvider(dataProvider));
+      setProvider({
+        providerName: "",
+        providerPhone: "",
+        providerAddress: "",
+        providerEmail: "",
+      });
+      toast.success("Save data", {
+        position: "top-right",
+      });
+    } else {
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    }
   };
 
   return {
@@ -178,7 +187,6 @@ export default function useForm(validate) {
     provider,
     dataBox,
     dataProduct,
-    dataProvider,
     handleChangeBox,
     handleChangeProd,
     handleChangeCat,
@@ -186,5 +194,6 @@ export default function useForm(validate) {
     handleProviderChange,
     handleBoxSubmit,
     handleProductSubmit,
+    handleProviderSubmit,
   };
 }
