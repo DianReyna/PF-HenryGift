@@ -29,7 +29,8 @@ const createNewProduct = async (req, res, next) => {
       provider
     );
     if (createdProduct) {
-      res.status(201).send("Product created!");
+      const newListProd = await productServices.getAllProducts();
+      res.status(201).send(newListProd);
     } else {
       res.status(404).send("Error creating product!");
     }
