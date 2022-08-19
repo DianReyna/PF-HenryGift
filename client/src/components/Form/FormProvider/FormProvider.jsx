@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Box, TextField, Button, DialogContentText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Form.module.css";
-import useForm from "./useForm";
-import validate from "./validate";
+import styles from "../Form.module.css";
+import useForm from "../useForm";
+import validate from "./validateProvider";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

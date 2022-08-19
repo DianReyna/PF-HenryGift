@@ -15,7 +15,7 @@ import { getProducts } from "../../../redux/actions/productsActions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../Form.module.css";
 import useForm from "../useForm";
-import validate from "../validate";
+import validate from "./validateBox.js";
 import DialogFormBox from "./DialogFormBox";
 import BoxCard from "../../BoxCard/BoxCard";
 import { ContainerForm } from "../../Admin/CommonStyled";
