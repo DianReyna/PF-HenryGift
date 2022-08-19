@@ -6,6 +6,7 @@ import {
   deleteBox,
   getAllBoxesAdmin,
   editBoxes,
+  postBox,
 } from "../reducer/boxesSlice";
 
 export const getBoxes = () => (dispatch) => {
@@ -29,25 +30,20 @@ export const searchBox = (name) => (dispatch) => {
 };
 
 export const createProvider = (payload) => () => {
-  console.log("action payload", payload);
   axios.post("http://localhost:3001/providers", payload);
 };
 
-export const createBox = (payload) => () => {
-  console.log(payload);
-  var json = axios.post("http://localhost:3001/boxes", payload);
-  return json;
+export const createBox = (payload) => (dispatch) => {
+  axios
+    .post("http://localhost:3001/boxes", payload)
+    .then((res) => dispatch(postBox(res.data)))
+    .catch((err) => console.log(err));
 };
 
 export const detailBox = (id) => (dispatch) => {
   axios(`http://localhost:3001/boxes/${id}`)
     .then((res) => dispatch(getDetailBox(res.data)))
     .catch((err) => console.log(err));
-};
-
-export const createProduct = (payload) => () => {
-  console.log("action payload", payload);
-  axios.post("http://localhost:3001/products", payload);
 };
 
 export const detailProduct = (id) => (dispatch) => {
@@ -81,7 +77,6 @@ export const updateBoxes = (data) => (dispatch) => {
     .catch((err) => {
       console.log(err);
     });
-  console.log(data);
 };
 export const getBox = (id) => (dispatch) => {
   axios(`http://localhost:3001/boxes/${id}` + id)

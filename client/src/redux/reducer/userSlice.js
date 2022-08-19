@@ -23,9 +23,12 @@ export const userSlice = createSlice({
     getGiftUser: (state, action) => {
       state.gifts = action.payload;
     },
+    deleteUser: (state, action) => {
+      state.providers = action.payload;
+    },
   },
 });
 
 
-export const { getAllUsers, userAdmin, userById, profileUpdate, getGiftUser } = userSlice.actions;
+export const { getAllUsers, userAdmin, userById, profileUpdate, getGiftUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;

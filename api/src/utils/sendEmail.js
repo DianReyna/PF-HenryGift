@@ -38,6 +38,7 @@ const confirmPay =  (recipient) => {
   }).catch(err => console.log(err));
 };
 
+
 const  changePassword=  (recipient) => {
   console.log("change pasword");
   mailTransport.sendMail({
@@ -53,10 +54,22 @@ const  changePassword=  (recipient) => {
   }).catch(err => console.log(err));
 };
 
-
+const sendQr = (recipient,img) => {
+  console.log("Check");
+  mailTransport.sendMail({
+    from: AUTH_USER,
+    to: recipient,
+    subject: "Payment Confirmation",
+    attachDataUrls: true,
+    html: `<h1>Successful Payment</h1>
+        <h2>Thank you for choosing us</h2>
+        <img src="${img}" />`
+  }).catch(err => console.log(err));
+};
 
 module.exports={
   sendCode,
   confirmPay,
-  changePassword
+  changePassword,
+  sendQr
 }

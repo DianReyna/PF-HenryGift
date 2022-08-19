@@ -20,9 +20,9 @@ import Providers from "./components/Admin/Providers/Providers";
 import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
-import FormProvider from "./components/Form/FormProvider";
-import FormBox from "./components/Form/FormBox";
-import FormProduct from "./components/Form/FormProduct";
+import FormProvider from "./components/Form/FormProvider/FormProvider";
+import FormBox from "./components/Form/FormBox/FormBox";
+import FormProduct from "./components/Form/FormProduct/FormProduct";
 import ProfilePanel from "./components/User/ProfilePanel";
 import { Cart, SendBox, Checkout } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
@@ -35,6 +35,7 @@ import Category from "./components/Admin/Category/Category";
 import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
+import QRCode from "./components/QRCode/QRCode";
 
 // const ContainerApp = styled.div`
 //   /* width: 90rem; */
@@ -74,6 +75,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />
+          <Route path="/onlyproviders" element={<QRCode />} />
           //Dashboard
           <Route element={<PrivateRoute />}>
             <Route path="/admin" element={<Dashboard />}>

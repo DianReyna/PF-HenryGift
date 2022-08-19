@@ -6,9 +6,9 @@ import {
   destroyCategory,
 } from "../../../redux/actions/categoryActions";
 import { DataGrid } from "@mui/x-data-grid";
-import { Action, Delete } from "../CommonStyled";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Action } from "../CommonStyled";
 import EditCategory from "./EditCategory";
+import DeleteCategory from "./DeleteCategory";
 
 export default function CategoryList() {
   const dispatch = useDispatch();
@@ -17,9 +17,6 @@ export default function CategoryList() {
     dispatch(getCategory());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(destroyCategory(id));
-  };
   const rows =
     itemsCategory &&
     itemsCategory.categories?.map((item, index) => {
@@ -42,9 +39,7 @@ export default function CategoryList() {
         return (
           <Action>
             <EditCategory catId={params.row.id_category} />
-            <Delete onClick={() => handleDelete(params.row.id_category)}>
-              <DeleteIcon />
-            </Delete>
+            <DeleteCategory idCat={params.row.id_category} />
           </Action>
         );
       },
