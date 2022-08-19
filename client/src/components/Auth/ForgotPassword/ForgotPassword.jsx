@@ -2,6 +2,7 @@ import React ,{useState} from 'react';
 import axios from "axios";
 import { toast } from "react-toastify";
 import {Email} from '@mui/icons-material';
+import { useNavigate } from "react-router-dom";
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,Box, Typography} from '@mui/material';
 import styled from "styled-components";
 const Form = styled.form`
@@ -17,6 +18,7 @@ const Form = styled.form`
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
+  const navigate=useNavigate();
   const handleChange = (e) =>{
     setEmail(e.target.value)
   }
@@ -32,6 +34,7 @@ export default function ForgotPassword() {
    }catch(error){
     console.log("error")
     toast.error(error.response.data.message)
+    navigate('/login')
    }
   }
   return (

@@ -39,9 +39,9 @@ const forgotPassword = async (req, res, next) => {
     if(!email ){
       return res.status(400).json({message:'Please write the email'})
     }
-    let auth = await Authentication.findOne({ where: {email: email} })
+    let auth = await Authentication.findOne({ where: {email} })
 
-    if (!auth) return res.status(400).json({message:'Unregistered user'})
+    if (!auth) return res.status(400).json({message:'The user is not registered'})
     
    await changePassword(auth.dataValues.email)
 
