@@ -17,15 +17,8 @@ const MenuProps = {
 };
 
 export default function FormProvider() {
-  const dispatch = useDispatch();
-
-  const {
-    provider,
-    errors,
-    dataProvider,
-    handleProviderChange,
-    handleProviderSubmit,
-  } = useForm(validate);
+  const { provider, errors, handleProviderChange, handleProviderSubmit } =
+    useForm(validate);
 
   return (
     <div>
@@ -54,7 +47,7 @@ export default function FormProvider() {
                 name="providerName"
                 value={provider.providerName || ""}
                 required
-                label="Nombre del proveedor"
+                label="Provider name"
                 size="small"
                 sx={{
                   input: {
@@ -75,7 +68,7 @@ export default function FormProvider() {
                 name="providerPhone"
                 value={provider.providerPhone || ""}
                 required
-                label="Numero de Telefono"
+                label="Phone"
                 size="small"
                 sx={{
                   input: {
@@ -95,7 +88,7 @@ export default function FormProvider() {
                 name="providerAddress"
                 value={provider.providerAddress || ""}
                 required
-                label="Direccion"
+                label="Addres"
                 size="small"
                 sx={{
                   input: {
@@ -133,7 +126,7 @@ export default function FormProvider() {
               )}
             </div>
             <Button variant="outlined" type="submit">
-              CREATE
+              Create
             </Button>
           </form>
         </div>

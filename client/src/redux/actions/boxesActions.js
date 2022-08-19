@@ -46,10 +46,6 @@ export const detailBox = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const createProduct = (payload) => () => {
-  axios.post("http://localhost:3001/products", payload);
-};
-
 export const detailProduct = (id) => (dispatch) => {
   axios
     .get(`http://localhost:3001/products/${id}`)
@@ -81,7 +77,6 @@ export const updateBoxes = (data) => (dispatch) => {
     .catch((err) => {
       console.log(err);
     });
-  console.log(data);
 };
 export const getBox = (id) => (dispatch) => {
   axios(`http://localhost:3001/boxes/${id}` + id)

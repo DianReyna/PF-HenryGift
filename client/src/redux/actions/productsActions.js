@@ -3,8 +3,15 @@ import {
   getAllProduct,
   deleteProduct,
   editProduct,
+  postProduct,
 } from "../reducer/productsSlice";
 
+export const createProduct = (payload) => (dispatch) => {
+  axios
+    .post("http://localhost:3001/products", payload)
+    .then((res) => dispatch(postProduct(res.data)))
+    .catch((err) => console.log(err));
+};
 export const getProducts = () => (dispatch) => {
   axios("http://localhost:3001/products")
     .then((res) => dispatch(getAllProduct(res.data)))

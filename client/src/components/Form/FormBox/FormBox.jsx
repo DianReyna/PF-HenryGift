@@ -265,7 +265,7 @@ export default function FormBox() {
                 nameBox={dataBox.name}
               />
             ) : (
-              <Button>Submit</Button>
+              <Button>Create</Button>
             )}
           </form>
         </div>
