@@ -60,9 +60,9 @@ function App() {
       <div>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/login/forgot-password" element={<ForgotPassword />} />
+          <Route path="/login/reset-password/:email" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
