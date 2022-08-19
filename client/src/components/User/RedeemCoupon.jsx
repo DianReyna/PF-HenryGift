@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Paper } from "@mui/material";
-import { Grid } from "@mui/material";
-import { TextField } from "@mui/material";
-import { Button, Link } from "@mui/material";
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Grid, Button, Link, TextField, Paper } from "@mui/material";
 import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
-import { useParams } from "react-router-dom";
 import { getBox } from "../../redux/actions/boxesActions";
-import { Paper } from "@mui/material";
-import { Grid } from "@mui/material";
-import { TextField } from "@mui/material";
-import { Button, Link } from "@mui/material";
-import axios from "axios";
 
 export default function RedeemCoupon() {
   const { user } = useParams();
