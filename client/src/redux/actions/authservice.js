@@ -1,11 +1,10 @@
 import axios from "axios";
+// const URL=" https://henrygift-api.herokuapp.com/register"
+const URL = "http://localhost:3001";
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(
-    "https://henrygift-api.herokuapp.com/register",
-    userData
-  );
+  const response = await axios.post(`${URL}/register`, userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -15,10 +14,7 @@ const register = async (userData) => {
 };
 
 const googleLogin = async (userData) => {
-  const response = await axios.post(
-    "https://henrygift-api.herokuapp.com/googleLogin",
-    userData
-  );
+  const response = await axios.post(`${URL}/googleLogin`, userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -29,10 +25,7 @@ const googleLogin = async (userData) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(
-    "https://henrygift-api.herokuapp.com/login",
-    userData
-  );
+  const response = await axios.post(`${URL}/login`, userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));

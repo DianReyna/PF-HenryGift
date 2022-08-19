@@ -19,8 +19,10 @@ export default function RedeemCoupon() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // const URL=" https://henrygift-api.herokuapp.com/register"
+    const URL = "http://localhost:3001";
     axios
-      .post("https://henrygift-api.herokuapp.com/redeem", { code: code })
+      .post("${URL}/redeem", { code: code })
       .then((res) => console.log(res))
       .then((res) => dispatch(getUserGift("alegrices@independent.co.uk")));
   }

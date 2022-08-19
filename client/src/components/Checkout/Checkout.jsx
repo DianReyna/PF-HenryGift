@@ -35,27 +35,22 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement),
     });
     setLoading(true);
-
+    // const URL=" https://henrygift-api.herokuapp.com/register"
+    const URL = "http://localhost:3001";
     if (!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post(
-          "https://henrygift-api.herokuapp.com/payment",
-          {
-            id,
-            amount: cart.cartTotalAmount, //cents
-          }
-        );
+        const { data } = await axios.post(`${URL}/payment`, {
+          id,
+          amount: cart.cartTotalAmount, //cents
+        });
 
         console.log(data);
 
         if (data.message === "Successful Payment") {
-          await axios.post(
-            "https://henrygift-api.herokuapp.com/orders/sendcode",
-            {
-              userId: "drowet0@4shared.com",
-            }
-          );
+          await axios.post(`${URL}/orders/sendcode`, {
+            userId: "drowet0@4shared.com",
+          });
           toast.success(`Importe abonado correctamente`, {
             position: "bottom-left",
           });

@@ -5,18 +5,18 @@ import {
   deleteCategory,
 } from "../reducer/categorySlice";
 
+// const URL=" https://henrygift-api.herokuapp.com/register"
+const URL = "http://localhost:3001";
+
 export const getCategory = () => (dispatch) => {
-  axios(` https://henrygift-api.herokuapp.com/categories`)
+  axios(` ${URL}/categories`)
     .then((res) => dispatch(getAllCategories(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const updateCategory = (data) => (dispatch) => {
   axios
-    .put(
-      `https://henrygift-api.herokuapp.com/categories/${data.id}`,
-      data.category
-    )
+    .put(`${URL}/categories/${data.id}`, data.category)
     .then((res) => dispatch(editCategory(res.data)))
     .catch((err) => {
       console.log(err);
@@ -25,7 +25,7 @@ export const updateCategory = (data) => (dispatch) => {
 
 export const destroyCategory = (id) => (dispatch) => {
   axios
-    .delete(`https://henrygift-api.herokuapp.com/categories/${id}`)
+    .delete(`${URL}/categories/${id}`)
     .then((res) => dispatch(deleteCategory(res.data)))
     .catch((err) => {
       console.log(err);
@@ -34,7 +34,7 @@ export const destroyCategory = (id) => (dispatch) => {
 
 export const postCategory = (data) => () => {
   axios
-    .post(`https://henrygift-api.herokuapp.com/categories/`, data)
+    .post(`${URL}/categories/`, data)
     .then((res) => console.log(res))
     .catch((err) => {
       console.log(err);
