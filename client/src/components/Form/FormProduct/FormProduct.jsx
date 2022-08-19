@@ -13,7 +13,7 @@ import { getProvider } from "../../../redux/actions/providerActions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../Form.module.css";
 import useForm from "../useForm";
-import validate from "../validate";
+import validate from "./validateProduct.js";
 import DialogFormProduct from "./DialogFormProduct";
 import ProductCard from "../../Products/ProductCard";
 import { ContainerForm } from "../../Admin/CommonStyled";
