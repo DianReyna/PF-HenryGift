@@ -44,7 +44,7 @@ const SendBox = () => {
         return { id, quantity, name, recipient };
       });
 
-      axios.post("http://localhost:3001/orders", {
+      axios.post(` https://henrygift-api.herokuapp.com/orders`, {
         amount: cart.cartTotalAmount,
         userId: "drowet0@4shared.com",
         boxes: total,
@@ -124,11 +124,12 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             <Link to="/payment">
-              <Button 
-              className="go-payment-btn"
-              sx={{ color: "white", border: "1px solid white" }}
-              variant="outlined" 
-              onClick={handleSubmit} >
+              <Button
+                className="go-payment-btn"
+                sx={{ color: "white", border: "1px solid white" }}
+                variant="outlined"
+                onClick={handleSubmit}
+              >
                 Ir al pago
               </Button>
             </Link>

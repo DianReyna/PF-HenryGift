@@ -4,7 +4,9 @@ import {
 } from "../reducer/qrSlice";
 
 export const qrInformation = (userId,productId) => (dispatch) => {
-  axios(`http://localhost:3001/redeem/qr?userId=${userId}&productId=${productId}`)
+  axios(
+    `https://henrygift-api.herokuapp.com/redeem/qr?userId=${userId}&productId=${productId}`
+  )
     .then((res) => dispatch(getInformation(res.data)))
     .catch((err) => console.log(err));
 };

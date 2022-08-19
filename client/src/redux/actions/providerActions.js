@@ -6,14 +6,14 @@ import {
 } from "../reducer/providerSlice";
 
 export const getProvider = () => (dispatch) => {
-  axios("http://localhost:3001/providers")
+  axios(` https://henrygift-api.herokuapp.com/providers`)
     .then((res) => dispatch(getAllProviders(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const destroyProvider = (id) => (dispatch) => {
   axios
-    .delete(`http://localhost:3001/providers/${id}`)
+    .delete(` https://henrygift-api.herokuapp.com/providers/${id}`)
     .then((res) => dispatch(deleteProvider(res.data)))
     .catch((err) => {
       console.log(err);
@@ -22,7 +22,10 @@ export const destroyProvider = (id) => (dispatch) => {
 
 export const updateProvider = (data) => (dispatch) => {
   axios
-    .put(`http://localhost:3001/providers/${data.id}`, data.provider)
+    .put(
+      ` https://henrygift-api.herokuapp.com/providers/${data.id}`,
+      data.provider
+    )
     .then((res) => dispatch(editProvider(res.data)))
     .catch((err) => {
       console.log(err);
@@ -32,7 +35,7 @@ export const updateProvider = (data) => (dispatch) => {
 
 export const putActiveProvider = (data) => (dispatch) => {
   axios
-    .put(`http://localhost:3001/providers/${data.id}`, data)
+    .put(`https://henrygift-api.herokuapp.com/providers/${data.id}`, data)
     .then((res) => dispatch(editProvider(res.data)))
     .catch((err) => console.log(err));
 };
