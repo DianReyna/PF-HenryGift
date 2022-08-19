@@ -1,12 +1,14 @@
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
+import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
 import Home from "./components/Home/Home";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Footer } from "./components/Form/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import Form from "./components/Form/Form";
 import styled from "styled-components";
@@ -19,7 +21,7 @@ import ProvidersList from "./components/Admin/Providers/ProvidersList";
 import ProductsList from "./components/Admin/Products/ProductsList";
 import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import FormProvider from "./components/Form/FormProvider";
-import FormBox from "./components/Form/FormBox";
+import FormBox from "./components/Form/FormBox/FormBox";
 import FormProduct from "./components/Form/FormProduct";
 import ProfilePanel from "./components/User/ProfilePanel";
 import { Cart, SendBox, Checkout } from "./components";
@@ -60,6 +62,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />

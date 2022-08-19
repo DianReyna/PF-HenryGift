@@ -6,19 +6,17 @@ import {
   updateProduct,
 } from "../../../redux/actions/productsActions";
 import { getProvider } from "../../../redux/actions/providerActions";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import {
-  DialogContentText,
-  FormLabel,
-  TextareaAutosize,
-  TextField,
-} from "@mui/material";
-import DialogTitle from "@mui/material/DialogTitle";
-import EditIcon from "@mui/icons-material/Edit";
 import { toast } from "react-toastify";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogTitle,
+} from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Edit,
   StyledEditProvider,
@@ -251,16 +249,24 @@ export default function EditProduct({ prodId }) {
                 </DialogContentText>
               )}
 
-              <TextareaAutosize
-                maxRows={5}
-                type="text-area"
+              <TextField
+                id="outlined-textarea"
+                multiline
+                rows={4}
                 name="description"
                 label="Description"
                 placeholder="Description"
                 defaultValue={input.description}
                 onChange={(e) => handleOnChange(e)}
                 required
-                style={{ width: 200, height: 90 }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "lightGrey !Important",
+                    },
+                  },
+                  fontSize: 14,
+                }}
               />
               {errors.description && (
                 <DialogContentText

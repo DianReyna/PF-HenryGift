@@ -6,14 +6,13 @@ import {TextField} from '@mui/material';
 import {Button, Link} from '@mui/material';
 import axios from "axios";
 import {getUserGift} from '../../redux/actions/userActions';
-
-
 import GiftCards from "./Gift/GiftCards";
+import { useParams } from "react-router-dom";
 
 export default function RedeemCoupon() { 
     const dispatch = useDispatch()
     const [code, setCode] = useState("") 
-   
+    const {user} = useParams();
 
     function handleInputChange(e){ 
         e.preventDefault()
@@ -24,9 +23,10 @@ export default function RedeemCoupon() {
         e.preventDefault()
         axios.post("http://localhost:3001/redeem",{code:code})
         .then(res=>console.log(res))
+        .then(res=>dispatch(getUserGift('alegrices@independent.co.uk')) )
     } 
     useEffect(() => {
-        dispatch(getUserGift('tamaraber9@gmail.com'))
+        dispatch(getUserGift('alegrices@independent.co.uk'))
       }, [dispatch]);
     
 

@@ -44,6 +44,15 @@ const updateUser = async (id, body) => {
   return update;
 };
 
+const deleteUser = async (id) => {
+  const remove = await User.destroy({
+    where: {
+      email: id,
+    },
+  });
+  return remove;
+};
+
 module.exports = {
   getAllUsers,
   createNewUser,
@@ -51,4 +60,5 @@ module.exports = {
   updateUser,
   getUserById,
   getUserAdmin,
+  deleteUser,
 };

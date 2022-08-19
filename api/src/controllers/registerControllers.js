@@ -1,23 +1,11 @@
-const bcrypt = require('bcrypt')
-const { User, Authentication } = require("../database/index");
 const genAuthToken = require('../utils/genAuthToken')
-// const registerServices = require("../services/registerervices");
+const registerServices = require("../services/registerServices");
 
 const registerUser = async (req, res, next) => {
-  const {email, password, dateBirth, first_name, last_name, phone, banned, access_level} = req.body;
+  const body = req.body;
   try {
-    if(!email || !password || !dateBirth || !first_name || !last_name || !phone) {
-      return res.status(400).json({message:"Please add all fields"})
-    }
-    let user = await User.findOne({ where: {email: email} })
-    if (user) return res.status(400).json({message:'User already exists'})
-    
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
+    let registerUser = registerServices.createNewUser(body)
 
-    await Authentication.create({email: email, password: hashedPassword})
-    const registerUser = await User.create({ email: email, dateBirth, first_name, last_name, phone, banned, access_level})
-  
     if(registerUser) {
      return res.status(201).json({
         _id: registerUser.email,
