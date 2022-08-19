@@ -6,6 +6,7 @@ import {
   deleteBox,
   getAllBoxesAdmin,
   editBoxes,
+  postBox,
 } from "../reducer/boxesSlice";
 
 export const getBoxes = () => (dispatch) => {
@@ -29,14 +30,14 @@ export const searchBox = (name) => (dispatch) => {
 };
 
 export const createProvider = (payload) => () => {
-  console.log("action payload", payload);
-  axios.post(` https://henrygift-api.herokuapp.com/providers`, payload);
+  axios.post("https://henrygift-api.herokuapp.com/providers", payload);
 };
 
-export const createBox = (payload) => () => {
-  console.log(payload);
-  var json = axios.post(` https://henrygift-api.herokuapp.com/boxes`, payload);
-  return json;
+export const createBox = (payload) => (dispatch) => {
+  axios
+    .post("https://henrygift-api.herokuapp.com/boxes", payload)
+    .then((res) => dispatch(postBox(res.data)))
+    .catch((err) => console.log(err));
 };
 
 export const detailBox = (id) => (dispatch) => {
@@ -81,7 +82,6 @@ export const updateBoxes = (data) => (dispatch) => {
     .catch((err) => {
       console.log(err);
     });
-  console.log(data);
 };
 export const getBox = (id) => (dispatch) => {
   axios(` https://henrygift-api.herokuapp.com/boxes/${id}` + id)

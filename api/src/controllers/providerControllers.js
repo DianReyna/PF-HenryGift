@@ -53,14 +53,10 @@ const updateProvider = async (req, res, next) => {
   const { id } = req.params;
   const { body } = req;
   try {
-    const provider = await providerServices.getProviderById(id);
-    if (!provider) {
-      return res.status(404).send("Provider not found...");
-    }
-    const update = await providerServices.updateProvider(id, body);
+    const update = await providerServices.updateProvider(body, id);
     if (update) {
-      const newList = await providerServices.getAllProviders();
-      res.status(200).send(newList);
+      const newListProvi = await providerServices.getAllProviders();
+      res.status(200).send(newListProvi);
     } else {
       res.status(404).send("Error");
     }

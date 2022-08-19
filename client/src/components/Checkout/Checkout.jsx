@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -11,7 +11,7 @@ import axios from "axios";
 import { clearCart } from "../../redux/reducer/cartSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import "./Checkout.css";
 
 const stripePromise = loadStripe(
   "pk_test_51LVI0BEPq0jIoDO7fqMHkFIjYIZQJsboSluhKkWa0CCsU6GeCUsWOBFXCbSh294vG6sgbRKaVTmUIJs0T6kHmPm600kFKSmBLS"
@@ -21,7 +21,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    // setLoading(true);
+    setLoading(true);
 
     if (!error) {
       const { id } = paymentMethod;
@@ -48,23 +48,29 @@ const CheckoutForm = () => {
         );
 
         console.log(data);
+
         if (data.message === "Successful Payment") {
-          await axios.post(`${REACT_APP_URL}orders/sendcode`, {
-            userId: "drowet0@4shared.com",
+          await axios.post(
+            "https://henrygift-api.herokuapp.com/orders/sendcode",
+            {
+              userId: "drowet0@4shared.com",
+            }
+          );
+          toast.success(`Importe abonado correctamente`, {
+            position: "bottom-left",
+          });
+          dispatch(clearCart());
+          navigate("/");
+        } else {
+          toast.error(`Error al abonar importe`, {
+            position: "bottom-left",
           });
         }
-
         elements.getElement(CardElement).clear();
       } catch (error) {
         console.log(error);
       }
-      // setLoading(false);
-
-      toast.success(`Importe abonado correctamente`, {
-        position: "bottom-left",
-      });
-      dispatch(clearCart());
-      navigate("/");
+      setLoading(false);
     }
   };
 
@@ -76,16 +82,14 @@ const CheckoutForm = () => {
       <div>
         <CardElement />
       </div>
-
-      <button variant="outlined" disabled={!stripe}>
-        {/* {loading ? (
-
-          <div role="status">
-            <span>Loading...</span>
+      <button disabled={!stripe}>
+        {loading ? (
+          <div className="spinner-border text-light" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
-        ) : ( */}
-        Buy
-        {/* )} */}
+        ) : (
+          "Buy"
+        )}
       </button>
     </form>
   );
@@ -94,11 +98,9 @@ const CheckoutForm = () => {
 function Checkout() {
   return (
     <Elements stripe={stripePromise}>
-      <div>
-        <div>
-          <div>
-            <CheckoutForm />
-          </div>
+      <div className="center">
+        <div className="diome">
+          <CheckoutForm />
         </div>
       </div>
     </Elements>

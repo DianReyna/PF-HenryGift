@@ -19,6 +19,7 @@
     "@stripe/react-stripe-js": "^1.10.0",
     "@stripe/stripe-js": "^1.35.0",
     "axios": "^0.27.2",
+    "jwt-decode": "^3.1.2",
     "dotenv": "^16.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,17 +1,22 @@
 const boxServices = require("../services/boxServices");
 
 const createNewBox = async (req, res, next) => {
-  const { products, category } = req.body;
+  const { body } = req;
   try {
-    const newBox = await boxServices.createNewBox(req.body);
+    const newBox = await boxServices.createNewBox(body);
 
-    const findedProducts = await boxServices.findProducts(products);
+    const findedProducts = await boxServices.findProducts(body.products);
     newBox.addProducts(findedProducts);
 
-    const findedCategory = await boxServices.findCategory(category);
+    const findedCategory = await boxServices.findCategory(body.category);
     newBox.addCategory(findedCategory);
-
-    res.send(newBox);
+    console.log(findedCategory);
+    if (newBox) {
+      const newboxList = await boxServices.getAllBoxes();
+      res.status(200).send(newboxList);
+    } else {
+      res.status(404).send("Error at server");
+    }
   } catch (error) {
     next(error);
   }

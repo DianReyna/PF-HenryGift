@@ -41,33 +41,45 @@ const updateAdmin = async (req, res, next) => {
   }
 };
 
-
 const getUserById = async (req, res, next) => {
-  const {id, email} = req.params;  
+  const { id, email } = req.params;
   try {
-    const userId = await userServices.getUserById(id, email)
-    if(!userId){
+    const userId = await userServices.getUserById(id, email);
+    if (!userId) {
       res.status(400).send({
-        status:'error', 
-        message: 'User not found'
-      })
+        status: "error",
+        message: "User not found",
+      });
     }
-    res.status(201).send(userId)
-} catch (error) {
-  next(error)
+    res.status(201).send(userId);
+  } catch (error) {
+    next(error);
   }
-}
+};
 
-const updateUser =  async (req, res, next) => {
-  const {id} = req.params;
-  const {body} = req
+const updateUser = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
   try {
-    const update = await userServices.updateUser(id, body)
+    const update = await userServices.updateUser(id, body);
     if (update) {
       const newInfo = await userServices.getAllUsers();
-      res.status(200).send(newInfo);
+      res.status(200).send("Successful update");
     } else {
       res.status(404).send("Error");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const remove = await userServices.deleteUser(id);
+    if (remove) {
+        res.status(200).send("successfully deleted user");
+    } else {
+      res.status(404).send("sdelete user error!");
     }
   } catch (error) {
     next(error);
@@ -80,4 +92,5 @@ module.exports = {
   updateAdmin,
   getUserById,
   updateUser,
+  deleteUser,
 };

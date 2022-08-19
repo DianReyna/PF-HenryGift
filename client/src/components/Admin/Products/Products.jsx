@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AdminHeaders, PrimaryButton } from "../CommonStyled.js";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
 export default function Products() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function Products() {
         <PrimaryButton
           onClick={() => navigate("/admin/products/create-product")}
         >
-          Create
+          <LibraryAddIcon />
         </PrimaryButton>
       </AdminHeaders>
       <Outlet />

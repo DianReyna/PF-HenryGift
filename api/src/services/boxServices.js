@@ -8,7 +8,16 @@ const createNewBox = async (box) => {
 
 const getBox = async (id) => {
   const findBox = await Box.findByPk(id, {
-    include: [{ model: Products }],
+    include: [
+      {
+        model: Products,
+        where: {
+          quantity: {
+            [Op.gt]: 4,
+          },
+        },
+      },
+    ],
   });
   return findBox;
 };
@@ -23,12 +32,12 @@ const findProducts = async (products) => {
 };
 
 const findCategory = async (category) => {
-  const findAllCategory = await Category.findAll({
+  const findAllCategories = await Category.findAll({
     where: {
-      name: { [Op.iLike]: `%${category}` },
+      name: category,
     },
   });
-  return findAllCategory;
+  return findAllCategories;
 };
 
 const getAllBoxes = async () => {

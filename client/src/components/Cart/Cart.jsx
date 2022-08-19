@@ -17,14 +17,29 @@ import "./Cart.css";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cart)
+  console.log(cart);
 
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
   const handleRemoveFromCart = (cartItem) => {
-    dispatch(removeFromCart(cartItem));
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podras revertir este cambio!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Si, borrarlo!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(removeFromCart(cartItem));
+        Swal.fire("Eliminado!", 
+        "Tu item ha sido removido.", 
+        "success");
+      }
+    });
   };
 
   const handleDecreaseCart = (cartItem) => {
@@ -36,7 +51,22 @@ const Cart = () => {
   };
 
   const handleClearCart = (e) => {
-    dispatch(clearCart());
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "No podras revertir este cambio!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Si, borrarlo!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(clearCart());
+        Swal.fire("Eliminado!", 
+        "Tu carrito se ha limpiado.", 
+        "success");
+      }
+    });
   };
 
   return (
@@ -108,7 +138,6 @@ const Cart = () => {
               <p>Impuestos incluidos</p>
               <Link to="/send">
                 <button>Siguiente</button>
-
               </Link>
               <div className="continue-shopping">
                 <Link to="/">

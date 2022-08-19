@@ -32,3 +32,10 @@ export const updateProvider = (data) => (dispatch) => {
     });
   console.log(data);
 };
+
+export const putActiveProvider = (data) => (dispatch) => {
+  axios
+    .put(`https://henrygift-api.herokuapp.com/providers/${data.id}`, data)
+    .then((res) => dispatch(editProvider(res.data)))
+    .catch((err) => console.log(err));
+};

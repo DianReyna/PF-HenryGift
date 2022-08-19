@@ -1,4 +1,11 @@
-const {User, OrderDetail, Authentication, Gift} = require("../database/index")
+const {
+  User,
+  OrderDetail,
+  Authentication,
+  Gift,
+} = require("../database/index");
+
+
 
 const users = [{
   "email": "drowet0@4shared.com",
@@ -352,27 +359,29 @@ const users = [{
   "phone": "7199559502"
 }]
 
-  async function loadMockUsers(){
 
-    try {
-  
-      await User.bulkCreate(users, {
-        include: [{
+async function loadMockUsers() {
+  try {
+    await User.bulkCreate(users, {
+      include: [
+        {
           model: OrderDetail,
-        },{
-          model:Authentication,
-        },{
-          model:Gift,
-        }],
-      })
-  
-     console.log("Users loaded to DB")
-  
-    } catch (error) {
-      console.log(error)
-    }
-  }
+        },
+        {
+          model: Authentication,
+        },
+        {
+          model: Gift,
+        },
+      ],
+    });
 
-module.exports={
-  loadMockUsers
+    console.log("Users loaded to DB");
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+module.exports = {
+  loadMockUsers,
+};

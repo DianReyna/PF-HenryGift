@@ -1,7 +1,12 @@
 import React from "react";
 import "./dashboard.css";
 import { NavLink, Outlet } from "react-router-dom";
-
+import HomeIcon from "@mui/icons-material/Home";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import CategoryIcon from "@mui/icons-material/Category";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 export default function Dashboard() {
   return (
     <div className="dashboardContainer">
@@ -11,12 +16,16 @@ export default function Dashboard() {
             <h3 className="sidebarTitle">Dashboard</h3>
             <ul className="sidebarList">
               <NavLink
+                id="NavLink"
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
                 to="/admin"
               >
-                <li className="sidebarListItem">Home</li>
+                <li className="sidebarListItem">
+                  <HomeIcon className="sidebarIcon" />
+                  Home
+                </li>
               </NavLink>
               <li className="sidebarListItem">Analytics</li>
             </ul>
@@ -25,36 +34,64 @@ export default function Dashboard() {
             <h3 className="sidebarTitle">Quick Menu</h3>
             <ul className="sidebarList">
               <NavLink
+                id="NavLink"
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
                 to="/admin/boxes"
               >
-                <li className="sidebarListItem">Boxes</li>
+                <li className="sidebarListItem">
+                  <CardGiftcardIcon className="sidebarIcon" />
+                  Boxes
+                </li>
               </NavLink>
               <NavLink
+                id="NavLink"
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
                 to="/admin/products"
               >
-                <li className="sidebarListItem">Products</li>
+                <li className="sidebarListItem">
+                  <InventoryIcon className="sidebarIcon" />
+                  Products
+                </li>
               </NavLink>
               <NavLink
+                id="NavLink"
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
                 to="/admin/providers"
               >
-                <li className="sidebarListItem">Providers</li>
+                <li className="sidebarListItem">
+                  <ContactMailIcon className="sidebarIcon" />
+                  Providers
+                </li>
               </NavLink>
               <NavLink
+                id="NavLink"
+                className={({ isActive }) =>
+                  isActive ? "link-active" : "link-inactive"
+                }
+                to="/admin/categories"
+              >
+                <li className="sidebarListItem">
+                  <CategoryIcon className="sidebarIcon" />
+                  Categories
+                </li>
+              </NavLink>
+              <NavLink
+                id="NavLink"
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
                 to="/admin/users"
               >
-                <li className="sidebarListItem">Users</li>
+                <li className="sidebarListItem">
+                  <PeopleAltIcon className="sidebarIcon" />
+                  Users
+                </li>
               </NavLink>
             </ul>
           </div>

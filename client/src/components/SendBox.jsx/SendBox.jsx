@@ -4,26 +4,25 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./SendBox.css";
 import { useEffect } from "react";
+import { TextField, Button } from "@mui/material";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
 
-  const [input, setInput] = useState(
-    Array(cart.cartItems.length).fill("holaparchero@gmail.com")
-  );
+  const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
   const [gifts, setGifts] = useState([]);
   let gatillo = false;
 
-  useEffect(() => {
-    if (gatillo == false) {
-      cart?.cartItems.forEach((element) => {
-        for (let i = 0; i < element.cartQuantity; i++) {
-          setGifts((oldGifts) => [...oldGifts, element]);
-        }
-      });
-      gatillo = true;
-    }
-  }, []);
+  // useEffect(()=>{
+  //   if(gatillo == false){
+  //     cart?.cartItems.forEach(element => {
+  //       for(let i = 0;i < element.cartQuantity;i++){
+  //         setGifts( (oldGifts) => [...oldGifts, element] )
+  //       }
+  //     });
+  //     gatillo = true;
+  //   }
+  // },[])
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -35,7 +34,7 @@ const SendBox = () => {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    console.log(input);
     try {
       let total = cart.cartItems.map((item, i) => {
         const id = item.id;
@@ -59,7 +58,7 @@ const SendBox = () => {
     <div className="main-send-cont">
       <div className="main-top-cont">
         <div className="left-send-side">
-          {gifts?.map((cartItem, index) => (
+          {cart?.cartItems.map((cartItem, index) => (
             <div className="all-card-sed" key={index}>
               <div className="container-all-send">
                 <div className="box-title-send">
@@ -82,14 +81,20 @@ const SendBox = () => {
               </div>
               <div className="card-bottom-send">
                 <div className="receiver-form-title">
-                  <h2>¿Es para regalar?</h2>
+                  <h3>Ingrese el email del destinatario</h3>
                 </div>
                 <div className="email-place">
                   <form onSubmit={handleSubmit}>
-                    <input
+                    <TextField
+                      sx={{
+                        input: {
+                          color: "white",
+                        },
+                      }}
                       onChange={(e) => handleEmailChange(e, index)}
                       value={input[index]}
                       type="text"
+                      fullWidth
                       placeholder="Ingrese el email del agasajado"
                       className="place-email"
                     />
@@ -119,14 +124,18 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             <Link to="/payment">
-              <button onClick={handleSubmit} className="go-payment-btn">
+              <Button
+                className="go-payment-btn"
+                sx={{ color: "white", border: "1px solid white" }}
+                variant="outlined"
+                onClick={handleSubmit}
+              >
                 Ir al pago
-              </button>
+              </Button>
             </Link>
           </div>
         </div>
       </div>
-      PROBANDO COSAS
     </div>
   );
 };

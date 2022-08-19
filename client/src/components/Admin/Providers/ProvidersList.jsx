@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProvider,
-  destroyProvider,
+  putActiveProvider,
 } from "../../../redux/actions/providerActions";
 import { DataGrid } from "@mui/x-data-grid";
 import { Action, Delete } from "../CommonStyled.js";
 import EditProvider from "./EditProvider";
+import { Button } from "@mui/material";
+import "./Providers.css";
+import { toast } from "react-toastify";
 
 export default function ProvidersList() {
   const dispatch = useDispatch();
@@ -16,12 +19,33 @@ export default function ProvidersList() {
     dispatch(getProvider());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(destroyProvider(id));
+  const handleActive = (id, acti) => {
+    if (acti) {
+      acti = false;
+      toast.success("Disabled provider", {
+        position: "top-right",
+      });
+    } else {
+      acti = true;
+      toast.success("Activated provider", {
+        position: "top-right",
+      });
+    }
+    const data = {
+      id,
+      active: acti,
+    };
+    dispatch(putActiveProvider(data));
   };
   const rows =
     itemsProvider &&
     itemsProvider.providers?.map((item, index) => {
+      let activeProv;
+      if (item.active) {
+        activeProv = "Active";
+      } else {
+        activeProv = "Disabled";
+      }
       return {
         id: index + 1,
         id_provider: item.id,
@@ -29,6 +53,8 @@ export default function ProvidersList() {
         phone: item.phone,
         address: item.address,
         email: item.email,
+        active: activeProv,
+        isActive: item.active,
       };
     });
 
@@ -39,17 +65,33 @@ export default function ProvidersList() {
     { field: "address", headerName: "Address", width: 160 },
     { field: "email", headerName: "Email", width: 160 },
     {
+      field: "active",
+      headerName: "Status",
+      width: 80,
+      renderCell: (params) => {
+        return (
+          <Action>
+            <Button
+              className={`${params.row.active}`}
+              onClick={() => {
+                handleActive(params.row.id_provider, params.row.isActive);
+              }}
+            >
+              {params.row.active}
+            </Button>
+          </Action>
+        );
+      },
+    },
+    {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 300,
+      width: 90,
       renderCell: (params) => {
         return (
           <Action>
             <EditProvider provId={params.row.id_provider} />
-            <Delete onClick={() => handleDelete(params.row.id_provider)}>
-              Delete
-            </Delete>
           </Action>
         );
       },
@@ -59,6 +101,7 @@ export default function ProvidersList() {
   return (
     <div style={{ height: 450, width: "100%" }}>
       <DataGrid
+        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}

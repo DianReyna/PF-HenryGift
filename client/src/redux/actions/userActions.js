@@ -5,6 +5,8 @@ import {
   userAdmin,
   userById,
   profileUpdate,
+  getGiftUser,
+  deleteUser,
 } from "../reducer/userSlice";
 
 export const getUsers = () => (dispatch) => {
@@ -36,4 +38,19 @@ export const putUsersUpdate = (id, user) => (dispatch) => {
     .put(` https://henrygift-api.herokuapp.com/users/user/${id}`, user)
     .then((res) => dispatch(profileUpdate(res.data)))
     .catch((err) => console.log(err));
+};
+
+export const getUserGift = (user) => (dispatch) => {
+  console.log(user);
+  axios(`https://henrygift-api.herokuapp.com/redeem/usergifts?user=${user}`)
+    .then((res) => dispatch(getGiftUser(res.data)))
+    .catch((err) => console.log(err));
+};
+export const removeUser = (id) => (dispatch) => {
+  axios
+    .delete(`https://henrygift-api.herokuapp.com/users/${id}`)
+    .then((res) => dispatch(deleteUser(res.data)))
+    .catch((err) => {
+      console.log(err);
+    });
 };

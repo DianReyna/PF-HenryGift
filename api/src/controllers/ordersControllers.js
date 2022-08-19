@@ -1,13 +1,13 @@
 const { Box,User,Order,OrderDetail,GiftList } = require("../database/index");
 const { Op, UUID } = require("sequelize");
 const ordersServices = require("../services/ordersServices");
-const { sendCode } = require("../utils/sendEmail");
+const { sendCode,confirmPay,sendQr } = require("../utils/sendEmail");
 
 const createNewOrder = async (req, res, next) => {
   
   try {
    
-
+   
     const boxes = req.body.boxes;
     const  userId = req.body.userId
     
@@ -83,26 +83,28 @@ const getAllOrders = async (req, res, next) => {
 const sendEmailCode = async (req, res, next) => {
   
   const {userId} = req.body
-  
-
+ 
   try {
   
-    const customer = await Order.findOne({
+    const recipientsList = await OrderDetail.findAll({
       where:{
         UserEmail:userId
       },
-      include:{model:OrderDetail}
+     
     })
-
-    //console.log(customer.OrderDetails)
-    const orderDetails = customer.OrderDetails
-    let arrSendMail = orderDetails.map(async(detail)=>{
+    await confirmPay(userId)
+    //console.log(customer)
+    
+    let arrSendMail = recipientsList.map(async(r)=>{
       let findGift = await GiftList.findOne({
         where:{
-          recipient:detail.dataValues.recipient
+          recipient:r.dataValues.recipient,
+          redeemed:false,
+          box_id:r.dataValues.box_id
         }
       })
       //console.log(findGift)
+     
       await sendCode(findGift.dataValues.recipient,findGift.dataValues.code)
     })
     await Promise.all(arrSendMail)

@@ -1,11 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBoxesAdmin, destroyBox } from "../../../redux/actions/boxesActions";
-import { Outlet, useNavigate } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
-import { Action, Delete, View, ImageContainer } from "../CommonStyled";
+import { useNavigate } from "react-router-dom";
+import {
+  getBoxesAdmin,
+  updateBoxes,
+} from "../../../redux/actions/boxesActions";
 import EditBox from "./EditBoxes";
+import DeleteBoxes from "./DeleteBoxes";
+import { toast } from "react-toastify";
+import { Action, View, ImageContainer } from "../CommonStyled";
+import { DataGrid } from "@mui/x-data-grid";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Button } from "@mui/material";
 
 export default function BoxesList() {
   const navigate = useNavigate();
@@ -15,13 +22,34 @@ export default function BoxesList() {
     dispatch(getBoxesAdmin());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(destroyBox(id));
+  const handleActive = (id, acti) => {
+    if (acti) {
+      acti = false;
+      toast.success("Disabled box", {
+        position: "top-right",
+      });
+    } else {
+      acti = true;
+      toast.success("Activated box", {
+        position: "top-right",
+      });
+    }
+    const data = {
+      id,
+      boxes: { active: acti },
+    };
+    dispatch(updateBoxes(data));
   };
 
   const rows =
     itemsBox &&
     itemsBox.boxes?.map((item, index) => {
+      let activeBox;
+      if (item.active) {
+        activeBox = "Active";
+      } else {
+        activeBox = "Disabled";
+      }
       return {
         id: index + 1,
         id_box: item.id,
@@ -32,6 +60,8 @@ export default function BoxesList() {
         detail: item.detail,
         ranking: item.ranking,
         expiration_date: item.expiration_date,
+        active: activeBox,
+        isActive: item.active,
       };
     });
 
@@ -56,6 +86,25 @@ export default function BoxesList() {
     { field: "expiration_date", headerName: "Expiration Date", width: 130 },
     { field: "ranking", headerName: "Ranking", width: 100 },
     {
+      field: "active",
+      headerName: "Status",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <Action>
+            <Button
+              className={`${params.row.active}`}
+              onClick={() => {
+                handleActive(params.row.id_box, params.row.isActive);
+              }}
+            >
+              {params.row.active}
+            </Button>
+          </Action>
+        );
+      },
+    },
+    {
       field: "actions",
       headerName: "Actions",
       sortable: false,
@@ -63,17 +112,15 @@ export default function BoxesList() {
       renderCell: (params) => {
         return (
           <Action>
-            <Delete onClick={() => handleDelete(params.row.id_box)}>
-              Delete
-            </Delete>
             <EditBox boxId={params.row.id_box} />
             <View
               onClick={() => {
                 navigate(`/box/${params.row.id_box}`);
               }}
             >
-              View
+              <VisibilityIcon />
             </View>
+            <DeleteBoxes idBox={params.row.id_box} />
           </Action>
         );
       },
@@ -83,6 +130,7 @@ export default function BoxesList() {
   return (
     <div style={{ height: 450, width: "100%" }}>
       <DataGrid
+        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}

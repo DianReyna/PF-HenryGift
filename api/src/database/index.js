@@ -11,15 +11,19 @@ const AuthenticationFactory = require("../models/Authentication");
 const StockFactory = require("../models/Stock");
 const OrderFactory = require("../models/Order");
 const GiftListFactory = require("../models/GiftList");
+const PicksFactory = require("../models/Picks");
+const FavouriteFactory = require("../models/Favourite");
 // const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 const { DATABASE_URL } = process.env;
 
+// initialize sequelize with the right credentials
 // const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 //   host: DB_HOST,
 //   dialect: "postgres",
 //   logging: false,
 //   native: false,
 // });
+
 const sequelize = new Sequelize(DATABASE_URL, {
   logging: false,
   native: false,
@@ -31,6 +35,7 @@ const sequelize = new Sequelize(DATABASE_URL, {
   },
 });
 
+// inject the models into the sequelize instance
 const Box = BoxFactory(sequelize);
 const Products = ProductFactory(sequelize);
 const Provider = ProviderFactory(sequelize);
@@ -42,6 +47,10 @@ const Authentication = AuthenticationFactory(sequelize);
 const Stock = StockFactory(sequelize);
 const Order = OrderFactory(sequelize);
 const GiftList = GiftListFactory(sequelize);
+const Picks = PicksFactory(sequelize);
+const Favourite = FavouriteFactory(sequelize);
+
+// create the associations
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
 
@@ -88,4 +97,6 @@ module.exports = {
   Authentication,
   Order,
   GiftList,
+  Picks,
+  Favourite,
 };

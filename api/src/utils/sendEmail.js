@@ -25,6 +25,34 @@ const sendCode = (recipient, confirmationCode) => {
   }).catch(err => console.log(err));
 };
 
+const confirmPay =  (recipient) => {
+  console.log("Check");
+  mailTransport.sendMail({
+    from: AUTH_USER,
+    to: recipient,
+    subject: "Payment Confirmation",
+    html: `<h1>Successful Payment</h1>
+        <h2>Thank you for choosing us</h2>
+        <p>The recipients of your gift will recieve an email with the redeem code.</p>
+        </div>`,
+  }).catch(err => console.log(err));
+};
+
+const sendQr = (recipient,img) => {
+  console.log("Check");
+  mailTransport.sendMail({
+    from: AUTH_USER,
+    to: recipient,
+    subject: "Payment Confirmation",
+    attachDataUrls: true,
+    html: `<h1>Successful Payment</h1>
+        <h2>Thank you for choosing us</h2>
+        <img src="${img}" />`
+  }).catch(err => console.log(err));
+};
+
 module.exports={
-  sendCode
+  sendCode,
+  confirmPay,
+  sendQr
 }

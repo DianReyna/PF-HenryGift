@@ -5,14 +5,18 @@ import {
   getBoxesAdmin,
   updateBoxes,
 } from "../../../redux/actions/boxesActions";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import InputAdornment from "@mui/material/InputAdornment";
-import Input from "@mui/material/Input";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { toast } from "react-toastify";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  InputAdornment,
+  DialogContentText,
+  TextField,
+} from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Edit,
   StyledEditProvider,
@@ -26,16 +30,18 @@ export default function EditBox({ boxId }) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState(false);
 
-  const [currentProv, setCurrentProv] = useState({});
+  const [currentBox, setCurrentBox] = useState({});
   const [preview, setPreview] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [person, setPerson] = useState("");
-  const [detail, setDetail] = useState("");
-  const [ranking, setRanking] = useState("");
-  const [expiration, setExpiration] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    price: "",
+    image: "",
+    person: "",
+    detail: "",
+    expiration: "",
+  });
 
   const itemsBox = useSelector((state) => state.boxes);
 
@@ -45,18 +51,19 @@ export default function EditBox({ boxId }) {
 
   const handleClickOpen = () => {
     setOpen(true);
+
     let selectBox = itemsBox.boxes.filter((el) => el.id === boxId);
     selectBox = selectBox[0];
-    setCurrentProv(selectBox);
-    setName(selectBox.name);
-    setPrice(selectBox.price);
-    setImage(selectBox.image);
+    setCurrentBox(selectBox);
     setPreview(selectBox.image);
-    setPerson(selectBox.person);
-    setDetail(selectBox.detail);
-    setRanking(selectBox.ranking);
-    setExpiration(selectBox.expiration_date);
-    console.log(boxId);
+    setInput({
+      name: selectBox.name,
+      price: selectBox.price,
+      image: selectBox.image,
+      person: selectBox.person,
+      detail: selectBox.detail,
+      expiration: selectBox.expiration_date,
+    });
   };
 
   const handleClose = () => {
@@ -64,110 +71,206 @@ export default function EditBox({ boxId }) {
   };
   const handleChange = (e) => {
     const { value } = e.target;
-    setPreview(value);
-    setImage(value);
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(
-      updateBoxes({
-        id: boxId,
-        provider: {
-          name: name,
-          price: price,
-          image: image,
-          person: person,
-          detail: detail,
-          ranking: ranking,
-          expiration_date: expiration,
-        },
+    setInput({
+      ...input,
+      [e.target.name]: value,
+    });
+    setErrors(
+      validateForm({
+        ...input,
+        [e.target.name]: value,
       })
     );
+    if (input.image !== currentBox.image && input.image !== "") {
+      setPreview(value);
+    }
+  };
 
-    setStatus(true);
-    handleClose();
+  const handleCompare = () => {
+    if (
+      input.name !== currentBox.name ||
+      input.price !== currentBox.price ||
+      input.person !== currentBox.person ||
+      input.image !== currentBox.image ||
+      input.detail !== currentBox.detail ||
+      input.expiration !== currentBox.expiration
+    ) {
+      return true;
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (Object.keys(errors).length === 0 && handleCompare()) {
+      dispatch(
+        updateBoxes({
+          id: boxId,
+          boxes: {
+            name: input.name,
+            price: input.price,
+            image: input.image,
+            person: input.person,
+            detail: input.detail,
+            expiration_date: input.expiration,
+          },
+        })
+      );
+      setTimeout(() => {
+        dispatch(getBoxesAdmin());
+      }, 2000);
+      setStatus(true);
+      toast.success("Save data update", {
+        position: "top-right",
+      });
+      handleClose();
+    } else if (Object.keys(errors).length >= 1) {
+      setStatus(false);
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    } else {
+      setStatus(false);
+      toast.error("No field was updated", {
+        position: "top-right",
+      });
+    }
   };
 
   return (
-    <div>
-      <Edit onClick={handleClickOpen}>Edit</Edit>
+    <>
+      <Edit onClick={handleClickOpen}>
+        <EditIcon />
+      </Edit>
       <Dialog
         open={open}
         onClose={handleClose}
         fullWidth={true}
-        maxWidth={"mx"}
+        maxWidth={"md"}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "transparent !Important",
+            },
+          },
+        }}
       >
         <DialogTitle>Edit Box</DialogTitle>
         <DialogContent>
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
-              <Input
+              <TextField
                 type="text"
                 name="image"
                 placeholder="Image"
                 onChange={(e) => handleChange(e)}
                 label="Image"
+                size="small"
               />
-              <Input
+              {errors.image && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.image}
+                </DialogContentText>
+              )}
+              <TextField
                 type="text"
                 name="name"
-                value={name}
+                defaultValue={input.name}
                 placeholder="Name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
+                size="small"
                 label="Name"
               />
-              <Input
-                type="number"
+              {errors.name && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.name}
+                </DialogContentText>
+              )}
+              <TextField
+                type="text"
                 id="standard-adornment-amount"
-                value={price}
-                lable="Price"
+                defaultValue={input.price}
+                label="Price"
+                name="price"
+                size="small"
                 placeholder="Price"
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
-                startAdornment={
+                startadornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
               />
+              {errors.price && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.price}
+                </DialogContentText>
+              )}
 
-              <Input
-                type="number"
+              <TextField
+                type="text"
                 name="person"
-                value={person}
+                defaultValue={input.person}
                 placeholder="Person"
-                onChange={(e) => setPerson(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 required
                 label="Person"
+                size="small"
               />
-              <Input
-                type="text"
-                name="ranking"
-                value={ranking}
-                placeholder="Ranking"
-                onChange={(e) => setRanking(e.target.value)}
-                required
-                label="Ranking"
-              />
+              {errors.person && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.person}
+                </DialogContentText>
+              )}
 
-              <Input
+              <TextField
                 id="date"
                 label="Expiration Date"
                 type="date"
-                defaultValue={expiration}
+                name="expiration"
+                defaultValue={input.expiration}
                 sx={{ width: 220 }}
-                onChange={(e) => setExpiration(e.target.value)}
+                onChange={(e) => handleChange(e)}
+                size="small"
               />
-
-              <TextareaAutosize
-                maxRows={4}
-                aria-label="maximum height"
-                placeholder="Maximum 4 rows"
-                onChange={(e) => setDetail(e.target.value)}
-                value={detail}
-                style={{ width: 200 }}
+              {errors.expiration && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.expiration}
+                </DialogContentText>
+              )}
+              <TextField
+                id="outlined-textarea"
+                multiline
+                rows={4}
+                onChange={(e) => handleChange(e)}
+                defaultValue={input.detail}
                 label="Detail"
+                name="detail"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "lightGrey !Important",
+                    },
+                  },
+                }}
               />
+              {errors.detail && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.detail}
+                </DialogContentText>
+              )}
 
               <PrimaryButton type="submit">
                 {status ? "Submitting" : "Submit"}
@@ -188,6 +291,41 @@ export default function EditBox({ boxId }) {
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
+
+const validateForm = (input) => {
+  const errors = {};
+  if (!input.name.trim()) {
+    errors.name = "Name is required";
+  } else if (input.name.length < 4) {
+    errors.name = "Name must have more than 4 letters";
+  }
+  if (!input.price) {
+    errors.price = "Enter box price";
+  } else if (
+    !/^([1-9][0-9]{,2}(,[0-9]{3})*|[0-9]+)(.[0-9]{1,9})?$/.test(input.price)
+  ) {
+    errors.price = "Please enter a valid format";
+  }
+
+  if (!input.image.trim()) {
+    errors.image = "Required field, enter an image";
+  }
+  if (!input.detail.trim()) {
+    errors.detail = "Describe the detail of the box";
+  } else if (input.detail.length < 25) {
+    errors.detail = "The description must have at least 25 characters";
+  }
+  if (!input.expiration) {
+    errors.expiration = "Enter the expiration date";
+  }
+  if (!input.person) {
+    errors.person = "Enter the number of people";
+  } else if (!/^[0-9]+$/.test(input.person)) {
+    errors.person = "Enter a valid format (only integers)";
+  }
+
+  return errors;
+};

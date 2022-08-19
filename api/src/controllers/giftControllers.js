@@ -1,6 +1,8 @@
 const giftServices = require("../services/giftServices");
 const boxServices = require("../services/boxServices");
-
+const { GiftList,Gift } = require("../database/index");
+const QrCode = require("qrcode")
+const { sendQr } = require("../utils/sendEmail");
 const redeemGift = async (req, res, next) => {
   const { code} = req.body;
   try {
@@ -9,7 +11,9 @@ const redeemGift = async (req, res, next) => {
     if(!gift) return res.send("Invalid Code or It has been already redeemed")
     
     const box = await boxServices.getBox(gift.dataValues.box_id);
-    
+    const addGiftUser = await giftServices.addGift(gift.dataValues)
+    await GiftList.update({redeemed:true},
+     { where:{code:code}})
     return res.send(box)
     
   } catch (error) {
@@ -17,7 +21,58 @@ const redeemGift = async (req, res, next) => {
   }
 };
 
+  const productPicked = async(req,res,next) => {
+    const {productId,userId} = req.body
+
+
+    try{
+
+
+      await giftServices.createNewPick(userId,productId)
+
+      await giftServices.updateProductStock(productId)
+
+      let img = await QrCode.toDataURL(`http://127.0.0.1:5173/onlyproviders?user=${userId}&product=${productId}`);
+      await sendQr(userId,img)
+
+      res.send("Product redeem")
+
+    }catch (error){
+      next(error)
+    }
+  }
+
+  const getUserGifts = async(req,res,next)=>{
+    let {user} = req.query
+
+    try{
+
+      let findGifts = await giftServices.getUserGifts(user)
+      let arrBoxId = findGifts.map(gift=>gift.dataValues.box_id)
+      console.log(arrBoxId)
+      let boxesList = await giftServices.getBoxList(arrBoxId)
+      res.send(boxesList)
+    }catch(error){
+      next(error)
+    }
+  }
+  
+  const getQrInformation = async(req,res,next)=>{
+    let {userId,productId} = req.query
+
+    try{
+
+      let qrInformation = await giftServices.getQrInformation(userId,productId)
+      res.send(qrInformation)
+      
+    }catch(error){
+      next(error)
+    }
+  }
 
 module.exports = {
- redeemGift
+ redeemGift,
+ productPicked,
+ getUserGifts,
+ getQrInformation
 };

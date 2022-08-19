@@ -1,14 +1,19 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   getProducts,
   destroyProduct,
+  putStateProduct,
 } from "../../../redux/actions/productsActions";
-import { DataGrid } from "@mui/x-data-grid";
-import { Action, Delete, View, ImageContainer } from "../CommonStyled";
-import { Outlet, useNavigate } from "react-router-dom";
 import EditProduct from "./EditProduct";
+import { Action, Delete, View, ImageContainer } from "../CommonStyled";
+import { toast } from "react-toastify";
+import { DataGrid } from "@mui/x-data-grid";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Button } from "@mui/material";
+import DeleteProduct from "./DeleteProduct";
 
 export default function ProductsList() {
   const navigate = useNavigate();
@@ -18,13 +23,36 @@ export default function ProductsList() {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(destroyProduct(id));
+  const handleActive = (id, acti) => {
+    if (acti) {
+      acti = false;
+      toast.success("Disabled product", {
+        position: "top-right",
+      });
+    } else {
+      acti = true;
+      toast.success("Activated product", {
+        position: "top-right",
+      });
+    }
+    const data = {
+      id,
+      product: { active: acti },
+    };
+    dispatch(putStateProduct(data));
+    setTimeout(() => {
+      dispatch(getProducts());
+    }, 2000);
   };
-
   const rows =
     itemsProducts &&
     itemsProducts.products?.map((item, index) => {
+      let activeProd;
+      if (item.active) {
+        activeProd = "Active";
+      } else {
+        activeProd = "Disabled";
+      }
       return {
         id: index + 1,
         id_product: item.id,
@@ -34,6 +62,8 @@ export default function ProductsList() {
         location: item.location,
         description: item.description,
         provider: item.Provider.name,
+        active: activeProd,
+        isActive: item.active,
       };
     });
 
@@ -57,6 +87,25 @@ export default function ProductsList() {
     { field: "description", headerName: "Description", width: 180 },
     { field: "provider", headerName: "Provider", width: 160 },
     {
+      field: "active",
+      headerName: "Status",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <Action>
+            <Button
+              className={`${params.row.active}`}
+              onClick={() => {
+                handleActive(params.row.id_product, params.row.isActive);
+              }}
+            >
+              {params.row.active}
+            </Button>
+          </Action>
+        );
+      },
+    },
+    {
       field: "actions",
       headerName: "Actions",
       sortable: false,
@@ -64,17 +113,15 @@ export default function ProductsList() {
       renderCell: (params) => {
         return (
           <Action>
-            <Delete onClick={() => handleDelete(params.row.id_product)}>
-              Delete
-            </Delete>
             <EditProduct prodId={params.row.id_product} />
             <View
               onClick={() => {
                 navigate(`/product/${params.row.id_product}`);
               }}
             >
-              View
+              <VisibilityIcon />
             </View>
+            <DeleteProduct idProd={params.row.id_product} />
           </Action>
         );
       },
@@ -84,6 +131,7 @@ export default function ProductsList() {
   return (
     <div style={{ height: 450, width: "100%" }}>
       <DataGrid
+        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}
