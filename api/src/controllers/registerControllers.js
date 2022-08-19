@@ -4,9 +4,10 @@ const registerServices = require("../services/registerServices");
 const registerUser = async (req, res, next) => {
   const body = req.body;
   try {
-    let registerUser = registerServices.createNewUser(body)
+    let registerUser = await registerServices.createNewUser(body)
 
     if(registerUser) {
+      
      return res.status(201).json({
         _id: registerUser.email,
         first_name: registerUser.first_name,
@@ -15,6 +16,7 @@ const registerUser = async (req, res, next) => {
         is_banned:registerUser.banned,
         token:genAuthToken(registerUser._id)
       })
+     
     }else{
       return res.status(400).json({message:"Invalid user data"})
     }

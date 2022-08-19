@@ -1,5 +1,8 @@
 import React ,{useState} from 'react';
+import axios from "axios";
+import { toast } from "react-toastify";
 import {Email} from '@mui/icons-material';
+import { useNavigate } from "react-router-dom";
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,Box, Typography} from '@mui/material';
 import styled from "styled-components";
 const Form = styled.form`
@@ -15,13 +18,24 @@ const Form = styled.form`
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
+  const navigate=useNavigate();
   const handleChange = (e) =>{
     setEmail(e.target.value)
   }
-  const  handleSubmit=(e)=>{
+  const  handleSubmit=async(e)=>{
     e.preventDefault();
-  
-  console.log(email)
+    if(!email.trim()){
+      return toast.error('Complete the field')
+    }
+   try{
+    const { data } = await axios.post("http://localhost:3001/login/forgotpassword", {email})
+    console.log("data")
+    console.log(data)
+   }catch(error){
+    console.log("error")
+    toast.error(error.response.data.message)
+    navigate('/login')
+   }
   }
   return (
     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" >

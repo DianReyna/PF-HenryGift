@@ -38,6 +38,22 @@ const confirmPay =  (recipient) => {
   }).catch(err => console.log(err));
 };
 
+
+const  changePassword=  (recipient) => {
+  console.log("change pasword");
+  mailTransport.sendMail({
+    from: AUTH_USER,
+    to: recipient,
+    subject: "Reset password",
+    html: `<h1>Reset password</h1>
+        <h2>Hello !!</h2>
+        <p>You requested to recover the password.</p>
+        <p>Click on the link below and create a new one.</p>
+        <a href=http://127.0.0.1:5173/login/reset-password/${recipient}> Reset password</a>
+        </div>`,
+  }).catch(err => console.log(err));
+};
+
 const sendQr = (recipient,img) => {
   console.log("Check");
   mailTransport.sendMail({
@@ -54,5 +70,6 @@ const sendQr = (recipient,img) => {
 module.exports={
   sendCode,
   confirmPay,
+  changePassword,
   sendQr
 }
