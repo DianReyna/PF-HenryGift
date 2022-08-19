@@ -4,10 +4,11 @@ const createFavourite = async (req, res, next) => {
   const { query } = req;
   try {
     const createFavourite = await favouriteServices.newFavourite(query);
-    if (createFavourite) {
-      const findFavourites = await favouriteServices.findFavourites();
 
-      res.status(201).send(findFavourites);
+    if (createFavourite) {
+      //const findFavourites = await favouriteServices.findFavourites();
+
+      res.status(201).send(createFavourite);
     } else {
       res.status(404).send("Error at Server");
     }
@@ -33,7 +34,6 @@ const findFavourite = async (req, res, next) => {
 
 const deleteFavourite = async (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
   try {
     const deleteFavourite = await favouriteServices.deleteFavourite(id);
     if (deleteFavourite) {
@@ -49,5 +49,5 @@ const deleteFavourite = async (req, res, next) => {
 module.exports = {
   createFavourite,
   findFavourite,
-	deleteFavourite
+  deleteFavourite,
 };

@@ -1,7 +1,17 @@
 const { Favourite } = require("../database");
+const { Box } = require("../database");
 
 const newFavourite = async (query) => {
-  const newFavourite = await Favourite.create(query);
+  const findFavorite = await Box.findOne({
+    where: {
+      id: query.box_id,
+    },
+  });
+  const obj = {
+    user_id: query.user_id,
+    box_id : findFavorite.dataValues.id,
+  }
+  const newFavourite = await Favourite.create(obj);
   return newFavourite;
 };
 
@@ -15,6 +25,7 @@ const findFavourite = async (user_id) => {
     where: {
       user_id,
     },
+    include: [{ model: Box }],
   });
   return findFavourite;
 };
@@ -22,7 +33,7 @@ const findFavourite = async (user_id) => {
 const deleteFavourite = async (id) => {
   const deleteFavourite = await Favourite.destroy({
     where: {
-      id,
+      box_id: id,
     },
   });
   return deleteFavourite;
@@ -32,5 +43,5 @@ module.exports = {
   newFavourite,
   findFavourites,
   findFavourite,
-	deleteFavourite,
+  deleteFavourite,
 };

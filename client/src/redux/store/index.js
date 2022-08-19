@@ -9,6 +9,9 @@ import query from "../reducer/querySlice";
 import users from "../reducer/userSlice";
 import auth from "../reducer/authSlice"
 import qr from "../reducer/qrSlice"
+import favSlice from "../reducer/favSlice";
+
+
 export default configureStore({
   reducer: {
     boxes,
@@ -20,6 +23,7 @@ export default configureStore({
     query,
     users,
     auth,
-    qr
+    qr,
+    fav: favSlice,
   },
 });
