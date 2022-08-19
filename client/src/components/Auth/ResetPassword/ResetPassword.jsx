@@ -1,4 +1,5 @@
 import React ,{useState} from 'react';
+import {useParams} from "react-router-dom";
 import {Button,Box,TextField,Typography} from '@mui/material';
 import styled from "styled-components";
 const Form = styled.form`
@@ -14,12 +15,12 @@ const Form = styled.form`
 
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
+  // const  {email}=useParams();
 //   const handleChange = (e) =>{
 //     setPassword(e.target.value)
 //   }
   const  handleSubmit=(e)=>{
     e.preventDefault();
-  
   console.log(password)
   }
   return (

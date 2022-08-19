@@ -1,4 +1,5 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const {changePassword}=require("../utils/sendEmail")
 const { User, Authentication } = require("../database/index");
 const genAuthToken = require('../utils/genAuthToken')
 
@@ -32,6 +33,48 @@ const loginUser = async (req, res, next) => {
   } 
 };
 
+const forgotPassword = async (req, res, next) => {
+  const {email} = req.body;
+  try {
+    if(!email ){
+      return res.status(400).json({message:'Please write the email'})
+    }
+    let auth = await Authentication.findOne({ where: {email} })
+
+    if (!auth) return res.status(400).json({message:'The user is not registered'})
+    
+   await changePassword(auth.dataValues.email)
+
+  return res.json({message:"Confirmation change password was sent to your email"})
+
+  } catch (error) {
+    next(error);
+  } 
+};
+
+const resetpassword = async (req, res, next) => {
+  const {password} = req.body;
+  const {email}=req.params;
+  try {
+    if(!password){
+      return res.status(400).json({message:'Please write the password'})
+    }
+    // let auth = await Authentication.findOne({ where: {email: email} })
+
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+    
+    await Authentication.update({ password: hashedPassword},{where: {email}})
+    
+  return  res.json({message:"Actualización exitosa"})
+
+  } catch (error) {
+    next(error);
+  } 
+};
+
 module.exports = {
-  loginUser
+  loginUser,
+  forgotPassword,
+  resetpassword
 };
