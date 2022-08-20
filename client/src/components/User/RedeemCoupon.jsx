@@ -6,11 +6,13 @@ import { Grid, Button, Link, TextField, Paper } from "@mui/material";
 import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
 import { getBox } from "../../redux/actions/boxesActions";
+import { useSelector } from "react-redux";
 
 export default function RedeemCoupon() {
   const { user } = useParams();
   const dispatch = useDispatch();
   const [code, setCode] = useState("");
+  const {userDetail} = useSelector((state)=> state.users)
 
   function handleInputChange(e) {
     e.preventDefault();
@@ -22,12 +24,12 @@ export default function RedeemCoupon() {
     // const URL=" https://henrygift-api.herokuapp.com/register"
     const URL = "http://localhost:3001";
     axios
-      .post("${URL}/redeem", { code: code })
+      .post(`${URL}/redeem`, { code: code })
       .then((res) => console.log(res))
-      .then((res) => dispatch(getUserGift("alegrices@independent.co.uk")));
+      .then((res) => dispatch(getUserGift(userDetail.email)));
   }
   useEffect(() => {
-    dispatch(getUserGift("alegrices@independent.co.uk"));
+    dispatch(getUserGift(userDetail.email));
   }, [dispatch]);
 
   return (
@@ -62,7 +64,7 @@ export default function RedeemCoupon() {
         <Grid item xs={2} sx={{ m: 5, textAlign: "center" }}>
           <Button onClick={handleSubmit} type="submit">
             {" "}
-            ABRIR MI BOX{" "}
+            OPEN BOX{" "}
           </Button>
         </Grid>
         <GiftCards />

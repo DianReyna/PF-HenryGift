@@ -7,16 +7,16 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-
 import styled from "styled-components";
 import AddShoppingCartSharpIcon from '@mui/icons-material/AddShoppingCartSharp';
 import { useDispatch } from "react-redux";
+import { Box } from "@mui/material";
 
-const Box = styled.div`
-  // flex: grow
-  // height: 10rem;
-  // position: relative;
-  // /* box-shadow: 3px 3px  black; */
+
+const CardWidth = styled.div`
+  height: 33rem;
+  position: relative;
+  /* box-shadow: 3px 3px  black; */
 `;
 const BodyCardProduct = styled.div`
   height: 22rem;
@@ -41,8 +41,9 @@ export default function GiftCard({
     detail,
     image,
     box,
-  }) {
-    const dispatch = useDispatch();
+ })
+{
+  //   const dispatch = useDispatch();
     //const history = useHistory();
   
     // const handleAddToCart = (box) => {
