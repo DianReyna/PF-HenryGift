@@ -36,12 +36,11 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 import QRCode from "./components/QRCode/QRCode";
+import Favs from "./components/Favs/Favs";
 
-// const ContainerApp = styled.div`
-//   /* width: 90rem; */
-//   overflow: hidden;
-//   margin: 2rem auto;
-// `;
+const ContainerApp = styled.div`
+  min-height: 70vh;
+`;
 
 function App() {
   return (
@@ -58,13 +57,14 @@ function App() {
         pauseOnHover
       />
       <NavBar />
-      <div>
+      <ContainerApp>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/login/forgot-password" element={<ForgotPassword />} />
           <Route path="/login/reset-password/:email" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/favs" element={<Favs />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
           {/* <Route path="/userprofile" element={<ProfilePanel />} /> */}
@@ -105,7 +105,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </div>
+      </ContainerApp>
       <Footer />
     </>
   );

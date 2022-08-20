@@ -13,10 +13,10 @@ module.exports = FavouriteFactory = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      box_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      // box_id: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
     },
     {
       timestamps: false,

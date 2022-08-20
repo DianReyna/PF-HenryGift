@@ -84,6 +84,11 @@ User.hasMany(Order);
 Box.hasMany(GiftList, { foreignKey: "box_id" });
 GiftList.belongsTo(Box, { foreignKey: "box_id" });
 
+Box.hasMany(Favourite, { foreignKey: "box_id" });
+Favourite.belongsTo(Box, { foreignKey: "box_id" });
+
+
+
 module.exports = {
   sequelize,
   Box,
