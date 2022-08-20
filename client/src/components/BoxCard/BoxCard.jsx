@@ -43,9 +43,17 @@ export default function BoxCard({
   box,
 }) {
   const dispatch = useDispatch();
+  const {user} = useSelector((state) => state.auth);
 
   const handleAddToCart = (box) => {
     dispatch(addToCart(box));
+  };
+  const handleFavorite = () => {
+    dispatch(addFavorite(id, user._id));
+  };
+
+  const handleDeleteFavorite = () => {
+    dispatch(removeFavorite(id));
   };
 
   return (
