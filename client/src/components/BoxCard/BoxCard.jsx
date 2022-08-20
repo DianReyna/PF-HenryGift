@@ -51,14 +51,14 @@ export default function BoxCard({
   // console.log(favouriteIds);
 
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.auth.user._id);
+  const {user} = useSelector((state) => state.auth);
 
   const handleAddToCart = (box) => {
     dispatch(addToCart(box));
   };
 
   const handleFavorite = () => {
-    dispatch(addFavorite(id, userEmail));
+    dispatch(addFavorite(id, user._id));
   };
 
   const handleDeleteFavorite = () => {
