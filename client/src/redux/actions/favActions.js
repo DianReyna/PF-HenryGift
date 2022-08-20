@@ -17,7 +17,6 @@ export const addFavorite = (box_id, user_id) => (dispatch) => {
 }
 
 export const removeFavorite = (box_id) => (dispatch) => {
-    console.log('box id', box_id)
     axios
         .delete(`${URL}/${box_id}`)
         .then((res) => dispatch(removeFav(res.data)))
