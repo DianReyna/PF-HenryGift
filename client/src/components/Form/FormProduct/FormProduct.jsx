@@ -38,6 +38,7 @@ export default function FormProduct() {
     dataProduct,
     handleProductSubmit,
     handleProductChange,
+    handleChangeProductImg,
   } = useForm(validate);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function FormProduct() {
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "25ch",
+            width: "32ch",
           },
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
@@ -74,6 +75,20 @@ export default function FormProduct() {
             onSubmit={handleProductSubmit}
           >
             <div className={styles.formContainer}>
+              <TextField
+                type="file"
+                accept="image/"
+                onChange={(e) => handleChangeProductImg(e)}
+                name="productImage"
+                required
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
+              />
+
               <TextField
                 className="textField"
                 onChange={(e) => handleProductChange(e)}
@@ -97,6 +112,9 @@ export default function FormProduct() {
               )}
 
               <TextField
+                id="outlined-textarea"
+                multiline
+                rows={4}
                 onChange={(e) => handleProductChange(e)}
                 name="productDescription"
                 value={product.productDescription || ""}
@@ -159,30 +177,8 @@ export default function FormProduct() {
                 </DialogContentText>
               )}
 
-              <TextField
-                onChange={(e) => handleProductChange(e)}
-                name="productImage"
-                value={product.productImage || ""}
-                required
-                label="Image"
-                size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
-              />
-              {errors.productImage && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.productImage}
-                </DialogContentText>
-              )}
-
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Provider</InputLabel>
-
                 <Select
                   onChange={(e) => handleProductChange(e)}
                   value={product.productProvider || ""}
@@ -200,6 +196,13 @@ export default function FormProduct() {
                     );
                   })}
                 </Select>
+                {errors.productProvider && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.productProvider}
+                  </DialogContentText>
+                )}
               </FormControl>
             </div>
             {Object.keys(errors).length === 0 ? (
