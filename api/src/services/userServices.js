@@ -1,4 +1,4 @@
-const { User, OrderDetail } = require("../database/index");
+const { User, OrderDetail, Gift } = require("../database/index");
 const { Op } = require("sequelize");
 
 const createNewUser = async (user) => {
@@ -30,8 +30,15 @@ const getUserAdmin = async () => {
   });
   return userAdmin;
 };
+
 const getUserById = async (id) => {
-  const userById = await User.findByPk(id);
+  const userById = await User.findByPk(id, {
+    where: {
+      email: id,
+      access_level: true,
+    },
+  });
+        
   return userById;
 };
 

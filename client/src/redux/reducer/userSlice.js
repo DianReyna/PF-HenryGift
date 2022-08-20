@@ -15,6 +15,7 @@ export const userSlice = createSlice({
       state.users = action.payload;
     },
     userById: (state, action) => {
+      //console.log("soy el userDetail", user)
       state.userDetail = action.payload;
     },
     profileUpdate: (state, action) => {

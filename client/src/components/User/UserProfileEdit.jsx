@@ -11,6 +11,7 @@ export default function UserProfileEdit(id) {
 
     const dispatch = useDispatch();  
     //const [currentUser, setCurrentUser] = useState({});
+   
 
 
     const[first_name, setFirst_name] = useState("");
@@ -21,12 +22,12 @@ export default function UserProfileEdit(id) {
     const[dateBirth, setdateBirth]=useState("")
     const[password, setPassword] = useState("");
 
-    
-    const {userDetail} = useSelector((state) => state.users);
+    const {user}  = useSelector((state) => state.auth);
+    const {userDetail} = useSelector((state)=> state.users)
     
 
     useEffect(() => {
-        dispatch(getUsersById('alegrices@independent.co.uk'));      
+        dispatch(getUsersById(user._id));      
         }, [dispatch])
         
         useEffect(() => {

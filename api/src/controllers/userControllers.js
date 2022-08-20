@@ -42,19 +42,18 @@ const updateAdmin = async (req, res, next) => {
 };
 
 const getUserById = async (req, res, next) => {
-  const { id, email } = req.params;
+  const { id } = req.params;
   try {
-    const userId = await userServices.getUserById(id, email);
-    if (!userId) {
-      res.status(400).send({
-        status: "error",
-        message: "User not found",
-      });
-    }
-    res.status(201).send(userId);
-  } catch (error) {
-    next(error);
+    const userId = await userServices.getUserById(id);
+   
+  if (userId) {
+    res.status(200).send(userId);
+  } else {
+    res.status(404).send("Not Fund!");
   }
+} catch (error) {
+  next(error);
+}
 };
 
 const updateUser = async (req, res, next) => {

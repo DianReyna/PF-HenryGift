@@ -7,14 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
 import axios from 'axios';
 import  {getUsersById}  from '../../redux/actions/userActions';
-import { getUserGift } from '../../redux/actions/userActions';
-//import GiftDetail  from '../User/Gift/GiftDetail';
-import { Typography, Box} from '@mui/material';
-//import GiftCards from './Gift/GiftCards'
+import { Typography } from '@mui/material';
+
+import GiftDetail  from '../User/Gift/GiftDetail';
+import GiftCards from './Gift/GiftCards';
 
 const Container = styled.div`
   padding: 2rem 3rem;
 `
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -51,22 +52,22 @@ const Grid = styled.div`
   margin-top: 0.9rem;
   align-items: center;
   `
-
-export default function ProfilePanel() {
-
-  const dispatch = useDispatch();
-  const [userDetail, setUserDetail]  = useState([]);
   
 
-  const getUsersById = async () => {
-      const oneUser = await axios.get('http://localhost:3001/users/alegrices@independent.co.uk')
-      setUserDetail(oneUser.data)
-  }
-  useEffect(()=>{
-    getUsersById('alegrices@independent.co.uk');
-    },[dispatch]) 
 
+export default function ProfilePanel() {
+  
+    const dispatch = useDispatch();
    
+    const {user}  = useSelector((state) => state.auth);
+    const {userDetail} = useSelector((state)=> state.users)
+ 
+    console.log(user)
+   
+    useEffect(()=>{
+      dispatch(getUsersById(user._id))
+ },[user]);
+
     
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -142,7 +143,8 @@ export default function ProfilePanel() {
                       location={product.location}/>
                     </ItemProduct>
                 })}  */}
-              <GiftDetail/>
+              {/* <GiftDetail/> */}
+              <GiftCards/>
           </Grid>
         </CardsProducts>
       </Container>
