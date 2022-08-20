@@ -6,15 +6,11 @@ import {
   CardContent,
   Typography,
   Button,
-  IconButton,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/reducer/cartSlice";
-import { addFavorite, removeFavorite } from "../../redux/actions/favActions";
 import styled from "styled-components";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-//import { useHistory } from "react-router-dom";
+import Favorite from "./Sections/Favorite";
 
 const CardWidth = styled.div`
   height: 33rem;
@@ -46,23 +42,10 @@ export default function BoxCard({
   image,
   box,
 }) {
-  const [favorited, setFavorited] = React.useState(false);
-  //const favouriteIds = useSelector((state) => state.fav.favItems[0].id);
-  // console.log(favouriteIds);
-
   const dispatch = useDispatch();
-  const userEmail = useSelector((state) => state.auth.user._id);
 
   const handleAddToCart = (box) => {
     dispatch(addToCart(box));
-  };
-
-  const handleFavorite = () => {
-    dispatch(addFavorite(id, userEmail));
-  };
-
-  const handleDeleteFavorite = () => {
-    dispatch(removeFavorite(id));
   };
 
   return (
@@ -106,20 +89,7 @@ export default function BoxCard({
                 Agregar al Carrito
               </Button>
 
-              <IconButton
-                aria-label="add to favorites"
-                onClick={handleFavorite}
-              >
-                <FavoriteBorderOutlinedIcon
-                  sx={{
-                    bgcolor: "red",
-                    borderRadius: "50%",
-                    marginLeft: "1.5rem",
-                  }}
-                />
-              </IconButton>
-
-              <button onClick={handleDeleteFavorite}>X</button>
+              <Favorite id={id} />
             </FooterCardProduct>
           </CardWidth>
         </Card>
