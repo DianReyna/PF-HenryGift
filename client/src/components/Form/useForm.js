@@ -14,12 +14,28 @@ export default function useForm(validate) {
     boxPrice: "",
     boxDetail: "",
     boxExpirationDate: "",
-    boxImage: "",
     boxPerson: "",
     boxProducts: [],
     boxCategories: [],
   });
+  const [boxImg, setBoxImg] = useState("");
 
+  const handleChangeBoxImg = (e) => {
+    const file = e.target.files[0];
+    transformFile(file);
+  };
+
+  const transformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setBoxImg(reader.result);
+      };
+    } else {
+      setBoxImg("");
+    }
+  };
   const handleChangeBox = (e) => {
     setInput({
       ...input,
@@ -52,11 +68,12 @@ export default function useForm(validate) {
     detail: input.boxDetail,
     price: input.boxPrice,
     expiration_date: input.boxExpirationDate,
-    image: input.boxImage,
+    image: boxImg,
     person: input.boxPerson,
     products: input.boxProducts,
     category: input.boxCategories,
   };
+
   const handleBoxSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(errors).length === 0) {
@@ -69,11 +86,12 @@ export default function useForm(validate) {
         boxPrice: "",
         boxDetail: "",
         boxExpirationDate: "",
-        boxImage: "",
         boxPerson: "",
+        boxImage: "",
         boxProducts: [],
         boxCategories: [],
       });
+      setBoxImg("");
     } else {
       toast.error("Incorrect data, check againt", {
         position: "top-right",
@@ -87,9 +105,26 @@ export default function useForm(validate) {
     productDescription: "",
     productPrice: "",
     productLocation: "",
-    productImage: "",
     productProvider: "",
   });
+  const [productImg, setProductImg] = useState("");
+
+  const handleChangeProductImg = (e) => {
+    const file = e.target.files[0];
+    transformFileProduct(file);
+  };
+
+  const transformFileProduct = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProductImg(reader.result);
+      };
+    } else {
+      setProductImg("");
+    }
+  };
   const handleProductChange = (e) => {
     setProduct({
       ...product,
@@ -108,7 +143,7 @@ export default function useForm(validate) {
     description: product.productDescription,
     price: product.productPrice,
     location: product.productLocation,
-    image: product.productImage,
+    image: productImg,
     provider: product.productProvider,
   };
 
@@ -124,6 +159,7 @@ export default function useForm(validate) {
         productImage: "",
         productProvider: "",
       });
+      setProductImg("");
       toast.success("Save data", {
         position: "top-right",
       });
@@ -179,7 +215,6 @@ export default function useForm(validate) {
       });
     }
   };
-
   return {
     errors,
     input,
@@ -188,10 +223,12 @@ export default function useForm(validate) {
     dataBox,
     dataProduct,
     handleChangeBox,
+    handleChangeProductImg,
     handleChangeProd,
     handleChangeCat,
     handleProductChange,
     handleProviderChange,
+    handleChangeBoxImg,
     handleBoxSubmit,
     handleProductSubmit,
     handleProviderSubmit,

@@ -27,10 +27,13 @@ export default function validateProduct(input) {
   } else if (input.productLocation.length < 10) {
     errors.productLocation = "The address must have at least 10 letters";
   }
-  if (!input.productImage.trim()) {
-    errors.productImage = "Required field, enter an image";
-  } else if (!validUrl.test(input.productImage)) {
-    errors.productImage = "Enter a valid URL for the image";
+  if (!input.productProvider) {
+    errors.productProvider = "you must select a provider option";
   }
+  // if (!input.productImage.trim()) {
+  //   errors.productImage = "Required field, enter an image";
+  // } else if (!validUrl.test(input.productImage)) {
+  //   errors.productImage = "Enter a valid URL for the image";
+  // }
   return errors;
 }
