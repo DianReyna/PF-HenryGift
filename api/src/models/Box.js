@@ -30,7 +30,7 @@ module.exports = BoxFactory = (sequelize) => {
         allowNull: false,
       },
       image: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: false,
       },
       person: {
