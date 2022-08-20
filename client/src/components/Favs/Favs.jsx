@@ -7,7 +7,7 @@ const Favs = () => {
   const dispatch = useDispatch();
 
   const favItems = useSelector((state) => state.fav.favItems);
-  //console.log(favItems);
+  console.log(favItems);
   const userEmail = useSelector((state) => state.auth.user._id);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Favs = () => {
 
   return (
     <div>
-      {
+      {/* {
         favItems && favItems.length > 0 ? (
       favItems?.map((item) => {
         return (
@@ -38,7 +38,8 @@ const Favs = () => {
             <h1>No Favorites</h1>
           </div>
         )
-      }
+      } */}
+      sarasa
     </div>
   );
 };

@@ -2,6 +2,7 @@ const favouriteServices = require("../services/favouritesServices");
 
 const createFavourite = async (req, res, next) => {
   const { query } = req;
+  console.log(query.box_id)
   try {
     const createFavourite = await favouriteServices.newFavourite(query);
 
