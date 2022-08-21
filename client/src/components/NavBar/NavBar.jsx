@@ -81,6 +81,8 @@ const ResponsiveAppBar = () => {
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const cart = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -113,7 +115,7 @@ const ResponsiveAppBar = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  const { user } = useSelector((state) => state.auth);
+
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());

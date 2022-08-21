@@ -1,28 +1,43 @@
 const express = require("express");
 const Stripe = require("stripe");
-const stripe = new Stripe("sk_test_51LVI0BEPq0jIoDO7gN90XjPPdqOKGEBpbyGRqaVaVhjY46eVZSi1FQ3dvKe3VPRmNPYIK9fDi50VvNXMxEgbJ29500Xewsx5Zj");
+
+require("dotenv").config();
+
+const stripe = new Stripe(
+  "sk_test_51LVI0BEPq0jIoDO7gN90XjPPdqOKGEBpbyGRqaVaVhjY46eVZSi1FQ3dvKe3VPRmNPYIK9fDi50VvNXMxEgbJ29500Xewsx5Zj"
+);
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-  // you can get more data to find in a database, and so on
-  const { id, amount } = req.body;
-
+router.post("/create-checkout-session", async (req, res, next) => {
   try {
-    const payment = await stripe.paymentIntents.create({
-      amount,
-      currency: "USD",
-      description: "Henry Gift",
-      payment_method: id,
-      confirm: true, //confirm the payment at the same time
+    const line_items = req.body.cartItems.map((item) => {
+      return {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: item.name,
+            images: [item.image],
+            metadata: {
+              id: item.id,
+            },
+          },
+          unit_amount: item.price * 10,
+        },
+        quantity: item.cartQuantity,
+      };
     });
 
-    console.log(payment);
+    const session = await stripe.checkout.sessions.create({
+      line_items,
+      mode: "payment",
+      success_url: `http://127.0.0.1:5173/checkout-success`,
+      cancel_url: `http://127.0.0.1:5173/cart`,
+    });
 
-    return res.status(200).json({ message: "Successful Payment" });
+    res.send({ url: session.url });
   } catch (error) {
-    console.log(error);
-    return res.json({ message: error.raw.message });
+    next(error);
   }
 });
 
