@@ -352,7 +352,7 @@ const users = [{
   "phone": "7199559502"
 }, {
   "email": "tamaraber9@gmail.com",
-  "dateBirth": "20-11-1988",
+  "dateBirth": "1988-11-20",
   "first_name": "Tamara",
   "last_name": "Berim",
   "access_level": true,
@@ -362,7 +362,6 @@ const users = [{
   async function loadMockUsers(){
 
     try {
-  
       await User.bulkCreate(users, {
         include: [{
           model: OrderDetail,

@@ -19,3 +19,6 @@ const createNewUser = async (body) => {
     return registerUser
 };
 
+module.exports = {
+    createNewUser,
+  };
