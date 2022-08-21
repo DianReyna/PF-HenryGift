@@ -58,7 +58,7 @@ export default function GiftCard({
       <Card sx={{ maxWidth: 345 }}>
         <Box>
           <Link
-            to={`/box/${id}`}
+            to={`/giftdetail/${id}`}
             style={{ textDecoration: "none", color: "black" }}
           >
             <CardMedia

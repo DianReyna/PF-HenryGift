@@ -1,4 +1,4 @@
-export default function validateBox(input) {
+export default function validateBox(input, data) {
   const errors = {};
 
   let validPrice = /^([1-9][0-9]{,2}(,[0-9]{3})*|[0-9]+)(.[0-9]{1,9})?$/;
@@ -6,10 +6,14 @@ export default function validateBox(input) {
     /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
   let validPerson = /^[0-9]+$/;
 
+  const boxes = data.boxes.boxes.find((e) => e.name === input.boxName);
+
   if (!input.boxName) {
     errors.boxName = "Name is required";
   } else if (input.boxName.length < 4) {
     errors.boxName = "Name must have more than 4 letters";
+  } else if (boxes) {
+    errors.boxName = "This box name already exists";
   }
   if (!input.boxPrice) {
     errors.boxPrice = "Enter box price";
