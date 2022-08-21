@@ -1,38 +1,32 @@
 const productServices = require("../services/productServices.js");
-
+const cloudinary = require("../utils/cloudinary.js");
 const { Products, Provider } = require("../database/index.js");
 const createNewProduct = async (req, res, next) => {
   const { body } = req;
   try {
-    if (
-      !body.name ||
-      !body.description ||
-      !body.price ||
-      !body.location ||
-      !body.image
-    ) {
-      return;
-    }
+    if (body.image) {
+      const uploadRes = await cloudinary.uploader.upload(body.image, {
+        upload_preset: "henry-gift",
+      });
 
-    const provider = body.provider;
-
-    const newProduct = {
-      name: body.name,
-      description: body.description,
-      price: body.price,
-      location: body.location,
-      image: body.image,
-    };
-
-    const createdProduct = await productServices.createNewProduct(
-      newProduct,
-      provider
-    );
-    if (createdProduct) {
-      const newListProd = await productServices.getAllProducts();
-      res.status(201).send(newListProd);
-    } else {
-      res.status(404).send("Error creating product!");
+      if (uploadRes) {
+        const newItemProduct = {
+          name: body.name,
+          description: body.description,
+          price: body.price,
+          location: body.location,
+          image: uploadRes,
+        };
+        const provider = body.provider;
+        const createdProduct = await productServices.createNewProduct(
+          newItemProduct,
+          provider
+        );
+        if (createdProduct) {
+          const newListProd = await productServices.getAllProducts();
+          res.status(201).send(newListProd);
+        }
+      }
     }
   } catch (error) {
     next(error);

@@ -1,21 +1,38 @@
 const boxServices = require("../services/boxServices");
-
+const cloudinary = require("../utils/cloudinary.js");
 const createNewBox = async (req, res, next) => {
   const { body } = req;
+
   try {
-    const newBox = await boxServices.createNewBox(body);
+    if (body.image) {
+      const uploadRes = await cloudinary.uploader.upload(body.image, {
+        upload_preset: "henry-gift",
+      });
 
-    const findedProducts = await boxServices.findProducts(body.products);
-    newBox.addProducts(findedProducts);
+      if (uploadRes) {
+        const newItemBox = {
+          name: body.name,
+          price: body.price,
+          product: body.product,
+          category: body.category,
+          image: uploadRes,
+          expiration_date: body.expiration_date,
+          detail: body.detail,
+          person: body.person,
+        };
+        const newBox = await boxServices.createNewBox(newItemBox);
 
-    const findedCategory = await boxServices.findCategory(body.category);
-    newBox.addCategory(findedCategory);
-    console.log(findedCategory);
-    if (newBox) {
-      const newboxList = await boxServices.getAllBoxes();
-      res.status(200).send(newboxList);
-    } else {
-      res.status(404).send("Error at server");
+        const findedProducts = await boxServices.findProducts(body.products);
+        newBox.addProducts(findedProducts);
+
+        const findedCategory = await boxServices.findCategory(body.category);
+        newBox.addCategory(findedCategory);
+
+        if (newBox) {
+          const newboxList = await boxServices.getAllBoxes();
+          res.status(200).send(newboxList);
+        }
+      }
     }
   } catch (error) {
     next(error);

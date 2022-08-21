@@ -107,7 +107,7 @@ const sendEmailCode = async (req, res, next) => {
      
       await sendCode(findGift.dataValues.recipient,findGift.dataValues.code)
     })
-    await Promise.all(arrSendMail)
+    //await Promise.all(arrSendMail)
     res.send("Code send to Recipient")
 
   } catch (error) {

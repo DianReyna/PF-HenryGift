@@ -36,12 +36,12 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 import QRCode from "./components/QRCode/QRCode";
+import Favs from "./components/Favs/Favs";
+import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
 
-// const ContainerApp = styled.div`
-//   /* width: 90rem; */
-//   overflow: hidden;
-//   margin: 2rem auto;
-// `;
+const ContainerApp = styled.div`
+  min-height: 70vh;
+`;
 
 function App() {
   return (
@@ -58,24 +58,26 @@ function App() {
         pauseOnHover
       />
       <NavBar />
-      <div>
+      <ContainerApp>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/login/forgot-password" element={<ForgotPassword />} />
           <Route path="/login/reset-password/:email" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/favs" element={<Favs />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
           {/* <Route path="/userprofile" element={<ProfilePanel />} /> */}
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
-          <Route path="/giftdetail" element={<GiftDetail />} />
+          <Route path="/giftdetail/:idBox" element={<GiftDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/payment" element={<Checkout />} />
           <Route path="/onlyproviders" element={<QRCode />} />
+          <Route path="/giftproduct/:idProduct" element={<GiftProductDetail />} />
           //Dashboard
           <Route element={<PrivateRoute />}>
             <Route path="/admin" element={<Dashboard />}>
@@ -105,7 +107,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </div>
+      </ContainerApp>
       <Footer />
     </>
   );

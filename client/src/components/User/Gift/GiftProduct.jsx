@@ -40,12 +40,12 @@ export default function GiftProduct({
     return (
         
         <SupCardProduct>      
-            <Checkbox
+            {/* <Checkbox
                 checked={checked}
                 onChange={handleChange}
                 inputProps={{ 'aria-label': 'controlled' }}
-                />            
-            <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
+                />       */}      
+            <Link to={`/giftproduct/${id}`} style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 345 }}>
                 <CardWidth>
                     <CardMedia

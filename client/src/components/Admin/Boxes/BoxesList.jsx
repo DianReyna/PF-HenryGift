@@ -21,7 +21,7 @@ export default function BoxesList() {
   useEffect(() => {
     dispatch(getBoxesAdmin());
   }, [dispatch]);
-
+  // console.log(itemsBox);
   const handleActive = (id, acti) => {
     if (acti) {
       acti = false;
@@ -55,7 +55,7 @@ export default function BoxesList() {
         id_box: item.id,
         name: item.name,
         price: item.price,
-        image: item.image,
+        image: item.image.url,
         person: item.person,
         detail: item.detail,
         ranking: item.ranking,

@@ -21,9 +21,7 @@ export default function DialogFormBox({ nameBox }) {
   const [box, setBox] = useState({
     name: "",
   });
-
   const itemsBox = useSelector((state) => state.boxes);
-
   useEffect(() => {
     dispatch(getBoxesAdmin());
   }, [dispatch]);

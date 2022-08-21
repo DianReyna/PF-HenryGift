@@ -279,7 +279,7 @@ export default function EditBox({ boxId }) {
             <ImagePreview>
               {preview ? (
                 <>
-                  <img src={preview} alt="product image" />
+                  <img src={preview.url} alt="product image" />
                 </>
               ) : (
                 <p>Product image upload preview will appear here!</p>

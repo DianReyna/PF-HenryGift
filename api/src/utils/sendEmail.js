@@ -61,10 +61,11 @@ const sendQr = (recipient,img) => {
   mailTransport.sendMail({
     from: AUTH_USER,
     to: recipient,
-    subject: "Payment Confirmation",
+    subject: "Service QR Code",
     attachDataUrls: true,
-    html: `<h1>Successful Payment</h1>
-        <h2>Thank you for choosing us</h2>
+    html: `<h1>You chose a Service!</h1>
+        <p>Show the service provider the QR code at the moment of arraging the
+        reservation date</p>
         <img src="${img}" />`
   }).catch(err => console.log(err));
 };

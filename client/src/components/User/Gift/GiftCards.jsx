@@ -9,10 +9,13 @@ import { getUserGift } from "../../../redux/actions/userActions";
 export default function GiftCards() {
   const dispatch = useDispatch();
   const { gifts } = useSelector((state) => state.users);
+  const {userDetail} = useSelector((state)=> state.users)
+
   
   useEffect(() => {
-    dispatch(getUserGift('mail@mail.com'))
-  }, [dispatch]);
+    dispatch(getUserGift(userDetail.email))
+    console.log(userDetail.email)
+  }, [dispatch, userDetail]);
 
   
   return (
