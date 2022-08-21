@@ -122,7 +122,7 @@ export default function FormProduct() {
                 label="Description"
                 size="small"
                 sx={{
-                  input: {
+                  textarea: {
                     color: "white",
                   },
                 }}

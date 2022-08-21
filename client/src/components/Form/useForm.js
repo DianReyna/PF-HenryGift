@@ -1,13 +1,29 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createProvider, createBox } from "../../redux/actions/boxesActions";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createProvider,
+  createBox,
+  getBoxesAdmin,
+} from "../../redux/actions/boxesActions";
+import { getProducts } from "../../redux/actions/productsActions";
 import { createProduct } from "../../redux/actions/productsActions";
 import { toast } from "react-toastify";
 
 export default function useForm(validate) {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const boxes = useSelector((state) => state.boxes);
+  const products = useSelector((state) => state.products);
 
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getBoxesAdmin());
+  }, [dispatch]);
+
+  const data = {
+    boxes,
+    products,
+  };
   //BOX
   const [input, setInput] = useState({
     boxName: "",
@@ -42,10 +58,13 @@ export default function useForm(validate) {
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
+      validate(
+        {
+          ...input,
+          [e.target.name]: e.target.value,
+        },
+        data
+      )
     );
   };
 
@@ -76,6 +95,7 @@ export default function useForm(validate) {
 
   const handleBoxSubmit = (e) => {
     e.preventDefault();
+
     if (Object.keys(errors).length === 0) {
       dispatch(createBox(dataBox));
       toast.success("Save data", {
@@ -131,10 +151,13 @@ export default function useForm(validate) {
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...product,
-        [e.target.name]: e.target.value,
-      })
+      validate(
+        {
+          ...product,
+          [e.target.name]: e.target.value,
+        },
+        data
+      )
     );
   };
 

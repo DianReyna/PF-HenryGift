@@ -8,14 +8,8 @@ import {
 import { toast } from "react-toastify";
 import { Delete } from "../CommonStyled";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  DialogContentText,
-} from "@mui/material/";
+import { Dialog, DialogActions, DialogTitle } from "@mui/material/";
+import { CreateNew, Cancel } from "../CommonStyled";
 
 export default function DeleteProduct({ idProd }) {
   const dispatch = useDispatch();
@@ -58,17 +52,23 @@ export default function DeleteProduct({ idProd }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Delete Product?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you want to remove the product: {name}?
-          </DialogContentText>
-        </DialogContent>
+        <DialogTitle
+          sx={{
+            fontSize: 25,
+            color: "#545454",
+            fontFamily: "arial",
+            textAlign: "center",
+          }}
+          id="alert-dialog-title"
+        >
+          {`Are you sure you want to remove the product ${name} ?`}
+        </DialogTitle>
+
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => handleDelete(idProd)} autoFocus>
+          <Cancel onClick={handleClose}>Cancel</Cancel>
+          <CreateNew onClick={() => handleDelete(idProd)} autoFocus>
             Accept
-          </Button>
+          </CreateNew>
         </DialogActions>
       </Dialog>
     </div>
