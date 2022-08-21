@@ -45,11 +45,13 @@ const  changePassword=  (recipient) => {
     from: AUTH_USER,
     to: recipient,
     subject: "Reset password",
-    html: `<h1>Reset password</h1>
-        <h2>Hello !!</h2>
+    attachDataUrls: true,
+    html: `<h1>Reset password:Henry-Gift</h1>
+        <h3>Hello customer!!</h3>
         <p>You requested to recover the password.</p>
         <p>Click on the link below and create a new one.</p>
-        <a href=http://127.0.0.1:5173/login/reset-password/${recipient}> Reset password</a>
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/password-reset-icon.png" alt="reset-password" width="100" heigth="100"/>
+        <a href=http://127.0.0.1:5173/login/reset-password/${recipient.split('@')[0]}> Reset password</a>
         </div>`,
   }).catch(err => console.log(err));
 };
