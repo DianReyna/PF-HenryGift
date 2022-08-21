@@ -106,7 +106,23 @@ const updateBox = async (req, res, next) => {
   try {
     const boxFind = await boxServices.getBox(id);
     if (!boxFind) {
-      return res.status(404).send("Provider not found...");
+      return res.status(404).send("Box not found...");
+    }
+    if (body.image !== "") {
+      const updateRes = await cloudinary.uploader.upload(body.image, {
+        upload_preset: "henry-gift",
+      });
+
+      if (updateRes) {
+        const updateBox = await boxServices.updateBox(id, {
+          ...body,
+          image: updateRes,
+        });
+        if (updateBox) {
+          const newListUp = await boxServices.getAllBoxes();
+          return res.status(200).send(newListUp);
+        }
+      }
     }
     const update = await boxServices.updateBox(id, body);
     if (update) {
