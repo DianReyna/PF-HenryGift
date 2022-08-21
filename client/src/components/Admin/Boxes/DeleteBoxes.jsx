@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogContentText,
 } from "@mui/material/";
+import { CreateNew, Cancel } from "../CommonStyled";
 
 export default function DeleteBoxes({ idBox }) {
   const dispatch = useDispatch();
@@ -56,17 +57,23 @@ export default function DeleteBoxes({ idBox }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Delete Box?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you want to remove the box: {name}?
-          </DialogContentText>
-        </DialogContent>
+        <DialogTitle
+          sx={{
+            fontSize: 25,
+            color: "#545454",
+            fontFamily: "arial",
+            textAlign: "center",
+          }}
+          id="alert-dialog-title"
+        >
+          {`Are you sure you want to remove the box ${name}?`}
+        </DialogTitle>
+
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => handleDelete(idBox)} autoFocus>
+          <Cancel onClick={handleClose}>Cancel</Cancel>
+          <CreateNew onClick={() => handleDelete(idProd)} autoFocus>
             Accept
-          </Button>
+          </CreateNew>
         </DialogActions>
       </Dialog>
     </div>
