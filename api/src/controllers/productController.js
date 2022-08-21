@@ -87,12 +87,27 @@ const updateProduct = async (req, res, next) => {
       : !prov
       ? res.status(404).send("Provider not found...")
       : null;
+
+    if (body.image !== "") {
+      const updateRes = await cloudinary.uploader.upload(body.image, {
+        upload_preset: "henry-gift",
+      });
+      if (updateRes) {
+        const updateProd = await productServices.updateProduct(id, {
+          ...body,
+          image: updateRes,
+        });
+        if (updateProd) {
+          const newListProd = await productServices.getAllProducts();
+          return res.status(200).send(newListProd);
+        }
+      }
+    }
+
     const update = await productServices.updateProduct(id, body);
     if (update) {
       const newList = await productServices.getAllProducts();
       res.status(200).send(newList);
-    } else {
-      res.status(404).send("Error");
     }
   } catch (error) {
     next(error);
