@@ -138,3 +138,39 @@ export const ContentDialog = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const CreateNew = styled.button`
+  border: none;
+  outline: none;
+  padding: 14px;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: arial;
+  cursor: pointer;
+  background-color: #3085d6;
+`;
+
+export const ViewDetail = styled.button`
+  border: none;
+  outline: none;
+  padding: 14px;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: arial;
+  cursor: pointer;
+  background-color: #7fff00;
+`;
+
+export const Cancel = styled.button`
+  border: none;
+  outline: none;
+  padding: 15px;
+  color: white;
+  font-family: arial;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #aaa;
+`;
