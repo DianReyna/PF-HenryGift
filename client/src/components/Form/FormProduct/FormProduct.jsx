@@ -9,13 +9,14 @@ import {
   Select,
   DialogContentText,
 } from "@mui/material";
-import { getProvider } from "../../redux/actions/providerActions";
-import { getCategory } from "../../redux/actions/categoryActions";
-import { getProducts } from "../../redux/actions/productsActions";
+import { getProvider } from "../../../redux/actions/providerActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Form.module.css";
-import useForm from "./useForm";
-import validate from "./validate";
+import styles from "../Form.module.css";
+import useForm from "../useForm";
+import validate from "./validateProduct.js";
+import DialogFormProduct from "./DialogFormProduct";
+import ProductCard from "../../Products/ProductCard";
+import { ContainerForm } from "../../Admin/CommonStyled";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -32,29 +33,27 @@ export default function FormProduct() {
   const dispatch = useDispatch();
 
   const {
-    handleChange,
-    input,
+    product,
     errors,
+    dataProduct,
     handleProductSubmit,
     handleProductChange,
+    handleChangeProductImg,
   } = useForm(validate);
 
   useEffect(() => {
     dispatch(getProvider());
-    dispatch(getCategory());
-    dispatch(getProducts());
   }, [dispatch]);
 
   const providers = useSelector((state) => state.providers);
-  const categories = useSelector((state) => state.categories);
-  const products = useSelector((state) => state.products);
+
   return (
-    <div>
+    <ContainerForm>
       <Box
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "25ch",
+            width: "32ch",
           },
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
@@ -77,12 +76,26 @@ export default function FormProduct() {
           >
             <div className={styles.formContainer}>
               <TextField
-                className="textField"
-                onChange={(e) => handleChange(e)}
-                name="productName"
-                value={input.productName || ""}
+                type="file"
+                accept="image/"
+                onChange={(e) => handleChangeProductImg(e)}
+                name="productImage"
                 required
-                label="Nombre del producto"
+                size="small"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
+              />
+
+              <TextField
+                className="textField"
+                onChange={(e) => handleProductChange(e)}
+                name="productName"
+                value={product.productName || ""}
+                required
+                label="Product name"
                 size="small"
                 sx={{
                   input: {
@@ -99,14 +112,17 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                id="outlined-textarea"
+                multiline
+                rows={4}
+                onChange={(e) => handleProductChange(e)}
                 name="productDescription"
-                value={input.productDescription || ""}
+                value={product.productDescription || ""}
                 required
-                label="Descripcion del producto"
+                label="Description"
                 size="small"
                 sx={{
-                  input: {
+                  textarea: {
                     color: "white",
                   },
                 }}
@@ -120,11 +136,11 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productPrice"
-                value={input.productPrice || ""}
+                value={product.productPrice || ""}
                 required
-                label="Precio"
+                label="Price"
                 size="small"
                 sx={{
                   input: {
@@ -141,11 +157,11 @@ export default function FormProduct() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProductChange(e)}
                 name="productLocation"
-                value={input.productLocation || ""}
+                value={product.productLocation || ""}
                 required
-                label="Direccion"
+                label="Location"
                 size="small"
                 sx={{
                   input: {
@@ -161,54 +177,54 @@ export default function FormProduct() {
                 </DialogContentText>
               )}
 
-              <TextField
-                onChange={(e) => handleChange(e)}
-                name="productImage"
-                value={input.productImage || ""}
-                required
-                label="Imagen"
-                size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
-              />
-              {errors.productImage && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.productImage}
-                </DialogContentText>
-              )}
-
               <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-name-label">Proveedor</InputLabel>
-
+                <InputLabel id="demo-multiple-name-label">Provider</InputLabel>
                 <Select
                   onChange={(e) => handleProductChange(e)}
-                  value={input.productProvider || ""}
+                  value={product.productProvider || ""}
                   MenuProps={MenuProps}
+                  name="productProvider"
                   sx={{
-                    color: "white",
+                    color: "white !Important",
                   }}
                 >
                   {providers.providers?.map(({ name, id }) => {
                     return (
-                      <MenuItem key={id} name="productProvider" value={name}>
+                      <MenuItem key={id} value={name}>
                         {name}
                       </MenuItem>
                     );
                   })}
                 </Select>
+                {errors.productProvider && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.productProvider}
+                  </DialogContentText>
+                )}
               </FormControl>
             </div>
-            <Button type="submit" variant="outlined">
-              CREATE
-            </Button>
+            {Object.keys(errors).length === 0 ? (
+              <DialogFormProduct
+                type="submit"
+                variant="outlined"
+                nameProd={dataProduct.name}
+              />
+            ) : (
+              <Button>Create</Button>
+            )}
           </form>
         </div>
       </Box>
-    </div>
+      <Box sx={{ width: 345 }}>
+        <ProductCard
+          name={dataProduct.name}
+          description={dataProduct.description}
+          location={dataProduct.location}
+          imagen={dataProduct.image}
+        />
+      </Box>
+    </ContainerForm>
   );
 }

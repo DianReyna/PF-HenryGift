@@ -1,16 +1,17 @@
+
+
 import React, { useEffect} from "react";
+import { detailBox } from "../../../redux/actions/boxesActions";
 import { useSelector, useDispatch } from 'react-redux';
 import {useParams} from 'react-router-dom';
-import styled from 'styled-components';
+import GiftProduct from "./GiftProduct";
+import styled from 'styled-components'
 import PersonIcon from '@mui/icons-material/Person';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import StarIcon from '@mui/icons-material/Star';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
-import GiftProduct from "./GiftProduct";
-
-import FormProduct from "../../Form/FormProduct";
-
+import FilterGiftSelect from '../../FilterComponent/FilterGiftSelect'
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -21,16 +22,16 @@ const Grid = styled.div`
   gap: 1.5rem;
   margin-bottom: 3rem;`
 
-  const myGiftBox = styled.div`
+  const DetailBox = styled.div`
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 2rem;
   `
 
-  const ImagemyGiftBox = styled.div`
+  const ImageDetailBox = styled.div`
     
   `
-  const InfomyGiftBox = styled.div`
+  const InfoDetailBox = styled.div`
   
   `
 
@@ -50,8 +51,8 @@ const Grid = styled.div`
   display: flex;
   margin-top: 0.9rem;
   align-items: center;
-  `
-    
+  `  
+   
   export default function GiftDetail() {
 
   const dispatch = useDispatch();
@@ -63,7 +64,6 @@ const Grid = styled.div`
   }, [dispatch,idBox])
   
   
-
   return (
     <div>
     {
@@ -101,21 +101,23 @@ const Grid = styled.div`
                 <AttachMoneyIcon/>
               <p>Price: {detail.price}</p>
               </ItemBox>
+              <FilterGiftSelect/>
             </InfoDetailBox>
           </DetailBox>
-           <CardsProducts>
+        <CardsProducts>
           <Grid>
-                {detail.Products && detail.Products.map((product)=>{    
-                   return <ItemProduct key={product.id}>
-                    <GiftProduct                     
+                {detail.Products && detail.Products.map((product)=>{
+                  return <ItemProduct key={product.id}>
+                    <GiftProduct 
                       id={product.id}
                       imagen={product.image} 
                       name={product.name} 
                       description={product.description}
                       location={product.location}/>
                     </ItemProduct>
-                })}           
-             </Grid>
+                })}
+              
+          </Grid>
         </CardsProducts>
       </Container>
       :'nada'
@@ -123,4 +125,3 @@ const Grid = styled.div`
     </div>
   )
 }
-

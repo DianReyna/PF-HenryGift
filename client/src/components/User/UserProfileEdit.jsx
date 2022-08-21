@@ -7,10 +7,11 @@ import {TextField} from '@mui/material';
 import {Button} from '@mui/material';
 import {putUsersUpdate, getUsersById, getUsers} from "../../redux/actions/userActions";
 
-export default function UserProfileEdit({userId}) {
+export default function UserProfileEdit(id) {
 
     const dispatch = useDispatch();  
-    const [currentUser, setCurrentUser] = useState({});
+    //const [currentUser, setCurrentUser] = useState({});
+   
 
 
     const[first_name, setFirst_name] = useState("");
@@ -18,18 +19,15 @@ export default function UserProfileEdit({userId}) {
     const[email, setEmail] = useState("");
     const[oldEmail, setOldEmail] = useState("");
     const[phone, setPhone] = useState("");
+    const[dateBirth, setdateBirth]=useState("")
     const[password, setPassword] = useState("");
-    const[shopping, setSopping] = useState(false);
-    const[gifts, setGifts] = useState(false);
 
-    
-    const {userDetail} = useSelector((state) => state.users);
+    const {user}  = useSelector((state) => state.auth);
+    const {userDetail} = useSelector((state)=> state.users)
     
 
     useEffect(() => {
-        dispatch(getUsersById('tamaraber9@gmail.com')); 
-        // setTimeout(()=>{
-            // },1000)
+        dispatch(getUsersById(user._id));      
         }, [dispatch])
         
         useEffect(() => {
@@ -39,26 +37,19 @@ export default function UserProfileEdit({userId}) {
                 setEmail(userDetail.email)
                 setOldEmail(userDetail.email)
                 setPhone(userDetail.phone)
+                setdateBirth(userDetail.dateBirth)
             }
             }, [userDetail]) 
 
        
     const handleSubmit = (e) =>{
         e.preventDefault();
-        // {
-        //     "email": "alegrices@independent.co.uk",
-        //     "dateBirth": "1998-04-23T00:00:00.000Z",
-        //     "first_name": "Pablo",
-        //     "last_name": "Le Grice",
-        //     "access_level": false,
-        //     "phone": "5763151587",
-        //     "banned": false
-        // }
         let user ={
                 email: email,
                 first_name: first_name,
                 last_name: last_name,
                 phone: phone,
+                dateBirth: dateBirth
          
             }
         let id = oldEmail
@@ -87,7 +78,6 @@ export default function UserProfileEdit({userId}) {
                 autoFocus
                 />
             </Grid>
-         
             <Grid item xs={12}>
                 <TextField
                 name="last_name"
@@ -109,7 +99,8 @@ export default function UserProfileEdit({userId}) {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
                 />
-            </Grid>  <Grid item xs={12}>
+            </Grid>  
+            <Grid item xs={12}>
                 <TextField
                 name="phone"
                 fullWidth
@@ -119,7 +110,19 @@ export default function UserProfileEdit({userId}) {
                 onChange={(e) => setPhone(e.target.value)}
                 autoFocus
                 />
-            </Grid>  <Grid item xs={12}>
+            </Grid>  
+                <Grid item xs={12}>
+                <TextField
+                name="dateBirth"
+                fullWidth
+                label="dateBirth"
+                type="date"
+                value={dateBirth}
+                onChange={(e) => setdateBirth(e.target.value)}
+                autoFocus
+                />
+            </Grid>  
+            <Grid item xs={12}>
                 <TextField
                 name="password"
                 fullWidth

@@ -35,11 +35,12 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement),
     });
     setLoading(true);
-
+    // const URL=" https://henrygift-api.herokuapp.com/register"
+    const URL = "http://localhost:3001";
     if (!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post("http://localhost:3001/payment", {
+        const { data } = await axios.post(`${URL}/payment`, {
           id,
           amount: cart.cartTotalAmount, //cents
         });
@@ -47,7 +48,7 @@ const CheckoutForm = () => {
         console.log(data);
 
         if (data.message === "Successful Payment") {
-          await axios.post("http://localhost:3001/orders/sendcode", {
+          await axios.post(`${URL}/orders/sendcode`, {
             userId: "drowet0@4shared.com",
           });
           toast.success(`Importe abonado correctamente`, {
@@ -60,7 +61,6 @@ const CheckoutForm = () => {
             position: "bottom-left",
           });
         }
-
         elements.getElement(CardElement).clear();
       } catch (error) {
         console.log(error);
@@ -93,11 +93,11 @@ const CheckoutForm = () => {
 function Checkout() {
   return (
     <Elements stripe={stripePromise}>
-        <div className="center">
-          <div className="diome">
-            <CheckoutForm />
-          </div>
+      <div className="center">
+        <div className="diome">
+          <CheckoutForm />
         </div>
+      </div>
     </Elements>
   );
 }

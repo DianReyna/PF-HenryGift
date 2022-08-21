@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   TextField,
@@ -10,13 +10,15 @@ import {
   FormLabel,
   DialogContentText,
 } from "@mui/material";
-import { getProvider } from "../../redux/actions/providerActions";
-import { getCategory } from "../../redux/actions/categoryActions";
-import { getProducts } from "../../redux/actions/productsActions";
+import { getCategory } from "../../../redux/actions/categoryActions";
+import { getProducts } from "../../../redux/actions/productsActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Form.module.css";
-import useForm from "./useForm";
-import validate from "./validate";
+import styles from "../Form.module.css";
+import useForm from "../useForm";
+import validate from "./validateBox.js";
+import DialogFormBox from "./DialogFormBox";
+import BoxCard from "../../BoxCard/BoxCard";
+import { ContainerForm } from "../../Admin/CommonStyled";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -32,25 +34,32 @@ const MenuProps = {
 export default function FormBox() {
   const dispatch = useDispatch();
 
-  const { handleChange, input, errors, handleBoxSubmit } = useForm(validate);
+  const {
+    input,
+    errors,
+    dataBox,
+    handleBoxSubmit,
+    handleChangeBox,
+    handleChangeProd,
+    handleChangeCat,
+    handleChangeBoxImg,
+  } = useForm(validate);
 
   useEffect(() => {
-    dispatch(getProvider());
     dispatch(getCategory());
     dispatch(getProducts());
   }, [dispatch]);
 
-  const providers = useSelector((state) => state.providers);
   const categories = useSelector((state) => state.categories);
   const products = useSelector((state) => state.products);
 
   return (
-    <div>
+    <ContainerForm>
       <Box
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "23ch",
+            width: "32ch",
           },
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
@@ -73,119 +82,12 @@ export default function FormBox() {
           >
             <div className={styles.formContainer}>
               <TextField
-                onChange={(e) => handleChange(e)}
-                name="boxName"
-                value={input.boxName || ""}
-                required
+                type="file"
+                accept="image/"
+                name="imagebox"
+                onChange={(e) => handleChangeBoxImg(e)}
                 size="small"
-                label="Nombre de la nueva box"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
-              />
-              {errors.boxName && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxName}
-                </DialogContentText>
-              )}
-
-              <TextField
-                onChange={(e) => handleChange(e)}
-                name="boxDetail"
-                value={input.boxDetail || ""}
                 required
-                label="Descripcion de la box"
-                size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
-              />
-              {errors.boxDetail && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxDetail}
-                </DialogContentText>
-              )}
-
-              <TextField
-                onChange={(e) => handleChange(e)}
-                name="boxPrice"
-                value={input.boxPrice || ""}
-                required
-                size="small"
-                label="Precio"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
-              />
-              {errors.boxPrice && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxPrice}
-                </DialogContentText>
-              )}
-
-              <TextField
-                onChange={(e) => handleChange(e)}
-                name="boxRanking"
-                value={input.boxRanking || ""}
-                required
-                size="small"
-                label="Ranking de la box"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
-              />
-              {errors.boxRanking && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxRanking}
-                </DialogContentText>
-              )}
-              <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
-              <TextField
-                id="date"
-                // label="Expiration Date"
-                type="date"
-                name="boxExpirationDate"
-                value={input.boxExpirationDate || ""}
-                onChange={(e) => handleChange(e)}
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                  color: "white",
-                }}
-              />
-
-              {errors.boxExpirationDate && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxExpirationDate}
-                </DialogContentText>
-              )}
-
-              <TextField
-                onChange={(e) => handleChange(e)}
-                name="boxImage"
-                value={input.boxImage || ""}
-                required
-                size="small"
-                label="Imagen"
                 sx={{
                   input: {
                     color: "white",
@@ -199,14 +101,56 @@ export default function FormBox() {
                   {errors.boxImage}
                 </DialogContentText>
               )}
-
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleChangeBox(e)}
+                name="boxName"
+                value={input.boxName}
+                required
+                size="small"
+                label="Box name"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
+              />
+              {errors.boxName && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxName}
+                </DialogContentText>
+              )}
+              <TextField
+                onChange={(e) => handleChangeBox(e)}
+                id="outlined-textarea"
+                multiline
+                rows={4}
+                name="boxDetail"
+                value={input.boxDetail || ""}
+                required
+                label="Box Detail"
+                size="small"
+                sx={{
+                  textarea: {
+                    color: "white",
+                  },
+                }}
+              />
+              {errors.boxDetail && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxDetail}
+                </DialogContentText>
+              )}
+              <TextField
+                onChange={(e) => handleChangeBox(e)}
                 name="boxPerson"
                 value={input.boxPerson || ""}
                 required
                 size="small"
-                label="Cantidad de personas"
+                label="Persons"
                 sx={{
                   input: {
                     color: "white",
@@ -220,16 +164,56 @@ export default function FormBox() {
                   {errors.boxPerson}
                 </DialogContentText>
               )}
-
-              <FormControl sx={{ m: 1, width: 300, color: "white" }}>
-                <InputLabel id="demo-multiple-name-label">Productos</InputLabel>
+              <TextField
+                onChange={(e) => handleChangeBox(e)}
+                name="boxPrice"
+                value={input.boxPrice || ""}
+                required
+                size="small"
+                label="Price"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                }}
+              />
+              {errors.boxPrice && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxPrice}
+                </DialogContentText>
+              )}
+              <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
+              <TextField
+                id="date"
+                type="date"
+                name="boxExpirationDate"
+                value={input.boxExpirationDate || ""}
+                onChange={(e) => handleChangeBox(e)}
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                  color: "white",
+                }}
+              />
+              {errors.boxExpirationDate && (
+                <DialogContentText
+                  sx={{ color: "red !Important", fontSize: 13 }}
+                >
+                  {errors.boxExpirationDate}
+                </DialogContentText>
+              )}
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Products</InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   multiple
                   value={input.boxProducts || []}
                   name="boxProducts"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleChangeProd(e)}
                   MenuProps={MenuProps}
                   size="small"
                   color="primary"
@@ -245,11 +229,17 @@ export default function FormBox() {
                     );
                   })}
                 </Select>
+                {errors.boxProducts && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.boxProducts}
+                  </DialogContentText>
+                )}
               </FormControl>
-
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">
-                  Categorias
+                  Categories
                 </InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
@@ -257,7 +247,7 @@ export default function FormBox() {
                   multiple
                   value={input.boxCategories || []}
                   name="boxCategories"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleChangeCat(e)}
                   MenuProps={MenuProps}
                   size="small"
                   sx={{
@@ -272,14 +262,37 @@ export default function FormBox() {
                     );
                   })}
                 </Select>
+                {errors.boxCategories && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.boxCategories}
+                  </DialogContentText>
+                )}
               </FormControl>
             </div>
-            <Button type="submit" variant="outlined">
-              CREATE
-            </Button>
+            {Object.keys(errors).length === 0 ? (
+              <DialogFormBox
+                type="submit"
+                variant="outlined"
+                nameBox={dataBox.name}
+              />
+            ) : (
+              <Button>Create</Button>
+            )}
           </form>
         </div>
       </Box>
-    </div>
+      <Box sx={{ width: 345 }}>
+        <BoxCard
+          name={dataBox.name}
+          detail={dataBox.detail}
+          price={dataBox.price}
+          person={dataBox.person}
+          image={dataBox.image}
+          expiration_date={dataBox.expiration_date}
+        />
+      </Box>
+    </ContainerForm>
   );
 }

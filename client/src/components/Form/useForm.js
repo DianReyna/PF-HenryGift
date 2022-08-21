@@ -1,181 +1,259 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   createProvider,
-  createProduct,
   createBox,
+  getBoxesAdmin,
 } from "../../redux/actions/boxesActions";
+import { getProducts } from "../../redux/actions/productsActions";
+import { createProduct } from "../../redux/actions/productsActions";
 import { toast } from "react-toastify";
 
 export default function useForm(validate) {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
+  const boxes = useSelector((state) => state.boxes);
+  const products = useSelector((state) => state.products);
 
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getBoxesAdmin());
+  }, [dispatch]);
+
+  const data = {
+    boxes,
+    products,
+  };
+  //BOX
   const [input, setInput] = useState({
-    //PROVIDER
-    providerName: "",
-    providerPhone: "",
-    providerAddress: "",
-    providerEmail: "",
-    //PRODUCT
-    productName: "",
-    productDescription: "",
-    productPrice: "",
-    productLocation: "",
-    productImage: "",
-    productProvider: [],
-    //BOX
     boxName: "",
     boxPrice: "",
     boxDetail: "",
-    boxRanking: "",
     boxExpirationDate: "",
-    boxImage: "",
     boxPerson: "",
     boxProducts: [],
     boxCategories: [],
   });
+  const [boxImg, setBoxImg] = useState("");
 
-  const [errors, setErrors] = useState({});
+  const handleChangeBoxImg = (e) => {
+    const file = e.target.files[0];
+    transformFile(file);
+  };
 
-  const handleChange = (e) => {
+  const transformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setBoxImg(reader.result);
+      };
+    } else {
+      setBoxImg("");
+    }
+  };
+  const handleChangeBox = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
+      validate(
+        {
+          ...input,
+          [e.target.name]: e.target.value,
+        },
+        data
+      )
     );
   };
 
-  const handleProviderSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(
-      createProvider({
-        name: input.providerName,
-        phone: input.providerPhone,
-        email: input.providerEmail,
-        address: input.providerAddress,
-      })
-    );
-    cleanInputs();
-    toast.success("Save data", {
-      position: "top-right",
+  const handleChangeProd = (e) => {
+    setInput({
+      ...input,
+      boxProducts: [...e.target.value],
     });
   };
 
-  const handleProductSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(
-      createProduct({
-        name: input.productName,
-        description: input.productDescription,
-        price: input.productPrice,
-        location: input.productLocation,
-        image: input.productImage,
-        provider: input.productProvider,
-      })
-    );
-    cleanInputs();
-    toast.success("Save data", {
-      position: "top-right",
+  const handleChangeCat = (e) => {
+    setInput({
+      ...input,
+      boxCategories: [...e.target.value],
     });
+  };
+
+  const dataBox = {
+    name: input.boxName,
+    detail: input.boxDetail,
+    price: input.boxPrice,
+    expiration_date: input.boxExpirationDate,
+    image: boxImg,
+    person: input.boxPerson,
+    products: input.boxProducts,
+    category: input.boxCategories,
   };
 
   const handleBoxSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(
-      createBox({
-        name: input.boxName,
-        detail: input.boxDetail,
-        price: input.boxPrice,
-        ranking: input.boxRanking,
-        expiration_date: input.boxExpirationDate,
-        image: input.boxImage,
-        person: input.boxPerson,
-        products: input.boxProducts,
-        category: input.boxCategories,
-      })
-    );
-    cleanInputs();
-    toast.success("Save data", {
-      position: "top-right",
-    });
+    if (Object.keys(errors).length === 0) {
+      dispatch(createBox(dataBox));
+      toast.success("Save data", {
+        position: "top-right",
+      });
+      setInput({
+        boxName: "",
+        boxPrice: "",
+        boxDetail: "",
+        boxExpirationDate: "",
+        boxPerson: "",
+        boxImage: "",
+        boxProducts: [],
+        boxCategories: [],
+      });
+      setBoxImg("");
+    } else {
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    }
   };
 
+  //PRODUCT
+  const [product, setProduct] = useState({
+    productName: "",
+    productDescription: "",
+    productPrice: "",
+    productLocation: "",
+    productProvider: "",
+  });
+  const [productImg, setProductImg] = useState("");
+
+  const handleChangeProductImg = (e) => {
+    const file = e.target.files[0];
+    transformFileProduct(file);
+  };
+
+  const transformFileProduct = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProductImg(reader.result);
+      };
+    } else {
+      setProductImg("");
+    }
+  };
   const handleProductChange = (e) => {
-    console.log(input.productProvider);
-    // if (input.productProvider.includes(e.target.value)) {
-    //   return alert("You have already selected that product");
-    // } else {
-    setInput({
-      ...input,
-      productProvider: [...input.productProvider, e.target.value],
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...input,
-        productProvider: [...input.productProvider, e.target.value],
-      })
-    );
-    // }
-  };
-
-  const handleDelete = (dietDelete) => {
-    setInput({
-      ...input,
-      diets: input.diets.filter((diet) => diet !== dietDelete),
-    });
-    setErrors(
-      validate({
-        ...input,
-        diets: input.diets.filter((diet) => diet !== dietDelete),
-      })
+      validate(
+        {
+          ...product,
+          [e.target.name]: e.target.value,
+        },
+        data
+      )
     );
   };
 
-  const cleanInputs = () => {
-    setInput({
-      //PROVIDER
-      providerName: "",
-      providerPhone: "",
-      providerAddress: "",
-      providerEmail: "",
-      //PRODUCT
-      productName: "",
-      productDescription: "",
-      productPrice: "",
-      productLocation: "",
-      productImage: "",
-      productProvider: [],
-      //BOX
-      boxName: "",
-      boxPrice: "",
-      boxDetail: "",
-      boxRanking: "",
-      boxExpirationDate: "",
-      boxImage: "",
-      boxPerson: "",
-      boxProducts: [],
-      boxCategories: [],
-    });
+  const dataProduct = {
+    name: product.productName,
+    description: product.productDescription,
+    price: product.productPrice,
+    location: product.productLocation,
+    image: productImg,
+    provider: product.productProvider,
   };
 
+  const handleProductSubmit = (e) => {
+    e.preventDefault();
+    if (Object.keys(errors).length === 0) {
+      dispatch(createProduct(dataProduct));
+      setProduct({
+        productName: "",
+        productDescription: "",
+        productPrice: "",
+        productLocation: "",
+        productImage: "",
+        productProvider: "",
+      });
+      setProductImg("");
+      toast.success("Save data", {
+        position: "top-right",
+      });
+    } else {
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    }
+  };
+
+  //PROVIDER
+  const [provider, setProvider] = useState({
+    providerName: "",
+    providerPhone: "",
+    providerAddress: "",
+    providerEmail: "",
+  });
+  const handleProviderChange = (e) => {
+    setProvider({
+      ...provider,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...provider,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
+  const dataProvider = {
+    name: provider.providerName,
+    phone: provider.providerPhone,
+    email: provider.providerEmail,
+    address: provider.providerAddress,
+  };
+  const handleProviderSubmit = (e) => {
+    e.preventDefault();
+
+    if (Object.keys(errors).length === 0) {
+      dispatch(createProvider(dataProvider));
+      setProvider({
+        providerName: "",
+        providerPhone: "",
+        providerAddress: "",
+        providerEmail: "",
+      });
+      toast.success("Save data", {
+        position: "top-right",
+      });
+    } else {
+      toast.error("Incorrect data, check againt", {
+        position: "top-right",
+      });
+    }
+  };
   return {
-    handleChange,
-    input,
-    setInput,
-    handleProviderSubmit,
-    handleDelete,
     errors,
-    cleanInputs,
-    handleProductSubmit,
+    input,
+    product,
+    provider,
+    dataBox,
+    dataProduct,
+    handleChangeBox,
+    handleChangeProductImg,
+    handleChangeProd,
+    handleChangeCat,
     handleProductChange,
+    handleProviderChange,
+    handleChangeBoxImg,
     handleBoxSubmit,
+    handleProductSubmit,
+    handleProviderSubmit,
   };
 }

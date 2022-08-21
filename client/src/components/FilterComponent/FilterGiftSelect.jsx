@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Box, FormControl, InputLabel, Select,  } from '@mui/material'
 
 
-export default function GiftSelect() {
+export default function FilterGiftSelect() {
     
 const [productGift, setproductGift] = React.useState("");
 

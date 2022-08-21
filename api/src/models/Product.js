@@ -1,7 +1,9 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = ProductsFactory = (sequelize) => {
-  return sequelize.define("Product",{
+  return sequelize.define(
+    "Product",
+    {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -25,13 +27,18 @@ module.exports = ProductsFactory = (sequelize) => {
         allowNull: false,
       },
       image: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: false,
       },
       quantity: {
         type: DataTypes.INTEGER,
-        defaultValue:5,
+        defaultValue: 5,
         allowNull: false,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
     },
     {

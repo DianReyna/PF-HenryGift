@@ -10,8 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/reducer/cartSlice";
 import styled from "styled-components";
-import AddShoppingCartSharpIcon from '@mui/icons-material/AddShoppingCartSharp';
-//import { useHistory } from "react-router-dom";
+import Favorite from "./Sections/Favorite";
 
 const CardWidth = styled.div`
   height: 33rem;
@@ -44,11 +43,17 @@ export default function BoxCard({
   box,
 }) {
   const dispatch = useDispatch();
-  //const history = useHistory();
+  const {user} = useSelector((state) => state.auth);
 
   const handleAddToCart = (box) => {
     dispatch(addToCart(box));
-    //history.push("/cart")
+  };
+  const handleFavorite = () => {
+    dispatch(addFavorite(id, user._id));
+  };
+
+  const handleDeleteFavorite = () => {
+    dispatch(removeFavorite(id));
   };
 
   return (
@@ -80,9 +85,19 @@ export default function BoxCard({
               </CardContent>
             </Link>
             <FooterCardProduct>
-              <Button sx={{color: 'black', border: '1px solid black', marginLeft: '3.8rem'}} variant="outlined" onClick={() => handleAddToCart(box)}>
+              <Button
+                sx={{
+                  color: "black",
+                  border: "1px solid black",
+                  marginLeft: "3.8rem",
+                }}
+                variant="outlined"
+                onClick={() => handleAddToCart(box)}
+              >
                 Agregar al Carrito
               </Button>
+
+              <Favorite id={id} />
             </FooterCardProduct>
           </CardWidth>
         </Card>

@@ -1,4 +1,4 @@
-const { Box, Products,GiftList,Gift, User } = require("../database/index");
+const { Box, Products,GiftList,Gift, User,Picks,Provider } = require("../database/index");
 const { Op } = require("sequelize");
 
 
@@ -15,7 +15,7 @@ const redeemGift = async (code) => {
 
 };
 
-const productPicked = async (id) => {
+const updateProductStock = async (id) => {
 
   let findProduct = await Products.findByPk(id);
   let newStock = findProduct.dataValues.quantity - 1
@@ -39,7 +39,8 @@ const addGift = async (gift) => {
 const getUserGifts = async (user) => {
   let userGifts = await Gift.findAll({
     where:{
-      email:user
+      email:user,
+      redeemed:false
     }
   })
   //console.log(userGifts)
@@ -59,10 +60,56 @@ const getBoxList = async(boxes) => {
   return userBoxes
 }
 
+const createNewPick = async(user,product) => {
+ let newPick = Picks.create({
+  product_id: product,
+  user_id:user
+ })
+ return newPick
+}
+
+const getQrInformation = async(user,product) => {
+
+  let findPick = await Picks.findOne({
+    where:{
+      product_id:product,
+      user_id:user
+    }
+  })
+
+  //console.log("soy el pickkk",findPick)
+
+  let findProduct = await Products.findByPk(product,{
+    include:{model:Provider}
+  })
+
+  //console.log("soy el prodd",findProduct.Provider)
+
+  let qrInformation = {
+    user:user,
+    providerName:findProduct.Provider.dataValues.name,
+    productName:findProduct.dataValues.name,
+    redeemed:findPick.dataValues.redeemed
+
+  }
+  return qrInformation
+}
+
+const updateGift = async(user,box)=>{
+  let updatedGift = await Gift.update({redeemed:true},{where:{
+    email:user,
+    box_id:box
+  }})
+  return updatedGift
+}
+
 module.exports = {
   redeemGift,
-  productPicked,
+  updateProductStock,
   addGift,
   getUserGifts,
-  getBoxList
+  getBoxList,
+  createNewPick,
+  getQrInformation,
+  updateGift
 };

@@ -5,13 +5,18 @@ import {
   getBoxesAdmin,
   updateBoxes,
 } from "../../../redux/actions/boxesActions";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { toast } from "react-toastify";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  InputAdornment,
+  DialogContentText,
+  TextField,
+} from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Edit,
   StyledEditProvider,
@@ -19,9 +24,6 @@ import {
   PrimaryButton,
   ImagePreview,
 } from "../CommonStyled";
-import { DialogContentText, TextField } from "@mui/material";
-import { toast } from "react-toastify";
-import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditBox({ boxId }) {
   const dispatch = useDispatch();
@@ -52,17 +54,33 @@ export default function EditBox({ boxId }) {
 
     let selectBox = itemsBox.boxes.filter((el) => el.id === boxId);
     selectBox = selectBox[0];
-
     setCurrentBox(selectBox);
     setPreview(selectBox.image);
     setInput({
       name: selectBox.name,
       price: selectBox.price,
-      image: selectBox.image,
       person: selectBox.person,
       detail: selectBox.detail,
       expiration: selectBox.expiration_date,
     });
+  };
+  const [boxImg, setBoxImg] = useState("");
+
+  const handleChangeBoxImg = (e) => {
+    const file = e.target.files[0];
+    transformFile(file);
+  };
+
+  const transformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setBoxImg(reader.result);
+      };
+    } else {
+      setBoxImg("");
+    }
   };
 
   const handleClose = () => {
@@ -81,9 +99,6 @@ export default function EditBox({ boxId }) {
         [e.target.name]: value,
       })
     );
-    if (input.image !== currentBox.image && input.image !== "") {
-      setPreview(value);
-    }
   };
 
   const handleCompare = () => {
@@ -91,7 +106,7 @@ export default function EditBox({ boxId }) {
       input.name !== currentBox.name ||
       input.price !== currentBox.price ||
       input.person !== currentBox.person ||
-      input.image !== currentBox.image ||
+      // boxImg !== currentBox.image ||
       input.detail !== currentBox.detail ||
       input.expiration !== currentBox.expiration
     ) {
@@ -108,7 +123,7 @@ export default function EditBox({ boxId }) {
           boxes: {
             name: input.name,
             price: input.price,
-            image: input.image,
+            image: boxImg,
             person: input.person,
             detail: input.detail,
             expiration_date: input.expiration,
@@ -159,20 +174,13 @@ export default function EditBox({ boxId }) {
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
               <TextField
-                type="text"
+                type="file"
+                accept="image/"
                 name="image"
                 placeholder="Image"
-                onChange={(e) => handleChange(e)}
-                label="Image"
+                onChange={(e) => handleChangeBoxImg(e)}
                 size="small"
               />
-              {errors.image && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.image}
-                </DialogContentText>
-              )}
               <TextField
                 type="text"
                 name="name"
@@ -247,14 +255,21 @@ export default function EditBox({ boxId }) {
                   {errors.expiration}
                 </DialogContentText>
               )}
-              <TextareaAutosize
-                type="text-area"
-                maxRows={4}
+              <TextField
+                id="outlined-textarea"
+                multiline
+                rows={4}
                 onChange={(e) => handleChange(e)}
                 defaultValue={input.detail}
                 label="Detail"
                 name="detail"
-                style={{ width: 200, height: 90 }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "lightGrey !Important",
+                    },
+                  },
+                }}
               />
               {errors.detail && (
                 <DialogContentText
@@ -269,12 +284,16 @@ export default function EditBox({ boxId }) {
               </PrimaryButton>
             </StyledForm>
             <ImagePreview>
-              {preview ? (
+              {boxImg ? (
                 <>
-                  <img src={preview} alt="product image" />
+                  <img src={boxImg} alt="box image" />
+                </>
+              ) : preview ? (
+                <>
+                  <img src={preview.url} alt="box image" />
                 </>
               ) : (
-                <p>Product image upload preview will appear here!</p>
+                <p>Box image upload preview will appear here!</p>
               )}
             </ImagePreview>
           </StyledEditProvider>
@@ -302,9 +321,6 @@ const validateForm = (input) => {
     errors.price = "Please enter a valid format";
   }
 
-  if (!input.image.trim()) {
-    errors.image = "Required field, enter an image";
-  }
   if (!input.detail.trim()) {
     errors.detail = "Describe the detail of the box";
   } else if (input.detail.length < 25) {

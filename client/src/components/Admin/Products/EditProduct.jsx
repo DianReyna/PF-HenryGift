@@ -6,19 +6,17 @@ import {
   updateProduct,
 } from "../../../redux/actions/productsActions";
 import { getProvider } from "../../../redux/actions/providerActions";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import {
-  DialogContentText,
-  FormLabel,
-  TextareaAutosize,
-  TextField,
-} from "@mui/material";
-import DialogTitle from "@mui/material/DialogTitle";
-import EditIcon from "@mui/icons-material/Edit";
 import { toast } from "react-toastify";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogTitle,
+} from "@mui/material/";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Edit,
   StyledEditProvider,
@@ -63,11 +61,29 @@ export default function EditProduct({ prodId }) {
     setInput({
       name: selectProd.name,
       price: selectProd.price,
-      image: selectProd.image,
       location: selectProd.location,
       description: selectProd.description,
       provider: selectProd.Provider.name,
     });
+  };
+
+  const [productImg, setProductImg] = useState("");
+
+  const handleChangeProductImg = (e) => {
+    const file = e.target.files[0];
+    transformFileProduct(file);
+  };
+
+  const transformFileProduct = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProductImg(reader.result);
+      };
+    } else {
+      setProductImg("");
+    }
   };
 
   const handleClose = () => {
@@ -86,16 +102,13 @@ export default function EditProduct({ prodId }) {
         [e.target.name]: value,
       })
     );
-    if (input.image !== currentProd.image && input.image !== "") {
-      setPreview(value);
-    }
   };
   const handleCompare = () => {
     if (
       input.name !== currentProd.name ||
       input.price !== currentProd.price ||
       input.location !== currentProd.location ||
-      input.image !== currentProd.image ||
+      // input.image !== currentProd.image ||
       input.description !== currentProd.description ||
       input.provider !== currentProd.Provider.name
     ) {
@@ -111,7 +124,7 @@ export default function EditProduct({ prodId }) {
           product: {
             name: input.name,
             price: input.price,
-            image: input.image,
+            image: productImg,
             location: input.location,
             description: input.description,
             provider: input.provider,
@@ -162,12 +175,12 @@ export default function EditProduct({ prodId }) {
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
               <TextField
-                type="text"
+                type="file"
+                accept="image/"
                 name="image"
-                label="Image"
                 size="small"
                 placeholder="Image"
-                onChange={(e) => handleOnChange(e)}
+                onChange={(e) => handleChangeProductImg(e)}
               />
               {errors.image && (
                 <DialogContentText
@@ -251,16 +264,24 @@ export default function EditProduct({ prodId }) {
                 </DialogContentText>
               )}
 
-              <TextareaAutosize
-                maxRows={5}
-                type="text-area"
+              <TextField
+                id="outlined-textarea"
+                multiline
+                rows={4}
                 name="description"
                 label="Description"
                 placeholder="Description"
                 defaultValue={input.description}
                 onChange={(e) => handleOnChange(e)}
                 required
-                style={{ width: 200, height: 90 }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "lightGrey !Important",
+                    },
+                  },
+                  fontSize: 14,
+                }}
               />
               {errors.description && (
                 <DialogContentText
@@ -274,9 +295,13 @@ export default function EditProduct({ prodId }) {
               </PrimaryButton>
             </StyledForm>
             <ImagePreview>
-              {preview ? (
+              {productImg ? (
                 <>
-                  <img src={preview} alt="product image" />
+                  <img src={productImg} alt="product image" />
+                </>
+              ) : preview ? (
+                <>
+                  <img src={preview.url} alt="product image" />
                 </>
               ) : (
                 <p>Product image upload preview will appear here!</p>
@@ -316,9 +341,6 @@ const validateForm = (input) => {
       "You must enter the location where the service is provided";
   } else if (input.location.length < 10) {
     errors.location = "The address must have at least 10 letters";
-  }
-  if (!input.image.trim()) {
-    errors.image = "Required field, enter an image";
   }
 
   return errors;

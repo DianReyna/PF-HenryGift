@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProvider,
-  destroyProvider,
   putActiveProvider,
 } from "../../../redux/actions/providerActions";
 import { DataGrid } from "@mui/x-data-grid";
@@ -11,6 +10,8 @@ import { Action, Delete } from "../CommonStyled.js";
 import EditProvider from "./EditProvider";
 import { Button } from "@mui/material";
 import "./Providers.css";
+import { toast } from "react-toastify";
+
 export default function ProvidersList() {
   const dispatch = useDispatch();
   const itemsProvider = useSelector((state) => state.providers);
@@ -18,11 +19,18 @@ export default function ProvidersList() {
     dispatch(getProvider());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(destroyProvider(id));
-  };
   const handleActive = (id, acti) => {
-    acti ? (acti = false) : (acti = true);
+    if (acti) {
+      acti = false;
+      toast.success("Disabled provider", {
+        position: "top-right",
+      });
+    } else {
+      acti = true;
+      toast.success("Activated provider", {
+        position: "top-right",
+      });
+    }
     const data = {
       id,
       active: acti,
@@ -58,7 +66,7 @@ export default function ProvidersList() {
     { field: "email", headerName: "Email", width: 160 },
     {
       field: "active",
-      headerName: "Active",
+      headerName: "Status",
       width: 80,
       renderCell: (params) => {
         return (
@@ -84,9 +92,6 @@ export default function ProvidersList() {
         return (
           <Action>
             <EditProvider provId={params.row.id_provider} />
-            {/* <Delete onClick={() => handleDelete(params.row.id_provider)}>
-              Delete
-            </Delete> */}
           </Action>
         );
       },

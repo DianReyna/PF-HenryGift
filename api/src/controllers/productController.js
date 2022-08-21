@@ -1,37 +1,32 @@
 const productServices = require("../services/productServices.js");
-
+const cloudinary = require("../utils/cloudinary.js");
 const { Products, Provider } = require("../database/index.js");
 const createNewProduct = async (req, res, next) => {
   const { body } = req;
   try {
-    if (
-      !body.name ||
-      !body.description ||
-      !body.price ||
-      !body.location ||
-      !body.image
-    ) {
-      return;
-    }
+    if (body.image) {
+      const uploadRes = await cloudinary.uploader.upload(body.image, {
+        upload_preset: "henry-gift",
+      });
 
-    const provider = body.provider;
-
-    const newProduct = {
-      name: body.name,
-      description: body.description,
-      price: body.price,
-      location: body.location,
-      image: body.image,
-    };
-
-    const createdProduct = await productServices.createNewProduct(
-      newProduct,
-      provider
-    );
-    if (createdProduct) {
-      res.status(201).send("Product created!");
-    } else {
-      res.status(404).send("Error creating product!");
+      if (uploadRes) {
+        const newItemProduct = {
+          name: body.name,
+          description: body.description,
+          price: body.price,
+          location: body.location,
+          image: uploadRes,
+        };
+        const provider = body.provider;
+        const createdProduct = await productServices.createNewProduct(
+          newItemProduct,
+          provider
+        );
+        if (createdProduct) {
+          const newListProd = await productServices.getAllProducts();
+          res.status(201).send(newListProd);
+        }
+      }
     }
   } catch (error) {
     next(error);
@@ -92,10 +87,41 @@ const updateProduct = async (req, res, next) => {
       : !prov
       ? res.status(404).send("Provider not found...")
       : null;
+
+    if (body.image !== "") {
+      const updateRes = await cloudinary.uploader.upload(body.image, {
+        upload_preset: "henry-gift",
+      });
+      if (updateRes) {
+        const updateProd = await productServices.updateProduct(id, {
+          ...body,
+          image: updateRes,
+        });
+        if (updateProd) {
+          const newListProd = await productServices.getAllProducts();
+          return res.status(200).send(newListProd);
+        }
+      }
+    }
+
     const update = await productServices.updateProduct(id, body);
     if (update) {
       const newList = await productServices.getAllProducts();
       res.status(200).send(newList);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const putStatusProduct = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const status = await productServices.productUpdate(id, body);
+    if (status) {
+      const newListProd = await productServices.getAllProducts();
+      res.status(200).send(newListProd);
     } else {
       res.status(404).send("Error");
     }
@@ -110,4 +136,5 @@ module.exports = {
   getAllProducts,
   deleteProduct,
   updateProduct,
+  putStatusProduct,
 };

@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import { Box, TextField, Button, DialogContentText } from "@mui/material";
-import { getProvider } from "../../redux/actions/providerActions";
-import { getCategory } from "../../redux/actions/categoryActions";
-import { getProducts } from "../../redux/actions/productsActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Form.module.css";
-import useForm from "./useForm";
-import validate from "./validate";
+import styles from "../Form.module.css";
+import useForm from "../useForm";
+import validate from "./validateProvider";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,20 +17,8 @@ const MenuProps = {
 };
 
 export default function FormProvider() {
-  const dispatch = useDispatch();
-
-  const { handleChange, input, handleProviderSubmit, errors } =
+  const { provider, errors, handleProviderChange, handleProviderSubmit } =
     useForm(validate);
-
-  useEffect(() => {
-    dispatch(getProvider());
-    dispatch(getCategory());
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  const providers = useSelector((state) => state.providers);
-  const categories = useSelector((state) => state.categories);
-  const products = useSelector((state) => state.products);
 
   return (
     <div>
@@ -58,11 +43,11 @@ export default function FormProvider() {
           <form autoComplete="off" onSubmit={(e) => handleProviderSubmit(e)}>
             <div className={styles.formContainer}>
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerName"
-                value={input.providerName || ""}
+                value={provider.providerName || ""}
                 required
-                label="Nombre del proveedor"
+                label="Provider name"
                 size="small"
                 sx={{
                   input: {
@@ -79,11 +64,11 @@ export default function FormProvider() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerPhone"
-                value={input.providerPhone || ""}
+                value={provider.providerPhone || ""}
                 required
-                label="Numero de Telefono"
+                label="Phone"
                 size="small"
                 sx={{
                   input: {
@@ -99,11 +84,11 @@ export default function FormProvider() {
                 </DialogContentText>
               )}
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerAddress"
-                value={input.providerAddress || ""}
+                value={provider.providerAddress || ""}
                 required
-                label="Direccion"
+                label="Addres"
                 size="small"
                 sx={{
                   input: {
@@ -120,9 +105,9 @@ export default function FormProvider() {
               )}
 
               <TextField
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleProviderChange(e)}
                 name="providerEmail"
-                value={input.providerEmail || ""}
+                value={provider.providerEmail || ""}
                 required
                 label="Email"
                 size="small"
@@ -141,7 +126,7 @@ export default function FormProvider() {
               )}
             </div>
             <Button variant="outlined" type="submit">
-              CREATE
+              Create
             </Button>
           </form>
         </div>

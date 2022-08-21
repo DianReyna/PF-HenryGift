@@ -15,6 +15,7 @@ export const userSlice = createSlice({
       state.users = action.payload;
     },
     userById: (state, action) => {
+      //console.log("soy el userDetail", user)
       state.userDetail = action.payload;
     },
     profileUpdate: (state, action) => {
@@ -23,9 +24,12 @@ export const userSlice = createSlice({
     getGiftUser: (state, action) => {
       state.gifts = action.payload;
     },
+    deleteUser: (state, action) => {
+      state.providers = action.payload;
+    },
   },
 });
 
 
-export const { getAllUsers, userAdmin, userById, profileUpdate, getGiftUser } = userSlice.actions;
+export const { getAllUsers, userAdmin, userById, profileUpdate, getGiftUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;
