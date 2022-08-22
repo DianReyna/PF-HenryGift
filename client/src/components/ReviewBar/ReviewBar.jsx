@@ -2,7 +2,7 @@ import * as React from "react";
 import Rating from "@mui/material/Rating";
 import styled from "styled-components";
 import Reviews from "../Reviews/Reviews";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createReviews } from "../../redux/actions/reviewsActions";
 import { toast } from "react-toastify";
@@ -14,14 +14,6 @@ export default function ReviewBar({ id }) {
 
   const { user } = useSelector((state) => state.auth);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (!status) {
-      setStatus(true);
-    } else {
-      setStatus(false);
-    }
-  };
   const handleBlur = () => {
     if (!user) {
       toast.warning("Register to leave your review", {
