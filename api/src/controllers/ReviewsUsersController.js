@@ -5,9 +5,9 @@ const createReviews = async (req, res, next) => {
   const { body } = req;
   try {
     const createReview = await reviewsServices.newReviews(query, body);
-
     if (createReview) {
-      res.send(createReview);
+      const newListReview = await reviewsServices.getReview(query.box_id);
+      res.send(newListReview);
     }
   } catch (error) {
     next(error);
