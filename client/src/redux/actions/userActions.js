@@ -57,9 +57,9 @@ export const removeUser = (id) => (dispatch) => {
       console.log(err);
     });
 };
-// export const getOrders = () => (dispatch) => {
-//   axios(` ${URL}/users/getUserOrders`)
-//     .then((res) => dispatch(getAllOrdes(res.data)))
-//     .catch((err) => console.log(err));
-// };
+export const getOrders = () => (dispatch) => {
+  axios(` ${URL}/users/getUserOrders`)
+    .then((res) => dispatch(getAllOrdes(res.data)))
+    .catch((err) => console.log(err));
+};
 

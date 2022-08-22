@@ -28,7 +28,7 @@ import { Cart, SendBox } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
-import PrivateRoute from "./components/PrivateRoute";
+import {PrivateRoute, AdminRoute} from "./components/PrivateRoute";
 import UserProfileEdit from "./components/User/UserProfileEdit";
 import RedeemCoupon from "./components/User/RedeemCoupon";
 import Category from "./components/Admin/Category/Category";
@@ -74,7 +74,6 @@ function App() {
           <Route path="/product/:idProduct" element={<ProductDetail />} />
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
-          <Route path="/userprofile" element={<ProfilePanel />} />
           {/* <Route path="/orderhistory" element={<OrderHistory />} /> */}
           <Route path="/giftdetail" element={<GiftDetail />} />
           <Route path="/cart" element={<Cart />} />
@@ -84,6 +83,9 @@ function App() {
           <Route path="/giftproduct/:idProduct" element={<GiftProductDetail />} />
           //Dashboard
           <Route element={<PrivateRoute />}>
+            <Route path="/userprofile" element={<ProfilePanel />} />
+          </Route>
+          <Route element={<AdminRoute />}>
             <Route path="/admin" element={<Dashboard />}>
               <Route index element={<HomeAdmin />} />
               <Route path="boxes" element={<Boxes />}>
