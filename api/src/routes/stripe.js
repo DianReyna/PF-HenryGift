@@ -41,7 +41,7 @@ router.post("/create-checkout-session", async (req, res, next) => {
   }
 });
 
-//const URL = `http://127.0.0.1:5173`
-const URL = `https://henrygift-api.herokuapp.com`
+const URL = `http://127.0.0.1:5173`
+//const URL = `https://henrygift-api.herokuapp.com`
 
 module.exports = router;

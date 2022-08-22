@@ -65,9 +65,9 @@ const SendBox = () => {
                   </div>
                   <div className="purchase-detail">
                     <div className="box-people">
-                      <h3>Para {cartItem.person} personas</h3>
+                      <h3>For {cartItem.person} persons</h3>
                     </div>
-                    <div className="valid-till">Valido hasta 31/12/2022</div>
+                    <div className="valid-till">Valid until 31/12/2022</div>
                     <div className="box-amount">
                       <h1>${cartItem.price}</h1>
                     </div>
@@ -76,7 +76,7 @@ const SendBox = () => {
               </div>
               <div className="card-bottom-send">
                 <div className="receiver-form-title">
-                  <h3>Ingrese el email del destinatario</h3>
+                  <h3>Insert the gift recipient email</h3>
                 </div>
                 <div className="email-place">
                   <form >
@@ -102,7 +102,7 @@ const SendBox = () => {
         <div className="right-side">
           <div className="rigth-send-side">
             <div className="summary-cart-title">
-              <h3>Resumen de Compra</h3>
+              <h3>Purchase summary</h3>
             </div>
             {cart?.cartItems.map((cartItem, index) => (
               <div key={index} className="summary-cart-box">
