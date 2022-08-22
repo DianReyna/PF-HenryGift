@@ -8,7 +8,7 @@ import { TextField, Button } from "@mui/material";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-
+  const {user}  = useSelector((state) => state.auth);
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
   const [gifts, setGifts] = useState([]);
   let gatillo = false;
@@ -43,12 +43,12 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
-      // const URL=" https://henrygift-api.herokuapp.com/register"
+      // const URL=" https://henrygift-api.herokuapp.com/"
       const URL = "http://localhost:3001";
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,
-        userId: "drowet0@4shared.com",
+        userId: user._id,
         boxes: total,
       });
     } catch (error) {

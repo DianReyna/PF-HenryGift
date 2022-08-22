@@ -26,7 +26,7 @@ const CheckoutForm = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const {user}  = useSelector((state) => state.auth);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,7 +35,7 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement),
     });
     setLoading(true);
-    // const URL=" https://henrygift-api.herokuapp.com/register"
+    // const URL=" https://henrygift-api.herokuapp.com/"
     const URL = "http://localhost:3001";
     if (!error) {
       const { id } = paymentMethod;
@@ -49,7 +49,7 @@ const CheckoutForm = () => {
 
         if (data.message === "Successful Payment") {
           await axios.post(`${URL}/orders/sendcode`, {
-            userId: "drowet0@4shared.com",
+            userId: user._id,
           });
           toast.success(`Importe abonado correctamente`, {
             position: "bottom-left",

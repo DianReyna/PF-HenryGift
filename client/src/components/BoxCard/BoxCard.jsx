@@ -7,7 +7,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addToCart } from "../../redux/reducer/cartSlice";
 import styled from "styled-components";
 import Favorite from "./Sections/Favorite";
