@@ -24,7 +24,7 @@ router.use("/orders", orderRouter);
 router.use("/filters", filtersRoutes);
 router.use("/test", testRouter);
 router.use("/users", AllUsers);
-router.use("/payment", payment);
+router.use("/stripe", payment);
 router.use("/register", register);
 router.use("/login", login);
 router.use("/redeem", redeem);

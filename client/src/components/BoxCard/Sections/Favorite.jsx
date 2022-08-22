@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addFavorite,
@@ -15,6 +15,12 @@ const Favorite = ({ id }) => {
   const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
+
+  const favs = useSelector((state) => state.fav);
+
+  // useEffect(() => {
+  //   dispatch(getFavorites(user._id));
+  // }), [];
 
   const handleFavorite = () => {
     if (Favorited) {
