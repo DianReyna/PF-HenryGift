@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 export default function ReviewBar({ id }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
-  const [status, setStatus] = useState(false);
   const [message, setMessage] = useState("");
 
   const { user } = useSelector((state) => state.auth);
@@ -61,22 +60,18 @@ export default function ReviewBar({ id }) {
             setValue(newValue);
           }}
         />
-        <div sx={{ cursor: "pointer" }} onClick={handleClick}>
-          {status ? <span>close</span> : <span>Write a costumer review</span>}
-        </div>
-        {status ? (
-          <>
-            <input
-              name="message"
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-              placeholder="Write your review"
-            />
-            <button onClick={handleSubmit}>Send</button>
-          </>
-        ) : null}
+
+        <>
+          <input
+            name="message"
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+            placeholder="Write a costumer review"
+          />
+          <button onClick={handleSubmit}>Send</button>
+        </>
       </div>
       <div>
         <Reviews id={id} />
