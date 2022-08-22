@@ -5,24 +5,14 @@ import axios from "axios";
 import "./SendBox.css";
 import { useEffect } from "react";
 import { TextField, Button } from "@mui/material";
+import PayButton from "../PayButton/PayButton";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
   const {user}  = useSelector((state) => state.auth);
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
-  const [gifts, setGifts] = useState([]);
-  let gatillo = false;
 
-  // useEffect(()=>{
-  //   if(gatillo == false){
-  //     cart?.cartItems.forEach(element => {
-  //       for(let i = 0;i < element.cartQuantity;i++){
-  //         setGifts( (oldGifts) => [...oldGifts, element] )
-  //       }
-  //     });
-  //     gatillo = true;
-  //   }
-  // },[])
+ 
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -125,16 +115,13 @@ const SendBox = () => {
             </div>
           </div>
           <div className="go-payment">
-            <Link to="/payment">
-              <Button
-                className="go-payment-btn"
-                sx={{ color: "white", border: "1px solid white" }}
-                variant="outlined"
-                onClick={handleSubmit}
-              >
-                Ir al pago
-              </Button>
-            </Link>
+            {user && user._id ? (
+              <PayButton cartItems={cart.cartItems} />
+            ) : (
+              <Link to="/login">
+                <Button variant="outlined">Login to Check Out</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
