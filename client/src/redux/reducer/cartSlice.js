@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import axios from "axios"
 
 const initialState = {
-  cartItems: localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [],
+  cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
   cartTotalItems: [],
 };
+
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -33,8 +33,8 @@ export const cartSlice = createSlice({
           position: "bottom-left",
         });
       }
-
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+     
+      //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
     removeFromCart: (state, action) => {
@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
       );
 
       state.cartItems = nextCartItems;
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
 
       // toast.error(`${action.payload.name} eliminado del carrito`, {
       //   position: "bottom-left",
@@ -73,7 +73,8 @@ export const cartSlice = createSlice({
           position: "bottom-left",
         });
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    
+      //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
     clearCart: (state) => {
@@ -81,7 +82,7 @@ export const cartSlice = createSlice({
       toast.error(`El carrito se encuentra vacio`, {
         position: "bottom-left",
       });
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
     getTotals(state, action) {
@@ -106,12 +107,26 @@ export const cartSlice = createSlice({
     },
     clearCart(state, action) {
       state.cartItems = [];
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       // toast.error("Cart cleared", { position: "bottom-left" });
+    },
+    getUserCart: (state, action) => {
+      //console.log("soy el payload",action.payload)
+      if(!action.payload){
+        state.cartItems=[]
+        state.cartTotalAmount=0
+        state.cartTotalAmount=0
+      }else{
+
+        state.cartItems = action.payload.cartItems;
+        state.cartTotalQuantity = action.payload.cartTotalQuantity;
+        state.cartTotalAmount = action.payload.cartTotalAmount
+        state.cartTotalItems = action.payload.cartTotalItems
+      }
     },
   },
 });
 
-export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals } =
+export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals,getUserCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
