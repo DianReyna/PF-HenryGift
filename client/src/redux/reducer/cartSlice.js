@@ -121,6 +121,7 @@ export const cartSlice = createSlice({
         state.cartItems = action.payload.cartItems;
         state.cartTotalQuantity = action.payload.cartTotalQuantity;
         state.cartTotalAmount = action.payload.cartTotalAmount
+        state.cartTotalItems = action.payload.cartTotalItems
       }
     },
   },

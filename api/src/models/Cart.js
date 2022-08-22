@@ -20,7 +20,10 @@ module.exports = CartFactory = (sequelize) => {
       type: DataTypes.INTEGER,
      
     },
-    
+    cartTotalItems: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+      
+    },
   },
   {
     timestamps: false,

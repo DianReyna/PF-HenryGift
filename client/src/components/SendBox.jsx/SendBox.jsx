@@ -9,14 +9,13 @@ import PayButton from "../PayButton/PayButton";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-  const {user}  = useSelector((state) => state.auth);
+  
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
 
-<<<<<<< HEAD
- 
-=======
+
+
   const { user } = useSelector((state) => state.auth);
->>>>>>> d30a80f56955b70e037ebab30052a46654de7246
+
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
