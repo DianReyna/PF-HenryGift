@@ -2,11 +2,18 @@ import * as React from "react";
 import Rating from "@mui/material/Rating";
 import styled from "styled-components";
 import Reviews from "../Reviews/Reviews";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createReviews } from "../../redux/actions/reviewsActions";
+import { toast } from "react-toastify";
 
 export default function ReviewBar({ id }) {
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [status, setStatus] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const { user } = useSelector((state) => state.auth);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -16,6 +23,29 @@ export default function ReviewBar({ id }) {
       setStatus(false);
     }
   };
+  const handleBlur = () => {
+    if (!user) {
+      toast.warning("Register to leave your review", {
+        position: "top-right",
+      });
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (user) {
+      const info = {
+        user: user._id,
+        box: id,
+      };
+      dispatch(createReviews(info, value, message));
+      setMessage("");
+    } else {
+      toast.warning("Register to leave your review", {
+        position: "top-right",
+      });
+    }
+  };
+
   return (
     <ReviewContent
       sx={{
@@ -26,6 +56,7 @@ export default function ReviewBar({ id }) {
         <Rating
           name="simple-controlled"
           value={value}
+          onBlur={handleBlur}
           onChange={(event, newValue) => {
             setValue(newValue);
           }}
@@ -35,8 +66,15 @@ export default function ReviewBar({ id }) {
         </div>
         {status ? (
           <>
-            <input placeholder="Write your review" />
-            <button>Send</button>
+            <input
+              name="message"
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+              placeholder="Write your review"
+            />
+            <button onClick={handleSubmit}>Send</button>
           </>
         ) : null}
       </div>
