@@ -9,7 +9,11 @@ export const getReviews = (id) => (dispatch) => {
     .then((res) => dispatch(getView(res.data)))
     .catch((err) => console.log(err));
 };
-export const createReviews = (id, data) => (dispatch) => {
+export const createReviews = (id, scoreBox, menssageBox) => (dispatch) => {
+  const data = {
+    scoreBox,
+    menssageBox,
+  };
   axios
     .post(`${URL}/reviews?user_id=${id.user}&box_id=${id.box}`, data)
     .then((res) => dispatch(postViews(res.data)))
