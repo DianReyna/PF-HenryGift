@@ -7,8 +7,10 @@ import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
 import { getBox } from "../../redux/actions/boxesActions";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function RedeemCoupon() {
+  const navigate = useNavigate();
   const { user } = useParams();
   const dispatch = useDispatch();
   const [code, setCode] = useState("");
@@ -21,6 +23,7 @@ export default function RedeemCoupon() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    navigate('/userprofile')
     // const URL=" https://henrygift-api.herokuapp.com/register"
     const URL = "http://localhost:3001";
     axios

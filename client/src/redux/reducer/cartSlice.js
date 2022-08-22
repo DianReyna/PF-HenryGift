@@ -7,6 +7,7 @@ const initialState = {
     : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  cartTotalItems: [],
 };
 
 export const cartSlice = createSlice({
@@ -20,12 +21,14 @@ export const cartSlice = createSlice({
 
       if (itemIndex >= 0 && state.cartItems[itemIndex].cartQuantity <= 4) {
         state.cartItems[itemIndex].cartQuantity += 1;
+        state.cartTotalItems.push(state.cartItems[itemIndex]);
         toast.info(`Cantidad de ${state.cartItems[itemIndex].name} aumentada`, {
           position: "bottom-left",
         });
       } else if (!state.cartItems[itemIndex]) {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
+        state.cartTotalItems.push(tempProduct);
         toast.success(`${action.payload.name} agregado al carrito`, {
           position: "bottom-left",
         });

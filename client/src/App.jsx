@@ -24,7 +24,7 @@ import FormProvider from "./components/Form/FormProvider/FormProvider";
 import FormBox from "./components/Form/FormBox/FormBox";
 import FormProduct from "./components/Form/FormProduct/FormProduct";
 import ProfilePanel from "./components/User/ProfilePanel";
-import { Cart, SendBox, Checkout } from "./components";
+import { Cart, SendBox } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
@@ -36,8 +36,12 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 import QRCode from "./components/QRCode/QRCode";
+//import OrderHistory from "./components/User/OrderHistory";
 import Favs from "./components/Favs/Favs";
+import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
+
+
 
 const ContainerApp = styled.div`
   min-height: 70vh;
@@ -68,14 +72,14 @@ function App() {
           <Route path="/favs" element={<Favs />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          {/* <Route path="/userprofile" element={<ProfilePanel />} /> */}
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
-          <Route path="/giftdetail/:idBox" element={<GiftDetail />} />
+          {/* <Route path="/orderhistory" element={<OrderHistory />} /> */}
+          <Route path="/giftdetail" element={<GiftDetail />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout-success" element={<CheckOutSuccess />} />
           <Route path="/send" element={<SendBox />} />
-          <Route path="/payment" element={<Checkout />} />
           <Route path="/onlyproviders" element={<QRCode />} />
           <Route path="/giftproduct/:idProduct" element={<GiftProductDetail />} />
           //Dashboard

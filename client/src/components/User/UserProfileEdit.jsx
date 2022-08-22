@@ -1,18 +1,27 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Paper} from "@mui/material";
-import {Grid} from "@mui/material";
-import {TextField} from '@mui/material';
-import {Button} from '@mui/material';
-import {putUsersUpdate, getUsersById, getUsers} from "../../redux/actions/userActions";
+import {
+  Paper,
+  Grid, 
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText, 
+  DialogTitle
+} from "@mui/material";
+import {putUsersUpdate, getUsersById} from "../../redux/actions/userActions";
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
-export default function UserProfileEdit(id) {
+
+export default function UserProfileEdit() {
 
     const dispatch = useDispatch();  
     //const [currentUser, setCurrentUser] = useState({});
-   
-
+    const navigate = useNavigate();
 
     const[first_name, setFirst_name] = useState("");
     const[last_name, setLast_name] = useState("");
@@ -44,7 +53,7 @@ export default function UserProfileEdit(id) {
        
     const handleSubmit = (e) =>{
         e.preventDefault();
-        let user ={
+                let user ={
                 email: email,
                 first_name: first_name,
                 last_name: last_name,
@@ -54,7 +63,25 @@ export default function UserProfileEdit(id) {
             }
         let id = oldEmail
         dispatch(putUsersUpdate(id, user))
+        setOpen(false);
+        navigate('/userprofile')
+        toast.success("Changes saved successfully", {
+          position: "top-right",
+        });
           };
+
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
 
     return (
         <Paper 
@@ -89,7 +116,7 @@ export default function UserProfileEdit(id) {
                 autoFocus
                 />              
             </Grid>  
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <TextField
                 name="email"
                 fullWidth
@@ -99,7 +126,7 @@ export default function UserProfileEdit(id) {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
                 />
-            </Grid>  
+            </Grid>   */}
             <Grid item xs={12}>
                 <TextField
                 name="phone"
@@ -134,12 +161,95 @@ export default function UserProfileEdit(id) {
                 />
                 {/* {errors.first_name && <p>{errors.first_name}</p>} */}
             </Grid>  
-           <Grid item xs={2} sx={{ m: 5, textAlign:'center' }}>
-                    <Button onClick={handleSubmit}
-                    type="submit"> GUARDAR CAMBIOS </Button>
-                </Grid>
+                      <div>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                Save changes
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to save your changes?
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleSubmit} autoFocus>
+                      Ok
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </div>            
             </Grid>
         </Grid>
        </Paper>        
     );
 }
+
+
+ 
+
+//-----------------Validate-------------
+
+
+// const [errors, setErrors] = useState({});
+
+//   const [input, setInput] = useState({
+//     email: "",
+//     first_name: "",
+//     last_name:"",
+//     phone: "",
+//     dateBirth: "",
+//     password: "",
+//   });
+
+//   const handleOnChange = (e) => {
+//     setInput({
+//       ...input,
+//       [e.target.name]: e.target.value,
+//     });
+//     setErrors(
+//       validateUser({
+//         ...input,
+//         [e.target.name]: e.target.value,
+//       })
+//     );
+//   };
+
+
+// const validateUser = (input) => {
+
+  
+//     let errors = {};
+  
+//      if (!first_name.trim()) {
+//         errors.first_name = "First name is required"
+//     } else if (!/^[a-zA-Z ]+$/.test(first_name)) {
+//       errors.first_name = "First name should have a valid forma";
+//     }
+
+//     if (!input.last_name.trim()) {
+//         errors.last_name = "Last Name is required";
+//     } else if(!/^[a-zA-Z ]+$/.test(input.last_name)) {
+//       errors.last_name = "Last name should have a valid forma";;
+//     }
+   
+//     if (!input.phone) {
+//         errors.phone = "You must provider a phone number";
+//       } else if (
+//         !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(input.phone)
+//       ){       
+//         errors.phone = "Phone number should have a valid format";
+//       }
+      
+//       if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.password))  { errors.password = "The password must be between 8 and 16 characters long, with at least one digit, at least one lowercase letter, and at least one uppercase letter.";
+//       }
+    
+//     return errors;
+//   }

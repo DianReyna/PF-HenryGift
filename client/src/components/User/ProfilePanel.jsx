@@ -9,8 +9,11 @@ import axios from 'axios';
 import  {getUsersById}  from '../../redux/actions/userActions';
 import { Typography } from '@mui/material';
 
-import GiftDetail  from '../User/Gift/GiftDetail';
+import OrderHistory from '../User/OrderHistory';
+
+// import GiftDetail  from '../User/Gift/GiftDetail';
 import GiftCards from './Gift/GiftCards';
+import DeleteUserAccount from './DeleteUserAccount';
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -99,39 +102,41 @@ export default function ProfilePanel() {
           'aria-labelledby': 'basic-button',
         }}
       >
-      <Button variant="Editar" href='/editprofile'>Editar</Button>
-      <Button variant="Abrir mi Box" href='codebox'>Abrir mi Box</Button>
+      <Button variant="Editar" href='/editprofile'>Edit</Button>
+      <Button variant="Abrir mi Box" href='codebox'>Open Box</Button>
+      <Button variant="Editar" href='/orderhistory'>History</Button>
       </Menu>
-     
+     <DeleteUserAccount/>
     {
       userDetail? 
       <Container >
           <DetailBox>
             <InfoDetailBox >
             <Typography variant="h5" component="div" gutterBottom>
-              Informacion de usuario
+            User information
             </Typography>
               <ItemBox>
-              <p>Nombre: {userDetail.first_name}</p>
+              <p>First name: {userDetail.first_name}</p>
                 </ItemBox>
               <ItemBox>
-              <p>Apellido: {userDetail.last_name}</p>
+              <p>Last name: {userDetail.last_name}</p>
               </ItemBox>
               <ItemBox>
               <p>Email: {userDetail.email}</p>
               </ItemBox>
               <ItemBox>
-              <p>Telefono: {userDetail.phone}</p>
+              <p>Phone: {userDetail.phone}</p>
               </ItemBox>
               <ItemBox>
-              <p>Fecha de nacimiento: {userDetail.dateBirth}</p>
+              <p>Data birth: {userDetail.dateBirth}</p>
               </ItemBox>
               </InfoDetailBox>
           </DetailBox>
         <CardsProducts>
           <Grid>
             <Typography variant="h5" component="div" gutterBottom>
-              Mis Boxes
+              My Boxes
+            
             </Typography>
                {/* {userDetail.Products && userDetail.Products.map((product)=>{
                   return <ItemProduct key={product.id}>
@@ -143,8 +148,7 @@ export default function ProfilePanel() {
                       location={product.location}/>
                     </ItemProduct>
                 })}  */}
-              {/* <GiftDetail/> */}
-              <GiftCards/>
+           <GiftCards/>
           </Grid>
         </CardsProducts>
       </Container>
