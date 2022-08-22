@@ -5,6 +5,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonIcon from "@mui/icons-material/Person";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios"
+import { getCart } from "../../redux/actions/cartActions";
 import {
   removeFromCart,
   decreaseCart,
@@ -17,12 +19,25 @@ import "./Cart.css";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cart);
+  //console.log(cart);
+  const {user}  = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
+  useEffect(() => {
+    user  && dispatch(getCart(user._id))
+    console.log(1)
+  }, []);
+
+  const saveCart = async() =>{
+    await axios.post("http://localhost:3001/orders/cart",{...cart,user_id:user._id})
+    console.log(2)
+  }
+
+ 
+  
   const handleRemoveFromCart = (cartItem) => {
     Swal.fire({
       title: "Estas seguro?",
@@ -44,10 +59,12 @@ const Cart = () => {
 
   const handleDecreaseCart = (cartItem) => {
     dispatch(decreaseCart(cartItem));
+    
   };
 
   const handleIncreaseCart = (cartItem) => {
     dispatch(addToCart(cartItem));
+   
   };
 
   const handleClearCart = (e) => {
@@ -69,10 +86,14 @@ const Cart = () => {
     });
   };
 
+  useEffect(() => {
+    setTimeout(saveCart,1000)
+  }, [cart.cartItems]);
+  
   return (
     <div className="cart-container">
       <h2>Carrito de Compras</h2>
-      {cart.cartItems.length === 0 ? (
+      {cart.cartItems && cart.cartItems.length === 0 ? (
         <div className="cart-empty">
           <p>Tu carrito se encuentra momentaneamente vacio</p>
           <div className="start-shopping">

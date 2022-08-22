@@ -36,6 +36,7 @@ export const getUsersById = (id) => (dispatch) => {
     .then((res) => dispatch(userById(res.data)))
     .catch((err) => console.log(err));
 };
+
 export const putUsersUpdate = (id, user) => (dispatch) => {
   axios
     .put(` ${URL}/users/user/${id}`, user)
@@ -57,9 +58,10 @@ export const removeUser = (id) => (dispatch) => {
       console.log(err);
     });
 };
-export const getOrders = () => (dispatch) => {
-  axios(` ${URL}/users/getUserOrders`)
-    .then((res) => dispatch(getAllOrdes(res.data)))
-    .catch((err) => console.log(err));
-};
+
+// export const getOrders = () => (dispatch) => {
+//   axios(` ${URL}/users/getUserOrders`)
+//     .then((res) => dispatch(getAllOrdes(res.data)))
+//     .catch((err) => console.log(err));
+// };
 

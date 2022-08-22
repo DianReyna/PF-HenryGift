@@ -13,6 +13,8 @@ const OrderFactory = require("../models/Order");
 const GiftListFactory = require("../models/GiftList");
 const PicksFactory = require("../models/Picks");
 const FavouriteFactory = require("../models/Favourite");
+const CartFactory = require("../models/Cart");
+const ReviewsFactory = require("../models/ReviewsUsers");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 // const { DATABASE_URL } = process.env;
 
@@ -49,7 +51,8 @@ const Order = OrderFactory(sequelize);
 const GiftList = GiftListFactory(sequelize);
 const Picks = PicksFactory(sequelize);
 const Favourite = FavouriteFactory(sequelize);
-
+const Cart = CartFactory(sequelize);
+const ReviewsUsers = ReviewsFactory(sequelize);
 // create the associations
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
@@ -87,7 +90,14 @@ GiftList.belongsTo(Box, { foreignKey: "box_id" });
 Box.hasMany(Favourite, { foreignKey: "box_id" });
 Favourite.belongsTo(Box, { foreignKey: "box_id" });
 
+Cart.belongsTo(User, { foreignKey: "user_id" });
+User.hasOne(Cart, { foreignKey: "user_id" });
 
+Box.hasMany(ReviewsUsers, { foreignKey: "box_id" });
+ReviewsUsers.belongsTo(Box, { foreignKey: "box_id" });
+
+User.hasMany(ReviewsUsers, { foreignKey: "user_id" });
+ReviewsUsers.belongsTo(User, { foreignKey: "user_id" });
 
 module.exports = {
   sequelize,
@@ -104,4 +114,6 @@ module.exports = {
   GiftList,
   Picks,
   Favourite,
+  Cart,
+  ReviewsUsers,
 };

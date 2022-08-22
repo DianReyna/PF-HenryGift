@@ -7,10 +7,10 @@ import products from "../reducer/productsSlice";
 import cartReducer from "../reducer/cartSlice";
 import query from "../reducer/querySlice";
 import users from "../reducer/userSlice";
-import auth from "../reducer/authSlice"
-import qr from "../reducer/qrSlice"
+import auth from "../reducer/authSlice";
+import qr from "../reducer/qrSlice";
 import favSlice from "../reducer/favSlice";
-
+import reviews from "../reducer/reviewsSlice";
 
 export default configureStore({
   reducer: {
@@ -25,5 +25,6 @@ export default configureStore({
     auth,
     qr,
     fav: favSlice,
+    reviews,
   },
 });

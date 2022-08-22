@@ -31,8 +31,8 @@ router.post("/create-checkout-session", async (req, res, next) => {
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: "payment",
-      success_url: `http://127.0.0.1:5173/checkout-success`,
-      cancel_url: `http://127.0.0.1:5173/cart`,
+      success_url: `${URL}/checkout-success`,
+      cancel_url: `${URL}/cart`,
     });
 
     res.send({ url: session.url });
@@ -40,5 +40,8 @@ router.post("/create-checkout-session", async (req, res, next) => {
     next(error);
   }
 });
+
+//const URL = `http://127.0.0.1:5173`
+const URL = `https://henrygift-api.herokuapp.com`
 
 module.exports = router;
