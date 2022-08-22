@@ -64,3 +64,4 @@ export const removeUser = (id) => (dispatch) => {
 //     .then((res) => dispatch(getAllOrdes(res.data)))
 //     .catch((err) => console.log(err));
 // };
+

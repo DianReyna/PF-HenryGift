@@ -25,9 +25,9 @@ export default function Login() {
   )
 
   function handleCallbackResponse(response){
-    console.log('Encoded JWT ID token: ' + response.credential)
+    // console.log('Encoded JWT ID token: ' + response.credential)
     var userObject = jwt_decode(response.credential);
-    console.log(userObject)
+    // console.log(userObject)
     const userData={
       first_name:userObject.given_name,
       last_name:userObject.family_name,
