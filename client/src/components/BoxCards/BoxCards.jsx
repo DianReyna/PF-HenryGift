@@ -5,18 +5,37 @@ import BoxCard from "../BoxCard/BoxCard";
 import AppPagination from "../AppPagination/AppPagination";
 import { Grid, Stack } from "@mui/material";
 import { queryPage } from "../../redux/actions/queryActions";
+import { getCart} from "../../redux/actions/cartActions";
+import axios from "axios"
+
 export default function BoxCards() {
   const dispatch = useDispatch();
   const { boxes } = useSelector((state) => state.boxes);
   const query = useSelector((state)=>state.query)
   const [page, setPage] = useState(0);
+  const {user}  = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart)
   useEffect(() => {
     dispatch(queryPage(page))
   }, [page]);
 
+  useEffect(() => {
+    user && dispatch(getCart(user._id))
+  }, []);
+
   useEffect(()=>{
     dispatch(getBoxesPerPage(query))
   },[query])
+
+  const saveCart = async() =>{
+    user && await axios.post("http://localhost:3001/orders/cart",{...cart,user_id:user._id})
+    //console.log(2)
+ }
+
+ useEffect(()=>{
+  setTimeout(saveCart,1000)
+  console.log("p")
+},[cart])
 
   return (
     <div className="Cards-container">

@@ -1,4 +1,4 @@
-const { Box,User,Order,OrderDetail,GiftList } = require("../database/index");
+const { Box,User,Order,OrderDetail,GiftList,Cart } = require("../database/index");
 const { Op, UUID } = require("sequelize");
 const ordersServices = require("../services/ordersServices");
 const { sendCode,confirmPay,sendQr } = require("../utils/sendEmail");
@@ -85,6 +85,8 @@ const sendEmailCode = async (req, res, next) => {
   const {userId} = req.body
  
   try {
+
+    await Cart.destroy({where:{user_id:userId}})
   
     const recipientsList = await OrderDetail.findAll({
       where:{
