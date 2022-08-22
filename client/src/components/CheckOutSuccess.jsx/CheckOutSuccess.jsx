@@ -22,9 +22,10 @@ const CheckoutSuccess = () => {
     async function sendCode() {
       const URL = "http://localhost:3001";
       await axios.post(`${URL}/orders/sendcode`, {
-        userId: 'josemanuel_seguro2@hotmail.com',
+        userId: user._id,
       });
     }
+    console.log("envio del codigo")
     sendCode();
   }, []);
 

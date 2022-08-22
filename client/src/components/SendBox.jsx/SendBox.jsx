@@ -79,7 +79,7 @@ const SendBox = () => {
                   <h3>Ingrese el email del destinatario</h3>
                 </div>
                 <div className="email-place">
-                  <form onSubmit={handleSubmit}>
+                  <form >
                     <TextField
                       sx={{
                         input: {
@@ -119,7 +119,7 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             {user && user._id ? (
-              <PayButton cartItems={cart.cartItems} />
+              <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
             ) : (
               <Link to="/login">
                 <Button variant="outlined">Login to Check Out</Button>
