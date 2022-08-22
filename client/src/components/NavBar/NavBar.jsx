@@ -19,7 +19,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useDispatch } from "react-redux";
 import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink ,useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import "./NavBar.module.css";
@@ -30,8 +30,7 @@ import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
 
-
-import { logout,reset } from "../../redux/reducer/authSlice";
+import { logout, reset } from "../../redux/reducer/authSlice";
 import { toast } from "react-toastify";
 
 const pages = ["Home"];
@@ -82,7 +81,9 @@ const ResponsiveAppBar = () => {
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const cart = useSelector((state) => state.cart);
-  const navigate=useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -114,17 +115,22 @@ const ResponsiveAppBar = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  const {user} = useSelector((state) => state.auth);
-  const onLogout=()=>{
+
+  const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate('/')
-  }
+    navigate("/");
+  };
 
   return (
     <AppBar
       position="static"
-      sx={{ background: "#E16428", boxShadow: "0", borderBottom: "1px solid #e0e0e0", marginBottom: "2.5rem" }}
+      sx={{
+        background: "#E16428",
+        boxShadow: "0",
+        borderBottom: "1px solid #e0e0e0",
+        marginBottom: "2.5rem",
+      }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -157,22 +163,22 @@ const ResponsiveAppBar = () => {
                 </Button>
               </NavLink>
             ))}
-            <NavLink to={"/userprofile"} className={styles.navlink} >
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {'Perfil'}
-                </Button>
-              </NavLink>
-              <NavLink to={"/admin"} className={styles.navlink} >
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {'Admin'}
-                </Button>
-              </NavLink>
+            <NavLink to={"/userprofile"} className={styles.navlink}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {"Perfil"}
+              </Button>
+            </NavLink>
+            <NavLink to={"/admin"} className={styles.navlink}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {"Admin"}
+              </Button>
+            </NavLink>
           </Box>
           <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
@@ -184,20 +190,21 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
-
-        {/* //Login and LogOut */}
+          {/* //Login and LogOut */}
           {user ? (
-        <Button sx={{color:"white"}}
-          onClick={onLogout }
-        >
-          Logout
-        </Button>
-      ) : (
-        <Button variant="text">
-          <Link to="/login" style={{color:"white",textDecoration: "none"}}>Login</Link>
-        </Button>
-      )}
-
+            <Button sx={{ color: "white" }} onClick={onLogout}>
+              Logout
+            </Button>
+          ) : (
+            <Button variant="text">
+              <Link
+                to="/login"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Login
+              </Link>
+            </Button>
+          )}
 
           <Link to="/cart">
             <div className={styles.navBag}>
@@ -207,12 +214,10 @@ const ResponsiveAppBar = () => {
               </span>
             </div>
           </Link>
-        
 
-            
+          <Link to="/favs">Favs</Link>
+
           <Box sx={{ flexGrow: 0 }}>
-            
-
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

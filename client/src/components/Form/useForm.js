@@ -1,35 +1,70 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createProvider, createBox } from "../../redux/actions/boxesActions";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createProvider,
+  createBox,
+  getBoxesAdmin,
+} from "../../redux/actions/boxesActions";
+import { getProducts } from "../../redux/actions/productsActions";
 import { createProduct } from "../../redux/actions/productsActions";
 import { toast } from "react-toastify";
 
 export default function useForm(validate) {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const boxes = useSelector((state) => state.boxes);
+  const products = useSelector((state) => state.products);
 
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getBoxesAdmin());
+  }, [dispatch]);
+
+  const data = {
+    boxes,
+    products,
+  };
   //BOX
   const [input, setInput] = useState({
     boxName: "",
     boxPrice: "",
     boxDetail: "",
     boxExpirationDate: "",
-    boxImage: "",
     boxPerson: "",
     boxProducts: [],
     boxCategories: [],
   });
+  const [boxImg, setBoxImg] = useState("");
 
+  const handleChangeBoxImg = (e) => {
+    const file = e.target.files[0];
+    transformFile(file);
+  };
+
+  const transformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setBoxImg(reader.result);
+      };
+    } else {
+      setBoxImg("");
+    }
+  };
   const handleChangeBox = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
+      validate(
+        {
+          ...input,
+          [e.target.name]: e.target.value,
+        },
+        data
+      )
     );
   };
 
@@ -52,13 +87,15 @@ export default function useForm(validate) {
     detail: input.boxDetail,
     price: input.boxPrice,
     expiration_date: input.boxExpirationDate,
-    image: input.boxImage,
+    image: boxImg,
     person: input.boxPerson,
     products: input.boxProducts,
     category: input.boxCategories,
   };
+
   const handleBoxSubmit = (e) => {
     e.preventDefault();
+
     if (Object.keys(errors).length === 0) {
       dispatch(createBox(dataBox));
       toast.success("Save data", {
@@ -69,11 +106,12 @@ export default function useForm(validate) {
         boxPrice: "",
         boxDetail: "",
         boxExpirationDate: "",
-        boxImage: "",
         boxPerson: "",
+        boxImage: "",
         boxProducts: [],
         boxCategories: [],
       });
+      setBoxImg("");
     } else {
       toast.error("Incorrect data, check againt", {
         position: "top-right",
@@ -87,19 +125,39 @@ export default function useForm(validate) {
     productDescription: "",
     productPrice: "",
     productLocation: "",
-    productImage: "",
     productProvider: "",
   });
+  const [productImg, setProductImg] = useState("");
+
+  const handleChangeProductImg = (e) => {
+    const file = e.target.files[0];
+    transformFileProduct(file);
+  };
+
+  const transformFileProduct = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProductImg(reader.result);
+      };
+    } else {
+      setProductImg("");
+    }
+  };
   const handleProductChange = (e) => {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...product,
-        [e.target.name]: e.target.value,
-      })
+      validate(
+        {
+          ...product,
+          [e.target.name]: e.target.value,
+        },
+        data
+      )
     );
   };
 
@@ -108,7 +166,7 @@ export default function useForm(validate) {
     description: product.productDescription,
     price: product.productPrice,
     location: product.productLocation,
-    image: product.productImage,
+    image: productImg,
     provider: product.productProvider,
   };
 
@@ -124,6 +182,7 @@ export default function useForm(validate) {
         productImage: "",
         productProvider: "",
       });
+      setProductImg("");
       toast.success("Save data", {
         position: "top-right",
       });
@@ -179,7 +238,6 @@ export default function useForm(validate) {
       });
     }
   };
-
   return {
     errors,
     input,
@@ -188,10 +246,12 @@ export default function useForm(validate) {
     dataBox,
     dataProduct,
     handleChangeBox,
+    handleChangeProductImg,
     handleChangeProd,
     handleChangeCat,
     handleProductChange,
     handleProviderChange,
+    handleChangeBoxImg,
     handleBoxSubmit,
     handleProductSubmit,
     handleProviderSubmit,

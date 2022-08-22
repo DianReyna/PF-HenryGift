@@ -5,6 +5,7 @@ import {Email} from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,Box, Typography} from '@mui/material';
 import styled from "styled-components";
+const URL = "http://localhost:3001";
 const Form = styled.form`
    display:flex;
    flex-direction:column;
@@ -28,12 +29,13 @@ export default function ForgotPassword() {
       return toast.error('Complete the field')
     }
    try{
-    const { data } = await axios.post("http://localhost:3001/login/forgotpassword", {email})
-    console.log("data")
-    console.log(data)
+    const { data } = await axios.post(`${URL}/login/forgotpassword`, {email})
+    toast.success(data.message)
+    setEmail("")
+    navigate('/login')
    }catch(error){
-    console.log("error")
     toast.error(error.response.data.message)
+    setEmail("")
     navigate('/login')
    }
   }

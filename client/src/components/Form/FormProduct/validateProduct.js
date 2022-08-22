@@ -1,14 +1,18 @@
-export default function validateProduct(input) {
+export default function validateProduct(input, data) {
   let errors = {};
 
   let validPrice = /^([1-9][0-9]{,2}(,[0-9]{3})*|[0-9]+)(.[0-9]{1,9})?$/;
-  let validUrl =
-    /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+
+  const product = data.products.products.find(
+    (e) => e.name === input.productName
+  );
 
   if (!input.productName.trim()) {
     errors.productName = "Name is required";
   } else if (input.productName.length < 4) {
     errors.productName = "Name must have more than 4 letters";
+  } else if (product) {
+    errors.productName = "This product name already exists";
   }
   if (!input.productDescription.trim()) {
     errors.productDescription = "Describe the detail of your product ";
@@ -27,10 +31,11 @@ export default function validateProduct(input) {
   } else if (input.productLocation.length < 10) {
     errors.productLocation = "The address must have at least 10 letters";
   }
-  if (!input.productImage.trim()) {
-    errors.productImage = "Required field, enter an image";
-  } else if (!validUrl.test(input.productImage)) {
-    errors.productImage = "Enter a valid URL for the image";
+  if (!input.productProvider) {
+    errors.productProvider = "you must select a provider option";
   }
+  // if (!input.productImage.trim()) {
+  //   errors.productImage = "Required field, enter an image";
+  // }
   return errors;
 }

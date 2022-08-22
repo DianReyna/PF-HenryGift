@@ -39,7 +39,8 @@ const addGift = async (gift) => {
 const getUserGifts = async (user) => {
   let userGifts = await Gift.findAll({
     where:{
-      email:user
+      email:user,
+      redeemed:false
     }
   })
   //console.log(userGifts)
@@ -76,13 +77,13 @@ const getQrInformation = async(user,product) => {
     }
   })
 
-  console.log("soy el pickkk",findPick)
+  //console.log("soy el pickkk",findPick)
 
   let findProduct = await Products.findByPk(product,{
     include:{model:Provider}
   })
 
-  console.log("soy el prodd",findProduct.Provider)
+  //console.log("soy el prodd",findProduct.Provider)
 
   let qrInformation = {
     user:user,
@@ -94,6 +95,14 @@ const getQrInformation = async(user,product) => {
   return qrInformation
 }
 
+const updateGift = async(user,box)=>{
+  let updatedGift = await Gift.update({redeemed:true},{where:{
+    email:user,
+    box_id:box
+  }})
+  return updatedGift
+}
+
 module.exports = {
   redeemGift,
   updateProductStock,
@@ -101,5 +110,6 @@ module.exports = {
   getUserGifts,
   getBoxList,
   createNewPick,
-  getQrInformation
+  getQrInformation,
+  updateGift
 };

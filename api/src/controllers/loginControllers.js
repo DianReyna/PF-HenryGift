@@ -1,3 +1,5 @@
+const { Sequelize } = require("sequelize");
+const Op = Sequelize.Op;
 const bcrypt = require('bcrypt');
 const {changePassword}=require("../utils/sendEmail")
 const { User, Authentication } = require("../database/index");
@@ -59,15 +61,13 @@ const resetpassword = async (req, res, next) => {
     if(!password){
       return res.status(400).json({message:'Please write the password'})
     }
-    // let auth = await Authentication.findOne({ where: {email: email} })
 
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
-    
-    await Authentication.update({ password: hashedPassword},{where: {email}})
-    
-  return  res.json({message:"Actualización exitosa"})
+    await Authentication.update({ password: hashedPassword},{where: {email: { [Op.substring]: email }}})
 
+    return  res.json({message:"The password has been successfully updated"})
+  
   } catch (error) {
     next(error);
   } 

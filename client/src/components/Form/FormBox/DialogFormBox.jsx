@@ -6,12 +6,12 @@ import { Create, ContentDialog } from "../../Admin/CommonStyled";
 import { useNavigate } from "react-router-dom";
 import { getBoxesAdmin } from "../../../redux/actions/boxesActions";
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
 } from "@mui/material/";
+import { CreateNew, ViewDetail, Cancel } from "../../Admin/CommonStyled";
 
 export default function DialogFormBox({ nameBox }) {
   const navigate = useNavigate();
@@ -21,9 +21,7 @@ export default function DialogFormBox({ nameBox }) {
   const [box, setBox] = useState({
     name: "",
   });
-
   const itemsBox = useSelector((state) => state.boxes);
-
   useEffect(() => {
     dispatch(getBoxesAdmin());
   }, [dispatch]);
@@ -59,34 +57,36 @@ export default function DialogFormBox({ nameBox }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle
+          sx={{
+            fontSize: 25,
+            color: "#545454",
+            fontFamily: "arial",
+            textAlign: "center",
+          }}
+          id="alert-dialog-title"
+        >
           {"What do you want to do?"}
         </DialogTitle>
         <ContentDialog>
           <DialogContent>
             <DialogActions>
-              <Button onClick={handleClose} autoFocus>
-                Create
-              </Button>
+              <CreateNew onClick={handleClose} autoFocus>
+                Create new box
+              </CreateNew>
             </DialogActions>
           </DialogContent>
           <DialogContent>
             <DialogActions>
-              <Button onClick={handleView} autoFocus>
-                View Detail
-              </Button>
+              <ViewDetail onClick={handleView}>View Detail</ViewDetail>
+            </DialogActions>
+          </DialogContent>
+          <DialogContent>
+            <DialogActions>
+              <Cancel onClick={handleClose}>Cancel</Cancel>
             </DialogActions>
           </DialogContent>
         </ContentDialog>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              navigate(`/admin`);
-            }}
-          >
-            Home
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

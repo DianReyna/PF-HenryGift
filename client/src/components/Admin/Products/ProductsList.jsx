@@ -58,7 +58,7 @@ export default function ProductsList() {
         id_product: item.id,
         name: item.name,
         price: item.price,
-        image: item.image,
+        image: item.image.url,
         location: item.location,
         description: item.description,
         provider: item.Provider.name,
