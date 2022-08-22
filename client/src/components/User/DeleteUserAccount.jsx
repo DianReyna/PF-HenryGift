@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser, getUsersById, getUsers} from '../../redux/actions/userActions';
@@ -11,9 +12,9 @@ import {
     DialogContent,
     DialogTitle,
     DialogContentText,
-  } from "@mui/material/";;
+  } from "@mui/material/";
 
-function DeleteUserAccount({}) {
+function DeleteUserAccount() {
 
     const dispatch = useDispatch();
     const deleteUser = useSelector((state) => state.users)
@@ -38,7 +39,10 @@ function DeleteUserAccount({}) {
     
     
     function handleDelete() {
-       dispatch(removeUser(user._id))
+      dispatch(removeUser(user._id))
+      setTimeout(function () {
+        location.reload()
+    }, 100);
        navigate('/')
         setOpen(false);
             toast.success("Account deleted successfully", {

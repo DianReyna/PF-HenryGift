@@ -34,15 +34,15 @@ const getAllOrders = async () => {
   return allOrders;
 };
 
-/*  const getUserOrders = async(user)=>{
+  const getUserOrders = async(user)=>{
     const userOrders = await Order.findAll({
       where:{
         UserEmail: user,
       },
-      include: [{ model: Box }]
+      include: [{ model: OrderDetail, include: [Box] }]
     })
     return userOrders
-  } */
+  }; 
 
 const createGiftList = async (boxes) => {
   try {
@@ -74,4 +74,5 @@ module.exports = {
   createNewOrder,
   getAllOrders,
   createGiftList,
+  getUserOrders  
 };
