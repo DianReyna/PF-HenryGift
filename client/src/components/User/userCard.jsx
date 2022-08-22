@@ -1,5 +1,4 @@
 import React from 'react'
-import { userAdmin } from '../../redux/reducer/userSlice';
 
 function userCard({email, dateBirth, first_name, last_name})
 

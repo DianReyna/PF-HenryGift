@@ -36,9 +36,11 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 import QRCode from "./components/QRCode/QRCode";
+//import OrderHistory from "./components/User/OrderHistory";
 import Favs from "./components/Favs/Favs";
 import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
+
 
 
 const ContainerApp = styled.div`
@@ -70,11 +72,11 @@ function App() {
           <Route path="/favs" element={<Favs />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/product/:idProduct" element={<ProductDetail />} />
-          {/* <Route path="/userprofile" element={<ProfilePanel />} /> */}
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/userprofile" element={<ProfilePanel />} />
-          <Route path="/giftdetail/:idBox" element={<GiftDetail />} />
+          {/* <Route path="/orderhistory" element={<OrderHistory />} /> */}
+          <Route path="/giftdetail" element={<GiftDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" element={<CheckOutSuccess />} />
           <Route path="/send" element={<SendBox />} />
