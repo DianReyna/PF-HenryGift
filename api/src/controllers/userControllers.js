@@ -76,6 +76,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const remove = await userServices.deleteUser(id);
     if (remove) {
+      
         res.status(200).send("successfully deleted user");
     } else {
       res.status(404).send("sdelete user error!");
