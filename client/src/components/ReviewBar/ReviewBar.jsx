@@ -3,6 +3,7 @@ import Rating from "@mui/material/Rating";
 import styled from "styled-components";
 import Reviews from "../Reviews/Reviews";
 import { useState } from "react";
+import { Button, TextField } from "@mui/material";
 
 export default function ReviewBar({ id }) {
   const [value, setValue] = useState(0);
@@ -35,8 +36,25 @@ export default function ReviewBar({ id }) {
         </div>
         {status ? (
           <>
-            <input placeholder="Write your review" />
-            <button>Send</button>
+            <TextField
+              disabled={false}
+              label="Write a customer review"
+              placeholder="Write a customer review"
+              size="lg"
+              variant="outlined"
+              sx={{
+                input: {
+                  color: "white",
+                },
+              }}
+            />
+            <Button
+              color="success"
+              size="md"
+              variant="solid"
+            >
+              Send
+            </Button>
           </>
         ) : null}
       </div>
