@@ -168,9 +168,10 @@ const ResponsiveAppBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {"Perfil"}
+                {"Profile"}
               </Button>
             </NavLink>
+            {user.is_Admin ? 
             <NavLink to={"/admin"} className={styles.navlink}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -179,6 +180,7 @@ const ResponsiveAppBar = () => {
                 {"Admin"}
               </Button>
             </NavLink>
+            : null }
           </Box>
           <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
@@ -218,6 +220,8 @@ const ResponsiveAppBar = () => {
           <Link to="/favs">Favs</Link>
 
           <Link to="/how-does-it-work"  style={{ color: "white", textDecoration: "none" }}>How does it work?</Link>
+          
+          
 
           <Box sx={{ flexGrow: 0 }}>
             <Menu
