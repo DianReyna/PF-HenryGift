@@ -22,7 +22,12 @@ module.exports = OrderDetailFactory = (sequelize) => {
     recipient: {
       type: DataTypes.STRING,
      
-    }
+    },
+    email_sent: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
   },
   {
     timestamps: false,

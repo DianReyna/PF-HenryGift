@@ -8,7 +8,7 @@ import GiftCards from "./Gift/GiftCards";
 import { getBox } from "../../redux/actions/boxesActions";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 export default function RedeemCoupon() {
   const navigate = useNavigate();
   const { user } = useParams();
@@ -23,12 +23,12 @@ export default function RedeemCoupon() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate('/userprofile')
+    //navigate('/userprofile')
     // const URL=" https://henrygift-api.herokuapp.com/register"
     const URL = "http://localhost:3001";
     axios
       .post(`${URL}/redeem`, { code: code })
-      .then((res) => console.log(res))
+      .then((res) => res.data === "Invalid Code or It has been already redeemed"? toast.error(`Invalid Code`, {position: "bottom-left",}): navigate('/userprofile'))
       .then((res) => dispatch(getUserGift(userDetail.email)));
   }
   useEffect(() => {

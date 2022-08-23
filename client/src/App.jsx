@@ -75,7 +75,8 @@ function App() {
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
-          <Route path="/giftdetail" element={<GiftDetail />} />
+          <Route path="/giftdetail/:idBox" element={<GiftDetail />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" element={<CheckOutSuccess />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/onlyproviders" element={<QRCode />} />
