@@ -6,7 +6,7 @@ export const userSlice = createSlice({
     users: [],
     userDetail: {},
     gifts:[],
-    //orders:[],
+    orderDetail:[],
   },
   reducers: {
     getAllUsers: (state, action) => {
@@ -28,12 +28,12 @@ export const userSlice = createSlice({
     deleteUser: (state, action) => {
       state.users = action.payload;
     },
-    // getAllOrdes: (state, action) => {
-    //   state.orders = action.payload;
-    // },
+    getOrderUser: (state, action) => {
+      state.orderDetail = action.payload;
+    },
   },
 });
 
 
-export const { getAllUsers, userAdmin, userById, profileUpdate, getGiftUser, deleteUser, getAllOrdes } = userSlice.actions;
+export const { getAllUsers, userAdmin, userById, profileUpdate, getGiftUser, deleteUser, getAllOrdes, getOrderUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -3,19 +3,40 @@ import Rating from "@mui/material/Rating";
 import styled from "styled-components";
 import Reviews from "../Reviews/Reviews";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createReviews } from "../../redux/actions/reviewsActions";
+import { toast } from "react-toastify";
 
 export default function ReviewBar({ id }) {
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
-  const [status, setStatus] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (!status) {
-      setStatus(true);
-    } else {
-      setStatus(false);
+  const { user } = useSelector((state) => state.auth);
+
+  const handleBlur = () => {
+    if (!user) {
+      toast.warning("Register to leave your review", {
+        position: "top-right",
+      });
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (user) {
+      const info = {
+        user: user._id,
+        box: id,
+      };
+      dispatch(createReviews(info, value, message));
+      setMessage("");
+    } else {
+      toast.warning("Register to leave your review", {
+        position: "top-right",
+      });
+    }
+  };
+
   return (
     <ReviewContent
       sx={{
@@ -26,19 +47,23 @@ export default function ReviewBar({ id }) {
         <Rating
           name="simple-controlled"
           value={value}
+          onBlur={handleBlur}
           onChange={(event, newValue) => {
             setValue(newValue);
           }}
         />
-        <div sx={{ cursor: "pointer" }} onClick={handleClick}>
-          {status ? <span>close</span> : <span>Write a costumer review</span>}
-        </div>
-        {status ? (
-          <>
-            <input placeholder="Write your review" />
-            <button>Send</button>
-          </>
-        ) : null}
+
+        <>
+          <input
+            name="message"
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+            placeholder="Write a costumer review"
+          />
+          <button onClick={handleSubmit}>Send</button>
+        </>
       </div>
       <div>
         <Reviews id={id} />

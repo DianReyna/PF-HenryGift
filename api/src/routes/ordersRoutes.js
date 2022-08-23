@@ -13,5 +13,6 @@ router.post("/cart",saveUserCart)
 
 router.get("/cart",getUserCart)
 
-//router.get("/user",getUserOrders)
+router.get("/user",getUserOrders)
+
 module.exports = router;

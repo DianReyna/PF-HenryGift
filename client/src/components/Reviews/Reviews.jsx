@@ -54,7 +54,7 @@ export default function Reviews({ id }) {
           >
             <Grid>
               {reviews &&
-                reviews.map((item, index) => {
+                reviews?.map((item, index) => {
                   const find = item.createdAt.indexOf("T");
                   const dateBox = item.createdAt.slice(0, find);
                   return (
