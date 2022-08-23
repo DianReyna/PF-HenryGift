@@ -62,7 +62,7 @@ const getAllOrders = async (req, res, next) => {
   }
 };
 
-/* const getUserOrders = async(req,res,next)=>{
+const getUserOrders = async(req,res,next)=>{
 
   const {user} = req.query
 
@@ -78,7 +78,7 @@ const getAllOrders = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-} */
+} 
 
 const sendEmailCode = async (req, res, next) => {
   
@@ -120,6 +120,6 @@ const sendEmailCode = async (req, res, next) => {
 module.exports={
   getAllOrders,
   createNewOrder,
-  sendEmailCode
-  
+  sendEmailCode,
+  getUserOrders  
 }

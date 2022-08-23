@@ -217,6 +217,8 @@ const ResponsiveAppBar = () => {
 
           <Link to="/favs">Favs</Link>
 
+          <Link to="/how-does-it-work"  style={{ color: "white", textDecoration: "none" }}>How does it work?</Link>
+
           <Box sx={{ flexGrow: 0 }}>
             <Menu
               sx={{ mt: "45px" }}

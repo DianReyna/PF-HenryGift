@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Button } from "@mui/material";
 
-const PayButton = ({ cartItems }) => {
+const PayButton = ({ cartItems,handleSubmit }) => {
   const { user } = useSelector((state) => state.auth);
 
   const handleCheckOut = () => {
@@ -17,11 +18,12 @@ const PayButton = ({ cartItems }) => {
         }
       })
       .catch((err) => console.log(err.message));
+      handleSubmit()
   };
 
   return (
     <div>
-      <button onClick={() => handleCheckOut()}>Check Out</button>
+      <Button sx={{bgcolor: 'rgb(217, 79, 15)' }} variant="contained" onClick={() => handleCheckOut()}>Check Out</Button>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
   profileUpdate,
   getGiftUser,
   deleteUser,
+  getOrderUser
 } from "../reducer/userSlice";
 
 // const URL=" https://henrygift-api.herokuapp.com/register"
@@ -59,9 +60,9 @@ export const removeUser = (id) => (dispatch) => {
     });
 };
 
-// export const getOrders = () => (dispatch) => {
-//   axios(` ${URL}/users/getUserOrders`)
-//     .then((res) => dispatch(getAllOrdes(res.data)))
-//     .catch((err) => console.log(err));
-// };
+export const getOrders = (user) => (dispatch) => {
+  axios(` ${URL}/orders/user?user=${user}`)
+   .then((res) => dispatch(getOrderUser(res.data)))
+   .catch((err) => console.log(err));
+};
 

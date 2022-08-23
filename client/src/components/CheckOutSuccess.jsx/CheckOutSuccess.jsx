@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { clearCart, getTotals } from "../../redux/reducer/cartSlice";
-import { toast } from "react-toastify";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
@@ -12,19 +11,17 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     dispatch(clearCart());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getTotals());
-  }, [cart, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     async function sendCode() {
       const URL = "http://localhost:3001";
       await axios.post(`${URL}/orders/sendcode`, {
-        userId: 'josemanuel_seguro2@hotmail.com',
+        userId: user._id,
       });
     }
+    console.log("envio del codigo")
     sendCode();
   }, []);
 
@@ -44,7 +41,6 @@ const CheckoutSuccess = () => {
 export default CheckoutSuccess;
 
 const Container = styled.div`
-  min-height: 80vh;
   max-width: 800px;
   width: 100%;
   margin: auto;

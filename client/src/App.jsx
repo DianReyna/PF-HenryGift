@@ -1,3 +1,4 @@
+import HowDoesItWork from "./components/HowDoesItWork/HowDoesItWork"
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
@@ -36,7 +37,7 @@ import CategoryList from "./components/Admin/Category/CategoryList";
 import FormCategory from "./components/Admin/Category/FormCategory";
 import GiftDetail from "./components/User/Gift/GiftDetail";
 import QRCode from "./components/QRCode/QRCode";
-//import OrderHistory from "./components/User/OrderHistory";
+import OrderHistory from "./components/User/OrderHistory";
 import Favs from "./components/Favs/Favs";
 import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
@@ -64,6 +65,7 @@ function App() {
       <NavBar />
       <ContainerApp>
         <Routes>
+          <Route path="/how-does-it-work" element={<HowDoesItWork />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login/forgot-password" element={<ForgotPassword />} />
           <Route path="/login/reset-password/:email" element={<ResetPassword />} />
@@ -72,7 +74,7 @@ function App() {
           <Route path="/box/:idBox" element={<BoxDetail />} />
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
-          {/* <Route path="/orderhistory" element={<OrderHistory />} /> */}
+          <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/giftdetail" element={<GiftDetail />} />
           <Route path="/checkout-success" element={<CheckOutSuccess />} />
           <Route path="/send" element={<SendBox />} />
