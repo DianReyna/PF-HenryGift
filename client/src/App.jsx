@@ -71,9 +71,7 @@ function App() {
           <Route path="/login/reset-password/:email" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
-          <Route path="/favs" element={<Favs />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
-          <Route path="/product/:idProduct" element={<ProductDetail />} />
           <Route path="/codebox" element={<RedeemCoupon />} />
           <Route path="/editprofile" element={<UserProfileEdit />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
@@ -85,6 +83,9 @@ function App() {
           <Route path="/giftproduct/:idProduct" element={<GiftProductDetail />} />
           //Dashboard
           <Route element={<PrivateRoute />}>
+            <Route path="/favs" element={<Favs />} />
+            <Route path="/product/:idProduct" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/userprofile" element={<ProfilePanel />} />
           </Route>
           <Route element={<AdminRoute />}>

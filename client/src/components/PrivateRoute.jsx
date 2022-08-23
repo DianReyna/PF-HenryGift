@@ -11,12 +11,12 @@ const useAuth = () => {
 
 const PrivateRoute = () => {
   const isAuth = useAuth()
-  return isAuth ? <Outlet /> : <Navigate to="/login" />; //SingIn
+  return isAuth && !isAuth.is_banned ? <Outlet /> : <Navigate to="/login" />; //SingIn
 };
 
 const AdminRoute = () => {
   const isAuth = useAuth()
-  return isAuth.is_Admin ? <Outlet /> : <Navigate to="/" />; //SingIn
+  return isAuth.is_Admin && !isAuth.is_banned ? <Outlet /> : <Navigate to="/" />; //SingIn
 };
 
 export {PrivateRoute, AdminRoute};

@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createReviews } from "../../redux/actions/reviewsActions";
 import { toast } from "react-toastify";
+import { Button, TextField } from "@mui/material";
+import styles from './ReviewBar.css'
 
 export default function ReviewBar({ id }) {
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ export default function ReviewBar({ id }) {
         "& > legend": { mt: 2 },
       }}
     >
-      <div>
+      <div className={styles.container}>
         <Rating
           name="simple-controlled"
           value={value}
@@ -52,18 +54,24 @@ export default function ReviewBar({ id }) {
             setValue(newValue);
           }}
         />
-
-        <>
-          <input
+        <div className={styles.textField}>
+          <TextField
+            disabled={false}
             name="message"
             value={message}
             onChange={(e) => {
               setMessage(e.target.value);
             }}
             placeholder="Write a costumer review"
+            size="small"
+            sx={{
+              input: {
+                color: "white",
+              }
+            }}
           />
-          <button onClick={handleSubmit}>Send</button>
-        </>
+          <Button color="success" size="md" variant="solid" onClick={handleSubmit}>Send</Button>
+        </div>
       </div>
       <div>
         <Reviews id={id} />
@@ -74,6 +82,6 @@ export default function ReviewBar({ id }) {
 
 export const ReviewContent = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
+  justify-content: space-between;
 `;
