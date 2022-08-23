@@ -90,7 +90,8 @@ const sendEmailCode = async (req, res, next) => {
   
     const recipientsList = await OrderDetail.findAll({
       where:{
-        UserEmail:userId
+        UserEmail:userId,
+        email_sent:false
       },
      
     })
@@ -110,6 +111,7 @@ const sendEmailCode = async (req, res, next) => {
       await sendCode(findGift.dataValues.recipient,findGift.dataValues.code)
     })
     //await Promise.all(arrSendMail)
+    await OrderDetail.update({email_sent:true},{where:{ UserEmail:userId}})
     res.send("Code send to Recipient")
 
   } catch (error) {
