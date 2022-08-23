@@ -136,19 +136,8 @@ export default function ProfilePanel() {
           <Grid>
             <Typography variant="h5" component="div" gutterBottom>
               My Boxes
-            
             </Typography>
-               {/* {userDetail.Products && userDetail.Products.map((product)=>{
-                  return <ItemProduct key={product.id}>
-                    <GiftPriduct
-                      id={product.id}
-                      imagen={product.image} 
-                      name={product.name} 
-                      description={product.description}
-                      location={product.location}/>
-                    </ItemProduct>
-                })}  */}
-           <GiftCards/>
+            <GiftCards/>
           </Grid>
         </CardsProducts>
       </Container>
