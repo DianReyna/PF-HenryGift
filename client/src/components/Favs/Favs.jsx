@@ -7,39 +7,35 @@ const Favs = () => {
   const dispatch = useDispatch();
 
   const favItems = useSelector((state) => state.fav.favItems);
+  const userEmail = useSelector((state) => state.auth);
+  const email = userEmail.user._id;
+
+  useEffect(() => {
+    dispatch(getFavorites(email));
+  }, []);
   console.log(favItems);
-  const userEmail = useSelector((state) => state.auth.user._id);
-
-  // useEffect(() => {
-  //   dispatch(getFavorites(userEmail));
-  // }, []);
-
   return (
     <div>
-      {
-        favItems && favItems.length > 0 ? (
-      favItems?.map((item) => {
-        return (
-          <BoxCard
-            key={item.Box.id}
-            id={item.Box.id}
-            name={item.Box.name}
-            price={item.Box.price}
-            ranking={item.Box.ranking}
-            person={item.Box.person}
-            expiration_date={item.Box.expiration_date}
-            detail={item.Box.detail}
-            image={item.Box.image}
-          />
-        );
-      })
-        ) : (
-          <div>
-            <h1>No Favorites</h1>
-          </div>
-        )
-      }
-      sarasa
+      {favItems.length === 0 ? (
+        <div>Sorry not Found </div>
+      ) : (
+        favItems &&
+        favItems?.map((item) => {
+          return (
+            <BoxCard
+              key={item.Box.id}
+              id={item.Box.id}
+              name={item.Box.name}
+              price={item.Box.price}
+              ranking={item.Box.ranking}
+              person={item.Box.person}
+              expiration_date={item.Box.expiration_date}
+              detail={item.Box.detail}
+              image={item.Box.image}
+            />
+          );
+        })
+      )}
     </div>
   );
 };
