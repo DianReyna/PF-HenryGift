@@ -4,11 +4,14 @@ const createFavourite = async (req, res, next) => {
   const { query } = req;
   //console.log(query.box_id)
   try {
+    const findFav = await favouriteServices.findFavouritBox(query.box_id);
+    if (findFav) {
+      return res.status(404).send("alredy exist");
+    }
     const createFavourite = await favouriteServices.newFavourite(query);
 
     if (createFavourite) {
-      //const findFavourites = await favouriteServices.findFavourites();
-
+      // const findFavourites = await favouriteServices.findFavourites();
       res.status(201).send(createFavourite);
     } else {
       res.status(404).send("Error at Server");
