@@ -1,3 +1,4 @@
+import HowDoesItWork from "./components/HowDoesItWork/HowDoesItWork"
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
@@ -64,6 +65,7 @@ function App() {
       <NavBar />
       <ContainerApp>
         <Routes>
+          <Route path="/how-does-it-work" element={<HowDoesItWork />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login/forgot-password" element={<ForgotPassword />} />
           <Route path="/login/reset-password/:email" element={<ResetPassword />} />
