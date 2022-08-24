@@ -35,6 +35,11 @@ module.exports = BoxFactory = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
+      verified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       timestamps: false,

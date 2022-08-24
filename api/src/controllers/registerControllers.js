@@ -7,7 +7,7 @@ const registerUser = async (req, res, next) => {
     let registerUser = await registerServices.createNewUser(body)
 
     if(registerUser) {
-      
+      z
      return res.status(201).json({
         _id: registerUser.email,
         first_name: registerUser.first_name,

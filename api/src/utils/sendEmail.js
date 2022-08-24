@@ -70,9 +70,38 @@ const sendQr = (recipient,img) => {
   }).catch(err => console.log(err));
 };
 
+const confirmEmail = async (email, subject, text) => {
+  try {
+		const transporter = nodemailer.createTransport({
+			host: process.env.HOST,
+			service: "Gmail",
+			port: Number(process.env.EMAIL_PORT),
+			secure: Boolean(process.env.SECURE),
+      auth:{
+        user:AUTH_USER,
+        pass:AUTH_PASS
+      },
+      tls: {rejectUnauthorized: false}
+		});
+
+		await transporter.sendMail({
+			from: AUTH_USER,
+			to: email,
+			subject: subject,
+			text: text,
+		});
+		console.log("email sent successfully");
+	} catch (error) {
+		console.log("email not sent!");
+		console.log(error);
+		return error;
+	}
+};
+
 module.exports={
   sendCode,
   confirmPay,
   changePassword,
-  sendQr
+  sendQr,
+  confirmEmail
 }

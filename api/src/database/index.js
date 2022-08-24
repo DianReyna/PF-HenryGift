@@ -15,6 +15,7 @@ const PicksFactory = require("../models/Picks");
 const FavouriteFactory = require("../models/Favourite");
 const CartFactory = require("../models/Cart");
 const ReviewsFactory = require("../models/ReviewsUsers");
+const TokenFactory = require("../models/Token");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 // const { DATABASE_URL } = process.env;
 
@@ -53,6 +54,7 @@ const Picks = PicksFactory(sequelize);
 const Favourite = FavouriteFactory(sequelize);
 const Cart = CartFactory(sequelize);
 const ReviewsUsers = ReviewsFactory(sequelize);
+const Token = TokenFactory(sequelize);
 // create the associations
 Provider.hasMany(Products, { foreignKey: "provider_id" });
 Products.belongsTo(Provider, { foreignKey: "provider_id" });
@@ -116,4 +118,5 @@ module.exports = {
   Favourite,
   Cart,
   ReviewsUsers,
+  Token
 };
