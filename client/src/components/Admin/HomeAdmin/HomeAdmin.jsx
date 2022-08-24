@@ -37,8 +37,6 @@ export default function HomeAdmin() {
     dispatch(getUsersAdmin());
   }, [dispatch]);
 
-  console.log(salesBox.length);
-
   return (
     <Box className="containerAdmin">
       <Grid
@@ -71,14 +69,23 @@ export default function HomeAdmin() {
               Orders <ReceiptIcon />
             </DialogTitle>
             <DialogContent className="featuredMoneyContainer">
-              <DialogContentText
-                sx={{ color: "white !Important" }}
-                className="featuredMoney"
-              >
-                {salesBox.length}
-              </DialogContentText>
+              {salesBox.length === 0 ? (
+                <DialogContentText
+                  sx={{ color: "white !Important" }}
+                  className="featuredMoney"
+                >
+                  0
+                </DialogContentText>
+              ) : (
+                <DialogContentText
+                  sx={{ color: "white !Important" }}
+                  className="featuredMoney"
+                >
+                  {salesBox.orders.length}
+                </DialogContentText>
+              )}
               <DialogContentText className="featuredMoneyRate">
-                Registered
+                Total
               </DialogContentText>
             </DialogContent>
           </Container>
@@ -89,14 +96,23 @@ export default function HomeAdmin() {
               Sales <AttachMoneyIcon />
             </DialogTitle>
             <DialogContent className="featuredMoneyContainer">
-              <DialogContentText
-                sx={{ color: "white !Important" }}
-                className="featuredMoney"
-              >
-                {itemsUser.users.length}
-              </DialogContentText>
+              {salesBox.length === 0 || salesBox.sales.length === 0 ? (
+                <DialogContentText
+                  sx={{ color: "white !Important" }}
+                  className="featuredMoney"
+                >
+                  0
+                </DialogContentText>
+              ) : (
+                <DialogContentText
+                  sx={{ color: "white !Important" }}
+                  className="featuredMoney"
+                >
+                  {salesBox.sales[0].total}
+                </DialogContentText>
+              )}
               <DialogContentText className="featuredMoneyRate">
-                Registered
+                Total
               </DialogContentText>
             </DialogContent>
           </Container>
