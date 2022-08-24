@@ -2,13 +2,15 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
+// const URL = `http://127.0.0.1:5173`
+const URL = `https://henry-gift.vercel.app`;
 
-const PayButton = ({ cartItems,handleSubmit }) => {
+const PayButton = ({ cartItems, handleSubmit }) => {
   const { user } = useSelector((state) => state.auth);
 
   const handleCheckOut = () => {
     axios
-      .post(`http://localhost:3001/stripe/create-checkout-session`, {
+      .post(`${URL}/stripe/create-checkout-session`, {
         cartItems,
         userId: user._id,
       })
@@ -18,12 +20,18 @@ const PayButton = ({ cartItems,handleSubmit }) => {
         }
       })
       .catch((err) => console.log(err.message));
-      handleSubmit()
+    handleSubmit();
   };
 
   return (
     <div>
-      <Button sx={{bgcolor: 'rgb(217, 79, 15)' }} variant="contained" onClick={() => handleCheckOut()}>Check Out</Button>
+      <Button
+        sx={{ bgcolor: "rgb(217, 79, 15)" }}
+        variant="contained"
+        onClick={() => handleCheckOut()}
+      >
+        Check Out
+      </Button>
     </div>
   );
 };

@@ -4,7 +4,7 @@ const { GiftList, Gift, Box, Products } = require("../database/index");
 const QrCode = require("qrcode");
 const { sendQr } = require("../utils/sendEmail");
 //const URL = "http://127.0.0.1:5173"
-const URL = "https://henrygift-api.herokuapp.com";
+const URL = "https://henry-gift.vercel.app";
 
 const redeemGift = async (req, res, next) => {
   const { code } = req.body;
