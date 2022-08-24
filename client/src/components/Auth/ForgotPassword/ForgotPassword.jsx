@@ -13,9 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import styled from "styled-components";
-import URL from '../../../utils/backRoutes';
-const URL = "http://localhost:3001";
-
+import URL from "../../../utils/backRoutes";
 
 const Form = styled.form`
   display: flex;
@@ -28,14 +26,13 @@ const Form = styled.form`
 `;
 
 export default function ForgotPassword() {
-  
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
     setEmail(e.target.value);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email.trim()) {
