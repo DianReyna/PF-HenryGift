@@ -5,8 +5,7 @@ import {
   getFavs,
 } from "../reducer/favSlice";
 
-// const URL=" https://henrygift-api.herokuapp.com/favourites"
-const URL = "http://localhost:3001/favourites";
+import URL from "../../utils/backRoutes";
 
 export const getFavorites = (email) => (dispatch) => {
   axios

@@ -10,8 +10,7 @@ import {
   getOrderUser
 } from "../reducer/userSlice";
 
-// const URL=" https://henrygift-api.herokuapp.com/register"
-const URL = "http://localhost:3001";
+import URL from "../../utils/backRoutes";
 
 export const getUsers = () => (dispatch) => {
   axios(` ${URL}/getAllUsers`)

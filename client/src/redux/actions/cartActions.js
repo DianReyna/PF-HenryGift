@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getUserCart } from "../reducer/cartSlice";
 
-// const URL=" https://henrygift-api.herokuapp.com/register"
-const URL = "http://localhost:3001";
+import URL from "../../utils/backRoutes";
 
 export const getCart = (user) => (dispatch) => {
   axios(` ${URL}/orders/cart?user=${user}`)

@@ -15,7 +15,7 @@ import {
   getTotals,
 } from "../../redux/reducer/cartSlice";
 import "./Cart.css";
-
+import URL from "../../utils/backRoutes";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -32,8 +32,10 @@ const Cart = () => {
   }, []);
 
   const saveCart = async () => {
+
     // const URL=" https://henrygift-api.herokuapp.com/"
     const URL = "http://localhost:3001";
+
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
