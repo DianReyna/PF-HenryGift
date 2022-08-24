@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUser, getUsersById, getUsers} from '../../redux/actions/userActions';
+import { removeUser, getUsersById} from '../../redux/actions/userActions';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -40,10 +40,10 @@ function DeleteUserAccount() {
     
     function handleDelete() {
       dispatch(removeUser(user._id))
+      navigate('/')
       setTimeout(function () {
         location.reload()
     }, 100);
-       navigate('/')
         setOpen(false);
             toast.success("Account deleted successfully", {
               position: "top-right",
