@@ -30,7 +30,7 @@ import { Cart, SendBox } from "./components";
 import UsersList from "./components/Admin/Users/UsersList";
 import BoxesList from "./components/Admin/Boxes/BoxesList";
 import Error404 from "./components/Error/Error404";
-import {PrivateRoute, AdminRoute} from "./components/PrivateRoute";
+import { PrivateRoute, AdminRoute } from "./components/PrivateRoute";
 import UserProfileEdit from "./components/User/UserProfileEdit";
 import RedeemCoupon from "./components/User/RedeemCoupon";
 import Category from "./components/Admin/Category/Category";
@@ -42,8 +42,7 @@ import OrderHistory from "./components/User/OrderHistory";
 import Favs from "./components/Favs/Favs";
 import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
-
-
+import Analitics from "./components/Admin/Analytics/Analytics";
 
 const ContainerApp = styled.div`
   min-height: 70vh;
@@ -70,7 +69,10 @@ function App() {
           <Route path="/frequent-questions" element={<FrequentQuestions />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login/forgot-password" element={<ForgotPassword />} />
-          <Route path="/login/reset-password/:email" element={<ResetPassword />} />
+          <Route
+            path="/login/reset-password/:email"
+            element={<ResetPassword />}
+          />
           <Route path="/register" element={<Register />} />
           <Route path="/form" element={<Form />} />
           <Route path="/box/:idBox" element={<BoxDetail />} />
@@ -82,17 +84,21 @@ function App() {
           <Route path="/checkout-success" element={<CheckOutSuccess />} />
           <Route path="/send" element={<SendBox />} />
           <Route path="/onlyproviders" element={<QRCode />} />
-          <Route path="/giftproduct/:idProduct" element={<GiftProductDetail />} />
-          //Dashboard
+          <Route
+            path="/giftproduct/:idProduct"
+            element={<GiftProductDetail />}
+          />
           <Route element={<PrivateRoute />}>
             <Route path="/favs" element={<Favs />} />
             <Route path="/product/:idProduct" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/userprofile" element={<ProfilePanel />} />
           </Route>
+          //Dashboard
           <Route element={<AdminRoute />}>
             <Route path="/admin" element={<Dashboard />}>
               <Route index element={<HomeAdmin />} />
+              <Route path="analytics" element={<Analitics />} />
               <Route path="boxes" element={<Boxes />}>
                 <Route index element={<BoxesList />} />
                 <Route path="create-box" element={<FormBox />} />
