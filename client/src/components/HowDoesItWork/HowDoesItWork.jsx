@@ -1,7 +1,9 @@
 import React , {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { Box, Button, ButtonGroup, Typography } from "@mui/material";
-import img from "../../assets/personThinking.jpg";
+import imgOne from "../../assets/personThinking.jpg";
+import imgTwo from "../../assets/shopping.jpg";
+
 export default function HowDoesItWork() {
   const navigate=useNavigate();
   const box=["Gave me a gift","Want to buy"];
@@ -54,13 +56,14 @@ export default function HowDoesItWork() {
           display="flex"
           alignItems="center"
           justifyContent={"center"}
-          marginBottom={5}
           color="black"
           backgroundColor="white"
           width={"100%"}>
-            <img src={img} alt="person-thinking" height="300"/>
+            <img src={imgOne} alt="person-thinking" height="300"/>
       <Box>
+      <Typography variant="h3" component="h3" sx={{ fontSize: 30, m: 1 }}>
       How do I use my code?
+      </Typography>
       <Typography  component={"p"} >
             01 Enter the code on our website to active it
       </Typography>
@@ -73,91 +76,55 @@ export default function HowDoesItWork() {
       <Button variant="outlined" sx={{  m: 3 }} onClick={openGift}>Open my gift</Button>
       </Box>   
     </Box>)}
-    {currentBox==="Want to buy"&&(
-      <Box>
+    {currentBox==="Want to buy"&&( 
       <Box   
-           display="flex"
-           alignItems="center"
-           justifyContent={"center"}
-           color="black"
-           backgroundColor="white"
-           width={"100%"}>
-            <Typography  variant="h3" component="h2" sx={{ fontSize: 20, m: 2 ,color:"black"}} >
-            Gift with options
-       </Typography>
-       <Box  width={"50%"}>
-       <Typography  variant="h3" component="h2" sx={{ fontSize: 30, m: 2 ,color:"black"}} >
-       What can i buy?
-       </Typography>
-      
-       <Typography  variant="h3" component="h2" sx={{ fontSize: 20, m: 2 ,color:"black"}} >
-             Give away a set of experiences , your honoree chooses which one he lives
-       </Typography>
-       <Typography  component={"p"} >
-       01 Chose a Henry-gift that you want to give away.
-       </Typography>
-       <Typography  component={"p"} >
-       02 Each Henry-gift contains a set of experiences.
-       </Typography> 
-       <Typography  component={"p"} >
-       03 You honoree receives a code and chooses which experience to enjoy.
-       </Typography> 
-       </Box>   
-     </Box>
-     <Box   
-           display="flex"
-           alignItems="center"
-           justifyContent={"center"}
-           color="black"
-           backgroundColor="white"
-           width={"100%"}>
-            <Typography  variant="h3" component="h2" sx={{ fontSize: 20, m: 2 ,color:"black"}} >
-           A la carte experiences
-       </Typography>
-       <Box  width={"50%"}>
-       <Typography  variant="h3" component="h2" sx={{ fontSize: 20, m: 2 ,color:"black"}} >
-       Give away or enjoy a special activity
-       </Typography>
-       <Typography  component={"p"} >
-       01 Chose an experience for you or give away. 
-       </Typography>
-       <Typography  component={"p"} >
-       02 Each experience is a unique proposal.
-       </Typography> 
-       <Typography  component={"p"} >
-       03 Once the gift is received , all that remains is to activate the code and enjoy!.
-       </Typography> 
-       </Box>   
-     </Box>
-       <Box   
-           display="flex"
-           alignItems="center"
-           justifyContent={"center"}
-           color="black"
-           backgroundColor="white"
-           width={"100%"}>
-            <Typography  variant="h3" component="h2" sx={{ fontSize: 20, m: 2 ,color:"black"}} >
-            Getaways in Argentina
-       </Typography>
-       <Box  width={"50%"}>
-       <Typography  variant="h3" component="h2" sx={{ fontSize: 20, m: 2 ,color:"black"}} >
-            Enjoy the combination of accommodation and experiences in the best destinations
-       </Typography>
-       <Typography  component={"p"} >
-       01 Each package has a stay and experiences.
-       </Typography>
-       <Typography  component={"p"} >
-       02 Once purchased , just activate the package code.
-       </Typography> 
-       <Typography  component={"p"} >
-       03 Book the stay and the experience for the day you want to enjoy them.
-       </Typography> 
-       </Box>   
-     </Box>
-     </Box>
+            display="flex"
+            alignItems="center"
+            justifyContent={"center"}
+            color="black"
+            backgroundColor="white"
+            width={"100%"}>
+        <Box>
+      <Typography variant="h3" component="h3" sx={{ fontSize: 30, m: 1 }}>
+          What can I buy?
+      </Typography>
+        <Typography  component={"p"} >
+        01 You can choose the Henry-Gift box that you want to give away.
+        </Typography>
+        <Typography  component={"p"} >
+        02 Each Henry-Gift box contains a set of experiences.
+        </Typography>
+        <Typography  component={"p"} >
+        03 You guest receives a code and chooses which experience to enjoy
+        </Typography> 
+        </Box>
+        <img src={imgTwo} alt="person-thinking" height="300"/>
+      </Box>
     )}
-   
-    
+    {(currentBox==="Gave me a gift"||currentBox==="Want to buy")&&(
+      <Box 
+      display="flex"
+      alignItems="center"
+      justifyContent={"center"}
+      marginBottom={5}
+      backgroundColor="#f44336"
+      width={"100%"}>
+       <Typography variant="h3" component="h2" sx={{ fontSize: 25, m: 2 ,color:"white"}}>
+       Do you still have doubts?
+      </Typography> 
+      <Button sx={{
+        ':hover': {
+         bgcolor: '#f44336', 
+         color: 'white'},
+          m: 1,
+          backgroundColor: "white",
+          borderColor:"#f44336"}}  
+          variant="contained" 
+          size="large">
+         <Link to="/frequent-questions" style={{ textDecoration: 'none',color:"black" }}>Frequent questions</Link> 
+        </Button>
+      </Box>
+    )}
     </>
   );
 }
