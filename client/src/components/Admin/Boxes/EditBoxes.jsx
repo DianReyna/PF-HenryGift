@@ -106,9 +106,9 @@ export default function EditBox({ boxId }) {
       input.name !== currentBox.name ||
       input.price !== currentBox.price ||
       input.person !== currentBox.person ||
-      // boxImg !== currentBox.image ||
       input.detail !== currentBox.detail ||
-      input.expiration !== currentBox.expiration
+      input.expiration !== currentBox.expiration ||
+      boxImg !== ""
     ) {
       return true;
     }

@@ -108,9 +108,9 @@ export default function EditProduct({ prodId }) {
       input.name !== currentProd.name ||
       input.price !== currentProd.price ||
       input.location !== currentProd.location ||
-      // input.image !== currentProd.image ||
       input.description !== currentProd.description ||
-      input.provider !== currentProd.Provider.name
+      input.provider !== currentProd.Provider.name ||
+      productImg !== ""
     ) {
       return true;
     }
