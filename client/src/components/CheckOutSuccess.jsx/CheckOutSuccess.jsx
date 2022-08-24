@@ -16,12 +16,13 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     async function sendCode() {
-      const URL = "http://localhost:3001";
+      // const URL = "http://localhost:3001";
+      const URL = "https://henrygift-api.herokuapp.com";
       await axios.post(`${URL}/orders/sendcode`, {
         userId: user._id,
       });
     }
-    console.log("envio del codigo")
+    console.log("envio del codigo");
     sendCode();
   }, []);
 

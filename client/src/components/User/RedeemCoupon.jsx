@@ -14,7 +14,7 @@ export default function RedeemCoupon() {
   const { user } = useParams();
   const dispatch = useDispatch();
   const [code, setCode] = useState("");
-  const {userDetail} = useSelector((state)=> state.users)
+  const { userDetail } = useSelector((state) => state.users);
 
   function handleInputChange(e) {
     e.preventDefault();
@@ -24,11 +24,15 @@ export default function RedeemCoupon() {
   function handleSubmit(e) {
     e.preventDefault();
     //navigate('/userprofile')
-    // const URL=" https://henrygift-api.herokuapp.com/register"
-    const URL = "http://localhost:3001";
+    const URL = " https://henrygift-api.herokuapp.com/register";
+    // const URL = "http://localhost:3001";
     axios
       .post(`${URL}/redeem`, { code: code })
-      .then((res) => res.data === "Invalid Code or It has been already redeemed"? toast.error(`Invalid Code`, {position: "bottom-left",}): navigate('/userprofile'))
+      .then((res) =>
+        res.data === "Invalid Code or It has been already redeemed"
+          ? toast.error(`Invalid Code`, { position: "bottom-left" })
+          : navigate("/userprofile")
+      )
       .then((res) => dispatch(getUserGift(userDetail.email)));
   }
   useEffect(() => {

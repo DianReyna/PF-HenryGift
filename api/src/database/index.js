@@ -15,27 +15,27 @@ const PicksFactory = require("../models/Picks");
 const FavouriteFactory = require("../models/Favourite");
 const CartFactory = require("../models/Cart");
 const ReviewsFactory = require("../models/ReviewsUsers");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
-// const { DATABASE_URL } = process.env;
+// const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DATABASE_URL } = process.env;
 
 // initialize sequelize with the right credentials
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: "postgres",
-  logging: false,
-  native: false,
-});
-
-// const sequelize = new Sequelize(DATABASE_URL, {
+// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+//   host: DB_HOST,
+//   dialect: "postgres",
 //   logging: false,
 //   native: false,
-//   dialectOptions: {
-//     ssl: {
-//       require: true,
-//       rejectUnauthorized: false,
-//     },
-//   },
 // });
+
+const sequelize = new Sequelize(DATABASE_URL, {
+  logging: false,
+  native: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 // inject the models into the sequelize instance
 const Box = BoxFactory(sequelize);

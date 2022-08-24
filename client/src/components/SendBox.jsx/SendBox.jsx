@@ -9,13 +9,10 @@ import PayButton from "../PayButton/PayButton";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-  
+
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
 
-
-
   const { user } = useSelector((state) => state.auth);
-
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -36,8 +33,8 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
-      // const URL=" https://henrygift-api.herokuapp.com/"
-      const URL = "http://localhost:3001";
+      const URL = " https://henrygift-api.herokuapp.com/";
+      // const URL = "http://localhost:3001";
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,
@@ -79,7 +76,7 @@ const SendBox = () => {
                   <h3>Insert the gift recipient email</h3>
                 </div>
                 <div className="email-place">
-                  <form >
+                  <form>
                     <TextField
                       sx={{
                         input: {
@@ -119,7 +116,10 @@ const SendBox = () => {
           </div>
           <div className="go-payment">
             {user && user._id ? (
-              <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
+              <PayButton
+                cartItems={cart.cartItems}
+                handleSubmit={handleSubmit}
+              />
             ) : (
               <Link to="/login">
                 <Button variant="outlined">Login to Check Out</Button>
