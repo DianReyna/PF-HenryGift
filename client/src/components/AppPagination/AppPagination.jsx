@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { queryPage } from "../../redux/actions/queryActions";
 
 export default function AppPagination({ setPage, page }) {
+  
   const { boxes } = useSelector((state) => state.boxes);
   const [pages, setPages] = useState(0);
-  const dispatch = useDispatch();
   const query = useSelector((state) => state.query);
+  
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     if (typeof boxes.count != "undefined") {
       setPages(Math.ceil(boxes.count / 4));
