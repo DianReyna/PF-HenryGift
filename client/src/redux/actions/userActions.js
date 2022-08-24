@@ -7,50 +7,62 @@ import {
   profileUpdate,
   getGiftUser,
   deleteUser,
+  getOrderUser
 } from "../reducer/userSlice";
 
+// const URL=" https://henrygift-api.herokuapp.com/register"
+const URL = "http://localhost:3001";
+
 export const getUsers = () => (dispatch) => {
-  axios(` https://henrygift-api.herokuapp.com/getAllUsers`)
+  axios(` ${URL}/getAllUsers`)
     .then((res) => dispatch(getAllUsers(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const getUsersAdmin = () => (dispatch) => {
-  axios(` https://henrygift-api.herokuapp.com/users`)
+  axios(` ${URL}/users`)
     .then((res) => dispatch(getAllUsers(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const putUsersAdmin = (data) => (dispatch) => {
   axios
-    .put(` https://henrygift-api.herokuapp.com/users/admin/${data.id}`, data)
+    .put(` ${URL}/users/admin/${data.id}`, data)
     .then((res) => dispatch(userAdmin(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const getUsersById = (id) => (dispatch) => {
-  axios(` https://henrygift-api.herokuapp.com/users/${id}`)
+  axios(` ${URL}/users/${id}`)
     .then((res) => dispatch(userById(res.data)))
     .catch((err) => console.log(err));
 };
+
 export const putUsersUpdate = (id, user) => (dispatch) => {
   axios
-    .put(` https://henrygift-api.herokuapp.com/users/user/${id}`, user)
+    .put(` ${URL}/users/user/${id}`, user)
     .then((res) => dispatch(profileUpdate(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const getUserGift = (user) => (dispatch) => {
   console.log(user);
-  axios(`https://henrygift-api.herokuapp.com/redeem/usergifts?user=${user}`)
+  axios(`${URL}/redeem/usergifts?user=${user}`)
     .then((res) => dispatch(getGiftUser(res.data)))
     .catch((err) => console.log(err));
 };
 export const removeUser = (id) => (dispatch) => {
   axios
-    .delete(`https://henrygift-api.herokuapp.com/users/${id}`)
+    .delete(`${URL}/users/${id}`)
     .then((res) => dispatch(deleteUser(res.data)))
     .catch((err) => {
       console.log(err);
     });
 };
+
+export const getOrders = (user) => (dispatch) => {
+  axios(` ${URL}/orders/user?user=${user}`)
+   .then((res) => dispatch(getOrderUser(res.data)))
+   .catch((err) => console.log(err));
+};
+

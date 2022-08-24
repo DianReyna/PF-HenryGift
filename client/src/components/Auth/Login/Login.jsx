@@ -25,9 +25,9 @@ export default function Login() {
   )
 
   function handleCallbackResponse(response){
-    console.log('Encoded JWT ID token: ' + response.credential)
+    // console.log('Encoded JWT ID token: ' + response.credential)
     var userObject = jwt_decode(response.credential);
-    console.log(userObject)
+    // console.log(userObject)
     const userData={
       first_name:userObject.given_name,
       last_name:userObject.family_name,
@@ -147,7 +147,7 @@ export default function Login() {
           />
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
-        <Typography variant="h7" ><Link to="/forgot-password" style={{ textDecoration: 'none',color:"#f44336" }}>Forgot password?</Link></Typography>
+        <Typography variant="h7" ><Link to="/login/forgot-password" style={{ textDecoration: 'none',color:"#f44336" }}>Forgot password?</Link></Typography>
         <Button sx={{ m: 1,width: '40ch' }} type="submit" variant="contained">
         {/* {auth.loginStatus === "pending" ? "Submitting..." : "Login"} */}
         Login

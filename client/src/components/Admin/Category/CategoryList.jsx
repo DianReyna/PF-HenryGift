@@ -1,10 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getCategory,
-  destroyCategory,
-} from "../../../redux/actions/categoryActions";
+import { getCategory } from "../../../redux/actions/categoryActions";
 import { DataGrid } from "@mui/x-data-grid";
 import { Action } from "../CommonStyled";
 import EditCategory from "./EditCategory";
@@ -34,7 +31,7 @@ export default function CategoryList() {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 300,
+      width: 250,
       renderCell: (params) => {
         return (
           <Action>
@@ -47,7 +44,7 @@ export default function CategoryList() {
   ];
 
   return (
-    <div style={{ height: 450, width: "80%" }}>
+    <div style={{ height: 450, width: "50%" }}>
       <DataGrid
         style={{ color: "white" }}
         rows={rows}

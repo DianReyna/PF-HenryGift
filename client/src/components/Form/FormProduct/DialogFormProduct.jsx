@@ -6,12 +6,12 @@ import { Create, ContentDialog } from "../../Admin/CommonStyled";
 import { useNavigate } from "react-router-dom";
 import { getProducts } from "../../../redux/actions/productsActions";
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
 } from "@mui/material/";
+import { CreateNew, ViewDetail, Cancel } from "../../Admin/CommonStyled";
 
 export default function DialogFormProduct({ nameProd }) {
   const navigate = useNavigate();
@@ -27,20 +27,28 @@ export default function DialogFormProduct({ nameProd }) {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const view = () => {
+    let selectProduct = itemsProducts.products.filter(
+      (el) => el.name === product.name
+    );
+    selectProduct = selectProduct[0];
+    console.log(selectProduct);
+    navigate(`/product/${selectProduct.id}`);
+  };
+
   const handleView = () => {
-    setOpen(false);
     setTimeout(() => {
       dispatch(getProducts());
-      let selectProduct = itemsProducts.products.filter(
-        (el) => el.name === product.name
-      );
-      selectProduct = selectProduct[0];
-      navigate(`/product/${selectProduct.id}`);
+      view();
     }, 3000);
+    view();
+    setOpen(false);
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setTimeout(() => {
+      setOpen(true);
+    }, 1000);
     setProduct({
       name: nameProd,
     });
@@ -60,34 +68,36 @@ export default function DialogFormProduct({ nameProd }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle
+          sx={{
+            fontSize: 25,
+            color: "#545454",
+            fontFamily: "arial",
+            textAlign: "center",
+          }}
+          id="alert-dialog-title"
+        >
           {"What do you want to do?"}
         </DialogTitle>
         <ContentDialog>
           <DialogContent>
             <DialogActions>
-              <Button onClick={handleClose} autoFocus>
-                Create
-              </Button>
+              <CreateNew onClick={handleClose} autoFocus>
+                Create new box
+              </CreateNew>
             </DialogActions>
           </DialogContent>
           <DialogContent>
             <DialogActions>
-              <Button onClick={handleView} autoFocus>
-                View Detail
-              </Button>
+              <ViewDetail onClick={handleView}>View Detail</ViewDetail>
+            </DialogActions>
+          </DialogContent>
+          <DialogContent>
+            <DialogActions>
+              <Cancel onClick={handleClose}>Cancel</Cancel>
             </DialogActions>
           </DialogContent>
         </ContentDialog>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              navigate(`/admin`);
-            }}
-          >
-            Home
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

@@ -5,24 +5,17 @@ import axios from "axios";
 import "./SendBox.css";
 import { useEffect } from "react";
 import { TextField, Button } from "@mui/material";
+import PayButton from "../PayButton/PayButton";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-
+  
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
-  const [gifts, setGifts] = useState([]);
-  let gatillo = false;
 
-  // useEffect(()=>{
-  //   if(gatillo == false){
-  //     cart?.cartItems.forEach(element => {
-  //       for(let i = 0;i < element.cartQuantity;i++){
-  //         setGifts( (oldGifts) => [...oldGifts, element] )
-  //       }
-  //     });
-  //     gatillo = true;
-  //   }
-  // },[])
+
+
+  const { user } = useSelector((state) => state.auth);
+
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -43,10 +36,12 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
+      // const URL=" https://henrygift-api.herokuapp.com/"
+      const URL = "http://localhost:3001";
 
-      axios.post(` https://henrygift-api.herokuapp.com/orders`, {
+      axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,
-        userId: "drowet0@4shared.com",
+        userId: user._id,
         boxes: total,
       });
     } catch (error) {
@@ -70,9 +65,9 @@ const SendBox = () => {
                   </div>
                   <div className="purchase-detail">
                     <div className="box-people">
-                      <h3>Para {cartItem.person} personas</h3>
+                      <h3>For {cartItem.person} persons</h3>
                     </div>
-                    <div className="valid-till">Valido hasta 31/12/2022</div>
+                    <div className="valid-till">Valid until 31/12/2022</div>
                     <div className="box-amount">
                       <h1>${cartItem.price}</h1>
                     </div>
@@ -81,10 +76,10 @@ const SendBox = () => {
               </div>
               <div className="card-bottom-send">
                 <div className="receiver-form-title">
-                  <h3>Ingrese el email del destinatario</h3>
+                  <h3>Insert the gift recipient email</h3>
                 </div>
                 <div className="email-place">
-                  <form onSubmit={handleSubmit}>
+                  <form >
                     <TextField
                       sx={{
                         input: {
@@ -107,7 +102,7 @@ const SendBox = () => {
         <div className="right-side">
           <div className="rigth-send-side">
             <div className="summary-cart-title">
-              <h3>Resumen de Compra</h3>
+              <h3>Purchase summary</h3>
             </div>
             {cart?.cartItems.map((cartItem, index) => (
               <div key={index} className="summary-cart-box">
@@ -123,16 +118,13 @@ const SendBox = () => {
             </div>
           </div>
           <div className="go-payment">
-            <Link to="/payment">
-              <Button
-                className="go-payment-btn"
-                sx={{ color: "white", border: "1px solid white" }}
-                variant="outlined"
-                onClick={handleSubmit}
-              >
-                Ir al pago
-              </Button>
-            </Link>
+            {user && user._id ? (
+              <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
+            ) : (
+              <Link to="/login">
+                <Button variant="outlined">Login to Check Out</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

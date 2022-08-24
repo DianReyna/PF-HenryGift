@@ -1,6 +1,6 @@
 const giftServices = require("../services/giftServices");
 const boxServices = require("../services/boxServices");
-const { GiftList,Gift } = require("../database/index");
+const { GiftList,Gift,Box, Products } = require("../database/index");
 const QrCode = require("qrcode")
 const { sendQr } = require("../utils/sendEmail");
 const redeemGift = async (req, res, next) => {
@@ -24,18 +24,41 @@ const redeemGift = async (req, res, next) => {
   const productPicked = async(req,res,next) => {
     const {productId,userId} = req.body
 
-
+    console.log(productId)
     try{
 
+      let foundBox = await Box.findOne({
+        include:{model:Products,where:{
+          id:productId
+        }}
+      })
 
-      await giftServices.createNewPick(userId,productId)
+      //console.log(foundBox)
 
-      await giftServices.updateProductStock(productId)
+      let findGift = await Gift.findOne({
+        where:{
+          email:userId,
+          box_id:foundBox.dataValues.id,
+          redeemed:false
+        }
+      })
 
-      let img = await QrCode.toDataURL(`http://127.0.0.1:5173/onlyproviders?user=${userId}&product=${productId}`);
-      await sendQr(userId,img)
+      //console.log(findGift)
 
-      res.send("Product redeem")
+      if(findGift){
+        await giftServices.updateGift(userId,foundBox.dataValues.id)
+
+        await giftServices.createNewPick(userId,productId)
+
+        await giftServices.updateProductStock(productId)
+
+        let img = await QrCode.toDataURL(`http://127.0.0.1:5173/onlyproviders?user=${userId}&product=${productId}`);
+        await sendQr(userId,img)
+
+        res.send("Product redeem")
+      }else{
+        res.send("You dont own that box")
+      }
 
     }catch (error){
       next(error)
@@ -49,7 +72,7 @@ const redeemGift = async (req, res, next) => {
 
       let findGifts = await giftServices.getUserGifts(user)
       let arrBoxId = findGifts.map(gift=>gift.dataValues.box_id)
-      console.log(arrBoxId)
+      //console.log(arrBoxId)
       let boxesList = await giftServices.getBoxList(arrBoxId)
       res.send(boxesList)
     }catch(error){

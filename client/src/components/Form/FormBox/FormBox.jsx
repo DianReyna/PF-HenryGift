@@ -42,6 +42,7 @@ export default function FormBox() {
     handleChangeBox,
     handleChangeProd,
     handleChangeCat,
+    handleChangeBoxImg,
   } = useForm(validate);
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function FormBox() {
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "23ch",
+            width: "32ch",
           },
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
@@ -81,12 +82,12 @@ export default function FormBox() {
           >
             <div className={styles.formContainer}>
               <TextField
-                onChange={(e) => handleChangeBox(e)}
-                name="boxImage"
-                value={input.boxImage || ""}
-                required
+                type="file"
+                accept="image/"
+                name="imagebox"
+                onChange={(e) => handleChangeBoxImg(e)}
                 size="small"
-                label="Imagen"
+                required
                 sx={{
                   input: {
                     color: "white",
@@ -103,10 +104,10 @@ export default function FormBox() {
               <TextField
                 onChange={(e) => handleChangeBox(e)}
                 name="boxName"
-                value={input.boxName || ""}
+                value={input.boxName}
                 required
                 size="small"
-                label="Nombre de la nueva box"
+                label="Box name"
                 sx={{
                   input: {
                     color: "white",
@@ -128,7 +129,7 @@ export default function FormBox() {
                 name="boxDetail"
                 value={input.boxDetail || ""}
                 required
-                label="Descripcion de la box"
+                label="Box Detail"
                 size="small"
                 sx={{
                   textarea: {
@@ -149,7 +150,7 @@ export default function FormBox() {
                 value={input.boxPerson || ""}
                 required
                 size="small"
-                label="Cantidad de personas"
+                label="Persons"
                 sx={{
                   input: {
                     color: "white",
@@ -169,7 +170,7 @@ export default function FormBox() {
                 value={input.boxPrice || ""}
                 required
                 size="small"
-                label="Precio"
+                label="Price"
                 sx={{
                   input: {
                     color: "white",
@@ -186,7 +187,6 @@ export default function FormBox() {
               <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
               <TextField
                 id="date"
-                // label="Expiration Date"
                 type="date"
                 name="boxExpirationDate"
                 value={input.boxExpirationDate || ""}
@@ -205,8 +205,8 @@ export default function FormBox() {
                   {errors.boxExpirationDate}
                 </DialogContentText>
               )}
-              <FormControl sx={{ m: 1, width: 300, color: "white" }}>
-                <InputLabel id="demo-multiple-name-label">Productos</InputLabel>
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Products</InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
@@ -229,11 +229,17 @@ export default function FormBox() {
                     );
                   })}
                 </Select>
+                {errors.boxProducts && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.boxProducts}
+                  </DialogContentText>
+                )}
               </FormControl>
-
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">
-                  Categorias
+                  Categories
                 </InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
@@ -256,6 +262,13 @@ export default function FormBox() {
                     );
                   })}
                 </Select>
+                {errors.boxCategories && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.boxCategories}
+                  </DialogContentText>
+                )}
               </FormControl>
             </div>
             {Object.keys(errors).length === 0 ? (

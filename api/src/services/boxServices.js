@@ -1,4 +1,4 @@
-const { Box, Products, Category } = require("../database/index");
+const { Box, Products, Category, ReviewsUsers } = require("../database/index");
 const { Op } = require("sequelize");
 
 const createNewBox = async (box) => {
@@ -44,7 +44,7 @@ const getAllBoxes = async () => {
   const findAllBoxes = await Box.findAll({
     include: [{ model: Category }],
   });
-
+  await rankingBox();
   return findAllBoxes;
 };
 
@@ -72,6 +72,51 @@ const updateBox = async (id, body) => {
     },
   });
   return update;
+};
+
+const rankingBox = async () => {
+  const boxReview = await Box.findAll({
+    include: [
+      {
+        model: ReviewsUsers,
+        attributes: ["scoreBox"],
+      },
+    ],
+  });
+  boxReview?.map(async (el) => {
+    const array = {
+      users: [],
+      reviews: [],
+    };
+    el.dataValues.ReviewsUsers?.map((item) => {
+      array.reviews.push(item.dataValues.scoreBox);
+    });
+    array.users.push(el.dataValues.ReviewsUsers.length);
+    const sum = array.reviews.reduce((total, review) => {
+      total += review;
+      array.reviews = [];
+      return total;
+    }, 0);
+    const sumUser = array.users.reduce((total, user) => {
+      total += user;
+      array.users = [];
+      return total;
+    }, 0);
+    const rating = sum / sumUser;
+
+    const ratingBox = await Box.update(
+      {
+        ranking: rating,
+      },
+      {
+        where: {
+          id: el.dataValues.id,
+        },
+      }
+    );
+    return ratingBox;
+  });
+  return boxReview;
 };
 
 module.exports = {

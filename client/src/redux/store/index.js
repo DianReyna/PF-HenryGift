@@ -7,8 +7,14 @@ import products from "../reducer/productsSlice";
 import cartReducer from "../reducer/cartSlice";
 import query from "../reducer/querySlice";
 import users from "../reducer/userSlice";
-import auth from "../reducer/authSlice"
-import qr from "../reducer/qrSlice"
+import auth from "../reducer/authSlice";
+import qr from "../reducer/qrSlice";
+import favSlice from "../reducer/favSlice";
+import reviews from "../reducer/reviewsSlice";
+import bestBoxes from "../reducer/adminSlice";
+import userBuy from "../reducer/adminSlice";
+import salesBox from "../reducer/adminSlice";
+
 export default configureStore({
   reducer: {
     boxes,
@@ -20,6 +26,11 @@ export default configureStore({
     query,
     users,
     auth,
-    qr
+    qr,
+    fav: favSlice,
+    reviews,
+    bestBoxes,
+    userBuy,
+    salesBox,
   },
 });

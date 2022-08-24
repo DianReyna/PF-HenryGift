@@ -5,6 +5,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonIcon from "@mui/icons-material/Person";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
+import { getCart } from "../../redux/actions/cartActions";
 import {
   removeFromCart,
   decreaseCart,
@@ -17,11 +19,27 @@ import "./Cart.css";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cart);
+  //console.log(cart);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
+
+  useEffect(() => {
+    user && dispatch(getCart(user._id));
+    console.log(1);
+  }, []);
+
+  const saveCart = async () => {
+     // const URL=" https://henrygift-api.herokuapp.com/"
+     const URL = "http://localhost:3001";
+    await axios.post(`${URL}/orders/cart`, {
+      ...cart,
+      user_id: user._id,
+    });
+    console.log(2);
+  };
 
   const handleRemoveFromCart = (cartItem) => {
     Swal.fire({
@@ -35,9 +53,7 @@ const Cart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(removeFromCart(cartItem));
-        Swal.fire("Eliminado!", 
-        "Tu item ha sido removido.", 
-        "success");
+        Swal.fire("Eliminado!", "Tu item ha sido removido.", "success");
       }
     });
   };
@@ -62,32 +78,34 @@ const Cart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());
-        Swal.fire("Eliminado!", 
-        "Tu carrito se ha limpiado.", 
-        "success");
+        Swal.fire("Eliminado!", "Tu carrito se ha limpiado.", "success");
       }
     });
   };
 
+  useEffect(() => {
+    setTimeout(saveCart, 1000);
+  }, [cart.cartItems]);
+
   return (
     <div className="cart-container">
-      <h2>Carrito de Compras</h2>
-      {cart.cartItems.length === 0 ? (
+      <h2>Shopping cart</h2>
+      {cart.cartItems && cart.cartItems.length === 0 ? (
         <div className="cart-empty">
-          <p>Tu carrito se encuentra momentaneamente vacio</p>
+          <p>Your cart is momentaneously empty</p>
           <div className="start-shopping">
             <Link to="/">
               <ArrowBackIcon />
-              <span>Empezar a comprar</span>
+              <span>Start shopping</span>
             </Link>
           </div>
         </div>
       ) : (
         <div>
           <div className="titles">
-            <h3 className="product-title">Producto</h3>
+            <h3 className="product-title">Product</h3>
             <h3 className="price">Price</h3>
-            <h3 className="quantity">Cantidad</h3>
+            <h3 className="quantity">Quantity</h3>
             <h3 className="total">Total</h3>
           </div>
           <div className="cart-items">
@@ -98,10 +116,10 @@ const Cart = () => {
                   <div>
                     <h3>{cartItem.name}</h3>
                     <p className="make-eaven-cart">
-                      <PersonIcon /> Para {cartItem.person} persona/s
+                      <PersonIcon /> For {cartItem.person} person/s
                     </p>
                     <button onClick={() => handleRemoveFromCart(cartItem)}>
-                      Eliminar
+                      Remove
                     </button>
                   </div>
                 </div>
@@ -128,21 +146,21 @@ const Cart = () => {
               variant="outlined"
               startIcon={<DeleteIcon />}
             >
-              Limpiar Carrito
+              Clean Cart
             </Button>
             <div className="cart-checkout">
               <div className="subtotal">
                 <span>Subtotal</span>
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
-              <p>Impuestos incluidos</p>
+              <p>Taxes included</p>
               <Link to="/send">
-                <button>Siguiente</button>
+                <button>Continue</button>
               </Link>
               <div className="continue-shopping">
                 <Link to="/">
                   <ArrowBackIcon />
-                  <span>Continuar comprando</span>
+                  <span>Keep shopping</span>
                 </Link>
               </div>
             </div>

@@ -1,0 +1,29 @@
+.container-all-fav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.container-all-fav h2{
+    display: block;
+}
+
+.container-all-fav h2{
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+}
+
+.fav-empty{
+    font-size: 20px;
+	margin-top: 2rem;
+	color: rgb(84, 84, 84);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.fav-container-card{
+    margin-top: 2rem;
+}

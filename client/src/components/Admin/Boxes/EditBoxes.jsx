@@ -59,11 +59,28 @@ export default function EditBox({ boxId }) {
     setInput({
       name: selectBox.name,
       price: selectBox.price,
-      image: selectBox.image,
       person: selectBox.person,
       detail: selectBox.detail,
       expiration: selectBox.expiration_date,
     });
+  };
+  const [boxImg, setBoxImg] = useState("");
+
+  const handleChangeBoxImg = (e) => {
+    const file = e.target.files[0];
+    transformFile(file);
+  };
+
+  const transformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setBoxImg(reader.result);
+      };
+    } else {
+      setBoxImg("");
+    }
   };
 
   const handleClose = () => {
@@ -82,9 +99,6 @@ export default function EditBox({ boxId }) {
         [e.target.name]: value,
       })
     );
-    if (input.image !== currentBox.image && input.image !== "") {
-      setPreview(value);
-    }
   };
 
   const handleCompare = () => {
@@ -92,9 +106,9 @@ export default function EditBox({ boxId }) {
       input.name !== currentBox.name ||
       input.price !== currentBox.price ||
       input.person !== currentBox.person ||
-      input.image !== currentBox.image ||
       input.detail !== currentBox.detail ||
-      input.expiration !== currentBox.expiration
+      input.expiration !== currentBox.expiration ||
+      boxImg !== ""
     ) {
       return true;
     }
@@ -109,7 +123,7 @@ export default function EditBox({ boxId }) {
           boxes: {
             name: input.name,
             price: input.price,
-            image: input.image,
+            image: boxImg,
             person: input.person,
             detail: input.detail,
             expiration_date: input.expiration,
@@ -160,20 +174,13 @@ export default function EditBox({ boxId }) {
           <StyledEditProvider>
             <StyledForm onSubmit={handleSubmit}>
               <TextField
-                type="text"
+                type="file"
+                accept="image/"
                 name="image"
                 placeholder="Image"
-                onChange={(e) => handleChange(e)}
-                label="Image"
+                onChange={(e) => handleChangeBoxImg(e)}
                 size="small"
               />
-              {errors.image && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.image}
-                </DialogContentText>
-              )}
               <TextField
                 type="text"
                 name="name"
@@ -277,12 +284,16 @@ export default function EditBox({ boxId }) {
               </PrimaryButton>
             </StyledForm>
             <ImagePreview>
-              {preview ? (
+              {boxImg ? (
                 <>
-                  <img src={preview} alt="product image" />
+                  <img src={boxImg} alt="box image" />
+                </>
+              ) : preview ? (
+                <>
+                  <img src={preview.url} alt="box image" />
                 </>
               ) : (
-                <p>Product image upload preview will appear here!</p>
+                <p>Box image upload preview will appear here!</p>
               )}
             </ImagePreview>
           </StyledEditProvider>
@@ -310,9 +321,6 @@ const validateForm = (input) => {
     errors.price = "Please enter a valid format";
   }
 
-  if (!input.image.trim()) {
-    errors.image = "Required field, enter an image";
-  }
   if (!input.detail.trim()) {
     errors.detail = "Describe the detail of the box";
   } else if (input.detail.length < 25) {

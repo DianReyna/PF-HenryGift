@@ -1,7 +1,11 @@
 import React ,{useState} from 'react';
+import axios from "axios";
+import { toast } from "react-toastify";
 import {Email} from '@mui/icons-material';
+import { useNavigate } from "react-router-dom";
 import {Button,FormControl,InputLabel,OutlinedInput,InputAdornment,Box, Typography} from '@mui/material';
 import styled from "styled-components";
+const URL = "http://localhost:3001";
 const Form = styled.form`
    display:flex;
    flex-direction:column;
@@ -15,13 +19,25 @@ const Form = styled.form`
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
+  const navigate=useNavigate();
   const handleChange = (e) =>{
     setEmail(e.target.value)
   }
-  const  handleSubmit=(e)=>{
+  const  handleSubmit=async(e)=>{
     e.preventDefault();
-  
-  console.log(email)
+    if(!email.trim()){
+      return toast.error('Complete the field')
+    }
+   try{
+    const { data } = await axios.post(`${URL}/login/forgotpassword`, {email})
+    toast.success(data.message)
+    setEmail("")
+    navigate('/login')
+   }catch(error){
+    toast.error(error.response.data.message)
+    setEmail("")
+    navigate('/login')
+   }
   }
   return (
     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" >

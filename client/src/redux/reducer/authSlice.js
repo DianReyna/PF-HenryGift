@@ -101,9 +101,6 @@ export const authSlice = createSlice({
         state.message = action.payload
         state.user = null
       })
-      .addCase(googleLogin.pending, (state) => {
-        state.isLoading = true
-      })
       .addCase(googleLogin.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true

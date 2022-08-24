@@ -11,6 +11,7 @@
     display: flex;
     margin-top: 0.5rem;
     align-items: center;
+    justify-content: space-between;
 }
 
 .main-top-cont{
@@ -88,7 +89,7 @@
 .box-title-send{
     padding-left: 2rem;
     margin-top: 0.5rem;
-    background-color: rgb(219, 27, 77);
+    background-color: rgb(217, 79, 15);
 }
 
 

@@ -13,6 +13,8 @@ const orderRouter = require("./ordersRoutes");
 const redeem = require("./giftRoutes");
 const googleLogin = require("./googleLogin.routes.js");
 const favourites = require("./favouritesRoutes");
+const reviews = require("./ReviewsUser");
+const admin = require("./adminRoutes.js");
 
 const router = Router();
 
@@ -24,11 +26,13 @@ router.use("/orders", orderRouter);
 router.use("/filters", filtersRoutes);
 router.use("/test", testRouter);
 router.use("/users", AllUsers);
-router.use("/payment", payment);
+router.use("/stripe", payment);
 router.use("/register", register);
 router.use("/login", login);
 router.use("/redeem", redeem);
 router.use("/googleLogin", googleLogin);
 router.use("/favourites", favourites);
+router.use("/reviews", reviews);
+router.use("/admin", admin);
 
 module.exports = router;
