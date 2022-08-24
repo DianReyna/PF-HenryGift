@@ -32,8 +32,8 @@ const Cart = () => {
   }, []);
 
   const saveCart = async () => {
-     // const URL=" https://henrygift-api.herokuapp.com/"
-     const URL = "http://localhost:3001";
+    // const URL=" https://henrygift-api.herokuapp.com/"
+    const URL = "http://localhost:3001";
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
@@ -154,9 +154,19 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes included</p>
-              <Link to="/send">
-                <button>Continue</button>
-              </Link>
+
+              {
+                user && user._id ? (
+                  <Link to="/send">
+                  <button>Continue</button>
+                </Link>
+                ) : (
+                  <Link to="/login">
+                    <button>Login to Continue</button>
+                  </Link>
+                )
+              }
+
               <div className="continue-shopping">
                 <Link to="/">
                   <ArrowBackIcon />
