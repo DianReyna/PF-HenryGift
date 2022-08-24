@@ -10,6 +10,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import StarIcon from "@mui/icons-material/Star";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
 import ReviewBar from "../ReviewBar/ReviewBar";
+import AddToCart from "../BoxCard/Sections/AddToCart";
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -50,6 +51,9 @@ export default function BoxDetail() {
   const dispatch = useDispatch();
   const { idBox } = useParams();
   const { detail } = useSelector((state) => state.boxes);
+  // const detetalle = useSelector((state) => state.boxes);
+  // console.log('detail', detail)
+  // console.log('detalle', detetalle)
 
   useEffect(() => {
     dispatch(detailBox(idBox));
@@ -92,6 +96,7 @@ export default function BoxDetail() {
                 <AttachMoneyIcon />
                 <p>Price: {detail.price}</p>
               </ItemBox>
+              <AddToCart box={detail} />
             </InfoDetailBox>
           </DetailBox>
           <ReviewBar id={idBox} />

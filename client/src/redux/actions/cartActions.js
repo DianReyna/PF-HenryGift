@@ -1,8 +1,7 @@
 import axios from "axios";
+import { getUserCart } from "../reducer/cartSlice";
 
 import URL from "../../utils/backRoutes";
-
-import {getUserCart} from "../reducer/cartSlice"
 
 export const getCart = (user) => (dispatch) => {
   axios(` ${URL}/orders/cart?user=${user}`)
