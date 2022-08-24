@@ -119,15 +119,24 @@ const updateBox = async (req, res, next) => {
           image: updateRes,
         });
         if (updateBox) {
-          const newListUp = await boxServices.getAllBoxes();
+          const newListUp = await boxServices.getAdminBoxes();
           return res.status(200).send(newListUp);
         }
       }
     }
-    const update = await boxServices.updateBox(id, body);
-    if (update) {
-      const newList = await boxServices.getAllBoxes();
-      res.status(200).send(newList);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const statusBox = async (req, res, next) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const status = await boxServices.updateBox(id, body);
+    if (status) {
+      const newListBox = await boxServices.getAdminBoxes();
+      res.status(200).send(newListBox);
     } else {
       res.status(404).send("Error");
     }
@@ -142,5 +151,6 @@ module.exports = {
   getAllBoxes,
   deleteBox,
   updateBox,
+  statusBox,
   getAdminBoxes,
 };
