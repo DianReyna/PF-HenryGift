@@ -10,7 +10,7 @@ const URL = " https://henrygift-api.herokuapp.com";
 
 export const getFavorites = (email) => (dispatch) => {
   axios
-    .get(`${URL}?user_id=${email}`)
+    .get(`${URL}/favourites?user_id=${email}`)
     .then((res) => dispatch(getFavs(res.data)))
     .catch((err) => console.log(err));
 };
@@ -24,7 +24,7 @@ export const addFavorite = (box_id, user_id) => (dispatch) => {
 
 export const removeFavorite = (box_id) => (dispatch) => {
   axios
-    .delete(`${URL}/${box_id}`)
+    .delete(`${URL}/favourites/${box_id}`)
     .then((res) => dispatch(removeFav(res.data)))
     .catch((err) => console.log(err));
 };

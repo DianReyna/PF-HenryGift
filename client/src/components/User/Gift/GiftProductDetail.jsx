@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { detailProduct } from "../../../redux/actions/boxesActions";
 import styled from "styled-components";
-import { Container, Box, Card, CardMedia, Typography,Button } from "@mui/material";
+import {
+  Container,
+  Box,
+  Card,
+  CardMedia,
+  Typography,
+  Button,
+} from "@mui/material";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import PlaceIcon from "@mui/icons-material/Place";
 import axios from "axios";
@@ -25,7 +32,7 @@ export default function ProductDetail() {
   const { idProduct } = useParams();
   const { detailProd } = useSelector((state) => state.boxes);
   const { user } = useSelector((state) => state.auth);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(detailProduct(idProduct));
   }, [dispatch, idProduct]);
@@ -41,26 +48,29 @@ export default function ProductDetail() {
       confirmButtonText: "Yes, i want this experience!",
     }).then((result) => {
       if (result.isConfirmed) {
-        sendProductPicked(user._id,idProduct);
-        Swal.fire("Experience picked!", 
-        "You will be recieving an email with the next steps to follow.", 
-        "success");
+        sendProductPicked(user._id, idProduct);
+        Swal.fire(
+          "Experience picked!",
+          "You will be recieving an email with the next steps to follow.",
+          "success"
+        );
       }
     });
   };
+  const URL = " https://henrygift-api.herokuapp.com";
+  // const URL = "http://localhost:3001";
 
-  const sendProductPicked = async (userId,productId)=>{
+  const sendProductPicked = async (userId, productId) => {
     try {
-      await axios.post("http://localhost:3001/redeem/picked",{
-        userId:userId,
-        productId:productId
-      })
-      navigate("/")
-
+      await axios.post(`${URL}/redeem/picked`, {
+        userId: userId,
+        productId: productId,
+      });
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Container sx={{ m: 3 }} display={"flex"}>
@@ -94,12 +104,12 @@ export default function ProductDetail() {
         </DetailProduct>
       </Box>
       <Button
-             sx={{ ml: "60%",mt:5,position:"absolute" }}
-             className="clear-btn"
-             variant="outlined"
-             onClick={() => handlePick()}
+        sx={{ ml: "60%", mt: 5, position: "absolute" }}
+        className="clear-btn"
+        variant="outlined"
+        onClick={() => handlePick()}
       >
-             Choose This Service
+        Choose This Service
       </Button>
       <Box sx={{ my: 2 }}>
         <Typography

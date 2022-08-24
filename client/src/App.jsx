@@ -95,31 +95,31 @@ function App() {
             <Route path="/userprofile" element={<ProfilePanel />} />
           </Route>
           //Dashboard
-          <Route element={<AdminRoute />}>
-            <Route path="/admin" element={<Dashboard />}>
-              <Route index element={<HomeAdmin />} />
-              <Route path="analytics" element={<Analitics />} />
-              <Route path="boxes" element={<Boxes />}>
-                <Route index element={<BoxesList />} />
-                <Route path="create-box" element={<FormBox />} />
-              </Route>
-              <Route path="products" element={<Products />}>
-                <Route index element={<ProductsList />} />
-                <Route path="create-product" element={<FormProduct />} />
-              </Route>
-              <Route path="providers" element={<Providers />}>
-                <Route index element={<ProvidersList />} />
-                <Route path="create-provider" element={<FormProvider />} />
-              </Route>
-              <Route path="categories" element={<Category />}>
-                <Route index element={<CategoryList />} />
-                <Route path="create-categories" element={<FormCategory />} />
-              </Route>
-              <Route path="users" element={<Users />}>
-                <Route index element={<UsersList />} />
-              </Route>
+          {/* <Route element={<AdminRoute />}> */}
+          <Route path="/admin" element={<Dashboard />}>
+            <Route index element={<HomeAdmin />} />
+            <Route path="analytics" element={<Analitics />} />
+            <Route path="boxes" element={<Boxes />}>
+              <Route index element={<BoxesList />} />
+              <Route path="create-box" element={<FormBox />} />
+            </Route>
+            <Route path="products" element={<Products />}>
+              <Route index element={<ProductsList />} />
+              <Route path="create-product" element={<FormProduct />} />
+            </Route>
+            <Route path="providers" element={<Providers />}>
+              <Route index element={<ProvidersList />} />
+              <Route path="create-provider" element={<FormProvider />} />
+            </Route>
+            <Route path="categories" element={<Category />}>
+              <Route index element={<CategoryList />} />
+              <Route path="create-categories" element={<FormCategory />} />
+            </Route>
+            <Route path="users" element={<Users />}>
+              <Route index element={<UsersList />} />
             </Route>
           </Route>
+          {/* </Route> */}
           // End Dashboard
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />
