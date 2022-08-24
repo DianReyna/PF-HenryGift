@@ -7,6 +7,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import TocIcon from "@mui/icons-material/Toc";
 export default function Dashboard() {
   return (
     <div className="dashboardContainer">
@@ -27,7 +28,18 @@ export default function Dashboard() {
                   Home
                 </li>
               </NavLink>
-              <li className="sidebarListItem">Analytics</li>
+              <NavLink
+                id="NavLink"
+                className={({ isActive }) =>
+                  isActive ? "link-active" : "link-inactive"
+                }
+                to="/admin/analytics"
+              >
+                <li className="sidebarListItem">
+                  <TocIcon className="sidebarIcon" />
+                  Analytics
+                </li>
+              </NavLink>
             </ul>
           </div>
           <div className="sidebarMenu">

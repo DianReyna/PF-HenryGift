@@ -85,6 +85,17 @@ export const updateBoxes = (data) => (dispatch) => {
       console.log(err);
     });
 };
+
+export const putStateBoxes = (data) => (dispatch) => {
+  console.log(data);
+  axios
+    .put(`${URL}/boxes/status/${data.id}`, data.boxes)
+    .then((res) => dispatch(editBoxes(res.data)))
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const getBox = (id) => (dispatch) => {
   axios(` ${URL}/boxes/${id}` + id)
     .then((res) => dispatch(getBoxId(res.data)))

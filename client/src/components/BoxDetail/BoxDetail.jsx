@@ -55,6 +55,7 @@ export default function BoxDetail() {
     dispatch(detailBox(idBox));
   }, [dispatch, idBox]);
 
+  const allProducts = detail.Products?.filter((item) => item.active === true);
   return (
     <div>
       {detail ? (
@@ -96,8 +97,8 @@ export default function BoxDetail() {
           <ReviewBar id={idBox} />
           <CardsProducts>
             <Grid>
-              {detail.Products &&
-                detail.Products.map((product) => {
+              {allProducts &&
+                allProducts.map((product) => {
                   return (
                     <ItemProduct key={product.id}>
                       <ProductCard

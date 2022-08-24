@@ -7,7 +7,6 @@ const newReviews = async (query, body) => {
     },
   });
 
-  console.log(findBox);
   const findUser = await User.findOne({
     where: {
       email: query.user_id,
@@ -38,6 +37,7 @@ const getReview = async (box_id) => {
   });
   return findReview;
 };
+
 module.exports = {
   newReviews,
   getReview,

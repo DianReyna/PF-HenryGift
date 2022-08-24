@@ -32,7 +32,7 @@ export default function UserBuy({ props }) {
     { field: "id", headerName: "ID", width: 60 },
     { field: "name", headerName: "Name", width: 160 },
     { field: "amount", headerName: "Amount", width: 160 },
-    { field: "count", headerName: "Count", width: 160 },
+    { field: "count", headerName: "Quantity", width: 160 },
     { field: "banned", headerName: "Status", width: 160 },
   ];
 

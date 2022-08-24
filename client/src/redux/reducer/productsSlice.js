@@ -15,6 +15,9 @@ export const productsSlice = createSlice({
     postProduct: (state, action) => {
       state.products = action.payload;
     },
+    editProduct: (state, action) => {
+      state.products = action.payload;
+    },
   },
 });
 

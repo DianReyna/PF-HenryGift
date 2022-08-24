@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   getBoxesAdmin,
-  updateBoxes,
+  putStateBoxes,
 } from "../../../redux/actions/boxesActions";
 import EditBox from "./EditBoxes";
 import DeleteBoxes from "./DeleteBoxes";
@@ -12,16 +12,17 @@ import { toast } from "react-toastify";
 import { Action, View, ImageContainer } from "../CommonStyled";
 import { DataGrid } from "@mui/x-data-grid";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Button } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 
 export default function BoxesList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const itemsBox = useSelector((state) => state.boxes);
+
   useEffect(() => {
     dispatch(getBoxesAdmin());
   }, [dispatch]);
-  // console.log(itemsBox);
+
   const handleActive = (id, acti) => {
     if (acti) {
       acti = false;
@@ -38,7 +39,10 @@ export default function BoxesList() {
       id,
       boxes: { active: acti },
     };
-    dispatch(updateBoxes(data));
+    dispatch(putStateBoxes(data));
+    setTimeout(() => {
+      dispatch(getBoxesAdmin());
+    }, 2000);
   };
 
   const rows =
@@ -128,16 +132,24 @@ export default function BoxesList() {
   ];
 
   return (
-    <div style={{ height: 450, width: "100%" }}>
-      <DataGrid
-        style={{ color: "white" }}
-        rows={rows}
-        columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
+    <div>
+      {itemsBox.length === 0 ? (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <div style={{ height: 450, width: "100%" }}>
+          <DataGrid
+            style={{ color: "white" }}
+            rows={rows}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
+      )}
     </div>
   );
 }

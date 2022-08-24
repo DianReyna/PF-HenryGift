@@ -19,6 +19,7 @@ export default function ProductsList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const itemsProducts = useSelector((state) => state.products);
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
@@ -129,16 +130,24 @@ export default function ProductsList() {
   ];
 
   return (
-    <div style={{ height: 450, width: "100%" }}>
-      <DataGrid
-        style={{ color: "white" }}
-        rows={rows}
-        columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
+    <div>
+      {itemsProducts.length === 0 ? (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <div style={{ height: 450, width: "100%" }}>
+          <DataGrid
+            style={{ color: "white" }}
+            rows={rows}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
+      )}
     </div>
   );
 }
