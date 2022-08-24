@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getBoxes, getUsers, getBoxSales } from "../reducer/adminSlice";
 
-// const URL=" https://henrygift-api.herokuapp.com/register"
-const URL = "http://localhost:3001";
+import URL from "../../utils/backRoutes";
 
 export const getBestBoxes = () => (dispatch) => {
   axios(` ${URL}/admin/raiting`)

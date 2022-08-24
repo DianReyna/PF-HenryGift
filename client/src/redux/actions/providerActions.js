@@ -4,8 +4,7 @@ import {
   deleteProvider,
   editProvider,
 } from "../reducer/providerSlice";
-// const URL=" https://henrygift-api.herokuapp.com/register"
-const URL = "http://localhost:3001";
+import URL from "../../utils/backRoutes";
 
 export const getProvider = () => (dispatch) => {
   axios(` ${URL}/providers`)

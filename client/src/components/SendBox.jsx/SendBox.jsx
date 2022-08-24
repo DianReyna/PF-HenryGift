@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./SendBox.css";
 import { useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 import PayButton from "../PayButton/PayButton";
-
+import { getCart } from "../../redux/actions/cartActions";
+import URL from "../../utils/backRoutes";
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
   
+   const dispatch = useDispatch()
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
 
-
-
   const { user } = useSelector((state) => state.auth);
-
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -36,8 +35,7 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
-      // const URL=" https://henrygift-api.herokuapp.com/"
-      const URL = "http://localhost:3001";
+     
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,
@@ -48,6 +46,24 @@ const SendBox = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    user && dispatch(getCart(user._id));
+    console.log(1);
+  }, []);
+
+  const saveCart = async () => {
+   
+    await axios.post(`${URL}/orders/cart`, {
+      ...cart,
+      user_id: user._id,
+    });
+    console.log(2);
+  };
+
+  useEffect(() => {
+    setTimeout(saveCart, 1000);
+  }, [cart.cartItems]);
 
   return (
     <div className="main-send-cont">
@@ -79,7 +95,7 @@ const SendBox = () => {
                   <h3>Insert the gift recipient email</h3>
                 </div>
                 <div className="email-place">
-                  <form >
+                  <form>
                     <TextField
                       sx={{
                         input: {
@@ -118,13 +134,7 @@ const SendBox = () => {
             </div>
           </div>
           <div className="go-payment">
-            {user && user._id ? (
-              <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
-            ) : (
-              <Link to="/login">
-                <Button variant="outlined">Login to Check Out</Button>
-              </Link>
-            )}
+            <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
           </div>
         </div>
       </div>

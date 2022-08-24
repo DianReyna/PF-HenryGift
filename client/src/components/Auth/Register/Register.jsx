@@ -1,10 +1,9 @@
-import React, { useState,useEffect } from "react";
-import { toast } from 'react-toastify'
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useNavigate  } from "react-router-dom";
-import { Google, Facebook, TonalitySharp } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../spinner";
-import {register,reset} from "../../../redux/reducer/authSlice";
+import { register, reset } from "../../../redux/reducer/authSlice";
 import {
   Grid,
   TextField,
@@ -20,8 +19,10 @@ import { validate } from "./validate";
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {user,isLoading,isError,isSuccess,message}= useSelector((state) => state.auth);
-  
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
@@ -30,10 +31,11 @@ export default function Register() {
     email: "",
     password: "",
     accept: false,
-    passwordAgain: ""
+    passwordAgain: "",
   });
-  
+
   const [errors, setErrors] = useState({ first_name: "*name is required" });
+  
   const handleChange = (prop) => (event) => {
     setInput({ ...input, [prop]: event.target.value });
     setErrors(validate({ ...input, [prop]: event.target.value }));
@@ -43,37 +45,34 @@ export default function Register() {
     setErrors(validate({ ...input, [prop]: event.target.checked }));
   };
 
-
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
     if (isSuccess || user) {
-      navigate('/')
+      navigate("/");
     }
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
-
- 
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(input.password!==input.passwordAgain){
-      toast.error('Passwords do not match')
-    }else{
-      const userData={
-        first_name:input.first_name,
-        last_name:input.last_name,
+    if (input.password !== input.passwordAgain) {
+      toast.error("Passwords do not match");
+    } else {
+      const userData = {
+        first_name: input.first_name,
+        last_name: input.last_name,
         dateBirth: input.dateBirth,
         phone: input.phone,
         email: input.email,
         password: input.password,
-      }
+      };
       dispatch(register(userData));
     }
   };
-  if (isLoading){
-    return <Spinner/>
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
@@ -84,7 +83,7 @@ export default function Register() {
       <Grid>
         <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
-            <form onSubmit={ handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <Grid container spacing={1}>
                 <Grid xs={12} sm={6} item>
                   <TextField
@@ -197,7 +196,7 @@ export default function Register() {
                   <TextField
                     type="password"
                     placeholder="Enter password"
-                    label="Introduce again the password"
+                    label="Re-introduce your password"
                     variant="outlined"
                     fullWidth
                     onChange={handleChange("passwordAgain")}
@@ -217,8 +216,7 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
-                      style=
-                      {{
+                      style={{
                         backgroundColor: "#448AFF",
                         padding: 1,
                       }}
@@ -252,7 +250,7 @@ export default function Register() {
             </form>
             {/* {auth.registerStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.registerError}</Typography>) :null} */}
             <Typography variant="h7">
-              Do you have an account Henry-Gift?
+              Already have an account?
             </Typography>
             <Button>
               <Link
