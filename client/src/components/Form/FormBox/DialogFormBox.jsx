@@ -26,18 +26,24 @@ export default function DialogFormBox({ nameBox }) {
     dispatch(getBoxesAdmin());
   }, [dispatch]);
 
+  const view = () => {
+    let selectBox = itemsBox.boxes.filter((el) => el.name === box.name);
+    selectBox = selectBox[0];
+    navigate(`/box/${selectBox.id}`);
+  };
   const handleView = () => {
-    setOpen(false);
     setTimeout(() => {
       dispatch(getBoxesAdmin());
-      let selectBox = itemsBox.boxes.filter((el) => el.name === box.name);
-      selectBox = selectBox[0];
-      navigate(`/box/${selectBox.id}`);
+      view();
     }, 3000);
+    view();
+    setOpen(false);
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setTimeout(() => {
+      setOpen(true);
+    }, 1000);
     setBox({
       name: nameBox,
     });

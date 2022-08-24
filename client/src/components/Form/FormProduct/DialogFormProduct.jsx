@@ -27,20 +27,28 @@ export default function DialogFormProduct({ nameProd }) {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const view = () => {
+    let selectProduct = itemsProducts.products.filter(
+      (el) => el.name === product.name
+    );
+    selectProduct = selectProduct[0];
+    console.log(selectProduct);
+    navigate(`/product/${selectProduct.id}`);
+  };
+
   const handleView = () => {
-    setOpen(false);
     setTimeout(() => {
       dispatch(getProducts());
-      let selectProduct = itemsProducts.products.filter(
-        (el) => el.name === product.name
-      );
-      selectProduct = selectProduct[0];
-      navigate(`/product/${selectProduct.id}`);
+      view();
     }, 3000);
+    view();
+    setOpen(false);
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setTimeout(() => {
+      setOpen(true);
+    }, 1000);
     setProduct({
       name: nameProd,
     });
