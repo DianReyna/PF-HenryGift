@@ -32,8 +32,8 @@ const Cart = () => {
   }, []);
 
   const saveCart = async () => {
-     // const URL=" https://henrygift-api.herokuapp.com/"
-     const URL = "http://localhost:3001";
+    // const URL=" https://henrygift-api.herokuapp.com/"
+    const URL = "http://localhost:3001";
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
@@ -43,17 +43,17 @@ const Cart = () => {
 
   const handleRemoveFromCart = (cartItem) => {
     Swal.fire({
-      title: "Estas seguro?",
-      text: "No podras revertir este cambio!",
+      title: "Are you sure?",
+      text: "You won't be able to revert changes!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Si, borrarlo!",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(removeFromCart(cartItem));
-        Swal.fire("Eliminado!", "Tu item ha sido removido.", "success");
+        Swal.fire("Deleted!", "Your item was removed.", "success");
       }
     });
   };
@@ -68,17 +68,17 @@ const Cart = () => {
 
   const handleClearCart = (e) => {
     Swal.fire({
-      title: "Estas seguro?",
-      text: "No podras revertir este cambio!",
+      title: "Are you sure?",
+      text: "You won't be able to revert changes!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Si, borrarlo!",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());
-        Swal.fire("Eliminado!", "Tu carrito se ha limpiado.", "success");
+        Swal.fire("Deleted!", "Your item was removed.", "success");
       }
     });
   };
@@ -154,9 +154,18 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes included</p>
-              <Link to="/send">
-                <button>Continue</button>
-              </Link>
+
+              {
+                user && user._id ? (
+                  <Link to="/send">
+                  <button>Continue</button>
+                </Link>
+                ) : (
+                  <Link to="/login">
+                    <button>Login to Continue</button>
+                  </Link>
+                )
+              }
               <div className="continue-shopping">
                 <Link to="/">
                   <ArrowBackIcon />

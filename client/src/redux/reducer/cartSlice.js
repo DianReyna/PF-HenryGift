@@ -1,14 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import axios from "axios"
 
 const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
-  cartTotalItems: [],
+  //cartTotalItems: [],
 };
-
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -21,19 +19,19 @@ export const cartSlice = createSlice({
 
       if (itemIndex >= 0 && state.cartItems[itemIndex].cartQuantity <= 4) {
         state.cartItems[itemIndex].cartQuantity += 1;
-        state.cartTotalItems.push(state.cartItems[itemIndex]);
+        //state.cartTotalItems.push(state.cartItems[itemIndex]);
         toast.info(`Cantidad de ${state.cartItems[itemIndex].name} aumentada`, {
           position: "bottom-left",
         });
       } else if (!state.cartItems[itemIndex]) {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        state.cartTotalItems.push(tempProduct);
+        //state.cartTotalItems.push(tempProduct);
         toast.success(`${action.payload.name} agregado al carrito`, {
           position: "bottom-left",
         });
       }
-     
+
       //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
@@ -73,7 +71,7 @@ export const cartSlice = createSlice({
           position: "bottom-left",
         });
       }
-    
+
       //localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
@@ -112,21 +110,26 @@ export const cartSlice = createSlice({
     },
     getUserCart: (state, action) => {
       //console.log("soy el payload",action.payload)
-      if(!action.payload){
-        state.cartItems=[]
-        state.cartTotalAmount=0
-        state.cartTotalAmount=0
-      }else{
-
+      if (!action.payload) {
+        state.cartItems = [];
+        state.cartTotalAmount = 0;
+        state.cartTotalAmount = 0;
+      } else {
         state.cartItems = action.payload.cartItems;
         state.cartTotalQuantity = action.payload.cartTotalQuantity;
-        state.cartTotalAmount = action.payload.cartTotalAmount
-        state.cartTotalItems = action.payload.cartTotalItems
+        state.cartTotalAmount = action.payload.cartTotalAmount;
+        //state.cartTotalItems = action.payload.cartTotalItems;
       }
     },
   },
 });
 
-export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals,getUserCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  decreaseCart,
+  clearCart,
+  getTotals,
+  getUserCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;

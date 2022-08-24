@@ -29,7 +29,6 @@ const Favorite = ({ id }) => {
     <IconButton aria-label="add to favorites" onClick={handleFavorite}>
       {Favorited ? (
         <FavoriteBorderOutlinedIcon
-        clicked={Favorited}
           sx={{
             bgcolor: "red",
             borderRadius: "50%",
@@ -37,7 +36,6 @@ const Favorite = ({ id }) => {
         />
       ) : (
         <FavoriteOutlinedIcon
-        clicked={Favorited}
           sx={{
             bgcolor: "red",
             borderRadius: "50%",

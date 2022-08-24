@@ -3,13 +3,13 @@ import AppBar from "@mui/material/AppBar";
 import {
   Box,
   Toolbar,
-  IconButton,
+  // IconButton,
   Typography,
   Menu,
   Container,
-  Avatar,
+  // Avatar,
   Button,
-  Tooltip,
+  // Tooltip,
   MenuItem,
   InputBase,
   styled,
@@ -17,21 +17,22 @@ import {
 } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useDispatch } from "react-redux";
-import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
+// import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink, useNavigate } from "react-router-dom";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import "./NavBar.module.css";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+// import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
-
 import { logout, reset } from "../../redux/reducer/authSlice";
-import { toast } from "react-toastify";
+import "./NavBar.module.css";
+
+// import { toast } from "react-toastify";
 
 const pages = ["Home"];
 const settings = ["Admin"];
@@ -76,7 +77,7 @@ const ResponsiveAppBar = () => {
       },
     },
   }));
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
@@ -85,12 +86,12 @@ const ResponsiveAppBar = () => {
 
   const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -114,7 +115,6 @@ const ResponsiveAppBar = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
-
 
   const onLogout = () => {
     dispatch(logout());
@@ -171,16 +171,16 @@ const ResponsiveAppBar = () => {
                 {"Profile"}
               </Button>
             </NavLink>
-            {user && user.is_Admin ? 
-            <NavLink to={"/admin"} className={styles.navlink}>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {"Admin"}
-              </Button>
-            </NavLink>
-            : null }
+            {user && user.is_Admin ? (
+              <NavLink to={"/admin"} className={styles.navlink}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {"Admin"}
+                </Button>
+              </NavLink>
+            ) : null}
           </Box>
           <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
@@ -217,11 +217,16 @@ const ResponsiveAppBar = () => {
             </div>
           </Link>
 
-          <Link to="/favs">Favs</Link>
+          <Link to="/favs">
+            <FavoriteIcon />
+          </Link>
 
-          <Link to="/how-does-it-work"  style={{ color: "white", textDecoration: "none" }}>How does it work?</Link>
-          
-          
+          <Link
+            to="/how-does-it-work"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            How does it work?
+          </Link>
 
           <Box sx={{ flexGrow: 0 }}>
             <Menu
