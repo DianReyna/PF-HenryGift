@@ -36,7 +36,6 @@ export default function BoxCards() {
 
   useEffect(() => {
     setTimeout(saveCart, 1000);
-    console.log("p");
   }, [cart]);
 
   const allBoxes = boxes.rows?.filter((item) => item.active === true);
@@ -44,7 +43,7 @@ export default function BoxCards() {
   const renderBoxes = () => {
     if(boxes.rows){
       if(boxes.rows.length>0){
-        return boxes.rows.map((box) => (
+        return allBoxes?.map((box) => (
           <Grid key={box.id} item xs={3}>
             <BoxCard
               key={box.id}
