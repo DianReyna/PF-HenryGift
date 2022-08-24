@@ -94,7 +94,7 @@ export default function BoxCard({
                 variant="outlined"
                 onClick={() => handleAddToCart(box)}
               >
-                Agregar al Carrito
+                Add to Cart
               </Button>
 
               <Favorite id={id} />

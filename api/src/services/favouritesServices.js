@@ -37,7 +37,7 @@ const findFavourite = async (user_id) => {
       },
       include: [{ model: Box }],
     });
-    console.log(findFavourite);
+    //console.log(findFavourite);
     return findFavourite;
   }
   return [];
