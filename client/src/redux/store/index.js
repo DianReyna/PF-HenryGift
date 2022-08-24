@@ -11,6 +11,9 @@ import auth from "../reducer/authSlice";
 import qr from "../reducer/qrSlice";
 import favSlice from "../reducer/favSlice";
 import reviews from "../reducer/reviewsSlice";
+import bestBoxes from "../reducer/adminSlice";
+import userBuy from "../reducer/adminSlice";
+import salesBox from "../reducer/adminSlice";
 
 export default configureStore({
   reducer: {
@@ -26,5 +29,8 @@ export default configureStore({
     qr,
     fav: favSlice,
     reviews,
+    bestBoxes,
+    userBuy,
+    salesBox,
   },
 });
