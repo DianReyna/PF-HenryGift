@@ -171,7 +171,7 @@ const ResponsiveAppBar = () => {
                 {"Profile"}
               </Button>
             </NavLink>
-            {user.is_Admin ? 
+            {user && user.is_Admin ? 
             <NavLink to={"/admin"} className={styles.navlink}>
               <Button
                 onClick={handleCloseNavMenu}
