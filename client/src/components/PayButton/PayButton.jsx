@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 // const URL = `http://127.0.0.1:5173`
-const URL = `https://henry-gift.vercel.app`;
+const URL = `https://henrygift-api.herokuapp.com`;
 
 const PayButton = ({ cartItems, handleSubmit }) => {
   const { user } = useSelector((state) => state.auth);
