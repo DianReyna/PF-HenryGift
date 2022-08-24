@@ -14,6 +14,7 @@ const redeem = require("./giftRoutes");
 const googleLogin = require("./googleLogin.routes.js");
 const favourites = require("./favouritesRoutes");
 const reviews = require("./ReviewsUser");
+const admin = require("./adminRoutes.js");
 
 const router = Router();
 
@@ -32,5 +33,6 @@ router.use("/redeem", redeem);
 router.use("/googleLogin", googleLogin);
 router.use("/favourites", favourites);
 router.use("/reviews", reviews);
+router.use("/admin", admin);
 
 module.exports = router;
