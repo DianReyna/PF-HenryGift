@@ -2,13 +2,13 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
-
+import URL from "../../utils/backRoutes";
 const PayButton = ({ cartItems,handleSubmit }) => {
   const { user } = useSelector((state) => state.auth);
 
   const handleCheckOut = () => {
     axios
-      .post(`http://localhost:3001/stripe/create-checkout-session`, {
+      .post(`${URL}/stripe/create-checkout-session`, {
         cartItems,
         userId: user._id,
       })

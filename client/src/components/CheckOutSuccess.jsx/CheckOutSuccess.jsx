@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { clearCart, getTotals } from "../../redux/reducer/cartSlice";
-
+import URL from "../../utils/backRoutes";
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -16,12 +16,12 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     async function sendCode() {
-      const URL = "http://localhost:3001";
+      
       await axios.post(`${URL}/orders/sendcode`, {
         userId: user._id,
       });
     }
-    console.log("envio del codigo")
+    //console.log("envio del codigo")
     sendCode();
   }, []);
 

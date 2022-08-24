@@ -8,7 +8,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import PlaceIcon from "@mui/icons-material/Place";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import URL from "../../../utils/backRoutes";
 const DetailProduct = styled.div`
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -51,7 +51,7 @@ export default function ProductDetail() {
 
   const sendProductPicked = async (userId,productId)=>{
     try {
-      await axios.post("http://localhost:3001/redeem/picked",{
+      await axios.post(`${URL}/redeem/picked`,{
         userId:userId,
         productId:productId
       })
