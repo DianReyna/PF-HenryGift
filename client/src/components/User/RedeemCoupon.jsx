@@ -42,7 +42,7 @@ export default function RedeemCoupon() {
       }}
     >
       <Button variant="Abrir mi Box" href="/userprofile">
-        Volver
+        Back
       </Button>
       <Grid
         item

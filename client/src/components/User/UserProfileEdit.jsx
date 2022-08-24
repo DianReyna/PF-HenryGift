@@ -12,6 +12,8 @@ import {
   DialogContentText, 
   DialogTitle
 } from "@mui/material";
+import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
+
 import {putUsersUpdate, getUsersById} from "../../redux/actions/userActions";
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
@@ -92,7 +94,8 @@ export default function UserProfileEdit() {
     <Grid container spacing={2} component="form"  
     sx={{mt: 3, justifyContent: 'Center'}}
     >
-        <Button variant="Abrir mi Box" href='/userprofile'>Volver</Button>
+         <Button variant="Abrir mi Box"  href="/userprofile" color='black'>
+      <KeyboardBackspaceOutlinedIcon/> Back </Button>
         <Grid item container xs={12} ms={6} spacing={2}>
             <Grid item xs={12}>
                 <TextField
@@ -142,14 +145,14 @@ export default function UserProfileEdit() {
                 <TextField
                 name="dateBirth"
                 fullWidth
-                label="dateBirth"
+                label=""
                 type="date"
                 value={dateBirth}
                 onChange={(e) => setdateBirth(e.target.value)}
                 autoFocus
                 />
             </Grid>  
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <TextField
                 name="password"
                 fullWidth
@@ -160,7 +163,7 @@ export default function UserProfileEdit() {
                 autoFocus
                 />
                 {/* {errors.first_name && <p>{errors.first_name}</p>} */}
-            </Grid>  
+            {/* </Grid>    */}
                       <div>
                 <Button variant="outlined" onClick={handleClickOpen}>
                 Save changes
