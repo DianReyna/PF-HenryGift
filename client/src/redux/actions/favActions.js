@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  // addFav,
+  //addFav,
   removeFav,
   getFavs,
 } from "../reducer/favSlice";
@@ -16,7 +16,8 @@ export const getFavorites = (email) => (dispatch) => {
 };
 
 export const addFavorite = (box_id, user_id) => (dispatch) => {
-  axios.post(`${URL}?box_id=${box_id}&user_id=${user_id}`);
+  console.log(box_id, user_id);
+  axios.post(`${URL}?box_id=${box_id}&user_id=${user_id}`)
   // .then((res) => dispatch(addFav(res.data)))
   // .catch((err) => console.log(err));
 };

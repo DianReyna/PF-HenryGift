@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addFavorite,
   removeFavorite,
-  getFavorites,
 } from "../../../redux/actions/favActions";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
@@ -15,12 +14,6 @@ const Favorite = ({ id }) => {
   const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-
-  const favs = useSelector((state) => state.fav);
-
-  // useEffect(() => {
-  //   dispatch(getFavorites(user._id));
-  // }), [];
 
   const handleFavorite = () => {
     if (Favorited) {
@@ -36,6 +29,7 @@ const Favorite = ({ id }) => {
     <IconButton aria-label="add to favorites" onClick={handleFavorite}>
       {Favorited ? (
         <FavoriteBorderOutlinedIcon
+        clicked={Favorited}
           sx={{
             bgcolor: "red",
             borderRadius: "50%",
@@ -43,6 +37,7 @@ const Favorite = ({ id }) => {
         />
       ) : (
         <FavoriteOutlinedIcon
+        clicked={Favorited}
           sx={{
             bgcolor: "red",
             borderRadius: "50%",

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 
 export const favSlice = createSlice({
   name: "fav",
@@ -18,29 +17,32 @@ export const favSlice = createSlice({
     //   } else {
     //     const temFav = { ...action.payload };
     //     state.favItems.push(temFav);
-
     //   }
 
-    //   localStorage.setItem("favItems", JSON.stringify(state.favItems));
-    // },
+      // localStorage.setItem("favItems", JSON.stringify(state.favItems));
+    //},
     removeFav: (state, action) => {
       const nextFavItems = state.favItems.filter(
         (favItem) => favItem.box_id !== action.payload
       );
       state.favItems = nextFavItems;
 
-      localStorage.setItem("favItems", JSON.stringify(state.favItems));
+      //localStorage.setItem("favItems", JSON.stringify(state.favItems));
     },
     getFavs: (state, action) => {
       state.favItems = action.payload;
+    },
+    clearFavs: (state) => {
+      state.favItems = [];
     },
   },
 });
 
 export const {
-  //  addFav,
+  //addFav,
   removeFav,
   getFavs,
+  clearFavs,
 } = favSlice.actions;
 
 export default favSlice.reducer;

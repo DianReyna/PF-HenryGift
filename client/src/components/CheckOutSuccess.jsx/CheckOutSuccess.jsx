@@ -29,9 +29,9 @@ const CheckoutSuccess = () => {
     <Container>
       <h2>Checkout Successful</h2>
       <p>Your order might take some time to process.</p>
-      <p>We have sent you an email with all the payment information</p>
+      <p>Sooner you will get an email with all the payment information</p>
       <p>
-        Incase of any inqueries contact the support at{" "}
+        In case of any inqueries contact the support at{" "}
         <strong>giftsupport@gift.com</strong>
       </p>
     </Container>
