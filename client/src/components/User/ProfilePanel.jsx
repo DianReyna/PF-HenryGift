@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useParams } from 'react-router-dom';
 import styled from 'styled-components'
-import axios from 'axios';
 import  {getUsersById}  from '../../redux/actions/userActions';
-import { Typography } from '@mui/material';
-
-import OrderHistory from '../User/OrderHistory';
-
-// import GiftDetail  from '../User/Gift/GiftDetail';
+import { Typography, ButtonGroup, Box, } from '@mui/material';
 import GiftCards from './Gift/GiftCards';
 import DeleteUserAccount from './DeleteUserAccount';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import RedeemOutlinedIcon from '@mui/icons-material/RedeemOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -80,33 +75,23 @@ export default function ProfilePanel() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  
   return (
     <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        Dashboard
-      </Button>
+
+    <ButtonGroup variant="contained" aria-label="outlined primary button group" 
+    >
       
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-      <Button variant="Editar" href='/editprofile'>Edit</Button>
-      <Button variant="Abrir mi Box" href='codebox'>Open Box</Button>
-      <Button variant="Editar" href='/orderhistory'>History</Button>
-      </Menu>
-     <DeleteUserAccount/>
+      <Button variant="Editar" href='/editprofile'><ModeEditIcon/>Edit</Button>
+      <Button variant="Abrir mi Box" href='codebox'><RedeemOutlinedIcon/> Open Box</Button>
+      <Button variant="Editar" href='/orderhistory'><HistoryOutlinedIcon/> History</Button>
+    <DeleteUserAccount/>
+    </ButtonGroup>
+
+    <Box
+>    
+</Box>
+
     {
       userDetail? 
       <Container >
@@ -137,7 +122,7 @@ export default function ProfilePanel() {
             <Typography variant="h5" component="div" gutterBottom>
               My Boxes
             </Typography>
-            <GiftCards/>
+              <GiftCards/>
           </Grid>
         </CardsProducts>
       </Container>

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { getOrders  } from "../../redux/actions/userActions";
+import { Button } from "@mui/material";
+import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 
 export default function OrderHistory() {
     const dispatch = useDispatch();
@@ -45,7 +47,7 @@ export default function OrderHistory() {
       )
 
       return (
-      <Box sx={{ height: 400, width: '100%' }}>
+      <Box sx={{ height: 400, width: '95%' }}>
       <DataGrid
         style={{ color: "white", textAlign:'center' }}
         rows={rows}
@@ -55,7 +57,13 @@ export default function OrderHistory() {
         checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
+        
       />
+
+      <Button variant="Abrir mi Box"  href="/userprofile">
+      <KeyboardBackspaceOutlinedIcon/>
+        Back
+      </Button>
     </Box>
       );
  }
