@@ -1,12 +1,11 @@
-import React,{useState} from 'react';
+import React from 'react';
 import QuestionsUse from "./QuestionsUse";
 import QuestionsPurchase from "./QuestionsPurchase";
 import QuestionsShipping from "./QuestionsShipping";
-import { Box, Button,Typography } from "@mui/material";
+import { Box,Typography } from "@mui/material";
 
 export default function FrequentQuestions() {
-  const box=["Use","Purchase","Shipping"];
-  const [currentBox,setCurrentBox]=useState("");
+  
   return (
     <>
      <Typography variant="h3" component="h2" sx={{ fontSize: 30, m: 5 ,color:"white"}}>
@@ -18,21 +17,19 @@ export default function FrequentQuestions() {
      alignItems="center"
      justifyContent={"center"}
      color="black">
-      <Box  display="flex" >
-      {box.map((b,index)=>(
-      <Button key={index} onClick={()=>setCurrentBox(b)}>{b}</Button>))}
-      </Box>
-      {currentBox==="Use" &&(
+      <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"white"}}>
+      Use
+      </Typography>
         <QuestionsUse/>
-      )}
-       {currentBox==="Purchase" &&(
+        <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"white"}}>
+        Purchase
+      </Typography>
         <QuestionsPurchase/>
-      )}
-       {currentBox==="Shipping" &&(
+        <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"white"}}>
+        Shipping
+      </Typography>
         <QuestionsShipping/>
-      )}
-     
-    </Box>
+         </Box>
     </>
     
   )
