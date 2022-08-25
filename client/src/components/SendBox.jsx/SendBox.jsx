@@ -61,7 +61,10 @@ const SendBox = () => {
                 </div>
                 <div className="box-info">
                   <div className="product-image">
-                    <img src={cartItem.image} alt={cartItem.name} />
+                    <img
+                      src={cartItem.image && cartItem.image.url}
+                      alt={cartItem.name}
+                    />
                   </div>
                   <div className="purchase-detail">
                     <div className="box-people">
