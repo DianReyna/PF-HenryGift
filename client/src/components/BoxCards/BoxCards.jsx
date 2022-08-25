@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBoxesPerPage } from "../../redux/actions/boxesActions";
 import BoxCard from "../BoxCard/BoxCard";
 import AppPagination from "../AppPagination/AppPagination";
-import { Grid, Stack } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import { queryPage } from "../../redux/actions/queryActions";
 import { getCart } from "../../redux/actions/cartActions";
 import axios from "axios";
@@ -41,13 +41,12 @@ export default function BoxCards() {
   }, [cart]);
 
   const allBoxes = boxes.rows?.filter((item) => item.active === true);
-
-  return (
-    <div className="Cards-container">
-      <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
-        {allBoxes &&
+  const renderBoxes = () => {
+    if(allBoxes){
+      if(allBoxes.length>0){
+        return allBoxes &&
           allBoxes?.map((box) => (
-            <Grid key={box.id} item xs={3}>
+            <Grid item xs={4}  sx={{mb:5}}>
               <BoxCard
                 key={box.id}
                 image={box.image}
@@ -59,11 +58,24 @@ export default function BoxCards() {
                 price={box.price}
                 expiration_date={box.expiration_date}
                 box={box}
+               
               />
             </Grid>
-          ))}
+          ))} else {
+            return <Typography variant="h3" sx={{mx:"auto"}}>No Results Found</Typography>
+          }
+      }
+    }
+  
+  return (
+    <div className="Cards-container">
+      <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
+        <Grid container spacing={1}>
+          {renderBoxes()}
+        </Grid>
       </Stack>
       <AppPagination setPage={setPage} page={page} />
     </div>
   );
-}
+
+  }
