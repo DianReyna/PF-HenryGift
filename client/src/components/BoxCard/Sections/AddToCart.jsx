@@ -22,7 +22,7 @@ const AddToCart = ({ box }) => {
   useEffect(() => {
     user && dispatch(getCart(user._id));
     console.log(1);
-  }, []);
+  }, [dispatch]);
 
   const saveCart = async () => {
     // const URL = " https://henrygift-api.herokuapp.com";
@@ -36,7 +36,7 @@ const AddToCart = ({ box }) => {
 
   useEffect(() => {
     setTimeout(saveCart, 1000);
-  }, [cart.cartItems]);
+  }, [cart.cartTotalQuantity]);
 
   return (
       <Button

@@ -18,10 +18,10 @@ export default function BoxCards() {
   useEffect(() => {
     dispatch(queryPage(page));
   }, [page]);
-
+   
   useEffect(() => {
     user && dispatch(getCart(user._id));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getBoxesPerPage(query));
