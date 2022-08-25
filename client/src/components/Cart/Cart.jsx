@@ -112,7 +112,10 @@ const Cart = () => {
             {cart.cartItems?.map((cartItem) => (
               <div className="cart-item" key={cartItem.id}>
                 <div className="cart-product">
-                  <img src={cartItem.image} alt={cartItem.name} />
+                  <img
+                    src={cartItem.image && cartItem.image.url}
+                    alt={cartItem.name}
+                  />
                   <div>
                     <h3>{cartItem.name}</h3>
                     <p className="make-eaven-cart">

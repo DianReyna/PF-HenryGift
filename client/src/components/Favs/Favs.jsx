@@ -42,7 +42,7 @@ const Favs = () => {
                 person={item.Box.person}
                 expiration_date={item.Box.expiration_date}
                 detail={item.Box.detail}
-                image={item.Box.image}
+                image={item.Box.image && item.Box.image.url}
                 box={item.Box}
               />
             </div>

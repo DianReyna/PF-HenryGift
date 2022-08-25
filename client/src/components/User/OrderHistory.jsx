@@ -37,7 +37,7 @@ export default function OrderHistory() {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 300,
+      width: 150,
       renderCell: (params) => {
         return (
           <Action>

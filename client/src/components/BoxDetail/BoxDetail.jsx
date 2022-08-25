@@ -72,7 +72,10 @@ export default function BoxDetail() {
         <Container>
           <DetailBox>
             <ImageDetailBox>
-              <Imagen src={detail.image.url} alt="img not found" />
+              <Imagen
+                src={detail.image && detail.image.url}
+                alt="img not found"
+              />
             </ImageDetailBox>
             <InfoDetailBox>
               <h1>{detail.name}</h1>
