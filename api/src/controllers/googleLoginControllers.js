@@ -7,7 +7,14 @@ const googleLogin = async (req, res, next) => {
     let user = await User.findOne({ where: {email: email} })
     if (!user) {
         const registerUser = await User.create({ email, first_name, last_name})
-        return registerUser
+        let user = await User.findOne({ where: {email: email} })
+        return res.json({
+          _id: user.email,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          is_Admin: user.access_level,
+          is_banned: user.banned
+        })
     }
 
     return res.json({
