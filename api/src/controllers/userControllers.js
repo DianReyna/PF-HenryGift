@@ -2,6 +2,8 @@ const User = require("../models/User");
 const userServices = require("../services/userServices");
 
 const createNewUser = async (req, res, next) => {
+  const { body } = req;
+  console.log(body);
   try {
     const newUser = await userServices.createNewUser(req.body);
     res.send(newUser);
@@ -45,15 +47,15 @@ const getUserById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const userId = await userServices.getUserById(id);
-   
-  if (userId) {
-    res.status(200).send(userId);
-  } else {
-    res.status(404).send("Not Fund!");
+
+    if (userId) {
+      res.status(200).send(userId);
+    } else {
+      res.status(404).send("Not Fund!");
+    }
+  } catch (error) {
+    next(error);
   }
-} catch (error) {
-  next(error);
-}
 };
 
 const updateUser = async (req, res, next) => {
@@ -76,8 +78,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const remove = await userServices.deleteUser(id);
     if (remove) {
-      
-        res.status(200).send("successfully deleted user");
+      res.status(200).send("successfully deleted user");
     } else {
       res.status(404).send("sdelete user error!");
     }

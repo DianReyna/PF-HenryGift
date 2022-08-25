@@ -44,8 +44,7 @@ export default function BoxCard({
   box,
 }) {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth);
-
+  const { user } = useSelector((state) => state.auth);
 
   const handleFavorite = () => {
     dispatch(addFavorite(id, user._id));
@@ -54,7 +53,8 @@ export default function BoxCard({
   const handleDeleteFavorite = () => {
     dispatch(removeFavorite(id));
   };
-
+  const imgDefault =
+    "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
   return (
     <div className="container">
       <SupCardProduct>
@@ -64,12 +64,22 @@ export default function BoxCard({
               to={`/box/${id}`}
               style={{ textDecoration: "none", color: "black" }}
             >
-              <CardMedia
-                component="img"
-                height="140"
-                image={image}
-                alt="img not found"
-              />
+              {image ? (
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={image}
+                  alt="img not found"
+                />
+              ) : (
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={imgDefault}
+                  alt="img not found"
+                />
+              )}
+
               <CardContent>
                 <BodyCardProduct>
                   <Typography gutterBottom variant="h4" component="div">
@@ -84,7 +94,7 @@ export default function BoxCard({
               </CardContent>
             </Link>
             <FooterCardProduct>
-             <AddToCart box={box} />
+              <AddToCart box={box} />
 
               <Favorite id={id} />
             </FooterCardProduct>
