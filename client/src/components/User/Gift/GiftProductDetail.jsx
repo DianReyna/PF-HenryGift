@@ -82,7 +82,7 @@ export default function ProductDetail() {
           <CardMedia
             component="img"
             height="240"
-            image={detailProd.image}
+            image={detailProd.image && detailProd.image.url}
             alt="img not found"
           />
           <Card sx={{ p: 2 }}>

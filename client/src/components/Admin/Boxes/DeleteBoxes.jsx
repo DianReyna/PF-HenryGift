@@ -71,7 +71,7 @@ export default function DeleteBoxes({ idBox }) {
 
         <DialogActions>
           <Cancel onClick={handleClose}>Cancel</Cancel>
-          <CreateNew onClick={() => handleDelete(idProd)} autoFocus>
+          <CreateNew onClick={() => handleDelete(idBox)} autoFocus>
             Accept
           </CreateNew>
         </DialogActions>

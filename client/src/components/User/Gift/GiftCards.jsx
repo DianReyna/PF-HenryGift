@@ -4,20 +4,16 @@ import GiftCard from "./GiftCard";
 import { Grid, Stack } from "@mui/material";
 import { getUserGift } from "../../../redux/actions/userActions";
 
-
-
 export default function GiftCards() {
   const dispatch = useDispatch();
   const { gifts } = useSelector((state) => state.users);
-  const {userDetail} = useSelector((state)=> state.users)
+  const { userDetail } = useSelector((state) => state.users);
 
-  
   useEffect(() => {
-    dispatch(getUserGift(userDetail.email))
-    console.log(userDetail.email)
+    dispatch(getUserGift(userDetail.email));
+    console.log(userDetail.email);
   }, [dispatch, userDetail]);
 
-  
   return (
     <div className="Cards-container">
       <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
@@ -25,7 +21,7 @@ export default function GiftCards() {
           <Grid key={box.id} item xs={3}>
             <GiftCard
               key={box.id}
-              image={box.image}
+              image={box.image && box.image.url}
               id={box.id}
               ranking={box.ranking}
               name={box.name}
@@ -37,6 +33,6 @@ export default function GiftCards() {
           </Grid>
         ))}
       </Stack>
-         </div>
+    </div>
   );
 }
