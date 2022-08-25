@@ -13,8 +13,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  List,
+  ListItem,
+  ListItemText,
   Rating,
   TextField,
+  Typography,
 } from "@mui/material/";
 import { CreateNew, ViewDetail, Cancel } from "../Admin/CommonStyled";
 
@@ -68,6 +72,7 @@ export default function UserReview({ box_id, user_id }) {
     dispatch(createReviews(info, value, message));
     setMessage("");
     setValue(0);
+    setOpen(false);
     toast.success("Register to leave your review", {
       position: "top-right",
     });
@@ -83,29 +88,46 @@ export default function UserReview({ box_id, user_id }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle
+        <Typography
           sx={{
-            fontSize: 25,
+            mt: 3,
+            mb: 3,
+            display: "inline",
+            fontSize: 30,
             color: "#545454",
             fontFamily: "arial",
             textAlign: "center",
           }}
           id="alert-dialog-title"
+          variant="h5"
+          component="div"
         >
           {"Write a costumer review"}
-        </DialogTitle>
+        </Typography>
         <ContentDialog>
           {reviewUser.status === "true" ? (
-            <div>
-              <Rating
-                name="read-only"
-                value={reviewUser.value}
-                readOnly
-                sx={{ background: "black" }}
-              />
-
-              <div>
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "transparent" }}
+              aria-label="contacts"
+            >
+              <ListItem disablePadding>
+                <Rating
+                  name="read-only"
+                  value={reviewUser.value}
+                  readOnly
+                  sx={{
+                    background: "orange",
+                    marginLeft: 10,
+                    fontSize: 30,
+                    marginBottom: 2,
+                  }}
+                />
+              </ListItem>
+              <ListItem disablePadding>
                 <TextField
+                  id="outlined-textarea"
+                  multiline
+                  rows={4}
                   disabled={false}
                   name="message"
                   defaultValue={reviewUser.message}
@@ -115,6 +137,7 @@ export default function UserReview({ box_id, user_id }) {
                     input: {
                       color: "black",
                     },
+                    marginLeft: 5,
                   }}
                 />
                 <Button
@@ -122,24 +145,37 @@ export default function UserReview({ box_id, user_id }) {
                   size="md"
                   variant="solid"
                   onClick={handleSaved}
+                  sx={{ bgcolor: "#3085d6", marginLeft: 1, marginRight: 3 }}
                 >
                   Saved
                 </Button>
-              </div>
-            </div>
+              </ListItem>
+            </List>
           ) : (
-            <div>
-              <Rating
-                name="simple-controlled"
-                value={value}
-                sx={{ background: "black" }}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                style={{ color: "red" }}
-              />
-              <div>
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "transparent" }}
+              aria-label="contacts"
+            >
+              <ListItem disablePadding>
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                  sx={{
+                    background: "orange",
+                    marginLeft: 10,
+                    fontSize: 30,
+                    marginBottom: 2,
+                  }}
+                />
+              </ListItem>
+              <ListItem disablePadding>
                 <TextField
+                  id="outlined-textarea"
+                  multiline
+                  rows={4}
                   disabled={false}
                   name="message"
                   value={message}
@@ -152,18 +188,20 @@ export default function UserReview({ box_id, user_id }) {
                     input: {
                       color: "black",
                     },
+                    marginLeft: 5,
                   }}
                 />
                 <Button
                   color="success"
                   size="md"
                   variant="solid"
+                  sx={{ bgcolor: "#3085d6", marginLeft: 1, marginRight: 3 }}
                   onClick={handleSubmit}
                 >
                   Send
                 </Button>
-              </div>
-            </div>
+              </ListItem>
+            </List>
           )}
         </ContentDialog>
         <DialogActions>
