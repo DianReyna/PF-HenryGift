@@ -39,6 +39,7 @@ export default function BasicSelect() {
           Sort by
         </InputLabel>
         <Select
+          sx={{ color: "white !important" }}
           labelId="demo-simple-select-label-col"
           id="demo-simple-select-col"
           value={col}
@@ -58,6 +59,7 @@ export default function BasicSelect() {
           Order
         </InputLabel>
         <Select
+           sx={{ color: "white !important" }}
           labelId="demo-simple-select-label-dir"
           id="demo-simple-select-dir"
           value={dir}
