@@ -37,7 +37,7 @@ const GroupFeats = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 5rem
+  margin-top: 5rem;
 `;
 
 const Imagen = styled.img`
@@ -60,7 +60,6 @@ export default function BoxDetail() {
   const dispatch = useDispatch();
   const { idBox } = useParams();
   const { detail } = useSelector((state) => state.boxes);
-  console.log(detail.id);
 
   useEffect(() => {
     dispatch(detailBox(idBox));
@@ -90,10 +89,6 @@ export default function BoxDetail() {
               <ItemBox>
                 <CardGiftcardIcon />
                 <p>Contains options</p>
-              </ItemBox>
-              <ItemBox>
-                <StarIcon />
-                <p>{detail.ranking}</p>
               </ItemBox>
               <ItemBox>
                 <InsertInvitationOutlinedIcon />

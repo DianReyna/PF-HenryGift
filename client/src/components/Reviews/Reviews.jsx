@@ -9,7 +9,7 @@ import CardReview from "../CardReview/CardReview";
 import { getReviews } from "../../redux/actions/reviewsActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 export default function Reviews({ id }) {
   const dispatch = useDispatch();
@@ -41,17 +41,22 @@ export default function Reviews({ id }) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Opinions</DialogTitle>
-        <DialogActions>
-          <Button onClick={handleClose}>X</Button>
-        </DialogActions>
+        <Typography
+          sx={{ mt: 3, mb: 2, display: "inline", marginLeft: 3 }}
+          variant="h5"
+          component="div"
+        >
+          Options
+          <Button
+            sx={{ display: "inline", marginLeft: 30 }}
+            onClick={handleClose}
+          >
+            X
+          </Button>
+        </Typography>
 
         <DialogContent dividers={scroll === "paper"}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            // ref={descriptionElementRef}
-            tabIndex={-1}
-          >
+          <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
             <Grid>
               {reviews &&
                 reviews?.map((item, index) => {
