@@ -10,6 +10,8 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import StarIcon from "@mui/icons-material/Star";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
 import ReviewBar from "../ReviewBar/ReviewBar";
+import AddToCart from "../BoxCard/Sections/AddToCart";
+import Favorite from "../BoxCard/Sections/Favorite";
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -29,6 +31,14 @@ const DetailBox = styled.div`
 
 const ImageDetailBox = styled.div``;
 const InfoDetailBox = styled.div``;
+
+const GroupFeats = styled.div`
+  /* background-color: lightblue; */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5rem;
+`;
 
 const Imagen = styled.img`
   border: 1px solid black;
@@ -62,7 +72,7 @@ export default function BoxDetail() {
         <Container>
           <DetailBox>
             <ImageDetailBox>
-              <Imagen src={detail.image} alt="img not found" />
+              <Imagen src={detail.image.url} alt="img not found" />
             </ImageDetailBox>
             <InfoDetailBox>
               <h1>{detail.name}</h1>
@@ -81,10 +91,6 @@ export default function BoxDetail() {
                 <p>Contains options</p>
               </ItemBox>
               <ItemBox>
-                <StarIcon />
-                <p>{detail.ranking}</p>
-              </ItemBox>
-              <ItemBox>
                 <InsertInvitationOutlinedIcon />
                 <p>Expiration date: {detail.expiration_date}</p>
               </ItemBox>
@@ -92,6 +98,13 @@ export default function BoxDetail() {
                 <AttachMoneyIcon />
                 <p>Price: {detail.price}</p>
               </ItemBox>
+              <GroupFeats>
+                <AddToCart box={detail} />
+                <div className="fav-detail">
+                  Add to favs:
+                  <Favorite id={detail.id} />
+                </div>
+              </GroupFeats>
             </InfoDetailBox>
           </DetailBox>
           <ReviewBar id={idBox} />
@@ -103,7 +116,7 @@ export default function BoxDetail() {
                     <ItemProduct key={product.id}>
                       <ProductCard
                         id={product.id}
-                        imagen={product.image}
+                        imagen={product.image.url}
                         name={product.name}
                         description={product.description}
                         location={product.location}

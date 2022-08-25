@@ -7,10 +7,10 @@ import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { filterCategory } from "../../redux/actions/queryActions";
-
-export default function BasicSelect() {
-  const [category, setCategory] = React.useState("");
-
+import { getCategory } from "../../redux/actions/categoryActions";
+export default function BasicSelect({setCategory,category}) {
+  
+  const {categories} = useSelector(state=>state.categories)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +25,9 @@ export default function BasicSelect() {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
   };
 
+  useEffect(() => {
+    dispatch(getCategory());
+  }, [dispatch]);
   //styled={{background: 'blue'}}
   //sx={{ background: '#F1F1F1', borderRadius: 2}}
 
@@ -49,14 +52,12 @@ export default function BasicSelect() {
           onChange={handleChange}
         >
           <MenuItem value={""}>No Aplicar</MenuItem>
-          <MenuItem value={"Cursos y Talleres"}>Cursos y Talleres</MenuItem>
-          <MenuItem value={"Gastronomia"}>Gastronomia</MenuItem>
-          <MenuItem value={"Estadia"}>Estadia</MenuItem>
-          <MenuItem value={"Aventura"}>Aventura</MenuItem>
-          <MenuItem value={"Estar bien"}>Estar bien</MenuItem>
-          <MenuItem value={"Mix"}>Mix</MenuItem>
+          {categories?.map((category,index)=>(
+          <MenuItem key={index} value={category.name}>{category.name}</MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>
   );
 }
+

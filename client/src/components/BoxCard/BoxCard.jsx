@@ -11,6 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/reducer/cartSlice";
 import styled from "styled-components";
 import Favorite from "./Sections/Favorite";
+import AddToCart from "./Sections/AddToCart";
+import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
+import PersonIcon from "@mui/icons-material/Person";
+import StarIcon from "@mui/icons-material/Star";
+import './BoxCard.css';
 
 const CardWidth = styled.div`
   height: 33rem;
@@ -23,7 +28,7 @@ const BodyCardProduct = styled.div`
 const FooterCardProduct = styled.div`
   position: absolute;
   bottom: 1rem;
-  left: 1rem;
+  left: 3rem;
 `;
 const SupCardProduct = styled.div`
   box-shadow: 1px 1px 2px black;
@@ -43,11 +48,8 @@ export default function BoxCard({
   box,
 }) {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
-  const handleAddToCart = (box) => {
-    dispatch(addToCart(box));
-  };
   const handleFavorite = () => {
     dispatch(addFavorite(id, user._id));
   };
@@ -55,7 +57,8 @@ export default function BoxCard({
   const handleDeleteFavorite = () => {
     dispatch(removeFavorite(id));
   };
-
+  const imgDefault =
+    "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
   return (
     <div className="container">
       <SupCardProduct>
@@ -65,40 +68,52 @@ export default function BoxCard({
               to={`/box/${id}`}
               style={{ textDecoration: "none", color: "black" }}
             >
-              <CardMedia
-                component="img"
-                height="140"
-                image={image}
-                alt="img not found"
-              />
+              {image ? (
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={image}
+                  alt="img not found"
+                />
+              ) : (
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={imgDefault}
+                  alt="img not found"
+                />
+              )}
+
               <CardContent>
                 <BodyCardProduct>
                   <Typography gutterBottom variant="h4" component="div">
                     {name}
                   </Typography>
-                  <Typography>Ranking: {ranking}</Typography>
+                  <Typography sx={{ display: "flex" }}>
+                    <StarIcon sx={{ fill: "black" }} />
+                    Ranking: {ranking}
+                  </Typography>
                   <Typography>{detail}</Typography>
-                  <Typography>Persons: {person}</Typography>
+                  <Typography sx={{ display: "flex" }}>
+                    <PersonIcon sx={{ fill: "black" }} />
+                    Persons: {person}
+                  </Typography>
                   <Typography>Price: ${price}</Typography>
-                  <Typography>Expiration date: {expiration_date}</Typography>
+                  <Typography sx={{ display: "flex" }}>
+                    <InsertInvitationOutlinedIcon sx={{ fill: "black" }} />
+                    Expiration date: {expiration_date}
+                  </Typography>
                 </BodyCardProduct>
               </CardContent>
             </Link>
-            <FooterCardProduct>
-              <Button
-                sx={{
-                  color: "black",
-                  border: "1px solid black",
-                  marginLeft: "3.8rem",
-                }}
-                variant="outlined"
-                onClick={() => handleAddToCart(box)}
-              >
-                Add to Cart
-              </Button>
-
-              <Favorite id={id} />
-            </FooterCardProduct>
+              <div className="footer-card-box">
+              <div className="footer-cart-box">
+                <AddToCart box={box} />
+              </div>
+              <div className="footer-fav-box">
+                <Favorite id={id} />
+              </div>
+              </div>
           </CardWidth>
         </Card>
       </SupCardProduct>

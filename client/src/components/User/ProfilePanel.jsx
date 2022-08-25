@@ -75,6 +75,13 @@ export default function ProfilePanel() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  //   userDetail &&
+//   userDetail.dataBirth?.map((item) => {
+//   const find = item.createdAt.indexOf("T");
+//  const dateUser = item.createdAt.slice(0, find);
+
+// });
   
   return (
     <div>

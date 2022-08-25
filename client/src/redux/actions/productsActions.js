@@ -6,8 +6,8 @@ import {
   postProduct,
 } from "../reducer/productsSlice";
 
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+// const URL = " https://henrygift-api.herokuapp.com";
+const URL = "http://localhost:3001";
 
 export const createProduct = (payload) => (dispatch) => {
   axios

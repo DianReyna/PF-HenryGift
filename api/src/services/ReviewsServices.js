@@ -12,6 +12,7 @@ const newReviews = async (query, body) => {
       email: query.user_id,
     },
   });
+
   const newReviewsBox = {
     user_id: findUser.dataValues.email,
     box_id: findBox.dataValues.id,
@@ -24,7 +25,6 @@ const newReviews = async (query, body) => {
 
 const getReview = async (box_id) => {
   const findReview = await ReviewsUsers.findAll({
-    attributes: ["menssageBox", "scoreBox", "createdAt", "user_id"],
     where: {
       box_id,
     },
@@ -38,7 +38,17 @@ const getReview = async (box_id) => {
   return findReview;
 };
 
+const getUserReview = async (user_id) => {
+  const userReview = await ReviewsUsers.findAll({
+    where: {
+      user_id: user_id,
+    },
+  });
+  return userReview;
+};
+
 module.exports = {
   newReviews,
   getReview,
+  getUserReview,
 };

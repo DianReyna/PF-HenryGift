@@ -31,23 +31,22 @@ const ContainerFilters = () => {
   
   const estateFitler = useSelector(state => state.filters)
   const dispatch = useDispatch();
-
-  function aplicationFilters(){
-    dispatch(filterBoxes(estateFitler))
-  }
+  const [category, setCategory] = React.useState("");
+  const [person, setPerson] = React.useState("");
 
   function clean(){
-    dispatch(cleanFilters())
+    setCategory("")
+    setPerson("")
   }
 
   return (
     <>
       <ContainerFiltersContain>
         <ContainerFiltersAndButton>
-          <FilterCategory />
-          <FilterPersons />
+          <FilterCategory setCategory={setCategory} category={category}/>
+          <FilterPersons setPerson={setPerson} person={person}/>
          {/*  <Button variant="contained" onClick={() => aplicationFilters()}>Aplicar Cambios</Button> */}
-          {/* <Button variant="contained" onClick={() => clean()}>Limpiar filtros</Button> */}
+          <Button variant="contained" onClick={() => clean()}>Clean Filters</Button> 
         </ContainerFiltersAndButton>
         <ContainerSort>
           <Sort />

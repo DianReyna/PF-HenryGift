@@ -1,0 +1,22 @@
+.footer-card-box {
+	position: absolute;
+	bottom: 1rem;
+	display: flex;
+	/* background-color: lightblue; */
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-fav-box {
+	margin-left: 2rem;
+	/* background-color: lightcoral; */
+}
+
+.footer-cart-box {
+	display: flex;
+	/* background-color: lightgreen; */
+	align-items: center;
+	justify-content: center;
+	margin-left: 3rem;
+
+}

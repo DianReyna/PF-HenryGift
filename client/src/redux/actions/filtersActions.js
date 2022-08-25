@@ -1,6 +1,8 @@
 import axios from "axios";
 import { setCategory, setPerson, clean } from "../reducer/filtersSlice";
 import { getAllBoxes } from "../reducer/boxesSlice";
+// const URL = " https://henrygift-api.herokuapp.com";
+const URL = "http://localhost:3001";
 
 export const filterCategory = (category) => (dispatch) => {
   dispatch(setCategory(category));
@@ -13,9 +15,7 @@ export const filterPerson = (person) => (dispatch) => {
 export const filterBoxes = (filters) => (dispatch) => {
   console.log(filters);
   axios
-    .get(
-      ` https://henrygift-api.herokuapp.com/filters?category=${filters.category}&num=${filters.person}`
-    )
+    .get(` ${URL}/filters?category=${filters.category}&num=${filters.person}`)
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
 };

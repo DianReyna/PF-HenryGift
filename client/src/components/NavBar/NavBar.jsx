@@ -29,9 +29,8 @@ import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
-
 import { logout, reset } from "../../redux/reducer/authSlice";
-import { toast } from "react-toastify";
+import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined";
 
 const pages = ["Home"];
 const settings = ["Admin"];
@@ -115,7 +114,6 @@ const ResponsiveAppBar = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
@@ -171,16 +169,16 @@ const ResponsiveAppBar = () => {
                 {"Profile"}
               </Button>
             </NavLink>
-            {user && user.is_Admin ? 
-            <NavLink to={"/admin"} className={styles.navlink}>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {"Admin"}
-              </Button>
-            </NavLink>
-            : null }
+            {user && user.is_Admin ? (
+              <NavLink to={"/admin"} className={styles.navlink}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {"Admin"}
+                </Button>
+              </NavLink>
+            ) : null}
           </Box>
           <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
@@ -208,6 +206,7 @@ const ResponsiveAppBar = () => {
             </Button>
           )}
 
+
           <Link to="/cart">
             <div className={styles.navBag}>
               <CardGiftcardIcon />
@@ -217,11 +216,9 @@ const ResponsiveAppBar = () => {
             </div>
           </Link>
 
-          <Link to="/favs">Favs</Link>
-
-          <Link to="/how-does-it-work"  style={{ color: "white", textDecoration: "none" }}>How does it work?</Link>
-          
-          
+          <Link to="/favs">
+            <FavoriteOutlined sx={{ marginLeft: '0.5rem' }} />
+          </Link>
 
           <Box sx={{ flexGrow: 0 }}>
             <Menu
