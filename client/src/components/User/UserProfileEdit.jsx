@@ -22,7 +22,6 @@ import { useNavigate } from 'react-router-dom';
 export default function UserProfileEdit() {
 
     const dispatch = useDispatch();  
-    //const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
 
     const[first_name, setFirst_name] = useState("");
@@ -83,8 +82,6 @@ export default function UserProfileEdit() {
     setOpen(false);
   };
 
-
-
     return (
         <Paper 
         sx={{
@@ -118,18 +115,7 @@ export default function UserProfileEdit() {
                 onChange={(e) => setLast_name(e.target.value)}
                 autoFocus
                 />              
-            </Grid>  
-            {/* <Grid item xs={12}>
-                <TextField
-                name="email"
-                fullWidth
-                label="Email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoFocus
-                />
-            </Grid>   */}
+            </Grid> 
             <Grid item xs={12}>
                 <TextField
                 name="phone"
@@ -152,19 +138,7 @@ export default function UserProfileEdit() {
                 autoFocus
                 />
             </Grid>  
-            {/* <Grid item xs={12}>
-                <TextField
-                name="password"
-                fullWidth
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoFocus
-                />
-                {/* {errors.first_name && <p>{errors.first_name}</p>} */}
-            {/* </Grid>    */}
-                      <div>
+               <div>
                 <Button variant="outlined" onClick={handleClickOpen}>
                 Save changes
                 </Button>
