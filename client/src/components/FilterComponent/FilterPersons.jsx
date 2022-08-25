@@ -8,9 +8,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { filterPerson } from "../../redux/actions/queryActions";
 
-export default function FilterPerson() {
-  const [person, setPerson] = React.useState("");
-
+export default function FilterPerson({person,setPerson}) {
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,6 +34,7 @@ export default function FilterPerson() {
           Persons
         </InputLabel>
         <Select
+          sx={{ color: "white !important" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={person}

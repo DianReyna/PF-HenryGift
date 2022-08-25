@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { filterCategory } from "../../redux/actions/queryActions";
 
-export default function BasicSelect() {
-  const [category, setCategory] = React.useState("");
+export default function BasicSelect({setCategory,category}) {
+  
 
   const dispatch = useDispatch();
 
