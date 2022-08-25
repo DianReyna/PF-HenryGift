@@ -13,6 +13,7 @@ import {
     DialogTitle,
     DialogContentText,
   } from "@mui/material/";
+  import { logout, reset } from "../../redux/reducer/authSlice";
 
 function DeleteUserAccount() {
 
@@ -40,10 +41,9 @@ function DeleteUserAccount() {
     
     function handleDelete() {
       dispatch(removeUser(user._id))
-      navigate('/')
-      setTimeout(function () {
-        location.reload()
-    }, 100);
+      dispatch(logout());
+      dispatch(reset());
+      navigate("/");      
         setOpen(false);
             toast.success("Account deleted successfully", {
               position: "top-right",
