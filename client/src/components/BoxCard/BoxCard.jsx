@@ -12,6 +12,10 @@ import { addToCart } from "../../redux/reducer/cartSlice";
 import styled from "styled-components";
 import Favorite from "./Sections/Favorite";
 import AddToCart from "./Sections/AddToCart";
+import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
+import PersonIcon from "@mui/icons-material/Person";
+import StarIcon from "@mui/icons-material/Star";
+import './BoxCard.css';
 
 const CardWidth = styled.div`
   height: 33rem;
@@ -24,7 +28,7 @@ const BodyCardProduct = styled.div`
 const FooterCardProduct = styled.div`
   position: absolute;
   bottom: 1rem;
-  left: 1rem;
+  left: 3rem;
 `;
 const SupCardProduct = styled.div`
   box-shadow: 1px 1px 2px black;
@@ -44,8 +48,7 @@ export default function BoxCard({
   box,
 }) {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth);
-
+  const { user } = useSelector((state) => state.auth);
 
   const handleFavorite = () => {
     dispatch(addFavorite(id, user._id));
@@ -75,19 +78,31 @@ export default function BoxCard({
                   <Typography gutterBottom variant="h4" component="div">
                     {name}
                   </Typography>
-                  <Typography>Ranking: {ranking}</Typography>
+                  <Typography sx={{ display: "flex" }}>
+                    <StarIcon sx={{ fill: "black" }} />
+                    Ranking: {ranking}
+                  </Typography>
                   <Typography>{detail}</Typography>
-                  <Typography>Persons: {person}</Typography>
+                  <Typography sx={{ display: "flex" }}>
+                    <PersonIcon sx={{ fill: "black" }} />
+                    Persons: {person}
+                  </Typography>
                   <Typography>Price: ${price}</Typography>
-                  <Typography>Expiration date: {expiration_date}</Typography>
+                  <Typography sx={{ display: "flex" }}>
+                    <InsertInvitationOutlinedIcon sx={{ fill: "black" }} />
+                    Expiration date: {expiration_date}
+                  </Typography>
                 </BodyCardProduct>
               </CardContent>
             </Link>
-            <FooterCardProduct>
-             <AddToCart box={box} />
-
-              <Favorite id={id} />
-            </FooterCardProduct>
+              <div className="footer-card-box">
+              <div className="footer-cart-box">
+                <AddToCart box={box} />
+              </div>
+              <div className="footer-fav-box">
+                <Favorite id={id} />
+              </div>
+              </div>
           </CardWidth>
         </Card>
       </SupCardProduct>
