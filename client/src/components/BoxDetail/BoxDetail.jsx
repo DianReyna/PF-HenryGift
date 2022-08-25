@@ -73,7 +73,7 @@ export default function BoxDetail() {
         <Container>
           <DetailBox>
             <ImageDetailBox>
-              <Imagen src={detail.image} alt="img not found" />
+              <Imagen src={detail.image.url} alt="img not found" />
             </ImageDetailBox>
             <InfoDetailBox>
               <h1>{detail.name}</h1>
@@ -121,7 +121,7 @@ export default function BoxDetail() {
                     <ItemProduct key={product.id}>
                       <ProductCard
                         id={product.id}
-                        imagen={product.image}
+                        imagen={product.image.url}
                         name={product.name}
                         description={product.description}
                         location={product.location}
