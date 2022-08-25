@@ -115,16 +115,10 @@ const SendBox = () => {
             </div>
           </div>
           <div className="go-payment">
-            {user && user._id ? (
               <PayButton
                 cartItems={cart.cartItems}
                 handleSubmit={handleSubmit}
               />
-            ) : (
-              <Link to="/login">
-                <Button variant="outlined">Login to Check Out</Button>
-              </Link>
-            )}
           </div>
         </div>
       </div>

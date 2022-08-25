@@ -32,10 +32,9 @@ const Favs = () => {
         favItems &&
         favItems?.map((item) => {
           return (
-            <div className="fav-container-card">
+            <div key={item.Box.id} className="fav-container-card">
               <BoxCard
                 className="card-fav"
-                key={item.Box.id}
                 id={item.Box.id}
                 name={item.Box.name}
                 price={item.Box.price}
@@ -44,6 +43,7 @@ const Favs = () => {
                 expiration_date={item.Box.expiration_date}
                 detail={item.Box.detail}
                 image={item.Box.image}
+                box={item.Box}
               />
             </div>
           );
