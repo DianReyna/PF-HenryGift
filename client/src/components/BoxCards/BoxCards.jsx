@@ -42,14 +42,13 @@ export default function BoxCards() {
 
   const allBoxes = boxes.rows?.filter((item) => item.active === true);
   const renderBoxes = () => {
-    if (allBoxes) {
-      if (allBoxes.length > 0) {
-        return (
-          allBoxes &&
+
+    if(allBoxes){
+      if(allBoxes.length>0){
+        return allBoxes &&
           allBoxes?.map((box) => (
-            <Grid item xs={4} sx={{ mb: 5 }} key={box.id}>
+            <Grid item xs={4}  sx={{mb:5}} key={box.id}>
               <BoxCard
-                // key={box.id}
                 image={box.image.url}
                 id={box.id}
                 ranking={box.ranking}
@@ -61,18 +60,12 @@ export default function BoxCards() {
                 box={box}
               />
             </Grid>
-          ))
-        );
-      } else {
-        return (
-          <Typography variant="h3" sx={{ mx: "auto" }}>
-            No Results Found
-          </Typography>
-        );
+          ))} else {
+            return <Typography variant="h3" sx={{mx:"auto"}}>No Results Found</Typography>
+          }
       }
     }
-  };
-
+ 
   return (
     <div className="Cards-container">
       <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
@@ -83,4 +76,5 @@ export default function BoxCards() {
       <AppPagination setPage={setPage} page={page} />
     </div>
   );
-}
+
+  }

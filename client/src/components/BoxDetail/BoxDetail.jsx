@@ -11,6 +11,7 @@ import StarIcon from "@mui/icons-material/Star";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
 import ReviewBar from "../ReviewBar/ReviewBar";
 import AddToCart from "../BoxCard/Sections/AddToCart";
+import Favorite from "../BoxCard/Sections/Favorite";
 
 const Container = styled.div`
   padding: 2rem 3rem;
@@ -30,6 +31,14 @@ const DetailBox = styled.div`
 
 const ImageDetailBox = styled.div``;
 const InfoDetailBox = styled.div``;
+
+const GroupFeats = styled.div`
+  /* background-color: lightblue; */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5rem
+`;
 
 const Imagen = styled.img`
   border: 1px solid black;
@@ -51,6 +60,7 @@ export default function BoxDetail() {
   const dispatch = useDispatch();
   const { idBox } = useParams();
   const { detail } = useSelector((state) => state.boxes);
+  console.log(detail.id);
 
   useEffect(() => {
     dispatch(detailBox(idBox));
@@ -93,7 +103,13 @@ export default function BoxDetail() {
                 <AttachMoneyIcon />
                 <p>Price: {detail.price}</p>
               </ItemBox>
-              <AddToCart box={detail} />
+              <GroupFeats>
+                <AddToCart box={detail} />
+                <div className="fav-detail">
+                  Add to favs:
+                  <Favorite id={detail.id} />
+                </div>
+              </GroupFeats>
             </InfoDetailBox>
           </DetailBox>
           <ReviewBar id={idBox} />
