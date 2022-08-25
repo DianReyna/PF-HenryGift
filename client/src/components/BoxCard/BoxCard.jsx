@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/reducer/cartSlice";
 import styled from "styled-components";
 import Favorite from "./Sections/Favorite";
+import AddToCart from "./Sections/AddToCart";
 
 const CardWidth = styled.div`
   height: 33rem;
@@ -45,9 +46,7 @@ export default function BoxCard({
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
 
-  const handleAddToCart = (box) => {
-    dispatch(addToCart(box));
-  };
+
   const handleFavorite = () => {
     dispatch(addFavorite(id, user._id));
   };
@@ -85,17 +84,7 @@ export default function BoxCard({
               </CardContent>
             </Link>
             <FooterCardProduct>
-              <Button
-                sx={{
-                  color: "black",
-                  border: "1px solid black",
-                  marginLeft: "3.8rem",
-                }}
-                variant="outlined"
-                onClick={() => handleAddToCart(box)}
-              >
-                Add to Cart
-              </Button>
+             <AddToCart box={box} />
 
               <Favorite id={id} />
             </FooterCardProduct>

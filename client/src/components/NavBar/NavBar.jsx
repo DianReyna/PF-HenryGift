@@ -29,9 +29,9 @@ import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
 import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
-
 import { logout, reset } from "../../redux/reducer/authSlice";
-import { toast } from "react-toastify";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined";
 
 const pages = ["Home"];
 const settings = ["Admin"];
@@ -217,7 +217,9 @@ const ResponsiveAppBar = () => {
             </div>
           </Link>
 
-          <Link to="/favs">Favs</Link>
+          <Link to="/favs">
+            <FavoriteOutlined />
+          </Link>
 
           <Link to="/how-does-it-work"  style={{ color: "white", textDecoration: "none" }}>How does it work?</Link>
           
