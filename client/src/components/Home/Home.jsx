@@ -1,7 +1,8 @@
 import React from "react";
 import BoxCards from "../BoxCards/BoxCards";
 import Carousel from "../Carousel/Carousel";
-import ContainerFilters from '../ContainerFilters/ContainerFilters'
+import ContainerFilters from '../ContainerFilters/ContainerFilters';
+import HowDoesItWork from "../HowDoesItWork/HowDoesItWork";
 
 
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
       <br /><br />
       <hr />
       <ContainerFilters />
+      <hr />
+      <HowDoesItWork/>
       <hr />
       <BoxCards />
     </div>

@@ -220,8 +220,6 @@ const ResponsiveAppBar = () => {
           <Link to="/favs">
             <FavoriteOutlined />
           </Link>
-
-          <Link to="/how-does-it-work"  style={{ color: "white", textDecoration: "none" }}>How does it work?</Link>
           
           
 
