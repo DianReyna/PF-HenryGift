@@ -26,7 +26,21 @@ const getReviews = async (req, res, next) => {
   }
 };
 
+const getUserReviews = async (req, res, next) => {
+  try {
+    const { box_id, user_id } = req.query;
+
+    const reviews = await reviewsServices.getUserReview(box_id, user_id);
+    if (reviews) {
+      res.status(200).send(reviews);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createReviews,
   getReviews,
+  getUserReviews,
 };
