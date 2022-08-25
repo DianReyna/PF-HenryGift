@@ -34,12 +34,12 @@ app.use(errorHandler);
 // set DB connection and express server
 async function start() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     app.listen(PORT, async () => {
       console.log("Server listening on port", PORT);
-      await loadMockCategories();
-      await loadMockBoxes();
-      await loadMockUsers();
+      // await loadMockCategories();
+      // await loadMockBoxes();
+      // await loadMockUsers();
     });
   } catch (error) {
     console.log("Unable to connect to the database:", error);
