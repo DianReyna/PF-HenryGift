@@ -31,11 +31,17 @@ import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
 import { logout, reset } from "../../redux/reducer/authSlice";
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined";
+import { useContext } from "react";
+import { ColorModeContext } from "../../utils/mode";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const pages = ["Home"];
 const settings = ["Admin"];
 
 const ResponsiveAppBar = () => {
+  const { mode, toggleMode } = useContext(ColorModeContext);
+
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -189,7 +195,6 @@ const ResponsiveAppBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-
           {/* //Login and LogOut */}
           {user ? (
             <Button sx={{ color: "white" }} onClick={onLogout}>
@@ -205,8 +210,6 @@ const ResponsiveAppBar = () => {
               </Link>
             </Button>
           )}
-
-
           <Link to="/cart">
             <div className={styles.navBag}>
               <CardGiftcardIcon />
@@ -215,11 +218,9 @@ const ResponsiveAppBar = () => {
               </span>
             </div>
           </Link>
-
           <Link to="/favs">
-            <FavoriteOutlined sx={{ marginLeft: '0.5rem' }} />
+            <FavoriteOutlined sx={{ marginLeft: "0.5rem" }} />
           </Link>
-
           <Box sx={{ flexGrow: 0 }}>
             <Menu
               sx={{ mt: "45px" }}
@@ -246,6 +247,9 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+          <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
+            {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
