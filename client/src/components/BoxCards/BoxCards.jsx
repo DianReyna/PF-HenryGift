@@ -18,7 +18,7 @@ export default function BoxCards() {
   useEffect(() => {
     dispatch(queryPage(page));
   }, [page]);
-   
+
   useEffect(() => {
     user && dispatch(getCart(user._id));
   }, [dispatch]);
@@ -28,8 +28,8 @@ export default function BoxCards() {
   }, [query]);
 
   const saveCart = async () => {
-    const URL = " https://henrygift-api.herokuapp.com";
-    // const URL = "http://localhost:3001";
+    // const URL = " https://henrygift-api.herokuapp.com";
+    const URL = "http://localhost:3001";
     user &&
       (await axios.post(`${URL}/orders/cart`, { ...cart, user_id: user._id }));
     //console.log(2)
@@ -42,12 +42,12 @@ export default function BoxCards() {
 
   const allBoxes = boxes.rows?.filter((item) => item.active === true);
   const renderBoxes = () => {
-
-    if(allBoxes){
-      if(allBoxes.length>0){
-        return allBoxes &&
+    if (allBoxes) {
+      if (allBoxes.length > 0) {
+        return (
+          allBoxes &&
           allBoxes?.map((box) => (
-            <Grid item xs={4}  sx={{mb:5}} key={box.id}>
+            <Grid item xs={4} sx={{ mb: 5 }} key={box.id}>
               <BoxCard
                 image={box.image.url}
                 id={box.id}
@@ -60,12 +60,18 @@ export default function BoxCards() {
                 box={box}
               />
             </Grid>
-          ))} else {
-            return <Typography variant="h3" sx={{mx:"auto"}}>No Results Found</Typography>
-          }
+          ))
+        );
+      } else {
+        return (
+          <Typography variant="h3" sx={{ mx: "auto" }}>
+            No Results Found
+          </Typography>
+        );
       }
     }
- 
+  };
+
   return (
     <div className="Cards-container">
       <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
@@ -76,5 +82,4 @@ export default function BoxCards() {
       <AppPagination setPage={setPage} page={page} />
     </div>
   );
-
-  }
+}

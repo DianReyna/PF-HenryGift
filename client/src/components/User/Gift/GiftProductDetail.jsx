@@ -57,8 +57,8 @@ export default function ProductDetail() {
       }
     });
   };
-  const URL = " https://henrygift-api.herokuapp.com";
-  // const URL = "http://localhost:3001";
+  // const URL = " https://henrygift-api.herokuapp.com";
+  const URL = "http://localhost:3001";
 
   const sendProductPicked = async (userId, productId) => {
     try {

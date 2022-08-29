@@ -8,8 +8,8 @@ import {
   editBoxes,
   postBox,
 } from "../reducer/boxesSlice";
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+// const URL = " https://henrygift-api.herokuapp.com";
+const URL = "http://localhost:3001";
 
 export const getBoxes = () => (dispatch) => {
   axios(` ${URL}/boxes`)
