@@ -40,12 +40,7 @@ const AddToCart = ({ box }) => {
 
   return (
     <Button
-      sx={{
-        color: "black",
-        border: "1px solid black",
-        marginLeft: "3.8rem",
-        bgcolor: "white",
-      }}
+      sx={{ marginLeft: "3.8rem"}}
       variant="outlined"
       onClick={() => handleAddToCart(box)}
     >
