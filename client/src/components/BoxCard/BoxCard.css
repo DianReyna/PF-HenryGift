@@ -2,21 +2,20 @@
 	position: absolute;
 	bottom: 1rem;
 	display: flex;
-	/* background-color: lightblue; */
 	justify-content: center;
 	align-items: center;
 }
 
 .footer-fav-box {
-	margin-left: 2rem;
-	/* background-color: lightcoral; */
+	display: flex;
+	position: absolute;
+	right: 0.7rem;
+	top: 0.3rem
 }
 
 .footer-cart-box {
 	display: flex;
-	/* background-color: lightgreen; */
 	align-items: center;
 	justify-content: center;
 	margin-left: 3rem;
-
 }

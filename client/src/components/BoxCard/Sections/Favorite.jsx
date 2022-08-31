@@ -27,13 +27,13 @@ const Favorite = ({ id }) => {
       {Favorited ? (
         <FavoriteOutlinedIcon
           sx={{
-            fill: "red",
+            fill: "black",
           }}
         />
       ) : (
         <FavoriteBorderOutlinedIcon
           sx={{
-            fill: "red",
+            fill: "black",
           }}
         />
       )}
