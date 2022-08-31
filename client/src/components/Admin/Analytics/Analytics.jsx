@@ -51,7 +51,6 @@ export default function Analytics() {
       ) : (
         <div style={{ height: 400, width: "100%" }}>
           <DataGrid
-            style={{ color: "white" }}
             rows={rows}
             columns={columns}
             pageSize={5}
