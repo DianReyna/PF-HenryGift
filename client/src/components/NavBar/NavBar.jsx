@@ -184,7 +184,7 @@ const ResponsiveAppBar = () => {
               </NavLink>
             ) : null}
           </Box>
-          <Search className={styles.searchbar} onChange={handleInputChange}>
+        {/*   <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -192,7 +192,7 @@ const ResponsiveAppBar = () => {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+          </Search> */}
           {/* //Login and LogOut */}
           {user ? (
             <Button onClick={onLogout}>Logout</Button>
