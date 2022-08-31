@@ -3,17 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoxesAdmin, destroyBox } from "../../../redux/actions/boxesActions";
 import { toast } from "react-toastify";
-import { Delete } from "../CommonStyled";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  DialogContentText,
-} from "@mui/material/";
-import { CreateNew, Cancel } from "../CommonStyled";
+import { Dialog, DialogActions, DialogTitle } from "@mui/material/";
+import { CreateNew, Cancel, Delete } from "../CommonStyled";
 
 export default function DeleteBoxes({ idBox }) {
   const dispatch = useDispatch();
@@ -61,7 +53,6 @@ export default function DeleteBoxes({ idBox }) {
           sx={{
             fontSize: 25,
             color: "#545454",
-            fontFamily: "arial",
             textAlign: "center",
           }}
           id="alert-dialog-title"

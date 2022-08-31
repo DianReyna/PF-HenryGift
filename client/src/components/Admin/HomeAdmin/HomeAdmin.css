@@ -12,7 +12,7 @@
 }
 
 .featuredbox {
-  color: white !important;
+  /* color: white !important; */
   border-radius: 10px;
   max-width: 15rem !important;
   box-shadow: -3px 3px 5px 0px rgba(237, 237, 237, 0.52);
@@ -22,19 +22,19 @@
 .featuredTitle {
   text-align: center;
   font-size: 25px !important;
-  color: white !important;
+  /* color: white !important; */
 }
 .featuredMoneyContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: white !important;
+  /* color: white !important; */
   align-items: center;
 }
 .featuredMoney {
   text-align: center;
   font-size: 45px !important;
-  color: white !important;
+  /* color: white !important; */
   font-weight: 500 I !important;
   /* padding: 0px 13px; */
 }
@@ -43,12 +43,12 @@
   text-align: center;
   /* align-items: center; */
   /* margin-left: 15px !important; */
-  color: white !important;
+  /* color: white !important; */
 }
 
 .featuredSub {
   font-size: 15px;
-  color: gray;
+  /* color: gray; */
 }
 .ContainerUsersAndBox {
   display: flex;

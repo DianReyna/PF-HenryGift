@@ -30,7 +30,7 @@
 /* styles buttons active */
 
 .Active {
-  background-color: rgb(114, 225, 40) !important;
+  background-color: #ff6f00 !important;
 }
 .Disabled {
   background-color: rgb(97, 97, 97) !important;

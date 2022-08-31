@@ -95,7 +95,6 @@ export default function UserReview({ box_id, user_id }) {
             display: "inline",
             fontSize: 30,
             color: "#545454",
-            fontFamily: "arial",
             textAlign: "center",
           }}
           id="alert-dialog-title"
