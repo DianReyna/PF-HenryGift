@@ -52,7 +52,7 @@ export default function HomeAdmin() {
             </DialogTitle>
             <DialogContent className="featuredMoneyContainer">
               <DialogContentText
-                sx={{ color: "white !Important" }}
+                // sx={{ color: "white !Important" }}
                 className="featuredMoney"
               >
                 {itemsUser.users.length}
@@ -71,14 +71,14 @@ export default function HomeAdmin() {
             <DialogContent className="featuredMoneyContainer">
               {salesBox.length === 0 ? (
                 <DialogContentText
-                  sx={{ color: "white !Important" }}
+                  // sx={{ color: "white !Important" }}
                   className="featuredMoney"
                 >
                   0
                 </DialogContentText>
               ) : (
                 <DialogContentText
-                  sx={{ color: "white !Important" }}
+                  // sx={{ color: "white !Important" }}
                   className="featuredMoney"
                 >
                   {salesBox.orders.length}
@@ -98,14 +98,14 @@ export default function HomeAdmin() {
             <DialogContent className="featuredMoneyContainer">
               {salesBox.length === 0 || salesBox.sales.length === 0 ? (
                 <DialogContentText
-                  sx={{ color: "white !Important" }}
+                  // sx={{ color: "white !Important" }}
                   className="featuredMoney"
                 >
                   0
                 </DialogContentText>
               ) : (
                 <DialogContentText
-                  sx={{ color: "white !Important" }}
+                  // sx={{ color: "white !Important" }}
                   className="featuredMoney"
                 >
                   {salesBox.sales[0].total}
