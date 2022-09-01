@@ -22,8 +22,7 @@ export const ColorContextProvider = ({ children }) => {
 
   const theme = createTheme({
     palette: {
-      mode: mode,
-
+      // mode: mode,
       mode,
       ...(mode === "light"
         ? {
