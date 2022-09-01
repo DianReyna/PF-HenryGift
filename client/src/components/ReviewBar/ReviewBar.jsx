@@ -1,7 +1,4 @@
 import React, { useEffect } from "react";
-import Rating from "@mui/material/Rating";
-import Reviews from "../Reviews/Reviews";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { detailBox } from "../../redux/actions/boxesActions";
 import { getReviews } from "../../redux/actions/reviewsActions";
@@ -32,9 +29,6 @@ export default function ReviewBar({ id }) {
 Average between ${ratingStart} opinions`}
           sx={{ marginLeft: 2 }}
         />
-      </ListItem>
-      <ListItem disablePadding>
-        <Reviews id={id} />
       </ListItem>
     </List>
   );

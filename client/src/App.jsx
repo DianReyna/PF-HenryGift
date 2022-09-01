@@ -5,7 +5,7 @@ import Register from "./components/Auth/Register/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
 import Home from "./components/Home/Home";
-import BoxDetail from "./components/BoxDetail/BoxDetail";
+import BoxDetail from "./components/BoxDetail/BoxDetail.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
