@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Grid, Button, Link, TextField, Paper, Typography } from "@mui/material";
+import { Grid, Button, Link, TextField, Paper, Typography, CardMedia } from "@mui/material";
 import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
 import { getBox } from "../../redux/actions/boxesActions";
@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { boxSizing, padding } from "@mui/system";
+import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
+
+
 export default function RedeemCoupon() {
   const navigate = useNavigate();
   const { user } = useParams();
@@ -42,16 +45,9 @@ export default function RedeemCoupon() {
 
   return (
     <div>
-      <Button 
-       variant="Abrir mi Box" href="/userprofile"  >
-        Back
-      </Button>
 
-      <Paper
-        sx={{
-          p: 3                  
-        }}
-      >
+         <Button variant="text"  href="/userprofile"   >
+     <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }}/> Back </Button>
         <Typography fontSize={28}
           item container
           padding={3}
@@ -61,6 +57,7 @@ export default function RedeemCoupon() {
           gutterBottom>
           Do you have a gift?
         </Typography>
+
         <Typography fontSize={20}
           item container
           xs={12}
@@ -97,7 +94,8 @@ export default function RedeemCoupon() {
           </Grid>
           <GiftCards />
         </Grid>
-      </Paper>
+      {/* </Paper> */}
+     
     </div>
   );
 }

@@ -10,7 +10,8 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText, 
-  DialogTitle
+  DialogTitle, 
+  Stack,
 } from "@mui/material";
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 
@@ -83,17 +84,25 @@ export default function UserProfileEdit() {
   };
 
     return (
-        <Paper 
-        sx={{
-            p: 3,
-        }} 
-        >  
+
+      <>
+      
+        <Button variant="text"  href="/userprofile"   >
+     <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }}/> Back </Button>
+     
     <Grid container spacing={2} component="form"  
     sx={{mt: 3, justifyContent: 'Center'}}
     >
-         <Button variant="Abrir mi Box"  href="/userprofile" color='black'>
-      <KeyboardBackspaceOutlinedIcon/> Back </Button>
-        <Grid item container xs={12} ms={6} spacing={2}>
+        <Grid item container xs={4} ms={8} spacing={4}>
+      <Stack
+      component="form"
+      sx={{
+        width: '250ch',
+      }}
+      spacing={2}
+      noValidate
+      autoComplete="off"
+    >
             <Grid item xs={12}>
                 <TextField
                 name="first_name"
@@ -129,17 +138,17 @@ export default function UserProfileEdit() {
             </Grid>  
                 <Grid item xs={12}>
                 <TextField
-                name="dateBirth"
+                id="date"
+                lebel="Date Birth"
                 fullWidth
-                label=""
                 type="date"
                 value={dateBirth}
-                onChange={(e) => setdateBirth(e.target.value)}
-                autoFocus
+                onChange={(e) => setdateBirth(e.target.value)}               
+                renderInputs={(params)=> <TextField{...params}/>}
                 />
             </Grid>  
                <div>
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="contained" onClick={handleClickOpen}>
                 Save changes
                 </Button>
                 <Dialog
@@ -147,7 +156,7 @@ export default function UserProfileEdit() {
                   onClose={handleClose}
                   aria-labelledby="alert-dialog-title"
                   aria-describedby="alert-dialog-description"
-                >
+                  >
                   <DialogTitle id="alert-dialog-title">
                   </DialogTitle>
                   <DialogContent>
@@ -157,15 +166,17 @@ export default function UserProfileEdit() {
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit} autoFocus>
+                    <Button variant="contained" onClick={handleSubmit} autoFocus
+                    style={{justifyContent: 'center'}}>
                       Ok
                     </Button>
                   </DialogActions>
                 </Dialog>
               </div>            
+                  </Stack>
             </Grid>
         </Grid>
-       </Paper>        
+      </>   
     );
 }
 

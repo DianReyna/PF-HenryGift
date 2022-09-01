@@ -30,6 +30,14 @@ const DetailBox = styled.div`
 const ImageDetailBox = styled.div``;
 const InfoDetailBox = styled.div``;
 
+const GroupFeats = styled.div`
+  /* background-color: lightblue; */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5rem;
+`;
+
 const Imagen = styled.img`
   border: 1px solid black;
   border-radius: 0.5rem;
