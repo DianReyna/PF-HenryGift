@@ -10,8 +10,13 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import RedeemOutlinedIcon from "@mui/icons-material/RedeemOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 
+
 const Container = styled.div`
   padding: 2rem 3rem;
+`;
+
+const Icon = styled.div`
+fill="#000000"
 `;
 
 const Grid = styled.div`
@@ -69,19 +74,18 @@ export default function ProfilePanel() {
 
   return (
     <div>
+       
       <ButtonGroup
-        variant="contained"
-        aria-label="outlined primary button group"
-      >
-        <Button variant="Editar" href="/editprofile">
-          <ModeEditIcon />
-          Edit
+        variant="contained">
+        <Button variant="Editar" href="/editprofile">        
+          <ModeEditIcon sx={{ fill: "grey" }}/>
+          Edit     
         </Button>
         <Button variant="Abrir mi Box" href="codebox">
-          <RedeemOutlinedIcon /> Open Box
+          <RedeemOutlinedIcon sx={{ fill: "grey" }}/> Open Box
         </Button>
         <Button variant="Editar" href="/orderhistory">
-          <HistoryOutlinedIcon /> History
+          <HistoryOutlinedIcon sx={{ fill: "grey" }}/> History
         </Button>
         <DeleteUserAccount />
       </ButtonGroup>
@@ -131,7 +135,7 @@ export default function ProfilePanel() {
           </Table>
           <CardsProducts>
             <Grid>
-              <Typography variant="h5" component="div" gutterBottom>
+              <Typography variant="h4" component="div" gutterBottom>
                 My Boxes
               </Typography>
               <GiftCards />
