@@ -15,6 +15,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import PlaceIcon from "@mui/icons-material/Place";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { URL } from "../../../utils/index";
 
 const DetailProduct = styled.div`
   display: grid;
@@ -57,8 +58,6 @@ export default function ProductDetail() {
       }
     });
   };
-  const URL = " https://henrygift-api.herokuapp.com";
-  // const URL = "http://localhost:3001";
 
   const sendProductPicked = async (userId, productId) => {
     try {

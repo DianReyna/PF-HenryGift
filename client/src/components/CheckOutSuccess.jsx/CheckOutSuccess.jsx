@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { clearCart, getTotals } from "../../redux/reducer/cartSlice";
+import { URL } from "../../utils/index";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,6 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     async function sendCode() {
-      // const URL = "http://localhost:3001";
-      const URL = "https://henrygift-api.herokuapp.com";
       await axios.post(`${URL}/orders/sendcode`, {
         userId: user._id,
       });

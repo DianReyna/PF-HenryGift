@@ -8,6 +8,7 @@ import { TextField, Button } from "@mui/material";
 import PayButton from "../PayButton/PayButton";
 import PersonIcon from "@mui/icons-material/Person";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
+import { URL } from "../../utils/index";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
@@ -36,8 +37,6 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
-      const URL = " https://henrygift-api.herokuapp.com";
-      // const URL = "http://localhost:3001";
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,

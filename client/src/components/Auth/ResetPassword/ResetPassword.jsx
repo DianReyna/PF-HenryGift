@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Box, TextField, Typography } from "@mui/material";
 import styled from "styled-components";
-// const URL = "http://localhost:3001";
-const URL = "https://henrygift-api.herokuapp.com";
+import { URL } from "../../../utils/index";
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;

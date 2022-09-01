@@ -1,8 +1,8 @@
 import axios from "axios";
 import { setCategory, setPerson, clean } from "../reducer/filtersSlice";
 import { getAllBoxes } from "../reducer/boxesSlice";
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+
+import { URL } from "../../utils/index";
 
 export const filterCategory = (category) => (dispatch) => {
   dispatch(setCategory(category));

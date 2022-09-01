@@ -5,8 +5,7 @@ import {
   deleteCategory,
 } from "../reducer/categorySlice";
 
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+import { URL } from "../../utils/index";
 
 export const getCategory = () => (dispatch) => {
   axios(` ${URL}/categories`)
