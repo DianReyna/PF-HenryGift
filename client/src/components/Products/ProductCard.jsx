@@ -20,8 +20,7 @@ const SupCardProduct = styled.div`
   border-radius: 3px;
   /* border: 1px solid black; */
 `;
-const imgDefault =
-  "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
+const imgDefault = "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
 
 export default function ProductCard({
   id,
