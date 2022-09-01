@@ -29,10 +29,11 @@ export const ColorContextProvider = ({ children }) => {
             // palette values for light mode
             primary: {
               main: orange[900],
+
               contrastText: "#fff",
             },
             secondary: {
-              main: deepOrange[900],
+              main: "#ffb300",
             },
             divider: grey[900],
             text: {
@@ -47,7 +48,7 @@ export const ColorContextProvider = ({ children }) => {
               contrastText: "rgba(0,0,0,0.87)",
             },
             secondary: {
-              main: deepOrange[900],
+              main: "#ffb300",
             },
             divider: grey[50],
             background: {
