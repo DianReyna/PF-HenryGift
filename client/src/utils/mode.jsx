@@ -22,28 +22,30 @@ export const ColorContextProvider = ({ children }) => {
 
   const theme = createTheme({
     palette: {
+      mode: mode,
+
       mode,
       ...(mode === "light"
         ? {
             // palette values for light mode
             primary: {
               main: orange[900],
+              contrastText: "#fff",
+            },
+            secondary: {
+              main: "#f48fb1",
             },
             divider: deepOrange[200],
             text: {
               primary: grey[900],
-              secondary: grey[900],
-            },
-            icon: {
-              primary: {
-                main: grey[900],
-              },
+              secondary: deepOrange[900],
             },
           }
         : {
             // palette values for dark mode
             primary: {
               main: deepOrange[600],
+              contrastText: "rgba(0,0,0,0.87)",
             },
             divider: grey[700],
             background: {
@@ -52,7 +54,7 @@ export const ColorContextProvider = ({ children }) => {
             },
             text: {
               primary: "#fff",
-              secondary: "#fff",
+              secondary: deepOrange[900],
             },
           }),
     },
