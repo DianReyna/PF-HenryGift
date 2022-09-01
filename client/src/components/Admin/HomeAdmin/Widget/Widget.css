@@ -1,0 +1,53 @@
+.widget {
+  display: flex;
+  justify-content: space-evenly;
+  width: 30%;
+  margin-left: 2rem;
+  padding: 10px;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  border-radius: 10px;
+  height: 100px;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.counter {
+  font-size: 38px;
+  font-weight: 400;
+}
+
+.percentage {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+
+  /* &.positive {
+        color: green;
+      }
+      &.negative {
+        color: red;
+      } */
+}
+
+.icon {
+  font-size: 20px !important;
+  align-self: flex-end;
+}
+
+@media screen and (max-width: 600px) and (min-width: 1px) {
+  .widget {
+    width: 100%;
+    border-radius: 9px;
+    height: 109px;
+  }
+}

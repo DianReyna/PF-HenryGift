@@ -52,6 +52,7 @@ export default function CategoryList() {
         rowsPerPageOptions={[4]}
         checkboxSelection
         disableSelectionOnClick
+        color="divider"
       />
     </div>
   );

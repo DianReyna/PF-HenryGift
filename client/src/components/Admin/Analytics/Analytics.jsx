@@ -56,6 +56,7 @@ export default function Analytics() {
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
+            color="divider"
           />
         </div>
       )}

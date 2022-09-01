@@ -40,11 +40,11 @@
 
 .sidebarIcon {
   margin-right: 5px;
-  font-size: 20px !important;
+  font-size: 22px !important;
 }
 .content {
   margin-left: 30px;
-  padding: 2rem 3rem;
+  padding: 0.3rem 3rem;
   width: 100%;
   /* box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.67);
   -webkit-box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.67);

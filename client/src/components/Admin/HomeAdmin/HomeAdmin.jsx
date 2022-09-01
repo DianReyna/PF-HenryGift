@@ -3,25 +3,15 @@ import "./HomeAdmin.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersAdmin } from "../../../redux/actions/userActions";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import ReceiptIcon from "@mui/icons-material/Receipt";
-import {
-  Avatar,
-  Box,
-  Container,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Grid,
-} from "@mui/material";
-import BestBoxes from "../BestBoxes/BestBoxes";
-import UserBuy from "../UserBuy/UserBuy";
 import {
   getBestBoxes,
   getSalesBox,
   getUsersBuy,
 } from "../../../redux/actions/adminAction";
+import BestBoxes from "../BestBoxes/BestBoxes";
+import Widget from "./Widget/Widget";
+import UserBuy from "../UserBuy/UserBuy";
+import { Box } from "@mui/material";
 
 export default function HomeAdmin() {
   const dispatch = useDispatch();
@@ -37,96 +27,62 @@ export default function HomeAdmin() {
     dispatch(getUsersAdmin());
   }, [dispatch]);
 
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
+
   return (
     <Box className="containerAdmin">
-      <Grid
-        sx={{ flexGrow: 1 }}
-        container
-        spacing={1}
-        className="containerHeader"
-      >
-        <Grid item xs>
-          <Container className="featuredbox">
-            <DialogTitle className="featuredTitle">
-              Users <PeopleAltIcon />
-            </DialogTitle>
-            <DialogContent className="featuredMoneyContainer">
-              <DialogContentText
-                // sx={{ color: "white !Important" }}
-                className="featuredMoney"
-              >
-                {itemsUser.users.length}
-              </DialogContentText>
-              <DialogContentText className="featuredMoneyRate">
-                Registered
-              </DialogContentText>
-            </DialogContent>
-          </Container>
-        </Grid>
-        <Grid item xs>
-          <Container className="featuredbox">
-            <DialogTitle className="featuredTitle">
-              Orders <ReceiptIcon />
-            </DialogTitle>
-            <DialogContent className="featuredMoneyContainer">
-              {salesBox.length === 0 ? (
-                <DialogContentText
-                  // sx={{ color: "white !Important" }}
-                  className="featuredMoney"
-                >
-                  0
-                </DialogContentText>
-              ) : (
-                <DialogContentText
-                  // sx={{ color: "white !Important" }}
-                  className="featuredMoney"
-                >
-                  {salesBox.orders.length}
-                </DialogContentText>
-              )}
-              <DialogContentText className="featuredMoneyRate">
-                Total
-              </DialogContentText>
-            </DialogContent>
-          </Container>
-        </Grid>
-        <Grid item xs>
-          <Container className="featuredbox">
-            <DialogTitle className="featuredTitle">
-              Sales <AttachMoneyIcon />
-            </DialogTitle>
-            <DialogContent className="featuredMoneyContainer">
-              {salesBox.length === 0 || salesBox.sales.length === 0 ? (
-                <DialogContentText
-                  // sx={{ color: "white !Important" }}
-                  className="featuredMoney"
-                >
-                  0
-                </DialogContentText>
-              ) : (
-                <DialogContentText
-                  // sx={{ color: "white !Important" }}
-                  className="featuredMoney"
-                >
-                  {salesBox.sales[0].total}
-                </DialogContentText>
-              )}
-              <DialogContentText className="featuredMoneyRate">
-                Total
-              </DialogContentText>
-            </DialogContent>
-          </Container>
-        </Grid>
-      </Grid>
-
-      <Box display="grid" gridTemplateColumns="repeat(16, 1fr)" gap={5}>
-        <Box gridColumn="span 11" className="dataUserBuy">
-          <UserBuy props={usersBuy} />
+      <div className="box">
+        <Widget
+          name={"Users"}
+          amount={itemsUser.users.length}
+          porcentaje={20}
+          icon={"person"}
+        />
+        {salesBox.length === 0 ? (
+          <Widget name={"Orders"} amount={0} porcentaje={0} icon={"order"} />
+        ) : (
+          <Widget
+            name={"Orders"}
+            amount={salesBox.orders.length}
+            porcentaje={20}
+            icon={"order"}
+          />
+        )}
+        {salesBox.length === 0 || salesBox.sales.length === 0 ? (
+          <Widget name={"Sales"} amount={0} porcentaje={0} icon={"money"} />
+        ) : (
+          <Widget
+            name={"Sales"}
+            amount={formatter.format(salesBox.sales[0].total)}
+            porcentaje={20}
+            icon={"money"}
+          />
+        )}
+      </div>
+      <div className="containerGrid">
+        <Box display="grid" gridTemplateColumns="repeat(16, 1fr)" gap={5}>
+          <Box gridColumn="span 11" className="dataUserBuy">
+            <UserBuy props={usersBuy} />
+          </Box>
+          <Box gridColumn="span 5">
+            <BestBoxes props={bestBoxes} />
+          </Box>
         </Box>
-        <Box gridColumn="span 5">
-          <BestBoxes props={bestBoxes} />
+      </div>
+      <div className="containerGridMobile">
+        <Box display="grid" gridTemplateColumns="repeat( 1fr, 2)" gap={6}>
+          <Box gridColumn="span 1" className="dataUserBuy">
+            <UserBuy props={usersBuy} />
+          </Box>
+          <Box gridColumn="span 1">
+            <BestBoxes props={bestBoxes} />
+          </Box>
         </Box>
-      </Box>
+      </div>
     </Box>
   );
 }
