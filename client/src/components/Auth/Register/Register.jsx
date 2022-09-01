@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useNavigate  } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { Google, Facebook, TonalitySharp } from "@mui/icons-material";
 import Spinner from "../spinner";
 import {register,reset} from "../../../redux/reducer/authSlice";
@@ -254,13 +254,9 @@ export default function Register() {
             <Typography variant="h7">
               Do you have an account Henry-Gift?
             </Typography>
-            <Button>
-              <Link
-                to="/login"
-                style={{ textDecoration: "none", color:"#e16428" }}
-              >
-                Login
-              </Link>
+            <Button variant="text" onClick={()=>{ navigate('/login')
+          window.scroll(0, 0);}}>
+              Login
             </Button>
           </CardContent>
         </Card>

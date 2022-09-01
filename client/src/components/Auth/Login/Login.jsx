@@ -147,7 +147,7 @@ export default function Login() {
           />
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>
-        <Typography variant="h7" ><Link to="/login/forgot-password" style={{ textDecoration: 'none',color:"#e16428" }}>Forgot password?</Link></Typography>
+        <Typography variant="h7" ><Link to="/login/forgot-password" style={{ textDecoration: 'none',color:"#BF360C" }}>Forgot password?</Link></Typography>
         <Button sx={{ m: 1,width: '40ch' }} type="submit" variant="contained">
         {/* {auth.loginStatus === "pending" ? "Submitting..." : "Login"} */}
         Login
@@ -155,7 +155,8 @@ export default function Login() {
         <Box>
         {/* {auth.loginStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.loginError}</Typography>) : null} */}
         <Typography sx={{ m: 1 }} variant="h7" >Do not you have an account yet?</Typography>
-        <Button sx={{ m: 1 }} ><Link to="/register" style={{ textDecoration: 'none',color:"#e16428" }} >Sign up</Link></Button>
+        <Button sx={{ m: 1 }}  onClick={()=>{ navigate('/register')
+          window.scroll(0, 0);}}>Sign Up</Button>
         </Box>
           </Form>
         </Box>

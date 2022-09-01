@@ -1,13 +1,14 @@
-import React , {useState} from "react";
-import { useNavigate,Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Box,Grid, Button , Typography } from "@mui/material";
 import imgOne from "../../assets/personThinking.jpg";
 import imgTwo from "../../assets/shopping.jpg";
 
 export default function HowDoesItWork() {
-  const navigate=useNavigate();
+ const navigate=useNavigate();
  const  openGift=()=>{
-  navigate('/login')
+  navigate('/codeBox')
+  window.scroll(0, 0);
  }
   return (
     <>
@@ -21,15 +22,7 @@ export default function HowDoesItWork() {
      <Box >
      <Typography variant="h3" component="h2" sx={{ fontSize: 25, m: 2 }}>
         Discover Henry-Gift
-        <Button variant="outlined" sx={{
-        ':hover': {
-         borderColor:"#e16428",
-         bgcolor: '#e16428', 
-         color: 'white'},
-         color:"#e16428",
-          m: 1,
-          backgroundColor: "white",
-          borderColor:"#e16428"}}   onClick={openGift}>Open my gift</Button>
+        <Button sx={{m: 1 }} variant="outlined"   onClick={openGift}>Open my gift</Button>
       </Typography>
       <Typography variant="h3" component={"p"} sx={{ fontSize: 15, m: 1 }}>
         Henry-Gift is a different way of experiencing unique emotions and
@@ -86,24 +79,21 @@ export default function HowDoesItWork() {
       display="flex"
       alignItems="center"
       justifyContent={"center"}
-      backgroundColor="#e16428"
+      backgroundColor="#BF360C"
       width={"100%"}>
-       <Typography variant="h3" component="h2" sx={{ fontSize: 25, m: 2 ,color:"white"}}>
+       <Typography variant="h3" component="h2" sx={{ fontSize: 25, m: 2 }}>
        Do you still have doubts?
       </Typography> 
-      <Button sx={{
-        ':hover': {
-         bgcolor: '#e16428', 
-         color: 'white'},
-          m: 1,
-          backgroundColor: "white",
-          borderColor:"#e16428"}}  
-          variant="contained" 
-          size="large">
-         <Link to="/frequent-questions" style={{ textDecoration: 'none',color:"black" }}>Frequent questions</Link> 
+      <Button 
+          backgroundColor="#BF360C"
+          variant="contained"
+          size="large"
+          onClick={()=>{ navigate('/frequent-questions')
+          window.scroll(0, 0);}}
+          >
+       Frequent questions
         </Button>
       </Box>
-    
     </>
   );
 }
