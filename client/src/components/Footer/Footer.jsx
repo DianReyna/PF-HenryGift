@@ -10,9 +10,14 @@ export const Footer = () => {
     <footer className="footer">
       <div className="containerFooter">
         <div className="containerHenry">
-          <Typography variant="h3" sx={{ marginBottom: 2 }}>
-            HenryGift
-          </Typography>
+          <Link to="/" underline="none" className="enlaces">
+            <Typography
+              variant="h3"
+              sx={{ color: "white !Important", marginBottom: 2 }}
+            >
+              HenryGift
+            </Typography>
+          </Link>
           <a
             className="enalces"
             href="https://github.com/DianReyna/PF-HenryGift"
