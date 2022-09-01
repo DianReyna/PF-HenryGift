@@ -195,15 +195,6 @@ const ResponsiveAppBar = () => {
             />
           </Search> */}
           {/* //Login and LogOut */}
-          {user ? (
-            <Button onClick={onLogout}>Logout</Button>
-          ) : (
-            <Button variant="text">
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                Login
-              </Link>
-            </Button>
-          )}
           <Link to="/cart">
             <div className={styles.navBag}>
               <CardGiftcardIcon />
@@ -239,7 +230,7 @@ const ResponsiveAppBar = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            >
+              >
               {settings.map((setting) => (
                 <NavLink to={`/${setting.route}`} className={styles.navlink}>
                   <MenuItem key={setting.txt} onClick={handleCloseUserMenu}>
@@ -247,6 +238,19 @@ const ResponsiveAppBar = () => {
                   </MenuItem>
                 </NavLink>
               ))}
+              {user ? (
+                <NavLink to={`/login`} className={styles.navlink}>
+                    <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
+                      <Typography onClick={onLogout} textAlign="center">Logout</Typography>
+                    </MenuItem>
+                </NavLink>
+              ) : (
+                  <NavLink to={`/login`} className={styles.navlink}>
+                    <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">Login</Typography>
+                    </MenuItem>
+                  </NavLink>
+              )}
             </Menu>
           </Box>
         </Toolbar>
