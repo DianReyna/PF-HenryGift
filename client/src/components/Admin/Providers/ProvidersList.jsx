@@ -107,6 +107,7 @@ export default function ProvidersList() {
         rowsPerPageOptions={[10]}
         checkboxSelection
         disableSelectionOnClick
+        color="divider"
       />
     </div>
   );

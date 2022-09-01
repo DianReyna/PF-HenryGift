@@ -1,33 +1,50 @@
-import React from 'react'
-import './Footer.css'
+import React from "react";
+import "./Footer.css";
 import { Link } from "react-router-dom";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import { Divider, Grid, Typography } from "@mui/material";
 
 export const Footer = () => {
-    return (
-        <footer className='footer'>
-            <div className="containerFooter">
-                <div className="columnFooter">
-                    <div className="informationFooter">
-                        <p>Email: giftsupport@gift.com</p>
-                        <p>dir: giftsupport@gift.com</p>
-                        <p>tel: 123456789</p>
-                        <p>cel: 1234567889</p>
-                    </div>
-                </div>
-                <div className="columnFooter">
-                    <div className="redes">
-                        <Link  to ='https://www.facebook.com/' className='enlaces'> <FacebookIcon/> </Link>
-                        <Link  to ='https://twitter.com/?lang=es' className='enlaces'> <InstagramIcon/> </Link>
-                        <Link  to ='https://www.instagram.com/' className='enlaces'> <TwitterIcon/> </Link>
-                    </div>
-                </div>
-                
-            </div>
-        </footer>
-    )
-}
+  return (
+    <footer className="footer">
+      <div className="containerFooter">
+        <div className="containerHenry">
+          <Typography variant="h3" sx={{ marginBottom: 2 }}>
+            HenryGift
+          </Typography>
+          <a
+            className="enalces"
+            href="https://github.com/DianReyna/PF-HenryGift"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubIcon sx={{ color: "white !Important", fontSize: 30 }} />
+          </a>
+        </div>
+        <div className="containerCreators">
+          <Link to="/about" className="enlaces">
+            <Typography variant="h6" sx={{ color: "white !Important" }}>
+              About us
+            </Typography>
+          </Link>
 
-export default Footer
+          <Link to="/codebox" className="enlaces">
+            <Typography variant="h6" sx={{ color: "white !Important" }}>
+              Open my gift
+            </Typography>
+          </Link>
+        </div>
+      </div>
+      <div className="containerCopyright">
+        <Typography variant="subtitle1">
+          Made with <FavoriteIcon color="primary" sx={{ fontSize: 15 }} /> by
+          Henry students
+        </Typography>
+        <Typography variant="body1">HenryGift 2022 ©Copyright</Typography>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

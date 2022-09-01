@@ -43,6 +43,7 @@ import Favs from "./components/Favs/Favs";
 import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
 import Analitics from "./components/Admin/Analytics/Analytics";
+import About from "./components/About/About";
 
 const ContainerApp = styled.div`
   min-height: 70vh;
@@ -65,6 +66,7 @@ function App() {
       <NavBar />
       <ContainerApp>
         <Routes>
+          <Route path="/about" element={<About />} />
           <Route path="/how-does-it-work" element={<HowDoesItWork />} />
           <Route path="/frequent-questions" element={<FrequentQuestions />} />
           <Route path="/login" element={<Login />} />

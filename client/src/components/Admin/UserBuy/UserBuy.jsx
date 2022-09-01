@@ -50,6 +50,7 @@ export default function UserBuy({ props }) {
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
+            color="divider"
           />
         </div>
       )}

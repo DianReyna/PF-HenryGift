@@ -146,6 +146,7 @@ export default function BoxesList() {
             rowsPerPageOptions={[10]}
             checkboxSelection
             disableSelectionOnClick
+            color="divider"
           />
         </div>
       )}
