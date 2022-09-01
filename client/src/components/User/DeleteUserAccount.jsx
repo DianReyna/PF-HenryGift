@@ -55,7 +55,8 @@ function DeleteUserAccount() {
 
     <div>        
         <Button variant="outlined" onClick={handleClickOpen}>
-        <DeleteIcon />
+        <DeleteIcon sx={{ fill: "grey" }}
+         />
         Delete account
         </Button>
 

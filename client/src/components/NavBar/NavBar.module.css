@@ -25,6 +25,7 @@
 
 .searchbar {
 	margin-right: 20px;
+	border: 1px solid orangered
 }
 
 .bagQuantity {

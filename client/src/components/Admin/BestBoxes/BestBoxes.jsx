@@ -1,6 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   Avatar,
   Grid,
@@ -11,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+
 export default function BestBoxes({ props }) {
   const newList = props.slice(0, 4);
 
@@ -27,12 +26,15 @@ export default function BestBoxes({ props }) {
                 return (
                   <ListItem key={index}>
                     <ListItemAvatar>
-                      <Avatar src={item.image} alt="box image" />
+                      <Avatar
+                        src={item.image && item.image.url}
+                        alt="box image"
+                      />
                     </ListItemAvatar>
                     <ListItemText
                       primary={item.name}
                       secondary={
-                        <Typography style={{ color: "white", fontSize: 13 }}>
+                        <Typography style={{ fontSize: 13 }}>
                           <StarIcon sx={{ fontSize: 13 }} /> {item.ranking}
                         </Typography>
                       }

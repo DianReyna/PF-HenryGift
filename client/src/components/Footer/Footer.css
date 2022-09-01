@@ -1,33 +1,51 @@
-.footer{
-    background-color: black;
-    border-top: 1px solid #e7e7e7;
-    /* position: fixed;
-    bottom: 0; */
-    /* width: 100%;
-    height: 100px;  
-    border-bottom: 1px solid white; */
+.footer {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.containerFooter {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  color: white;
+  margin-top: 0.5rem;
+}
+.containerCopyright {
+  align-items: center;
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+.containerHenry {
+  margin-top: 1rem;
+  text-align: center;
+}
 
+.containerCreators {
+  text-align: center;
 }
-.containerFooter{
+
+.enlaces {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) and (min-width: 1px) {
+  .footer {
+    width: 100%;
+    height: 30rem;
+  }
+  .containerFooter {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    color: white;
-    padding: 1rem 2rem;
-}
-.informationFooter{
-    color: white;
-}
-.columnFooter{
-    align-items: center;
-}
-.redes{
-    display: flex;
-    font-size: 4rem;
-    justify-content: space-between;
-    gap: 2rem;
-}
-.enlaces{
-    text-decoration: none;
+  }
+  .containerCreators {
+    margin-top: 2rem;
+  }
+  .containerCopyright {
+    margin-top: 2rem;
+  }
 }

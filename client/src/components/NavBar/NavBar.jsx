@@ -31,11 +31,20 @@ import styles from "./NavBar.module.css";
 import { queryName } from "../../redux/actions/queryActions";
 import { logout, reset } from "../../redux/reducer/authSlice";
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined";
+import { useContext } from "react";
+import { ColorModeContext } from "../../utils/mode";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import PersonIcon from "@mui/icons-material/Person";
 
-const pages = ["Home"];
-const settings = ["Admin"];
+const settings = [
+  { txt: "Admin", route: "admin" },
+  { txt: "Profile", route: "userprofile" },
+];
 
 const ResponsiveAppBar = () => {
+  const { mode, toggleMode } = useContext(ColorModeContext);
+
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -60,7 +69,6 @@ const ResponsiveAppBar = () => {
     justifyContent: "center",
   }));
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
@@ -124,38 +132,40 @@ const ResponsiveAppBar = () => {
     <AppBar
       position="static"
       sx={{
-        background: "#E16428",
+        // background: "#E16428",
         boxShadow: "0",
-        borderBottom: "1px solid #e0e0e0",
+        // borderBottom: "1px solid #e0e0e0",
         marginBottom: "2.5rem",
+        background: "primary.main",
       }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-              // background: 'red'
-            }}
-          >
-            Henry-Gift
-          </Typography>
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Typography
+              variant="h5"
+              // noWrap
+              // component="a"
+              color="text.primary"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontWeight: 700,
+
+                // letterSpacing: ".3rem",
+                textDecoration: "none",
+              }}
+            >
+              HenryGift
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, i) => (
+            {/* {pages.map((page, i) => (
               <NavLink to={"/"} className={styles.navlink} key={i}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, display: "block" }}
                 >
                   {page}
                 </Button>
@@ -164,7 +174,7 @@ const ResponsiveAppBar = () => {
             <NavLink to={"/userprofile"} className={styles.navlink}>
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, display: "block" }}
               >
                 {"Profile"}
               </Button>
@@ -173,14 +183,14 @@ const ResponsiveAppBar = () => {
               <NavLink to={"/admin"} className={styles.navlink}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, display: "block" }}
                 >
                   {"Admin"}
                 </Button>
               </NavLink>
-            ) : null}
+            ) : null} */}
           </Box>
-          <Search className={styles.searchbar} onChange={handleInputChange}>
+          {/*   <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -188,39 +198,43 @@ const ResponsiveAppBar = () => {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
-
+          </Search> */}
           {/* //Login and LogOut */}
-          {user ? (
-            <Button sx={{ color: "white" }} onClick={onLogout}>
-              Logout
-            </Button>
-          ) : (
-            <Button variant="text">
-              <Link
-                to="/login"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                Login
-              </Link>
-            </Button>
-          )}
-
-
           <Link to="/cart">
             <div className={styles.navBag}>
-              <CardGiftcardIcon />
+              <Typography color="text.primary">
+                <CardGiftcardIcon />
+              </Typography>
               <span className={styles.bagQuantity}>
                 <span>{cartTotalQuantity}</span>
               </span>
             </div>
           </Link>
-
           <Link to="/favs">
-            <FavoriteOutlined sx={{ marginLeft: '0.5rem' }} />
+            <Typography color="text.primary">
+              <FavoriteOutlined sx={{ marginLeft: "0.5rem" }} />
+            </Typography>
           </Link>
-
+          <IconButton sx={{ ml: 1 }} onClick={toggleMode}>
+            {mode === "dark" ? (
+              <Typography color="text.primary">
+                <Brightness7Icon />
+              </Typography>
+            ) : (
+              <Typography color="text.primary">
+                <Brightness4Icon />
+              </Typography>
+            )}
+          </IconButton>
           <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar color="text.primary">
+                  {" "}
+                  <PersonIcon />
+                </Avatar>
+              </IconButton>
+            </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -237,13 +251,40 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting, i) => (
-                <NavLink to={"/admin"} className={styles.navlink} key={i}>
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+              {settings.map((setting, index) => (
+                <NavLink
+                  to={`/${setting.route}`}
+                  key={index}
+                  className={styles.navlink}
+                >
+                  <MenuItem key={setting.txt} onClick={handleCloseUserMenu}>
+                    <Typography color="text.primary" textAlign="center">
+                      {setting.txt}
+                    </Typography>
                   </MenuItem>
                 </NavLink>
               ))}
+              {user ? (
+                <NavLink to={`/login`} className={styles.navlink}>
+                  <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
+                    <Typography
+                      color="text.primary"
+                      onClick={onLogout}
+                      textAlign="center"
+                    >
+                      Logout
+                    </Typography>
+                  </MenuItem>
+                </NavLink>
+              ) : (
+                <NavLink to={`/login`} className={styles.navlink}>
+                  <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
+                    <Typography color="text.primary" textAlign="center">
+                      Login
+                    </Typography>
+                  </MenuItem>
+                </NavLink>
+              )}
             </Menu>
           </Box>
         </Toolbar>

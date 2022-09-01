@@ -72,7 +72,6 @@ export default function DialogFormProduct({ nameProd }) {
           sx={{
             fontSize: 25,
             color: "#545454",
-            fontFamily: "arial",
             textAlign: "center",
           }}
           id="alert-dialog-title"

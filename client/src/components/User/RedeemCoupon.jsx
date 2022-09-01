@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Grid, Button, Link, TextField, Paper } from "@mui/material";
+import { Grid, Button, Link, TextField, Paper, Typography, Card, CardMedia } from "@mui/material";
 import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
 import { getBox } from "../../redux/actions/boxesActions";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { boxSizing, padding } from "@mui/system";
+import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
+import Redeem2 from "../../assets/Redeem2.png";
+
+
 export default function RedeemCoupon() {
   const navigate = useNavigate();
   const { user } = useParams();
@@ -24,8 +29,8 @@ export default function RedeemCoupon() {
   function handleSubmit(e) {
     e.preventDefault();
     //navigate('/userprofile')
-    const URL = " https://henrygift-api.herokuapp.com";
-    // const URL = "http://localhost:3001";
+    // const URL = " https://henrygift-api.herokuapp.com";
+    const URL = "http://localhost:3001";
     axios
       .post(`${URL}/redeem`, { code: code })
       .then((res) =>
@@ -40,42 +45,73 @@ export default function RedeemCoupon() {
   }, [dispatch]);
 
   return (
-    <Paper
-      sx={{
-        p: 3,
-      }}
-    >
-      <Button variant="Abrir mi Box" href="/userprofile">
-        Back
-      </Button>
-      <Grid
-        item
-        container
-        xs={12}
-        ms={6}
-        spacing={2}
-        sx={{ justifyContent: "Center" }}
-      >
-        <Grid item xs={4}>
-          <TextField
-            name="code"
-            fullWidth
-            label="Codigo"
-            placeholder="Ingrese codigo de canje..."
-            type="text"
-            value={code}
-            onChange={(e) => handleInputChange(e)}
-            autoFocus
-          />
+    <div>
+
+         <Button variant="text"  href="/userprofile"   >
+     <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }}/> 
+     Back </Button>
+
+     
+        <Typography fontSize={28}
+          item container
+          padding={3}
+          xs={12}
+          ms={6}
+          sx={{ textAlign: "Center" }}
+          gutterBottom>
+          Do you have a gift?
+        </Typography>
+
+        {/* <CardMedia
+        sx={{ width: 300,textAlign: "Center" }}
+        item container
+        component="img"      
+       img src={Redeem2} alt="Img not found"    
+       padding={3}
+       xs={12}
+      ms={6}
+      /> */}
+    
+
+        <Typography fontSize={20}
+           item container
+           padding={3}
+           xs={12}
+           ms={6}
+           sx={{ textAlign: "Center" }}
+           gutterBottom>
+          Enter your redemption code
+        </Typography>
+        <Grid
+          item
+          container
+          xs={12}
+          ms={6}
+          spacing={2}
+          sx={{ justifyContent: "Center" }}
+        >
+
+          <Grid item xs={4}>
+            <TextField
+              name="code"
+              fullWidth
+              label="Code gift"
+              placeholder="Enter redemption code..."
+              type="text"
+              value={code}
+              onChange={(e) => handleInputChange(e)}
+              autoFocus
+            />
+          </Grid>
+          <Grid item xs={12} sx={{ m: 5, textAlign: "center" }}>
+            <Button variant="contained" onClick={handleSubmit} type="submit">
+              {" "}
+              OPEN BOX{" "}
+            </Button>
+          </Grid>
+          <GiftCards />
         </Grid>
-        <Grid item xs={2} sx={{ m: 5, textAlign: "center" }}>
-          <Button onClick={handleSubmit} type="submit">
-            {" "}
-            OPEN BOX{" "}
-          </Button>
-        </Grid>
-        <GiftCards />
-      </Grid>
-    </Paper>
+      {/* </Paper> */}
+    </div>
   );
 }

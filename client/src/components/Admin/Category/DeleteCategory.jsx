@@ -57,7 +57,6 @@ export default function DeleteCategory({ idCat }) {
           sx={{
             fontSize: 25,
             color: "#545454",
-            fontFamily: "arial",
             textAlign: "center",
           }}
           id="alert-dialog-title"

@@ -13,9 +13,9 @@ export default function Home() {
       <hr />
       <ContainerFilters />
       <hr />
-      <HowDoesItWork/>
-      <hr />
       <BoxCards />
+      <hr />
+      <HowDoesItWork/>
     </div>
   );
 }

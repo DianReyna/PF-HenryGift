@@ -67,7 +67,6 @@ export default function DialogFormBox({ nameBox }) {
           sx={{
             fontSize: 25,
             color: "#545454",
-            fontFamily: "arial",
             textAlign: "center",
           }}
           id="alert-dialog-title"

@@ -133,13 +133,13 @@ export default function UsersList() {
   return (
     <div style={{ height: 450, width: "100%" }}>
       <DataGrid
-        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
         disableSelectionOnClick
+        color="divider"
       />
     </div>
   );

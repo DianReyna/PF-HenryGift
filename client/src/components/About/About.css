@@ -1,0 +1,64 @@
+.containerAbout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.containerContent {
+  width: 80%;
+}
+
+.aboutTitle {
+  text-align: center;
+  margin-top: 8rem;
+  height: 61vh;
+  font-weight: 400 !important;
+}
+
+.containerWho {
+  width: 70%;
+  height: 15rem;
+  margin-left: 5rem;
+}
+
+.containerWhy {
+  width: 70%;
+  height: 15rem;
+  text-align: right;
+  margin-left: 13rem;
+  margin-bottom: 6rem;
+}
+
+.containerTeam {
+  text-align: center;
+}
+
+.containerCartTeam {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) and (min-width: 1px) {
+  .aboutTitle {
+    height: 25vh;
+    margin-top: 1px;
+    font-size: 50px !important;
+  }
+  .containerWho {
+    width: 80%;
+    height: 15rem;
+    margin-left: 3rem;
+    margin-top: 16rem;
+  }
+  .containerWhy {
+    width: 80%;
+    height: 15rem;
+    text-align: left;
+    margin-left: 3rem;
+    margin-top: 10rem;
+    margin-bottom: 19rem;
+  }
+  .img {
+    width: 300px;
+  }
+}

@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import UserReview from "../UserReview/UserReview";
 import { Action } from "../Admin/CommonStyled";
+import { Typography } from "@mui/material";
 
 export default function OrderHistory() {
   const dispatch = useDispatch();
@@ -20,19 +21,16 @@ export default function OrderHistory() {
   }, [dispatch]);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 250 },
     { field: "name", headerName: "Box", width: 150 },
-    { field: "amount", headerName: "Amount (UDS)", width: 150 },
-    { field: "quantity", headerName: "Quantity", width: 150 },
+    { field: "price", headerName: "Price (UDS)", width: 150 },
     { field: "person", headerName: "Persons", width: 150 },
-    { field: "ranking", headerName: "ranking ", width: 150 },
+    { field: "ranking", headerName: "Ranking ", width: 150 },
+    { field: "recipient", headerName: "Recipient ", width: 150 },
     {
       field: "expiration_date",
       headerName: "Expiration date",
       width: 150,
     },
-    { field: "active", headerName: "Active", width: 150 },
-    { field: "is_gift", headerName: "Gift", width: 150 },
     {
       field: "actions",
       headerName: "Actions",
@@ -50,22 +48,26 @@ export default function OrderHistory() {
 
   const rows = orderDetail.map((row) => ({
     id: row.id,
-    id_box: row.OrderDetails[0].Box.id,
-    amount: row.amount,
-    quantity: row.OrderDetails[0].quantity,
-    is_gift: row.OrderDetails[0].is_gift,
-    name: row.OrderDetails[0].Box.name,
-    active: row.OrderDetails[0].Box.active,
-    detail: row.OrderDetails[0].Box.detail,
-    expiration_date: row.OrderDetails[0].Box.expiration_date,
-    person: row.OrderDetails[0].Box.person,
-    ranking: row.OrderDetails[0].Box.ranking,
+    price: row.Box.price,
+    name: row.Box.name,
+    detail: row.Box.detail,
+    expiration_date: row.Box.expiration_date,
+    person: row.Box.person,
+    ranking: row.Box.ranking,
+    recipient: row.recipient
   }));
 
   return (
-    <Box sx={{ height: 400, width: "95%" }}>
+
+
+
+    <Box sx={{ height: 400, width: "60%", marginLeft: 45 }}>
+
+      <Typography variant="h4" gutterBottom>
+        Shopping history
+      </Typography>
       <DataGrid
-        style={{ color: "white", textAlign: "center" }}
+        style={{ textAlign: "center", }}
         rows={rows}
         columns={columns}
         pageSize={5}

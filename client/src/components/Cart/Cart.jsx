@@ -32,8 +32,8 @@ const Cart = () => {
   }, []);
 
   const saveCart = async () => {
-    const URL = " https://henrygift-api.herokuapp.com";
-    // const URL = "http://localhost:3001";
+    // const URL = " https://henrygift-api.herokuapp.com";
+    const URL = "http://localhost:3001";
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
@@ -128,13 +128,13 @@ const Cart = () => {
                 </div>
                 <div className="cart-product-price">${cartItem.price}</div>
                 <div className="cart-product-quantity">
-                  <button onClick={() => handleDecreaseCart(cartItem)}>
+                  <Button sx={{color: 'text.primary'}} onClick={() => handleDecreaseCart(cartItem)}>
                     -
-                  </button>
+                  </Button>
                   <div className="count">{cartItem.cartQuantity}</div>
-                  <button onClick={() => handleIncreaseCart(cartItem)}>
+                  <Button sx={{color: 'text.primary'}} onClick={() => handleIncreaseCart(cartItem)}>
                     +
-                  </button>
+                  </Button>
                 </div>
                 <div className="cart-product-total-price">
                   ${cartItem.cartQuantity * cartItem.price}

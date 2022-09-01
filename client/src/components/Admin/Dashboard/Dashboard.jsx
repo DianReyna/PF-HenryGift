@@ -8,9 +8,174 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import TocIcon from "@mui/icons-material/Toc";
+import { Button, Menu, MenuItem, Typography } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
 export default function Dashboard() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div className="dashboardContainer">
+      <div className="dashboardMenu">
+        <Button
+          id="demo-positioned-button"
+          aria-controls={open ? "demo-positioned-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <MenuIcon sx={{ fontSize: 30 }} />
+        </Button>
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+        >
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <HomeIcon className="sidebarIcon" />
+                Home
+              </Typography>
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin/analytics"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <TocIcon className="sidebarIcon" />
+                Analytics
+              </Typography>
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin/boxes"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <CardGiftcardIcon className="sidebarIcon" />
+                Boxes
+              </Typography>
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin/products"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <InventoryIcon className="sidebarIcon" />
+                Products
+              </Typography>
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin/providers"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <ContactMailIcon className="sidebarIcon" />
+                Providers
+              </Typography>
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin/categories"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <CategoryIcon className="sidebarIcon" />
+                Categories
+              </Typography>
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            id="NavLink"
+            className={({ isActive }) =>
+              isActive ? "link-active" : "link-inactive"
+            }
+            to="/admin/users"
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography
+                className="sidebarListItem"
+                variant="h6"
+                color="text.primary"
+              >
+                <PeopleAltIcon className="sidebarIcon" />
+                Users
+              </Typography>
+            </MenuItem>
+          </NavLink>
+        </Menu>
+      </div>
+
       <div className="sidebar">
         <div className="sidebarWrapper">
           <div className="sidebarMenu">
@@ -21,11 +186,18 @@ export default function Dashboard() {
                 className={({ isActive }) =>
                   isActive ? "link-active" : "link-inactive"
                 }
+                color="inherit"
                 to="/admin"
               >
-                <li className="sidebarListItem">
-                  <HomeIcon className="sidebarIcon" />
-                  Home
+                <li>
+                  <Typography
+                    variant="h6"
+                    className="sidebarListItem"
+                    color="text.primary"
+                  >
+                    <HomeIcon className="sidebarIcon" />
+                    Home
+                  </Typography>
                 </li>
               </NavLink>
               <NavLink
@@ -35,9 +207,15 @@ export default function Dashboard() {
                 }
                 to="/admin/analytics"
               >
-                <li className="sidebarListItem">
-                  <TocIcon className="sidebarIcon" />
-                  Analytics
+                <li>
+                  <Typography
+                    className="sidebarListItem"
+                    variant="h6"
+                    color="text.primary"
+                  >
+                    <TocIcon className="sidebarIcon" />
+                    Analytics
+                  </Typography>
                 </li>
               </NavLink>
             </ul>
@@ -52,9 +230,15 @@ export default function Dashboard() {
                 }
                 to="/admin/boxes"
               >
-                <li className="sidebarListItem">
-                  <CardGiftcardIcon className="sidebarIcon" />
-                  Boxes
+                <li>
+                  <Typography
+                    className="sidebarListItem"
+                    variant="h6"
+                    color="text.primary"
+                  >
+                    <CardGiftcardIcon className="sidebarIcon" />
+                    Boxes
+                  </Typography>
                 </li>
               </NavLink>
               <NavLink
@@ -64,9 +248,15 @@ export default function Dashboard() {
                 }
                 to="/admin/products"
               >
-                <li className="sidebarListItem">
-                  <InventoryIcon className="sidebarIcon" />
-                  Products
+                <li>
+                  <Typography
+                    className="sidebarListItem"
+                    variant="h6"
+                    color="text.primary"
+                  >
+                    <InventoryIcon className="sidebarIcon" />
+                    Products
+                  </Typography>
                 </li>
               </NavLink>
               <NavLink
@@ -76,9 +266,15 @@ export default function Dashboard() {
                 }
                 to="/admin/providers"
               >
-                <li className="sidebarListItem">
-                  <ContactMailIcon className="sidebarIcon" />
-                  Providers
+                <li>
+                  <Typography
+                    className="sidebarListItem"
+                    variant="h6"
+                    color="text.primary"
+                  >
+                    <ContactMailIcon className="sidebarIcon" />
+                    Providers
+                  </Typography>
                 </li>
               </NavLink>
               <NavLink
@@ -88,9 +284,15 @@ export default function Dashboard() {
                 }
                 to="/admin/categories"
               >
-                <li className="sidebarListItem">
-                  <CategoryIcon className="sidebarIcon" />
-                  Categories
+                <li>
+                  <Typography
+                    className="sidebarListItem"
+                    variant="h6"
+                    color="text.primary"
+                  >
+                    <CategoryIcon className="sidebarIcon" />
+                    Categories
+                  </Typography>
                 </li>
               </NavLink>
               <NavLink
@@ -100,9 +302,15 @@ export default function Dashboard() {
                 }
                 to="/admin/users"
               >
-                <li className="sidebarListItem">
-                  <PeopleAltIcon className="sidebarIcon" />
-                  Users
+                <li>
+                  <Typography
+                    className="sidebarListItem"
+                    variant="h6"
+                    color="text.primary"
+                  >
+                    <PeopleAltIcon className="sidebarIcon" />
+                    Users
+                  </Typography>
                 </li>
               </NavLink>
             </ul>

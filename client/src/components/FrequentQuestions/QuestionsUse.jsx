@@ -12,8 +12,6 @@ const Container = styled.div`
   max-width: 45rem;
   margin: 1rem;
 `;
-// const URL = `http://127.0.0.1:5173`;
-const URL = `https://henry-gift.vercel.app`;
 
 export default function QuestionsUse() {
   return (
@@ -32,11 +30,11 @@ export default function QuestionsUse() {
             can do it through your Gmail account or with your email. In both
             cases it is super simple! If you choose to register via Gmail the
             registration is automatic{" "}
-            <Link to="/register">`${URL}/register `</Link>. To do it with your
+            <Link to="/register" style={{ color:"#BF360C" }}>link</Link>. To do it with your
             email, you first have to fill in some information that we ask you to
             get to know you better 😊 Once you register you can open your
             Henry-Gift by entering your code at{" "}
-            <Link to="/codebox">`${URL}/codebox` </Link>
+            <Link to="/codebox" style={{ color:"#BF360C" }}>link</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -51,8 +49,8 @@ export default function QuestionsUse() {
         <AccordionDetails>
           <Typography>
             You will have a catalog of experiences from which you can choose one
-            to do! By activating the code on our website:{" "}
-            <Link to="/codebox">`${URL}/codebox `</Link>, you will be able to
+            to do! By activating the code on our website {" "}
+            <Link to="/codebox" style={{ color:"#BF360C" }}> link </Link>, you will be able to
             access the catalog. Each experience will detail exactly what it
             includes: how many people it is for and what it offers. It is not
             associated with an amount or value.
@@ -88,7 +86,7 @@ export default function QuestionsUse() {
         <AccordionDetails>
           <Typography>
             By activating the code on our website:{" "}
-            <Link to="/codebox">`${URL}/codebox` </Link>, you will be able to
+            <Link to="/codebox" style={{ color:"#BF360C" }}> link </Link>, you will be able to
             see the catalog of your gift. Each experience will detail exactly
             what it includes: how many people it is for and what it offers. It
             is not associated with an amount or value.
@@ -107,8 +105,8 @@ export default function QuestionsUse() {
           <Typography>
             If you forgot your password, you can reset it from the following
             link{" "}
-            <Link to="/login/forgot-password">
-              `${URL}/login/forgot-password`{" "}
+            <Link to="/login/forgot-password" style={{ color:"#BF360C" }}>
+               forgot password {" "}
             </Link>
           </Typography>
         </AccordionDetails>
@@ -124,7 +122,7 @@ export default function QuestionsUse() {
         <AccordionDetails>
           <Typography>
             If you are already registered, you can enter your profile from the
-            following link <Link to="/login">`${URL}/login` </Link>. You can
+            following link <Link to="/login" style={{ color:"#BF360C" }}> go </Link>. You can
             enter with Gmail (automatically) or with your registered email. If
             you have already activated your code, remember to enter the same way
             you registered the first time in order to see your gift or your

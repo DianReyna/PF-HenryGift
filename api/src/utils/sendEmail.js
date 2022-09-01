@@ -2,8 +2,8 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const { AUTH_USER, AUTH_PASS } = process.env;
 
-const URL = "https://henry-gift.vercel.app";
-// const URL = "http://127.0.0.1:5173";
+// const URL = "https://henry-gift.vercel.app";
+const URL = "http://127.0.0.1:5173";
 
 let mailTransport = nodemailer.createTransport({
   service: "Gmail",
