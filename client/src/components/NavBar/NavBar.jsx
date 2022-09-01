@@ -35,8 +35,12 @@ import { useContext } from "react";
 import { ColorModeContext } from "../../utils/mode";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import PersonIcon from "@mui/icons-material/Person";
 
-const settings = [{txt: "Admin", route: "admin"}, {txt: "Profile", route: "userprofile"}];
+const settings = [
+  { txt: "Admin", route: "admin" },
+  { txt: "Profile", route: "userprofile" },
+];
 
 const ResponsiveAppBar = () => {
   const { mode, toggleMode } = useContext(ColorModeContext);
@@ -137,22 +141,23 @@ const ResponsiveAppBar = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Link to="/" style={{ textDecoration: "none" }}>
             <Typography
-              variant="h6"
-              noWrap
-              component="a"
+              variant="h5"
+              // noWrap
+              // component="a"
+              color="text.primary"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+
+                // letterSpacing: ".3rem",
                 textDecoration: "none",
-                // background: 'red'
               }}
             >
-              Henry-Gift
+              HenryGift
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -185,7 +190,7 @@ const ResponsiveAppBar = () => {
               </NavLink>
             ) : null} */}
           </Box>
-        {/*   <Search className={styles.searchbar} onChange={handleInputChange}>
+          {/*   <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -197,59 +202,88 @@ const ResponsiveAppBar = () => {
           {/* //Login and LogOut */}
           <Link to="/cart">
             <div className={styles.navBag}>
-              <CardGiftcardIcon />
+              <Typography color="text.primary">
+                <CardGiftcardIcon />
+              </Typography>
               <span className={styles.bagQuantity}>
                 <span>{cartTotalQuantity}</span>
               </span>
             </div>
           </Link>
           <Link to="/favs">
-            <FavoriteOutlined sx={{ marginLeft: "0.5rem" }} />
+            <Typography color="text.primary">
+              <FavoriteOutlined sx={{ marginLeft: "0.5rem" }} />
+            </Typography>
           </Link>
           <IconButton sx={{ ml: 1 }} onClick={toggleMode}>
-            {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+            {mode === "dark" ? (
+              <Typography color="text.primary">
+                <Brightness7Icon />
+              </Typography>
+            ) : (
+              <Typography color="text.primary">
+                <Brightness4Icon />
+              </Typography>
+            )}
           </IconButton>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar color="text.primary">
+                  {" "}
+                  <PersonIcon />
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-              >
-              {settings.map((setting) => (
-                <NavLink to={`/${setting.route}`} className={styles.navlink}>
+            >
+              {settings.map((setting, index) => (
+                <NavLink
+                  to={`/${setting.route}`}
+                  key={index}
+                  className={styles.navlink}
+                >
                   <MenuItem key={setting.txt} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting.txt}</Typography>
+                    <Typography color="text.primary" textAlign="center">
+                      {setting.txt}
+                    </Typography>
                   </MenuItem>
                 </NavLink>
               ))}
               {user ? (
                 <NavLink to={`/login`} className={styles.navlink}>
-                    <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
-                      <Typography onClick={onLogout} textAlign="center">Logout</Typography>
-                    </MenuItem>
+                  <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
+                    <Typography
+                      color="text.primary"
+                      onClick={onLogout}
+                      textAlign="center"
+                    >
+                      Logout
+                    </Typography>
+                  </MenuItem>
                 </NavLink>
               ) : (
-                  <NavLink to={`/login`} className={styles.navlink}>
-                    <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">Login</Typography>
-                    </MenuItem>
-                  </NavLink>
+                <NavLink to={`/login`} className={styles.navlink}>
+                  <MenuItem key={"Login"} onClick={handleCloseUserMenu}>
+                    <Typography color="text.primary" textAlign="center">
+                      Login
+                    </Typography>
+                  </MenuItem>
+                </NavLink>
               )}
             </Menu>
           </Box>
