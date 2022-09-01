@@ -108,8 +108,8 @@ export default function ResetPassword() {
           sx={{
             m: 1,
             width: "40ch",
-            backgroundColor: "#e16428",
-            borderColor: "#e16428",
+            backgroundColor: "#BF360C",
+            borderColor: "#BF360C",
             color: "black",
           }}
           variant="outlined"

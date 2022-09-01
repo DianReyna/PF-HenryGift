@@ -17,15 +17,15 @@ export default function FrequentQuestions() {
      alignItems="center"
      justifyContent={"center"}
      color="black">
-      <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"white"}}>
+      <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"#BF360C"}}>
       Use
       </Typography>
         <QuestionsUse/>
-        <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"white"}}>
+        <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"#BF360C"}}>
         Purchase
       </Typography>
         <QuestionsPurchase/>
-        <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"white"}}>
+        <Typography variant="h3" component="h2" sx={{ fontSize: 20, m: 1 ,color:"#BF360C"}}>
         Shipping
       </Typography>
         <QuestionsShipping/>
