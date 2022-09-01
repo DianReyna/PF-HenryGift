@@ -36,8 +36,7 @@ import { ColorModeContext } from "../../utils/mode";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 
-const pages = ["Home"];
-const settings = ["Admin"];
+const settings = [{txt: "Admin", route: "admin"}, {txt: "Profile", route: "userprofile"}];
 
 const ResponsiveAppBar = () => {
   const { mode, toggleMode } = useContext(ColorModeContext);
@@ -139,23 +138,25 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-              // background: 'red'
-            }}
-          >
-            Henry-Gift
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                textDecoration: "none",
+                // background: 'red'
+              }}
+            >
+              Henry-Gift
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, i) => (
+            {/* {pages.map((page, i) => (
               <NavLink to={"/"} className={styles.navlink} key={i}>
                 <Button
                   onClick={handleCloseNavMenu}
@@ -182,7 +183,7 @@ const ResponsiveAppBar = () => {
                   {"Admin"}
                 </Button>
               </NavLink>
-            ) : null}
+            ) : null} */}
           </Box>
         {/*   <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
@@ -214,35 +215,40 @@ const ResponsiveAppBar = () => {
           <Link to="/favs">
             <FavoriteOutlined sx={{ marginLeft: "0.5rem" }} />
           </Link>
+          <IconButton sx={{ ml: 1 }} onClick={toggleMode}>
+            {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
           <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting, i) => (
-                <NavLink to={"/admin"} className={styles.navlink} key={i}>
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+              {settings.map((setting) => (
+                <NavLink to={`/${setting.route}`} className={styles.navlink}>
+                  <MenuItem key={setting.txt} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting.txt}</Typography>
                   </MenuItem>
                 </NavLink>
               ))}
             </Menu>
           </Box>
-          <IconButton sx={{ ml: 1 }} onClick={toggleMode}>
-            {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
-          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
