@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
-const URL = `http://localhost:3001`;
-// const URL = `https://henrygift-api.herokuapp.com`;
+// const URL = `http://localhost:3001`;
+const URL = `https://henrygift-api.herokuapp.com`;
 
 const PayButton = ({ cartItems, handleSubmit }) => {
   const { user } = useSelector((state) => state.auth);

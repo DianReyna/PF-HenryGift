@@ -36,8 +36,8 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
-      // const URL = " https://henrygift-api.herokuapp.com";
-      const URL = "http://localhost:3001";
+      const URL = " https://henrygift-api.herokuapp.com";
+      // const URL = "http://localhost:3001";
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,

@@ -31,8 +31,8 @@ export default function BoxCards() {
   }, [query]);
 
   const saveCart = async () => {
-    // const URL = " https://henrygift-api.herokuapp.com";
-    const URL = "http://localhost:3001";
+    const URL = " https://henrygift-api.herokuapp.com";
+    // const URL = "http://localhost:3001";
     user &&
       (await axios.post(`${URL}/orders/cart`, { ...cart, user_id: user._id }));
   };
@@ -49,14 +49,15 @@ export default function BoxCards() {
         return (
           allBoxes &&
           allBoxes?.map((box) => (
-            <Grid item 
-            key={box.id}
-            sx={{ mb: '2rem'}}
-            // xs={12} 
-            // // sm={6} 
-            // md={4} 
-            // // lg={3} 
-            // sx={{ border: '1px solid blue' }}
+            <Grid
+              item
+              key={box.id}
+              sx={{ mb: "2rem" }}
+              // xs={12}
+              // // sm={6}
+              // md={4}
+              // // lg={3}
+              // sx={{ border: '1px solid blue' }}
             >
               <BoxCard
                 image={box.image.url}
@@ -74,9 +75,9 @@ export default function BoxCards() {
       } else {
         return (
           <Grid item>
-          <Typography variant="h3" sx={{ mx: "auto" }}>
-            No Results Found
-          </Typography>
+            <Typography variant="h3" sx={{ mx: "auto" }}>
+              No Results Found
+            </Typography>
           </Grid>
         );
       }

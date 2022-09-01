@@ -4,15 +4,15 @@ import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Box, TextField, Typography } from "@mui/material";
 import styled from "styled-components";
-const URL = "http://localhost:3001";
-// const URL = "https://henrygift-api.herokuapp.com";
+// const URL = "http://localhost:3001";
+const URL = "https://henrygift-api.herokuapp.com";
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-color:rgba(255,255,255,0.05);
-  backdrop-filter:blur(2px);
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
   padding: 10px;
   margin: 10px;
 `;
@@ -31,7 +31,7 @@ const validate = (pswd) => {
 
 export default function ResetPassword() {
   const [pswd, setPswd] = useState({ password: "", password_confirm: "" });
-  const [error, setError] = useState({password:""});
+  const [error, setError] = useState({ password: "" });
   const navigate = useNavigate();
 
   const { email } = useParams();
