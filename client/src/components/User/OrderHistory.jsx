@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import UserReview from "../UserReview/UserReview";
 import { Action } from "../Admin/CommonStyled";
+import { Typography } from "@mui/material";
 
 export default function OrderHistory() {
   const dispatch = useDispatch();
@@ -57,9 +58,16 @@ export default function OrderHistory() {
   }));
 
   return (
-    <Box sx={{ height: 400, width: "95%" }}>
+
+
+
+    <Box sx={{ height: 400, width: "60%", marginLeft: 45 }}>
+
+      <Typography variant="h4" gutterBottom>
+        Shopping history
+      </Typography>
       <DataGrid
-        style={{ color: "white", textAlign: "center" }}
+        style={{ textAlign: "center", }}
         rows={rows}
         columns={columns}
         pageSize={5}

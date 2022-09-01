@@ -10,7 +10,7 @@ export default function About() {
       <div className="containerContent">
         <div className="aboutTitle">
           <Typography variant="h2">
-            Hola! conoce un poco mas sobre nosotros
+            Hi! Here you will find a bit from us
           </Typography>
           <img
             className="img"
@@ -20,42 +20,32 @@ export default function About() {
         </div>
         <div className="containerWho">
           <Typography sx={{ marginBottom: 3 }} variant="h3" color="primary">
-            Quienes somos?
+            What is Henry-Gift?
           </Typography>
           <Typography variant="body1">
-            Una Ecommerce diferente pensada para ayudarte a encontrar un regalo
-            especial para ti o para algun ser querido, donde podrás encontrar
-            las mejores alternativas para que tus regalos sean originales,
-            puedes escojer entre ir a una cena, disfrutar un delicioso
-            masaje,una noche en algun hotel que prefieras, entre otras.
+            Henry-Gift is a platform that allows you to buy gift cards for yourself or your loved ones, so that they can enjoy a special moment, you can choose from a wide variety of options, such as a dinner, a delicious massage, a night in any hotel you prefer, among others.
           </Typography>
         </div>
 
         <div className="containerWhy">
           <Typography sx={{ marginBottom: 3 }} variant="h3" color="primary">
-            Porque Creamos HenryGift?
+            Why did we created Henry-Gift?
           </Typography>
           <Typography variant="body1">
-            Partimos desde la idea de crear algo diferente para que las personas
-            pudieran regalar algo fuera de lo comun y poder tener acceso a
-            diferentes opciones de regalo sin tener que hacer largas filas o
-            preocuparse por buscar algun proveedor. Pensamos tambien en ser el
-            intermediario entre las personas y los servicios para darles a los
-            pequeños o grandes empresas una coneccion con otros clientes y asi
-            nacio HenryGift
+            We started from the idea of creating something different so that people could give something out of the ordinary and have access to different gift options without having to wait in long lines or worry about finding a supplier. We also thought about being the link between people and services to give small or large companies a connection with other customers.
           </Typography>
         </div>
 
         <div>
           <div className="containerTeam">
             <Typography variant="h3" sx={{ marginBottom: 3 }}>
-              Conoce a nuestro equipo
+              Meet the team
             </Typography>
           </div>
           <div className="containerCartTeam" id="team">
             <CartTeam
               img={"https://avatars.githubusercontent.com/u/98038883?v=4"}
-              name={"Jose Manuel"}
+              name={"Jose Seguro"}
               country={"Argentina"}
               git={"https://github.com/josetucu92"}
               linked={"https://www.linkedin.com/in/josemanuelseguro-webdev/"}

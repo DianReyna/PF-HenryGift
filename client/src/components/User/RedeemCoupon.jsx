@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Grid, Button, Link, TextField, Paper, Typography, CardMedia } from "@mui/material";
+import { Grid, Button, Link, TextField, Paper, Typography, Card, CardMedia } from "@mui/material";
 import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
 import { getBox } from "../../redux/actions/boxesActions";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { boxSizing, padding } from "@mui/system";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
+import Redeem2 from "../../assets/Redeem2.png";
 
 
 export default function RedeemCoupon() {
@@ -47,7 +48,10 @@ export default function RedeemCoupon() {
     <div>
 
          <Button variant="text"  href="/userprofile"   >
-     <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }}/> Back </Button>
+     <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }}/> 
+     Back </Button>
+
+     
         <Typography fontSize={28}
           item container
           padding={3}
@@ -58,11 +62,24 @@ export default function RedeemCoupon() {
           Do you have a gift?
         </Typography>
 
+        {/* <CardMedia
+        sx={{ width: 300,textAlign: "Center" }}
+        item container
+        component="img"      
+       img src={Redeem2} alt="Img not found"    
+       padding={3}
+       xs={12}
+      ms={6}
+      /> */}
+    
+
         <Typography fontSize={20}
-          item container
-          xs={12}
-          sx={{ textAlign: "Center" }}
-          gutterBottom>
+           item container
+           padding={3}
+           xs={12}
+           ms={6}
+           sx={{ textAlign: "Center" }}
+           gutterBottom>
           Enter your redemption code
         </Typography>
         <Grid
@@ -95,7 +112,6 @@ export default function RedeemCoupon() {
           <GiftCards />
         </Grid>
       {/* </Paper> */}
-     
     </div>
   );
 }
