@@ -139,6 +139,7 @@ export default function UsersList() {
         rowsPerPageOptions={[10]}
         checkboxSelection
         disableSelectionOnClick
+        color="divider"
       />
     </div>
   );

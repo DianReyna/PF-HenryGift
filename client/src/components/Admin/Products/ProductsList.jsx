@@ -144,6 +144,7 @@ export default function ProductsList() {
             rowsPerPageOptions={[10]}
             checkboxSelection
             disableSelectionOnClick
+            color="divider"
           />
         </div>
       )}
