@@ -10,7 +10,7 @@ export default function AppPagination({ setPage, page }) {
   const query = useSelector((state) => state.query);
   useEffect(() => {
     if (typeof boxes.count != "undefined") {
-      setPages(Math.ceil(boxes.count / 9));
+      setPages(Math.ceil(boxes.count / 8));
     }
     dispatch(queryPage(0));
   }, [boxes.count]);

@@ -12,3 +12,9 @@
 .textField {
   color: white;
 }
+
+@media screen and (max-width: 600px) and (min-width: 1px) {
+  .previewCard {
+    display: none;
+  }
+}

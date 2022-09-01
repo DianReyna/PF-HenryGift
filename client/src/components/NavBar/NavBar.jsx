@@ -66,7 +66,6 @@ const ResponsiveAppBar = () => {
     justifyContent: "center",
   }));
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
@@ -130,10 +129,11 @@ const ResponsiveAppBar = () => {
     <AppBar
       position="static"
       sx={{
-        background: "#E16428",
+        // background: "#E16428",
         boxShadow: "0",
-        borderBottom: "1px solid #e0e0e0",
+        // borderBottom: "1px solid #e0e0e0",
         marginBottom: "2.5rem",
+        background: "primary.main",
       }}
     >
       <Container maxWidth="xl">
@@ -146,10 +146,8 @@ const ResponsiveAppBar = () => {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
               // background: 'red'
             }}
@@ -161,7 +159,7 @@ const ResponsiveAppBar = () => {
               <NavLink to={"/"} className={styles.navlink} key={i}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, display: "block" }}
                 >
                   {page}
                 </Button>
@@ -170,7 +168,7 @@ const ResponsiveAppBar = () => {
             <NavLink to={"/userprofile"} className={styles.navlink}>
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, display: "block" }}
               >
                 {"Profile"}
               </Button>
@@ -179,14 +177,14 @@ const ResponsiveAppBar = () => {
               <NavLink to={"/admin"} className={styles.navlink}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, display: "block" }}
                 >
                   {"Admin"}
                 </Button>
               </NavLink>
             ) : null}
           </Box>
-          <Search className={styles.searchbar} onChange={handleInputChange}>
+        {/*   <Search className={styles.searchbar} onChange={handleInputChange}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -194,18 +192,13 @@ const ResponsiveAppBar = () => {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+          </Search> */}
           {/* //Login and LogOut */}
           {user ? (
-            <Button sx={{ color: "white" }} onClick={onLogout}>
-              Logout
-            </Button>
+            <Button onClick={onLogout}>Logout</Button>
           ) : (
             <Button variant="text">
-              <Link
-                to="/login"
-                style={{ color: "white", textDecoration: "none" }}
-              >
+              <Link to="/login" style={{ textDecoration: "none" }}>
                 Login
               </Link>
             </Button>
@@ -247,7 +240,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <IconButton sx={{ ml: 1 }} onClick={toggleMode} color="inherit">
+          <IconButton sx={{ ml: 1 }} onClick={toggleMode}>
             {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>

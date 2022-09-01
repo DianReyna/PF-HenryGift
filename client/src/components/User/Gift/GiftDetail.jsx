@@ -94,7 +94,6 @@ export default function GiftDetail() {
                 <AttachMoneyIcon />
                 <p>Price: {detail.price}</p>
               </ItemBox>
-              {/* <FilterGiftSelect/> */}
             </InfoDetailBox>
           </DetailBox>
           <CardsProducts>
