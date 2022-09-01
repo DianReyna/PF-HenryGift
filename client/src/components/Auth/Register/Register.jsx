@@ -33,7 +33,7 @@ export default function Register() {
     passwordAgain: ""
   });
   
-  const [errors, setErrors] = useState({ first_name: "*name is required" });
+  const [errors, setErrors] = useState({first_name:""});
   const handleChange = (prop) => (event) => {
     setInput({ ...input, [prop]: event.target.value });
     setErrors(validate({ ...input, [prop]: event.target.value }));
@@ -219,14 +219,14 @@ export default function Register() {
                       onChange={handleCheck("accept")}
                       style=
                       {{
-                        backgroundColor: "#448AFF",
+                        backgroundColor: "#e16428",
                         padding: 1,
                       }}
                     />
                   }
                   label="I accept the privacy terms and conditions of the site"
                   labelPlacement="end"
-                  sx={{ color: "blue" }}
+                  sx={{ color: "#e16428" }}
                 />
                 {errors.accept && (
                   <Typography
@@ -257,7 +257,7 @@ export default function Register() {
             <Button>
               <Link
                 to="/login"
-                style={{ textDecoration: "none", color: "blue" }}
+                style={{ textDecoration: "none", color:"#e16428" }}
               >
                 Login
               </Link>
