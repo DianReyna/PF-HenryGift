@@ -142,6 +142,9 @@ export default function UserProfileEdit() {
                 lebel="Date Birth"
                 fullWidth
                 type="date"
+                InputLabelProps={{
+                      shrink: true,
+                    }}
                 value={dateBirth}
                 onChange={(e) => setdateBirth(e.target.value)}               
                 renderInputs={(params)=> <TextField{...params}/>}
