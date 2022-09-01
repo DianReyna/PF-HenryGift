@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getBoxesAdmin,
   updateBoxes,
+  putStateBoxes,
 } from "../../../redux/actions/boxesActions";
 import { toast } from "react-toastify";
 import {
@@ -115,6 +116,20 @@ export default function EditBox({ boxId }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (boxImg == "" && Object.keys(errors).length === 0) {
+      dispatch(
+        putStateBoxes({
+          id: boxId,
+          boxes: {
+            name: input.name,
+            price: input.price,
+            person: input.person,
+            detail: input.detail,
+            expiration_date: input.expiration,
+          },
+        })
+      );
+    }
 
     if (Object.keys(errors).length === 0 && handleCompare()) {
       dispatch(
