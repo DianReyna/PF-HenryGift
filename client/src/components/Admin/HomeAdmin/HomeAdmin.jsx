@@ -27,6 +27,12 @@ export default function HomeAdmin() {
     dispatch(getUsersAdmin());
   }, [dispatch]);
 
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
+
   return (
     <Box className="containerAdmin">
       <div className="box">
@@ -51,7 +57,7 @@ export default function HomeAdmin() {
         ) : (
           <Widget
             name={"Sales"}
-            amount={salesBox.sales[0].total}
+            amount={formatter.format(salesBox.sales[0].total)}
             porcentaje={20}
             icon={"money"}
           />
