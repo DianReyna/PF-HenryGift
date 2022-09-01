@@ -20,7 +20,8 @@ const Form = styled.form`
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-color: white;
+  background-color:rgba(255,255,255,0.05);
+  backdrop-filter:blur(2px);
   padding: 10px;
   margin: 10px;
 `;
@@ -72,19 +73,19 @@ export default function ForgotPassword() {
             onChange={(e) => handleChange(e)}
             endAdornment={
               <InputAdornment position="end">
-                <Email style={{ fill: "#f44336" }} />
+                <Email style={{ fill: "#e16428" }} />
               </InputAdornment>
             }
             label="Email"
-            sx={{ fontSize: 20, color: "black" }}
+            sx={{ fontSize: 20 }}
           />
         </FormControl>
         <Button
           sx={{
             m: 1,
             width: "40ch",
-            backgroundColor: "#f44336",
-            borderColor: "#f44336",
+            backgroundColor: "#e16428",
+            borderColor: "#e16428",
             color: "black",
           }}
           variant="outlined"
