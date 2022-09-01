@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProducts,
   updateProduct,
+  putStateProduct,
 } from "../../../redux/actions/productsActions";
 import { getProvider } from "../../../redux/actions/providerActions";
 import { toast } from "react-toastify";
@@ -117,6 +118,21 @@ export default function EditProduct({ prodId }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (productImg == "" && Object.keys(errors).length === 0) {
+      dispatch(
+        putStateProduct({
+           id: prodId,
+          product: {
+            name: input.name,
+            price: input.price,
+            location: input.location,
+            description: input.description,
+            provider: input.provider,
+          },
+        })
+      );
+    }
+    
     if (Object.keys(errors).length === 0 && handleCompare()) {
       dispatch(
         updateProduct({
