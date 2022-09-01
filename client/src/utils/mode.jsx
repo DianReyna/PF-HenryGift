@@ -32,9 +32,9 @@ export const ColorContextProvider = ({ children }) => {
               contrastText: "#fff",
             },
             secondary: {
-              main: "#f48fb1",
+              main: deepOrange[900],
             },
-            divider: deepOrange[200],
+            divider: grey[900],
             text: {
               primary: grey[900],
               secondary: deepOrange[900],
@@ -46,7 +46,10 @@ export const ColorContextProvider = ({ children }) => {
               main: deepOrange[600],
               contrastText: "rgba(0,0,0,0.87)",
             },
-            divider: grey[700],
+            secondary: {
+              main: deepOrange[900],
+            },
+            divider: grey[50],
             background: {
               default: grey[900],
               paper: grey[900],
