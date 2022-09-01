@@ -19,7 +19,7 @@ export const getBoxes = () => (dispatch) => {
 
 export const getBoxesPerPage = (query) => (dispatch) => {
   axios(
-    ` ${URL}/test?offset=${query.page}&limit=9&name=${query.name}&col=${query.sort.col}&dir=${query.sort.dir}&category=${query.filters.category}&num=${query.filters.person}`
+    ` ${URL}/test?offset=${query.page}&limit=8&name=${query.name}&col=${query.sort.col}&dir=${query.sort.dir}&category=${query.filters.category}&num=${query.filters.person}`
   )
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
