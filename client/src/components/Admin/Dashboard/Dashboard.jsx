@@ -9,6 +9,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import TocIcon from "@mui/icons-material/Toc";
 import { Button, Menu, MenuItem, Typography } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Dashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,7 +30,7 @@ export default function Dashboard() {
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          Dashboard
+          <MenuIcon sx={{ fontSize: 30 }} />
         </Button>
         <Menu
           id="demo-positioned-menu"
