@@ -1,14 +1,14 @@
 .Active {
-  background-color: rgb(114, 225, 40) !important;
+  background-color: #ffb300 !important;
 }
 .Banned {
-  background-color: rgb(97, 97, 97) !important;
+  background-color: #9e9e9e !important;
 }
 
 .Client {
-  background-color: #4b70e2 !important;
+  background-color: #ffa726 !important;
 }
 
 .Admin {
-  background-color: rgb(225, 210, 40) !important;
+  background-color: #ff6f00 !important;
 }

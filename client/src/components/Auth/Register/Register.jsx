@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useNavigate  } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { Google, Facebook, TonalitySharp } from "@mui/icons-material";
 import Spinner from "../spinner";
 import {register,reset} from "../../../redux/reducer/authSlice";
@@ -33,7 +33,7 @@ export default function Register() {
     passwordAgain: ""
   });
   
-  const [errors, setErrors] = useState({ first_name: "*name is required" });
+  const [errors, setErrors] = useState({first_name:""});
   const handleChange = (prop) => (event) => {
     setInput({ ...input, [prop]: event.target.value });
     setErrors(validate({ ...input, [prop]: event.target.value }));
@@ -219,14 +219,14 @@ export default function Register() {
                       onChange={handleCheck("accept")}
                       style=
                       {{
-                        backgroundColor: "#448AFF",
+                        backgroundColor: "#e16428",
                         padding: 1,
                       }}
                     />
                   }
                   label="I accept the privacy terms and conditions of the site"
                   labelPlacement="end"
-                  sx={{ color: "blue" }}
+                  sx={{ color: "#e16428" }}
                 />
                 {errors.accept && (
                   <Typography
@@ -254,13 +254,9 @@ export default function Register() {
             <Typography variant="h7">
               Do you have an account Henry-Gift?
             </Typography>
-            <Button>
-              <Link
-                to="/login"
-                style={{ textDecoration: "none", color: "blue" }}
-              >
-                Login
-              </Link>
+            <Button variant="text" onClick={()=>{ navigate('/login')
+          window.scroll(0, 0);}}>
+              Login
             </Button>
           </CardContent>
         </Card>

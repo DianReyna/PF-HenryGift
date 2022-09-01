@@ -44,15 +44,15 @@ export default function CategoryList() {
   ];
 
   return (
-    <div style={{ height: 450, width: "50%" }}>
+    <div style={{ height: 450, width: "100%" }}>
       <DataGrid
-        style={{ color: "white" }}
         rows={rows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[4]}
         checkboxSelection
         disableSelectionOnClick
+        color="divider"
       />
     </div>
   );

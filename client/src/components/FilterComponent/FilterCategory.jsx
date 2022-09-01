@@ -35,7 +35,7 @@ export default function BasicSelect({setCategory,category}) {
     <Box
     // sx={{ background: 'rgba(16, 15, 15, 0)', color: 'white !important', borderRadius: 2 }}
     >
-      <FormControl sx={{ width: 120 }}>
+      <FormControl sx={{ width:{xs:80,sm:100,md:120} }}>
         <InputLabel
           id="demo-simple-select-label"
           sx={{ color: "#E16428" }}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import GiftCard from "./GiftCard";
-import { Grid, Stack } from "@mui/material";
+import { Grid, Stack, Box } from "@mui/material";
 import { getUserGift } from "../../../redux/actions/userActions";
 
 export default function GiftCards() {
@@ -17,8 +17,19 @@ export default function GiftCards() {
   return (
     <div className="Cards-container">
       <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
-        {gifts?.map((box) => (
-          <Grid key={box.id} item xs={3}>
+      <Box xs={4}
+      sx={{
+        display: 'flex',
+        '& > :not(style)': {
+          m: 1,
+          width: 300,
+          justifyContent: 'center',
+          p: 3,
+                 
+        },
+      }}>
+            {gifts?.map((box) => (
+              <Grid key={box.id} item xs={3}>
             <GiftCard
               key={box.id}
               image={box.image && box.image.url}
@@ -32,6 +43,7 @@ export default function GiftCards() {
             />
           </Grid>
         ))}
+      </Box>
       </Stack>
     </div>
   );

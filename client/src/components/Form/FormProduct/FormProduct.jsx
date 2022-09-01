@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { getProvider } from "../../../redux/actions/providerActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Form.module.css";
+import styles from "../Form.css";
 import useForm from "../useForm";
 import validate from "./validateProduct.js";
 import DialogFormProduct from "./DialogFormProduct";
@@ -55,25 +55,10 @@ export default function FormProduct() {
             m: 1,
             width: "32ch",
           },
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "white !Important",
-            },
-          },
-          "& label.Mui-focused": {
-            color: "white",
-          },
-          "& .MuiFormLabel-root ": {
-            color: "white !important",
-          },
         }}
       >
         <div className={styles.formContainer}>
-          <form
-            sx={{ color: "white !Important" }}
-            autoComplete="off"
-            onSubmit={handleProductSubmit}
-          >
+          <form autoComplete="off" onSubmit={handleProductSubmit}>
             <div className={styles.formContainer}>
               <TextField
                 type="file"
@@ -82,11 +67,6 @@ export default function FormProduct() {
                 name="productImage"
                 required
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
 
               <TextField
@@ -97,11 +77,6 @@ export default function FormProduct() {
                 required
                 label="Product name"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.productName && (
                 <DialogContentText
@@ -121,11 +96,6 @@ export default function FormProduct() {
                 required
                 label="Description"
                 size="small"
-                sx={{
-                  textarea: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.productDescription && (
                 <DialogContentText
@@ -142,11 +112,6 @@ export default function FormProduct() {
                 required
                 label="Price"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.productPrice && (
                 <DialogContentText
@@ -163,11 +128,6 @@ export default function FormProduct() {
                 required
                 label="Location"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.productLocation && (
                 <DialogContentText
@@ -184,9 +144,6 @@ export default function FormProduct() {
                   value={product.productProvider || ""}
                   MenuProps={MenuProps}
                   name="productProvider"
-                  sx={{
-                    color: "white !Important",
-                  }}
                 >
                   {providers.providers?.map(({ name, id }) => {
                     return (
@@ -217,7 +174,7 @@ export default function FormProduct() {
           </form>
         </div>
       </Box>
-      <Box sx={{ width: 345 }}>
+      <Box sx={{ width: 345 }} className="previewCard">
         <ProductCard
           name={dataProduct.name}
           description={dataProduct.description}

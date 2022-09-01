@@ -10,8 +10,8 @@ import {
   getOrderUser,
 } from "../reducer/userSlice";
 
-// const URL = " https://henrygift-api.herokuapp.com";
-const URL = "http://localhost:3001";
+const URL = " https://henrygift-api.herokuapp.com";
+// const URL = "http://localhost:3001";
 
 export const getUsers = () => (dispatch) => {
   axios(` ${URL}/getAllUsers`)

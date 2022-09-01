@@ -10,8 +10,7 @@ export const PrimaryButton = styled.button`
   border-radius: 5px;
   font-weight: 400;
   letter-spacing: 1.15px;
-  // background-color: #4b70e2;
-  background-color: #f66b0e !important;
+  background-color: #ff6f00 !important;
   color: #f9f9f9;
   border: none;
   outline: none;
@@ -34,11 +33,11 @@ export const Action = styled.div`
   }
 `;
 export const Delete = styled.button`
-  background-color: rgb(255, 77, 73);
+  background-color: #ff6f00;
 `;
 
 export const View = styled.button`
-  background-color: rgb(114, 225, 40);
+  background-color: #ffb300;
 `;
 
 export const ImageContainer = styled.div`
@@ -54,7 +53,7 @@ export const Edit = styled.button`
  color: white;
  border- radius: 3px;
  cursor: pointer;
- background-color: #4b70e2
+ background-color: #ff6f00
 `;
 // styles form edit
 
@@ -126,7 +125,7 @@ export const Create = styled.button`
   border-radius: 3px;
   font-size: 14px;
   cursor: pointer;
-  background-color: #4b70e2;
+  background-color: #ff6f00;
 `;
 
 export const ContainerForm = styled.div`
@@ -146,7 +145,6 @@ export const CreateNew = styled.button`
   color: white;
   border-radius: 4px;
   font-size: 16px;
-  font-family: arial;
   cursor: pointer;
   background-color: #3085d6;
 `;
@@ -158,7 +156,6 @@ export const ViewDetail = styled.button`
   color: white;
   border-radius: 4px;
   font-size: 16px;
-  font-family: arial;
   cursor: pointer;
   background-color: #7fff00;
 `;
@@ -168,7 +165,6 @@ export const Cancel = styled.button`
   outline: none;
   padding: 15px;
   color: white;
-  font-family: arial;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;

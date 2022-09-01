@@ -3,15 +3,20 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getUsersById } from "../../redux/actions/userActions";
-import { Typography, ButtonGroup, Box } from "@mui/material";
+import { Typography, ButtonGroup, Table, TableContainer, Paper, Divider, Box } from "@mui/material";
 import GiftCards from "./Gift/GiftCards";
 import DeleteUserAccount from "./DeleteUserAccount";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import RedeemOutlinedIcon from "@mui/icons-material/RedeemOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 
+
 const Container = styled.div`
   padding: 2rem 3rem;
+`;
+
+const Icon = styled.div`
+fill="#000000"
 `;
 
 const Grid = styled.div`
@@ -67,72 +72,79 @@ export default function ProfilePanel() {
     setAnchorEl(null);
   };
 
-  //   userDetail &&
-  //   userDetail.dataBirth?.map((item) => {
-  //   const find = item.createdAt.indexOf("T");
-  //  const dateUser = item.createdAt.slice(0, find);
-
-  // });
-
   return (
     <div>
+       
       <ButtonGroup
-        variant="contained"
-        aria-label="outlined primary button group"
-      >
-        <Button variant="Editar" href="/editprofile">
-          <ModeEditIcon />
-          Edit
+        variant="contained">
+        <Button variant="Editar" href="/editprofile">        
+          <ModeEditIcon sx={{ fill: "grey" }}/>
+          Edit     
         </Button>
         <Button variant="Abrir mi Box" href="codebox">
-          <RedeemOutlinedIcon /> Open Box
+          <RedeemOutlinedIcon sx={{ fill: "grey" }}/> Open Box
         </Button>
         <Button variant="Editar" href="/orderhistory">
-          <HistoryOutlinedIcon /> History
+          <HistoryOutlinedIcon sx={{ fill: "grey" }}/> History
         </Button>
         <DeleteUserAccount />
       </ButtonGroup>
 
-      <Box></Box>
 
       {userDetail ? (
-        <Container>
-          <DetailBox>
-            <InfoDetailBox>
-              <Typography variant="h5" component="div" gutterBottom>
-                User information
-              </Typography>
-              <ItemBox>
-                <p>First name: {userDetail.first_name}</p>
-              </ItemBox>
-              <ItemBox>
-                <p>Last name: {userDetail.last_name}</p>
-              </ItemBox>
-              <ItemBox>
-                <p>Email: {userDetail.email}</p>
-              </ItemBox>
-              <ItemBox>
-                <p>Phone: {userDetail.phone}</p>
-              </ItemBox>
-              <ItemBox>
-                <p>
-                  Data birth:
-                  {userDetail.dateBirth?.replace(/\D/, "-").slice(0, 10)}
-                </p>
-              </ItemBox>
-            </InfoDetailBox>
-          </DetailBox>
+        <Container >
+            <Table sx={{ minWidth: 650 }} size="small"  >
+            <DetailBox >
+              <InfoDetailBox sx={{ width: '100' }}>
+                <Typography variant="h4" component="div" gutterBottom>
+                  User information
+                </Typography>
+                <Divider />
+                <ItemBox >
+                <Typography fontSize={18} component="div" gutterBottom>
+                  First name: {userDetail.first_name}
+                  </Typography>
+                </ItemBox>
+                <Divider />
+                <ItemBox>
+                <Typography fontSize={18} component="div" gutterBottom>
+                  Last name: {userDetail.last_name}
+                  </Typography>
+                </ItemBox>
+                <Divider />
+                <ItemBox>
+                <Typography fontSize={18} component="div" gutterBottom>
+                  Email: {userDetail.email}
+                  </Typography>
+                </ItemBox>
+                <Divider />
+                <ItemBox>
+                <Typography fontSize={18} component="div" gutterBottom>
+                  Phone: {userDetail.phone}
+                  </Typography>
+                </ItemBox>
+                <Divider />
+                <ItemBox>
+                <Typography fontSize={18} component="div" gutterBottom>
+                   Data birth: {userDetail.dateBirth?.replace(/\D/, "-").slice(0, 10)}
+                   </Typography>
+                </ItemBox>
+                <Divider />
+              </InfoDetailBox>
+            </DetailBox>
+          </Table>
           <CardsProducts>
             <Grid>
-              <Typography variant="h5" component="div" gutterBottom>
+              <Typography variant="h4" component="div" gutterBottom>
                 My Boxes
               </Typography>
               <GiftCards />
             </Grid>
           </CardsProducts>
+
         </Container>
       ) : (
-        "No tiene compras realizadas"
+        "Null"
       )}
     </div>
   );

@@ -5,7 +5,7 @@ import Register from "./components/Auth/Register/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
 import Home from "./components/Home/Home";
-import BoxDetail from "./components/BoxDetail/BoxDetail";
+import BoxDetail from "./components/BoxDetail/BoxDetail.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
@@ -43,6 +43,7 @@ import Favs from "./components/Favs/Favs";
 import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
 import Analitics from "./components/Admin/Analytics/Analytics";
+import About from "./components/About/About";
 
 const ContainerApp = styled.div`
   min-height: 70vh;
@@ -65,6 +66,7 @@ function App() {
       <NavBar />
       <ContainerApp>
         <Routes>
+          <Route path="/about" element={<About />} />
           <Route path="/how-does-it-work" element={<HowDoesItWork />} />
           <Route path="/frequent-questions" element={<FrequentQuestions />} />
           <Route path="/login" element={<Login />} />
@@ -95,31 +97,31 @@ function App() {
             <Route path="/userprofile" element={<ProfilePanel />} />
           </Route>
           //Dashboard
-          <Route element={<AdminRoute />}>
-            <Route path="/admin" element={<Dashboard />}>
-              <Route index element={<HomeAdmin />} />
-              <Route path="analytics" element={<Analitics />} />
-              <Route path="boxes" element={<Boxes />}>
-                <Route index element={<BoxesList />} />
-                <Route path="create-box" element={<FormBox />} />
-              </Route>
-              <Route path="products" element={<Products />}>
-                <Route index element={<ProductsList />} />
-                <Route path="create-product" element={<FormProduct />} />
-              </Route>
-              <Route path="providers" element={<Providers />}>
-                <Route index element={<ProvidersList />} />
-                <Route path="create-provider" element={<FormProvider />} />
-              </Route>
-              <Route path="categories" element={<Category />}>
-                <Route index element={<CategoryList />} />
-                <Route path="create-categories" element={<FormCategory />} />
-              </Route>
-              <Route path="users" element={<Users />}>
-                <Route index element={<UsersList />} />
-              </Route>
+          {/* <Route element={<AdminRoute />}> */}
+          <Route path="/admin" element={<Dashboard />}>
+            <Route index element={<HomeAdmin />} />
+            <Route path="analytics" element={<Analitics />} />
+            <Route path="boxes" element={<Boxes />}>
+              <Route index element={<BoxesList />} />
+              <Route path="create-box" element={<FormBox />} />
+            </Route>
+            <Route path="products" element={<Products />}>
+              <Route index element={<ProductsList />} />
+              <Route path="create-product" element={<FormProduct />} />
+            </Route>
+            <Route path="providers" element={<Providers />}>
+              <Route index element={<ProvidersList />} />
+              <Route path="create-provider" element={<FormProvider />} />
+            </Route>
+            <Route path="categories" element={<Category />}>
+              <Route index element={<CategoryList />} />
+              <Route path="create-categories" element={<FormCategory />} />
+            </Route>
+            <Route path="users" element={<Users />}>
+              <Route index element={<UsersList />} />
             </Route>
           </Route>
+          {/* </Route> */}
           // End Dashboard
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error404 />} />

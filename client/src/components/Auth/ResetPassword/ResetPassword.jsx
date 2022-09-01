@@ -4,14 +4,15 @@ import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Box, TextField, Typography } from "@mui/material";
 import styled from "styled-components";
-const URL = "http://localhost:3001";
-// const URL = "https://henrygift-api.herokuapp.com";
+// const URL = "http://localhost:3001";
+const URL = "https://henrygift-api.herokuapp.com";
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
   padding: 10px;
   margin: 10px;
 `;
@@ -30,7 +31,7 @@ const validate = (pswd) => {
 
 export default function ResetPassword() {
   const [pswd, setPswd] = useState({ password: "", password_confirm: "" });
-  const [error, setError] = useState({});
+  const [error, setError] = useState({ password: "" });
   const navigate = useNavigate();
 
   const { email } = useParams();
@@ -41,8 +42,6 @@ export default function ResetPassword() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(pswd);
     if (!pswd.password.trim()) {
       return toast.error("Write a new password");
     }
@@ -84,7 +83,7 @@ export default function ResetPassword() {
           variant="outlined"
           fullWidth
           onChange={handleChange("password")}
-          sx={{ m: 1, color: "white" }}
+          sx={{ m: 1 }}
         />
         {error.password && (
           <Typography component={"p"} sx={{ fontSize: 13, color: "red" }}>
@@ -98,7 +97,7 @@ export default function ResetPassword() {
           variant="outlined"
           fullWidth
           onChange={handleChange("password_confirm")}
-          sx={{ m: 1, color: "white" }}
+          sx={{ m: 1 }}
         />
         {error.password_confirm && (
           <Typography component={"p"} sx={{ fontSize: 13, color: "red" }}>
@@ -109,12 +108,13 @@ export default function ResetPassword() {
           sx={{
             m: 1,
             width: "40ch",
-            backgroundColor: "#f44336",
-            borderColor: "#f44336",
+            backgroundColor: "#BF360C",
+            borderColor: "#BF360C",
             color: "black",
           }}
           variant="outlined"
           type="submit"
+          disabled={Object.keys(error).length > 0}
         >
           Change Password
         </Button>
