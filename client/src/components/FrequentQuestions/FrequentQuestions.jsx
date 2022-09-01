@@ -8,7 +8,7 @@ export default function FrequentQuestions() {
   
   return (
     <>
-     <Typography variant="h3" component="h2" sx={{ fontSize: 30, m: 5 ,color:"white"}}>
+     <Typography variant="h3" component="h2" sx={{ fontSize: 30, m: 5 }}>
      Frequent Questions
       </Typography>
     <Box
