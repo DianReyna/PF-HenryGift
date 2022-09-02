@@ -1,13 +1,12 @@
-import React from 'react'
-import {styled, InputBase, alpha} from  "@mui/material"
+import React from "react";
+import { styled, InputBase, alpha } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { queryName } from "../../redux/actions/queryActions";
-import styles from "../NavBar/NavBar.module.css";
+// import styles from "../NavBar/NavBar.module.css";
 
 const SearchBar = () => {
-
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -60,16 +59,16 @@ const SearchBar = () => {
   }
 
   return (
-          <Search className={styles.searchbar} onChange={handleInputChange}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-  )
-}
+    <Search onChange={handleInputChange}>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ "aria-label": "search" }}
+      />
+    </Search>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

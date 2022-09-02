@@ -9,11 +9,12 @@ import {
   Select,
   FormLabel,
   DialogContentText,
+  Grid,
 } from "@mui/material";
 import { getCategory } from "../../../redux/actions/categoryActions";
 import { getProducts } from "../../../redux/actions/productsActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Form.css";
+import "../Form.css";
 import useForm from "../useForm";
 import validate from "./validateBox.js";
 import DialogFormBox from "./DialogFormBox";
@@ -59,13 +60,13 @@ export default function FormBox() {
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "32ch",
+            width: "33ch",
           },
         }}
       >
-        <div className={styles.formContainer}>
+        <div className="formContainer">
           <form autoComplete="off" onSubmit={handleBoxSubmit}>
-            <div className={styles.formContainer}>
+            <div className="formContainer">
               <TextField
                 type="file"
                 accept="image/"
@@ -137,21 +138,27 @@ export default function FormBox() {
                   {errors.boxPrice}
                 </DialogContentText>
               )}
-              <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
-              <TextField
-                id="date"
-                type="date"
-                name="boxExpirationDate"
-                value={input.boxExpirationDate || ""}
-                onChange={(e) => handleChangeBox(e)}
-              />
-              {errors.boxExpirationDate && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxExpirationDate}
-                </DialogContentText>
-              )}
+              <Grid xs={12} sm={6} item>
+                <TextField
+                  id="date"
+                  label="Expiration Date"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="boxExpirationDate"
+                  value={input.boxExpirationDate || ""}
+                  onChange={(e) => handleChangeBox(e)}
+                />
+                {errors.boxExpirationDate && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.boxExpirationDate}
+                  </DialogContentText>
+                )}
+              </Grid>
+
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Products</InputLabel>
                 <Select

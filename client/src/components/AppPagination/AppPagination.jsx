@@ -31,13 +31,6 @@ export default function AppPagination({ setPage, page }) {
       sx={{ margin: "2rem 0px" }}
     >
       <Pagination
-        sx={{
-          color: "white",
-          button: {
-            color: "white",
-            border: "1px solid white",
-          },
-        }}
         count={pages}
         page={page + 1}
         variant="outlined"
