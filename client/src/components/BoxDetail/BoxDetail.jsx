@@ -81,12 +81,11 @@ export default function BoxDetail() {
                   <Favorite id={detail.id} />
                 </div>
               </GroupFeats>
-              <PaymentMethod>
+              {/* <PaymentMethod>
                 <PaymentImg src={paymentMethods2} alt="payment methods" />
-              </PaymentMethod>
+              </PaymentMethod> */}
             </div>
           </DetailBox>
-
           <CardsProducts>
             {allProducts &&
               allProducts.map((product) => {

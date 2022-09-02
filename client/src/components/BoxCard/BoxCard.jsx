@@ -24,7 +24,7 @@ export default function BoxCard({
     "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
 
   return (
-    <Card sx={{ maxWidth: 335, border: "1px solid black" }}>
+    <Card sx={{ maxWidth: 320, border: "1px solid black" }}>
       <CardWidth>
         <div className="footer-fav-box">
           <Favorite id={id} />
