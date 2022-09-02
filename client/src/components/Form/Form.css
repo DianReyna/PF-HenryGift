@@ -1,17 +1,14 @@
 .formContainer {
   display: flex;
   flex-direction: column;
-  color: white;
+  margin-right: 1rem;
 }
 
-.formsContainer {
+/* .formsContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-}
-.textField {
-  color: white;
-}
+} */
 
 @media screen and (max-width: 600px) and (min-width: 1px) {
   .previewCard {

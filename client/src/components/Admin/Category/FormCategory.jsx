@@ -58,35 +58,15 @@ export default function FormCategory() {
     <Box
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
-        "& .MuiOutlinedInput-root": {
-          "& fieldset": {
-            borderColor: "white !Important",
-          },
-        },
-        "& label.Mui-focused": {
-          color: "white",
-        },
-        "& .MuiFormLabel-root ": {
-          color: "white !important",
-        },
       }}
     >
-      <form
-        sx={{ color: "white !Important" }}
-        autoComplete="off"
-        onSubmit={(e) => handleSubmit(e)}
-      >
+      <form autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
         <FormControl>
           <TextField
             onChange={(e) => handleOnChange(e)}
             name="name"
             value={input.name}
             label="Nombre del proveedor"
-            sx={{
-              input: {
-                color: "white",
-              },
-            }}
           />
           {errors.name && (
             <DialogContentText sx={{ color: "red !Important", fontSize: 13 }}>
