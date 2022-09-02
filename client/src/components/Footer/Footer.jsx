@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Divider, Grid, Typography } from "@mui/material";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 export const Footer = () => {
   return (
     <footer className="footer">
       <div className="containerFooter">
         <div className="containerHenry">
-        <Link to="/" underline="none" className="enlaces">
+          <Link to="/" underline="none" className="enlaces">
             <Typography
               variant="h3"
               sx={{ color: "white !Important", marginBottom: 2 }}
@@ -30,7 +31,10 @@ export const Footer = () => {
         <div className="containerCreators">
           <Link to="/about" className="enlaces">
             <Typography variant="h6" sx={{ color: "white !Important" }}>
-              About us
+              About us{" "}
+              <RocketLaunchIcon
+                sx={{ fontSize: 20, color: "white !Important" }}
+              />
             </Typography>
           </Link>
 

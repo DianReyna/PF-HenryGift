@@ -36,6 +36,7 @@ import { ColorModeContext } from "../../utils/mode";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import PersonIcon from "@mui/icons-material/Person";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const settings = [
   { txt: "Admin", route: "admin" },
@@ -203,7 +204,7 @@ const ResponsiveAppBar = () => {
           <Link to="/cart">
             <div className={styles.navBag}>
               <Typography color="text.primary">
-                <CardGiftcardIcon />
+                <ShoppingCartIcon />
               </Typography>
               <span className={styles.bagQuantity}>
                 <span>{cartTotalQuantity}</span>
