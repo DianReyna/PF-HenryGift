@@ -54,7 +54,7 @@ export default function GiftProduct({
                             alt="img not found"
                         />
 
-                        <FormControl>
+                        {/* <FormControl>
                             <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
@@ -63,7 +63,7 @@ export default function GiftProduct({
                             >
                                 <FormControlLabel value="select" control={<Radio />} label="Select" />
                             </RadioGroup>
-                        </FormControl>
+                        </FormControl> */}
                         <CardContent>
                             <BodyCardProduct>
                                 <Typography gutterBottom variant="h4" component="div">{name}</Typography>

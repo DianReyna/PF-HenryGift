@@ -22,7 +22,7 @@ export default function OrderHistory() {
 
   const columns = [
     { field: "name", headerName: "Box", width: 150 },
-    { field: "price", headerName: "Price (UDS)", width: 150 },
+    { field: "price", headerName: "Price", width: 150 },
     { field: "person", headerName: "Persons", width: 150 },
     { field: "ranking", headerName: "Ranking ", width: 150 },
     { field: "recipient", headerName: "Recipient ", width: 150 },
@@ -61,7 +61,12 @@ export default function OrderHistory() {
 
 
 
-    <Box sx={{ height: 400, width: "60%", marginLeft: 45 }}>
+    <Box sx={{ height: 400, width: "60%", marginLeft: 45  }}>
+
+    <Button variant="Abrir mi Box" href="/userprofile"sx={{pb:5 }}>
+      <KeyboardBackspaceOutlinedIcon />
+      Back
+    </Button>
 
       <Typography variant="h4" gutterBottom>
         Shopping history
@@ -77,10 +82,6 @@ export default function OrderHistory() {
         experimentalFeatures={{ newEditingApi: true }}
       />
 
-      <Button variant="Abrir mi Box" href="/userprofile">
-        <KeyboardBackspaceOutlinedIcon />
-        Back
-      </Button>
     </Box>
   );
 }
