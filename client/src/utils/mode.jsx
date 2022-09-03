@@ -1,5 +1,5 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { grey, orange } from "@mui/material/colors";
+import { deepOrange, grey, orange } from "@mui/material/colors";
 import { createContext, useMemo, useState } from "react";
 
 export const ColorModeContext = createContext({
@@ -37,7 +37,7 @@ export const ColorContextProvider = ({ children }) => {
             divider: grey[900],
             text: {
               primary: grey[900],
-              secondary: orange[900],
+              secondary: deepOrange[900],
             },
           }
         : {
@@ -56,7 +56,7 @@ export const ColorContextProvider = ({ children }) => {
             },
             text: {
               primary: "#fff",
-              secondary: orange[900],
+              secondary: deepOrange[900],
             },
           }),
     },
