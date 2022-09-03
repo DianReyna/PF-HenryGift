@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
-  cartTotalItems: [],
 };
 
 export const cartSlice = createSlice({
@@ -20,14 +18,12 @@ export const cartSlice = createSlice({
 
       if (itemIndex >= 0 && state.cartItems[itemIndex].cartQuantity <= 4) {
         state.cartItems[itemIndex].cartQuantity += 1;
-        state.cartTotalItems.push(state.cartItems[itemIndex]);
         toast.info(`Amount of ${state.cartItems[itemIndex].name} increased`, {
           position: "bottom-left",
         });
       } else if (!state.cartItems[itemIndex]) {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        state.cartTotalItems.push(tempProduct);
         toast.success(`${action.payload.name} added to cart`, {
           position: "bottom-left",
         });
@@ -50,6 +46,7 @@ export const cartSlice = createSlice({
     },
 
     decreaseCart: (state, action) => {
+      console.log('carrito', state.cartItems.values)
       const itemIndex = state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
       );
@@ -118,7 +115,6 @@ export const cartSlice = createSlice({
         state.cartItems = action.payload.cartItems;
         state.cartTotalQuantity = action.payload.cartTotalQuantity;
         state.cartTotalAmount = action.payload.cartTotalAmount;
-        state.cartTotalItems = action.payload.cartTotalItems;
       }
     },
   },

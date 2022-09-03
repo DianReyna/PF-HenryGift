@@ -46,7 +46,7 @@ import Analitics from "./components/Admin/Analytics/Analytics";
 import About from "./components/About/About";
 
 const ContainerApp = styled.div`
-  min-height: 70vh;
+  min-height: 74vh;
 `;
 
 function App() {

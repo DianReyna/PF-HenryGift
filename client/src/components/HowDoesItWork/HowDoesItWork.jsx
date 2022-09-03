@@ -24,7 +24,8 @@ export default function HowDoesItWork() {
           alignItems="center"
           justifyContent={"center"}
           margin={2}
-          boxShadow={"5px 5px 10px #ccc"}
+          // boxShadow={"5px 5px 10px #ccc"}
+          border= "1px solid rgb(187, 187, 187)"
         >
           <Box>
             <Typography variant="h3" component="h2" sx={{ fontSize: 25, m: 2 }}>
@@ -57,7 +58,8 @@ export default function HowDoesItWork() {
             alignItems="center"
             justifyContent={"center"}
             margin={2}
-            boxShadow={"5px 5px 10px #ccc"}
+            // boxShadow={"5px 5px 10px #ccc"}
+            border= "1px solid rgb(187, 187, 187)"
           >
             <img src={imgOne} alt="person-thinking" height="200" />
             <Box sx={{ m: 2 }}>
@@ -88,7 +90,8 @@ export default function HowDoesItWork() {
             alignItems="center"
             justifyContent={"center"}
             margin={2}
-            boxShadow={"5px 5px 10px #ccc"}
+            // boxShadow={"5px 5px 10px #ccc"}
+            border= "1px solid rgb(187, 187, 187)"
           >
             <Box sx={{ m: 2 }}>
               <Typography
