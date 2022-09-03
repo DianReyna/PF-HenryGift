@@ -72,17 +72,8 @@ export default function ProductDetail() {
   };
 
   return (
-    <Container sx={{ m: 3 }} display={"flex"}>
-        
-      <Button
-        sx={{ ml: "50%", mt: 5, position: "absolute" }}
-        className="clear-btn"
-        variant="outlined"
-        onClick={() => handlePick()}
-      >
-        Choose This Service
-      </Button>
-        <Box sx={{pb:5}}>
+    <Container sx={{ m: 3 }}>
+      <Box sx={{ pb: 5 }}>
         <Typography gutterBottom variant="h4" component="div">
           {detailProd.name}
         </Typography>
@@ -94,46 +85,51 @@ export default function ProductDetail() {
             alt="img not found"
           />
           <Card sx={{ p: 2 }}>
+            <Button
+              sx={{ ml: "7.5rem" }}
+              className="clear-btn"
+              variant="outlined"
+              onClick={() => handlePick()}
+            >
+              Choose This Service
+            </Button>
             <ItemProduct>
               <h2>About :</h2>
             </ItemProduct>
             <ItemProduct>
-              <Typography gutterBottom fontSize={20}>{detailProd.description}</Typography>
+              <Typography gutterBottom fontSize={20}>
+                {detailProd.description}
+              </Typography>
             </ItemProduct>
             {/* <ItemProduct>
               <AttachMoneyIcon />
               <p> {detailProd.price}</p>
             </ItemProduct> */}
-           
 
             <Typography
-          sx={{ textDecoration: "underline" }}
-          gutterBottom
-          variant="h5"
-          component="div"
-          paddingTop={5}
-        >
-
-          Contact
-        </Typography>
-        <Typography gutterBottom fontSize={18} component="div">
-          Service provided by: {detailProd?.Provider?.name}
-        </Typography>
-         <Typography gutterBottom fontSize={18} component="div">
-          Phone: {detailProd?.Provider?.phone}
-        </Typography>
-        <Typography gutterBottom fontSize={18} component="div">
-          Adress: {detailProd?.Provider?.address}
-        </Typography>  
-        <ItemProduct>
+              sx={{ textDecoration: "underline" }}
+              gutterBottom
+              variant="h5"
+              component="div"
+              paddingTop={5}
+            >
+              Contact
+            </Typography>
+            <Typography gutterBottom fontSize={18} component="div">
+              Service provided by: {detailProd?.Provider?.name}
+            </Typography>
+            <Typography gutterBottom fontSize={18} component="div">
+              Phone: {detailProd?.Provider?.phone}
+            </Typography>
+            <Typography gutterBottom fontSize={18} component="div">
+              Adress: {detailProd?.Provider?.address}
+            </Typography>
+            <ItemProduct>
               <PlaceIcon />
               <p>{detailProd.location}</p>
             </ItemProduct>
           </Card>
         </DetailProduct>
-              
-
-       
       </Box>
     </Container>
   );

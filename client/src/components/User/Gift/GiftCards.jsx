@@ -15,35 +15,36 @@ export default function GiftCards() {
   }, [dispatch, userDetail]);
 
   return (
-    <div className="Cards-container">
-      <Stack direction="row" justifyContent="space-evenly" paddingTop={3}>
-      <Box xs={4}
-      sx={{
-        display: 'flex',
-        '& > :not(style)': {
-          m: 1,
-          width: 300,
-          justifyContent: 'center',
-          p: 3,
-                 
-        },
-      }}>
-            {gifts?.map((box) => (
-              <Grid key={box.id} item xs={3}>
-            <GiftCard
-              key={box.id}
-              image={box.image && box.image.url}
-              id={box.id}
-              ranking={box.ranking}
-              name={box.name}
-              detail={box.detail}
-              person={box.person}
-              expiration_date={box.expiration_date}
-              box={box}
-            />
-          </Grid>
-        ))}
-      </Box>
+    <div>
+      <Stack direction="row" justifyContent="space-evenly" >
+        <Box
+          xs={4}
+          sx={{
+            display: "flex",
+            "& > :not(style)": {
+              // m: 1,
+              width: 300,
+              justifyContent: "center",
+              p: 1,
+            },
+          }}
+        >
+          {gifts?.map((box) => (
+            <Grid key={box.id} item xs={3}>
+              <GiftCard
+                key={box.id}
+                image={box.image && box.image.url}
+                id={box.id}
+                ranking={box.ranking}
+                name={box.name}
+                detail={box.detail}
+                person={box.person}
+                expiration_date={box.expiration_date}
+                box={box}
+              />
+            </Grid>
+          ))}
+        </Box>
       </Stack>
     </div>
   );
