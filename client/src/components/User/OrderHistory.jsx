@@ -9,6 +9,7 @@ import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspace
 import UserReview from "../UserReview/UserReview";
 import { Action } from "../Admin/CommonStyled";
 import { Typography } from "@mui/material";
+import styled from "styled-components";
 
 export default function OrderHistory() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function OrderHistory() {
     { field: "price", headerName: "Price", width: 150 },
     { field: "person", headerName: "Persons", width: 150 },
     { field: "ranking", headerName: "Ranking ", width: 150 },
-    { field: "recipient", headerName: "Recipient ", width: 150 },
+    { field: "recipient", headerName: "Recipient ", width: 250 },
     {
       field: "expiration_date",
       headerName: "Expiration date",
@@ -54,34 +55,48 @@ export default function OrderHistory() {
     expiration_date: row.Box.expiration_date,
     person: row.Box.person,
     ranking: row.Box.ranking,
-    recipient: row.recipient
+    recipient: row.recipient,
   }));
 
+  const Group = styled.div`
+    height: 100%;
+    width: auto;
+  `;
+
   return (
+    <Box
+      sx={{
+        height: "50vh",
+        width: "80%",
+        margin: "auto",
+      }}
+    >
+      <Button variant="text" href="/userprofile">
+        <KeyboardBackspaceOutlinedIcon />
+        Back
+      </Button>
 
-
-
-    <Box sx={{ height: 400, width: "60%", marginLeft: 45  }}>
-
-    <Button variant="Abrir mi Box" href="/userprofile"sx={{pb:5 }}>
-      <KeyboardBackspaceOutlinedIcon />
-      Back
-    </Button>
-
-      <Typography variant="h4" gutterBottom>
-        Shopping history
-      </Typography>
-      <DataGrid
-        style={{ textAlign: "center", }}
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-
+      <Group>
+        <div>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            Shopping history
+          </Typography>
+        </div>
+        <DataGrid
+          style={{ textAlign: "center", height: "100%" }}
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Group>
     </Box>
   );
 }
