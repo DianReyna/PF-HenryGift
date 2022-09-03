@@ -25,7 +25,7 @@ const PayButton = ({ cartItems, handleSubmit }) => {
   return (
     <div>
       <Button
-        sx={{ bgcolor: "rgb(217, 79, 15)" }}
+        sx={{ bgcolor: "rgb(217, 79, 15)", color: 'text.primary' }}
         variant="contained"
         onClick={() => handleCheckOut()}
       >

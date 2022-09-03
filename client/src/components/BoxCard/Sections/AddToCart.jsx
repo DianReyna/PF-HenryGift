@@ -44,7 +44,7 @@ const AddToCart = ({ box }) => {
       onClick={() => handleAddToCart(box)}
     >
       Add to Cart
-      <ShoppingCartIcon color="primary" />
+      {/* <ShoppingCartIcon color="primary" /> */}
     </Button>
   );
 };
