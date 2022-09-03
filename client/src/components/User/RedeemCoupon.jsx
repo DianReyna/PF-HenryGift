@@ -11,6 +11,7 @@ import {
   Typography,
   Card,
   CardMedia,
+  Box,
 } from "@mui/material";
 import { getUserGift } from "../../redux/actions/userActions";
 import GiftCards from "./Gift/GiftCards";
@@ -22,6 +23,7 @@ import { boxSizing, padding } from "@mui/system";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import Redeem2 from "../../assets/Redeem2.png";
 import { URL } from "../../utils/index";
+
 
 export default function RedeemCoupon() {
   const navigate = useNavigate();
@@ -70,16 +72,23 @@ export default function RedeemCoupon() {
       >
         Do you have a gift?
       </Typography>
-
-      {/* <CardMedia
-        sx={{ width: 300,textAlign: "Center" }}
-        item container
-        component="img"      
-       img src={Redeem2} alt="Img not found"    
-       padding={3}
-       xs={12}
-      ms={6}
-      /> */}
+      
+        <CardMedia sx={{ width: 350 }}
+          component="img"
+          image={Redeem2}
+          alt="img not found"         
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center" 
+          style={{
+            position: 'relative', 
+            left: '50%', 
+            top: '50%',
+            transform: 'translate(-50%)'
+        }}
+        />
+    
 
       <Typography
         fontSize={20}

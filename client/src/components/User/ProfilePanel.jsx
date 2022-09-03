@@ -72,19 +72,23 @@ export default function ProfilePanel() {
     setAnchorEl(null);
   };
 
-  return (
+  const handleChange = (event) => {
+    userDetail();
+  };
+
+    return (
     <div>
        
       <ButtonGroup
-        variant="contained">
-        <Button variant="Editar" href="/editprofile">        
+        variant="contained" >
+        <Button variant="outlined" href="/editprofile" sx={{ paddingX: 5 }}>        
           <ModeEditIcon sx={{ fill: "grey" }}/>
           Edit     
         </Button>
-        <Button variant="Abrir mi Box" href="codebox">
+        <Button variant="outlined" href="codebox" sx={{ paddingX: 5 }}  >
           <RedeemOutlinedIcon sx={{ fill: "grey" }}/> Open Box
         </Button>
-        <Button variant="Editar" href="/orderhistory">
+        <Button variant="outlined" href="/orderhistory" sx={{ paddingX: 5 }}>
           <HistoryOutlinedIcon sx={{ fill: "grey" }}/> History
         </Button>
         <DeleteUserAccount />
@@ -92,20 +96,20 @@ export default function ProfilePanel() {
 
 
       {userDetail ? (
-        <Container >
-            <Table sx={{ minWidth: 650 }} size="small"  >
+        <Container fixed>
+            <Table sx={{ minWidth: 650, alignContent:"center" }} size="small"  >
             <DetailBox >
               <InfoDetailBox sx={{ width: '100' }}>
                 <Typography variant="h4" component="div" gutterBottom>
                   User information
                 </Typography>
-                <Divider />
+                <Divider  />
                 <ItemBox >
                 <Typography fontSize={18} component="div" gutterBottom>
                   First name: {userDetail.first_name}
                   </Typography>
                 </ItemBox>
-                <Divider />
+                <Divider  />
                 <ItemBox>
                 <Typography fontSize={18} component="div" gutterBottom>
                   Last name: {userDetail.last_name}
@@ -135,10 +139,13 @@ export default function ProfilePanel() {
           </Table>
           <CardsProducts>
             <Grid>
-              <Typography variant="h4" component="div" gutterBottom>
+              <Box sx={{pl: 5, pt:5}}>
+              <Typography variant="h4" component="div" textAlign="center"
+              gutterBottom>
                 My Boxes
               </Typography>
               <GiftCards />
+              </Box>
             </Grid>
           </CardsProducts>
 
