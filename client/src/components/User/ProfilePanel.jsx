@@ -80,15 +80,15 @@ export default function ProfilePanel() {
     <div>
        
       <ButtonGroup
-        variant="contained" >
-        <Button variant="outlined" href="/editprofile" sx={{ paddingX: 5 }}>        
+        variant="text" >
+        <Button  href="/editprofile" sx={{ paddingX: 5 }}>        
           <ModeEditIcon sx={{ fill: "grey" }}/>
           Edit     
         </Button>
-        <Button variant="outlined" href="codebox" sx={{ paddingX: 5 }}  >
+        <Button  href="codebox" sx={{ paddingX: 5 }}  >
           <RedeemOutlinedIcon sx={{ fill: "grey" }}/> Open Box
         </Button>
-        <Button variant="outlined" href="/orderhistory" sx={{ paddingX: 5 }}>
+        <Button  href="/orderhistory" sx={{ paddingX: 5 }}>
           <HistoryOutlinedIcon sx={{ fill: "grey" }}/> History
         </Button>
         <DeleteUserAccount />
