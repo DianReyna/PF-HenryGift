@@ -7,12 +7,22 @@ const createNewOrder = async (req, res, next) => {
   
   try {
    
-   
+    let createdOrder
     const boxes = req.body.boxes;
     const  userId = req.body.userId
-    
-    const createdOrder = await ordersServices.createNewOrder(userId,req.body.amount);
-   
+
+    const orderFound = await Order.findOne({where:{UserEmail:userId,payed:false}})
+
+    if(orderFound){
+      orderUpdated = await Order.update({amount:req.body.amount},{where:{UserEmail:userId,payed:false},returning:true})
+      createdOrder = orderUpdated[1][0]
+      console.log(createdOrder)
+      
+    }else {
+      createdOrder = await ordersServices.createNewOrder(userId,req.body.amount);
+    }
+    await OrderDetail.destroy({where:{UserEmail:userId,payed:false}})
+     
     let arrPromises = boxes.map(async(box)=>{
       let findBox = await Box.findOne({
         where:{
@@ -111,7 +121,8 @@ const sendEmailCode = async (req, res, next) => {
       await sendCode(findGift.dataValues.recipient,findGift.dataValues.code)
     })
     //await Promise.all(arrSendMail)
-    await OrderDetail.update({email_sent:true},{where:{ UserEmail:userId}})
+    await OrderDetail.update({email_sent:true,payed:true},{where:{ UserEmail:userId}})
+    await Order.update({payed:true},{where:{ UserEmail:userId}})
     res.send("Code send to Recipient")
 
   } catch (error) {

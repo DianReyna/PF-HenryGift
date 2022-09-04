@@ -13,7 +13,7 @@ const getBox = async (id) => {
         model: Products,
         where: {
           quantity: {
-            [Op.gt]: 4,
+            [Op.gt]: 0,
           },
         },
       },
