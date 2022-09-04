@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Create, ContentDialog } from "../Admin/CommonStyled";
 import {
@@ -13,6 +13,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
+  IconButton,
   List,
   ListItem,
   ListItemText,
@@ -20,9 +22,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material/";
-import { CreateNew, ViewDetail, Cancel } from "../Admin/CommonStyled";
+import SendIcon from "@mui/icons-material/Send";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import "./UserReview.css";
 
-export default function UserReview({ box_id, user_id }) {
+export default function UserReview({ box_id, user_id, box_name }) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(0);
@@ -32,7 +36,10 @@ export default function UserReview({ box_id, user_id }) {
     value: "",
     message: "",
   });
-
+  const [errors, setErrors] = useState({
+    value: "",
+    message: "",
+  });
   const review = useSelector((state) => state.reviews);
 
   useEffect(() => {
@@ -51,7 +58,6 @@ export default function UserReview({ box_id, user_id }) {
       });
     }
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -62,20 +68,33 @@ export default function UserReview({ box_id, user_id }) {
     });
   };
 
+  const handleBlur = (val) => {
+    const error = {};
+    if (message == "") {
+      error.message = "You must add your experience with this box";
+    }
+    if (value === 0) {
+      error.value = "Add a rating";
+    }
+    setErrors(error);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const info = {
       user: user_id,
       box: box_id,
     };
-    dispatch(createReviews(info, value, message));
-    setMessage("");
-    setValue(0);
-    setOpen(false);
-    toast.success("Register to leave your review", {
-      position: "top-right",
-    });
+    handleBlur();
+    if (Object.keys(errors).length === 0) {
+      dispatch(createReviews(info, value, message));
+      setOpen(false);
+      setMessage("");
+      setValue(0);
+      toast.success("The review has been saved", {
+        position: "top-right",
+      });
+    }
   };
 
   return (
@@ -88,66 +107,68 @@ export default function UserReview({ box_id, user_id }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <Typography
-          sx={{
-            mt: 3,
-            mb: 3,
-            display: "inline",
-            fontSize: 30,
-            color: "#545454",
-            textAlign: "center",
-          }}
-          id="alert-dialog-title"
-          variant="h5"
-          component="div"
-        >
-          {"Write a costumer review"}
-        </Typography>
-        <ContentDialog>
+        <div className="containerTitle">
+          <Typography
+            sx={{
+              mt: 3,
+              mb: 3,
+              display: "inline",
+              color: "",
+              marginLeft: 4,
+            }}
+            textalign="center"
+            id="alert-dialog-title"
+            variant="h4"
+            component="div"
+          >
+            {box_name}
+          </Typography>
+          <IconButton
+            onClick={handleClose}
+            sx={{ marginRight: 3, fontWeight: 500 }}
+          >
+            X
+          </IconButton>
+        </div>
+        <ContentDialog className="containerDialog">
           {reviewUser.status === "true" ? (
             <List
               sx={{ width: "100%", maxWidth: 360, bgcolor: "transparent" }}
               aria-label="contacts"
             >
               <ListItem disablePadding>
-                <Rating
-                  name="read-only"
-                  value={reviewUser.value}
-                  readOnly
-                  sx={{
-                    background: "orange",
-                    marginLeft: 10,
-                    fontSize: 30,
-                    marginBottom: 2,
-                  }}
-                />
+                <Typography color="secondary">
+                  <Rating
+                    name="read-only"
+                    value={reviewUser.value}
+                    readOnly
+                    sx={{
+                      marginLeft: 12,
+                      fontSize: 35,
+                    }}
+                  />
+                </Typography>
               </ListItem>
               <ListItem disablePadding>
-                <TextField
-                  id="outlined-textarea"
-                  multiline
-                  rows={4}
-                  disabled={false}
-                  name="message"
-                  defaultValue={reviewUser.message}
-                  placeholder="Write a review"
-                  size="small"
-                  sx={{
-                    input: {
-                      color: "black",
-                    },
-                    marginLeft: 5,
-                  }}
-                />
-                <Button
-                  color="success"
-                  size="md"
-                  variant="solid"
-                  onClick={handleSaved}
-                  sx={{ bgcolor: "#3085d6", marginLeft: 1, marginRight: 3 }}
-                >
-                  Saved
-                </Button>
+                <Grid xs={12} sm={6} item>
+                  <Typography variant="subtitle1" sx={{ marginLeft: 12 }}>
+                    {"Write a costumer review"}
+                  </Typography>
+                  <TextField
+                    id="outlined-textarea"
+                    multiline
+                    rows={4}
+                    disabled={false}
+                    name="message"
+                    defaultValue={reviewUser.message}
+                    placeholder="Write a review"
+                    fullWidth
+                    color="primary"
+                    sx={{
+                      marginLeft: 6,
+                    }}
+                  />
+                </Grid>
               </ListItem>
             </List>
           ) : (
@@ -156,55 +177,89 @@ export default function UserReview({ box_id, user_id }) {
               aria-label="contacts"
             >
               <ListItem disablePadding>
-                <Rating
-                  name="simple-controlled"
-                  value={value}
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                  sx={{
-                    background: "orange",
-                    marginLeft: 10,
-                    fontSize: 30,
-                    marginBottom: 2,
-                  }}
-                />
+                <Typography color="secondary">
+                  <Rating
+                    name="simple-controlled"
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    onBlur={handleBlur}
+                    sx={{
+                      marginLeft: 10,
+                      fontSize: 35,
+                    }}
+                  />
+                </Typography>
+                {errors.value && (
+                  <Typography sx={{ color: "red !Important", fontSize: 13 }}>
+                    {errors.value}
+                  </Typography>
+                )}
               </ListItem>
               <ListItem disablePadding>
-                <TextField
-                  id="outlined-textarea"
-                  multiline
-                  rows={4}
-                  disabled={false}
-                  name="message"
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                  }}
-                  placeholder="Write a review"
-                  size="small"
-                  sx={{
-                    input: {
-                      color: "black",
-                    },
-                    marginLeft: 5,
-                  }}
-                />
-                <Button
-                  color="success"
-                  size="md"
-                  variant="solid"
-                  sx={{ bgcolor: "#3085d6", marginLeft: 1, marginRight: 3 }}
-                  onClick={handleSubmit}
-                >
-                  Send
-                </Button>
+                <Grid xs={12} sm={6} item>
+                  <Typography variant="subtitle1" sx={{ marginLeft: 11 }}>
+                    {"Write a costumer review"}
+                  </Typography>
+                  <TextField
+                    id="outlined-textarea"
+                    multiline
+                    rows={4}
+                    disabled={false}
+                    name="message"
+                    value={message}
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                    }}
+                    onBlur={handleBlur}
+                    placeholder="Write a review"
+                    fullWidth
+                    color="primary"
+                    sx={{
+                      marginLeft: 6,
+                    }}
+                  />
+                </Grid>
               </ListItem>
+              {errors.message && (
+                <Typography
+                  sx={{ color: "red !Important", fontSize: 13, marginLeft: 7 }}
+                >
+                  {errors.message}
+                </Typography>
+              )}
             </List>
           )}
         </ContentDialog>
         <DialogActions>
-          <Cancel onClick={handleClose}>Cancel</Cancel>
+          {reviewUser.status === "true" ? (
+            <Button
+              size="md"
+              variant="contained"
+              sx={{
+                marginLeft: 1,
+                marginRight: 3,
+              }}
+              onClick={handleSaved}
+            >
+              Saved
+              <ErrorOutlineIcon sx={{ marginLeft: 1 }} />
+            </Button>
+          ) : (
+            <Button
+              size="md"
+              variant="contained"
+              sx={{
+                marginLeft: 1,
+                marginRight: 3,
+              }}
+              onClick={handleSubmit}
+            >
+              Send
+              <SendIcon sx={{ marginLeft: 1 }} />
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </div>

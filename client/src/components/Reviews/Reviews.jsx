@@ -7,7 +7,7 @@ import CardReview from "../CardReview/CardReview";
 import { getReviews } from "../../redux/actions/reviewsActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 
 export default function Reviews({ id }) {
   const dispatch = useDispatch();
@@ -45,28 +45,28 @@ export default function Reviews({ id }) {
           component="div"
         >
           Options
-          <Button
-            sx={{ display: "inline", marginLeft: 30 }}
+          <IconButton
+            sx={{ display: "inline", marginLeft: 40 }}
             onClick={handleClose}
           >
             X
-          </Button>
+          </IconButton>
         </Typography>
 
-        <DialogContent dividers={scroll === "paper"}>
+        <DialogContent dividers={scroll === "paper"} sx={{ width: 480 }}>
           <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
             <Grid>
               {reviews &&
                 reviews?.map((item, index) => {
-                  const find = item.createdAt.indexOf("T");
-                  const dateBox = item.createdAt.slice(0, find);
+                  const find = item && item.createdAt.indexOf("T");
+                  const dateBox = item && item.createdAt.slice(0, find);
                   return (
                     <div key={index}>
                       <CardReview
-                        name={item.User.first_name}
+                        name={item && item.User.first_name}
                         date={dateBox}
-                        message={item.menssageBox}
-                        score={item.scoreBox}
+                        message={item && item.menssageBox}
+                        score={item && item.scoreBox}
                       />
                     </div>
                   );

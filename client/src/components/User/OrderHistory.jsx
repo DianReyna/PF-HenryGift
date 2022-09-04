@@ -40,7 +40,11 @@ export default function OrderHistory() {
       renderCell: (params) => {
         return (
           <Action>
-            <UserReview box_id={params.row.id_box} user_id={user._id} />
+            <UserReview
+              box_id={params.row.id_box}
+              user_id={user._id}
+              box_name={params.row.name}
+            />
           </Action>
         );
       },
@@ -49,6 +53,7 @@ export default function OrderHistory() {
 
   const rows = orderDetail.map((row) => ({
     id: row.id,
+    id_box: row.Box.id,
     price: row.Box.price,
     name: row.Box.name,
     detail: row.Box.detail,
