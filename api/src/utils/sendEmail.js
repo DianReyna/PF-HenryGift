@@ -204,9 +204,25 @@ const sendQr = (recipient, img) => {
     .catch((err) => console.log(err));
 };
 
+const confirmEmail = (recipient, jwt_code) => {
+    console.log("Check");
+    mailTransport
+      .sendMail({
+        from: AUTH_USER,
+        to: recipient,
+        subject: "Confirm email",
+        attachDataUrls: true,
+        html: `<h1>Please verify your email!</h1>
+          <p>Click on the link to confirm your email</p>
+          <a href="${URL}/confirmation?token=${jwt_code}">${URL}/confirmation?token=${jwt_code}<a/>`,
+      })
+      .catch((err) => console.log(err));
+  };
+
 module.exports = {
   sendCode,
   confirmPay,
   changePassword,
   sendQr,
+  confirmEmail
 };
