@@ -8,7 +8,6 @@ export const ColorModeContext = createContext({
 
 export const ColorContextProvider = ({ children }) => {
   const [mode, setMode] = useState("light");
-  console.log(mode);
 
   const colorMode = useMemo(
     () => ({

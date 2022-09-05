@@ -9,14 +9,18 @@ export default function About() {
     <Box className="containerAbout">
       <div className="containerContent">
         <div className="aboutTitle">
-          <Typography variant="h2">
-            Hi! Here you will find a bit from us
-          </Typography>
-          <img
-            className="img"
-            src="https://wp.es.aleteia.org/wp-content/uploads/sites/7/2018/06/web3-woman-holding-small-gift-present-shutterstock_739730530-j-chizhe-ai.jpg?w=620&h=348&crop=1"
-            alt="gift"
-          />
+          <div>
+            <Typography variant="h2">
+              Hi! Here you will find a bit from us
+            </Typography>
+          </div>
+          <div className="containerImg">
+            <img
+              className="img"
+              src="https://wp.es.aleteia.org/wp-content/uploads/sites/7/2018/06/web3-woman-holding-small-gift-present-shutterstock_739730530-j-chizhe-ai.jpg?w=620&h=348&crop=1"
+              alt="gift"
+            />
+          </div>
         </div>
         <div className="containerWho">
           <Typography sx={{ marginBottom: 3 }} variant="h3" color="primary">

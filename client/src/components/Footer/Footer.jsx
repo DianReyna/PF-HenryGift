@@ -5,8 +5,10 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Divider, Grid, Typography } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import { useSelector } from "react-redux";
 
 export const Footer = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <footer className="footer">
       <div className="containerFooter">
@@ -44,12 +46,19 @@ export const Footer = () => {
               />
             </Typography>
           </Link>
-
-          <Link to="/codebox" className="enlaces">
-            <Typography variant="h6" sx={{ color: "white !Important" }}>
-              Open my gift
-            </Typography>
-          </Link>
+          {user == null ? (
+            <Link to="/login" className="enlaces">
+              <Typography variant="h6" sx={{ color: "white !Important" }}>
+                Open my gift
+              </Typography>
+            </Link>
+          ) : (
+            <Link to="/codebox" className="enlaces">
+              <Typography variant="h6" sx={{ color: "white !Important" }}>
+                Open my gift
+              </Typography>
+            </Link>
+          )}
         </div>
       </div>
     </footer>

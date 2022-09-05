@@ -4,7 +4,7 @@ import {
   getDetailBox,
   getDetailProduct,
   deleteBox,
-  getAllBoxesAdmin,
+  BoxesAdmin,
   editBoxes,
   postBox,
 } from "../reducer/boxesSlice";
@@ -62,7 +62,7 @@ export const detailProduct = (id) => (dispatch) => {
 
 export const getBoxesAdmin = () => (dispatch) => {
   axios(` ${URL}/boxes/admin`)
-    .then((res) => dispatch(getAllBoxesAdmin(res.data)))
+    .then((res) => dispatch(BoxesAdmin(res.data)))
     .catch((err) => {
       console.log(err);
     });
