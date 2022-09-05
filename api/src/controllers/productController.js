@@ -103,12 +103,6 @@ const updateProduct = async (req, res, next) => {
         }
       }
     }
-
-    const update = await productServices.updateProduct(id, body);
-    if (update) {
-      const newList = await productServices.getAllProducts();
-      res.status(200).send(newList);
-    }
   } catch (error) {
     next(error);
   }
