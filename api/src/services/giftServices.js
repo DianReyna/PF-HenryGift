@@ -83,14 +83,16 @@ const getQrInformation = async(user,product) => {
     include:{model:Provider}
   })
 
+  let findUser = await User.findByPk(user)
   //console.log("soy el prodd",findProduct.Provider)
 
   let qrInformation = {
-    user:user,
+    name:findUser.dataValues.first_name,
+    lastName: findUser.dataValues.last_name,
     providerName:findProduct.Provider.dataValues.name,
     productName:findProduct.dataValues.name,
-    redeemed:findPick.dataValues.redeemed
-
+    redeemed:findPick.dataValues.redeemed,
+    image: findProduct.dataValues.image
   }
   return qrInformation
 }
