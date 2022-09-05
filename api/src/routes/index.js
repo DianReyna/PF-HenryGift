@@ -15,6 +15,7 @@ const googleLogin = require("./googleLogin.routes.js");
 const favourites = require("./favouritesRoutes");
 const reviews = require("./ReviewsUser");
 const admin = require("./adminRoutes.js");
+const confirmation = require("./emailConfirmation.routes.js");
 
 const router = Router();
 
@@ -34,5 +35,6 @@ router.use("/googleLogin", googleLogin);
 router.use("/favourites", favourites);
 router.use("/reviews", reviews);
 router.use("/admin", admin);
+router.use("/confirmation", confirmation);
 
 module.exports = router;

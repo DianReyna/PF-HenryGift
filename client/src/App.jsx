@@ -44,6 +44,7 @@ import CheckOutSuccess from "./components/CheckOutSuccess.jsx/CheckOutSuccess";
 import GiftProductDetail from "./components/User/Gift/GiftProductDetail";
 import Analitics from "./components/Admin/Analytics/Analytics";
 import About from "./components/About/About";
+import Confirmation from "./components/Confirmation/Confirmation";
 
 const ContainerApp = styled.div`
   min-height: 74vh;
@@ -66,6 +67,7 @@ function App() {
       <NavBar />
       <ContainerApp>
         <Routes>
+          <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/about" element={<About />} />
           <Route path="/how-does-it-work" element={<HowDoesItWork />} />
           <Route path="/frequent-questions" element={<FrequentQuestions />} />
