@@ -86,10 +86,34 @@ const confirmPay = (recipient) => {
       from: AUTH_USER,
       to: recipient,
       subject: "Payment Confirmation",
-      html: `<h1>Successful Payment</h1>
-        <h2>Thank you for choosing us</h2>
-        <p>The recipients of your gift will recieve an email with the redeem code.</p>
-        </div>`,
+      html: `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+          <div style="width: 100%; background-color: #e3e3e3;">
+              <div style="padding: 20px 10px 20px 10px;">
+                  <div style="background-color: #000000; padding: 10px 0px 10px 0px; width: 100%; text-align: center;">
+                  </div>
+                  <!-- Main Content-->
+                  <h1 style="color: #141313 ;text-align: center;">Successful Payment</h1>
+                  <h2 style="text-align: center;">Thank you for choosing us</h2>
+                  <p style="text-align: center;">The recipients of your gift will recieve an email with the redeem code.</p>
+                  <!-- Main Content -->
+                  <!-- Footer -->
+                  <div style=" color: #ffffff; padding: 5px 0px 0px 0px; width: 100%; text-align: center;">
+                      <p style="background-color: black; padding: 10px 0px 10px 0px; font-size: 12px ;">
+                           HenryGift 2022 ©Copyright.
+                      </p>
+                  </div>
+                  <!-- Footer -->
+              </div>
+          </div>
+      </body>
+      </html>`,
     })
     .catch((err) => console.log(err));
 };
@@ -212,9 +236,37 @@ const confirmEmail = (recipient, jwt_code) => {
         to: recipient,
         subject: "Confirm email",
         attachDataUrls: true,
-        html: `<h1>Please verify your email!</h1>
-          <p>Click on the link to confirm your email</p>
-          <a href="${URL}/confirmation?token=${jwt_code}">${URL}/confirmation?token=${jwt_code}<a/>`,
+        html: `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+            <div style="width: 100%; background-color: #e3e3e3;">
+                <div style="padding: 10px 10px 10px 10px;">
+                    <div style="background-color: #000000; padding: 10px 0px 10px 0px; width: 100%; text-align: center;">
+                    </div>
+                    <!-- Main Content-->
+                    <h1 style="text-align: center;">Please verify your email!</h1>
+                    <p style="text-align: center;">Click on the link to confirm your email</p>
+                    <div style="text-align: center;">
+                        <a href="${URL}/confirmation?token=${jwt_code}">${URL}/confirmation?token=${jwt_code}<a/>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <!-- Footer -->
+                    <div style=" color: #ffffff; padding: 5px 0px 0px 0px; width: 100%; text-align: center;">
+                        <p style="background-color: black; padding: 10px 0px 10px 0px; font-size: 12px ;">
+                             HenryGift 2022 ©Copyright.
+                        </p>
+                    </div>
+                    <!-- Footer -->
+                </div>
+            </div>
+        </body>
+        </html>`,
       })
       .catch((err) => console.log(err));
   };
