@@ -8,13 +8,19 @@
 }
 
 .aboutTitle {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  margin-top: 8rem;
-  height: 61vh;
-  font-weight: 400 !important;
+  margin-top: 5rem;
+  height: 64vh;
+  font-weight: 900 !important;
+}
+.containerImg {
+  margin-top: 6rem;
 }
 
 .containerWho {
+  margin-top: 11rem;
   width: 70%;
   height: 15rem;
   margin-left: 5rem;
@@ -23,9 +29,9 @@
 .containerWhy {
   width: 70%;
   height: 15rem;
-  text-align: right;
+  text-align: left;
   margin-left: 13rem;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
 }
 
 .containerTeam {
