@@ -70,6 +70,7 @@ export default function Register() {
         password: input.password,
       }
       dispatch(register(userData));
+      navigate('/login')
     }
   };
   if (isLoading){

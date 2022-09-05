@@ -119,7 +119,7 @@ export default function Login() {
               </InputAdornment>
             }
             label="Email"
-            sx={{ fontSize: 20 ,color:"white"}}
+            sx={{ fontSize: 20 }}
           />
           {errors.email&&(<Typography component={"p"} sx={{ fontSize: 13,color:"red" }} >{errors.email}</Typography>)}
         </FormControl>
@@ -143,7 +143,7 @@ export default function Login() {
               </InputAdornment>
             }
             label="Password"
-            sx={{ fontSize: 18 ,color:"white"}}
+            sx={{ fontSize: 18 }}
           />
           {errors.password&&(<Typography component={"p"} sx={{ fontSize: 13 ,color:"red"}}>{errors.password}</Typography>)} 
         </FormControl>

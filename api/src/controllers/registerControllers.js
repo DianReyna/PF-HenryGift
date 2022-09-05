@@ -4,7 +4,7 @@ const registerServices = require("../services/registerServices");
 const registerUser = async (req, res, next) => {
   const body = req.body;
   try {
-    let registerUser = await registerServices.createNewUser(body)
+    let registerUser = await registerServices.createNewUser(req,res,body)
 
     if(registerUser) {
       
