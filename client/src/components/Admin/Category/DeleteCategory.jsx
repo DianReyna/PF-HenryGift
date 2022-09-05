@@ -65,7 +65,7 @@ export default function DeleteCategory({ idCat }) {
         </DialogTitle>
         <DialogActions>
           <Cancel onClick={handleClose}>Cancel</Cancel>
-          <CreateNew onClick={() => handleDelete(idProd)} autoFocus>
+          <CreateNew onClick={() => handleDelete(idCat)} autoFocus>
             Accept
           </CreateNew>
         </DialogActions>
