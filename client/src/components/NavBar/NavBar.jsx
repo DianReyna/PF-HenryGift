@@ -27,12 +27,13 @@ import Typography from "@mui/material/Typography";
 import Logout from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
+import NavMobile from "./NavMobile";
 import { useState } from "react";
 
 const ResponsiveAppBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { mode, toggleMode } = useContext(ColorModeContext);
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
@@ -81,14 +82,25 @@ const ResponsiveAppBar = () => {
                 </Button>
               </Link>
             </Box>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              <Link to="/codebox" className="navlink">
-                <Button sx={{ color: "white" }} textalign="center">
-                  <RedeemIcon fontSize="small" sx={{ marginRight: 1 }} />
-                  <Typography variant="body2">Open my Box</Typography>
-                </Button>
-              </Link>
-            </Box>
+            {user == null ? (
+              <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                <Link to="/login" className="navlink">
+                  <Button sx={{ color: "white" }} textalign="center">
+                    <RedeemIcon fontSize="small" sx={{ marginRight: 1 }} />
+                    <Typography variant="body2">Open my Box</Typography>
+                  </Button>
+                </Link>
+              </Box>
+            ) : (
+              <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                <Link to="/codebox" className="navlink">
+                  <Button sx={{ color: "white" }} textalign="center">
+                    <RedeemIcon fontSize="small" sx={{ marginRight: 1 }} />
+                    <Typography variant="body2">Open my Box</Typography>
+                  </Button>
+                </Link>
+              </Box>
+            )}
           </div>
         </div>
         <div className="containerappUser">
@@ -264,6 +276,7 @@ const ResponsiveAppBar = () => {
           </div>
         </div>
       </div>
+      <NavMobile className="topbarMobile" />
     </AppBar>
   );
 };

@@ -83,6 +83,7 @@
 .containerAcces {
   display: flex;
   flex-direction: row;
+  margin-left: 2rem;
 }
 
 .topIconBag {
@@ -106,10 +107,11 @@
 
 .topLeft {
   display: flex;
-  width: 38%;
+  width: 56%;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
 }
 .appbarUser {
   display: flex;
@@ -138,4 +140,51 @@
 
 .conteinerUserName {
   margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 3000px) and (min-width: 801px) {
+  .containerMobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) and (min-width: 1px) {
+  .topbarwraper {
+    display: none;
+  }
+  .topbar {
+    height: 100px;
+    width: 90%;
+  }
+  .containerMobile {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .containerAllMenu {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+  .containerLogo {
+    margin-left: 1rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+  .containerItemMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .containerInfo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .menuItem {
+    display: none;
+  }
 }
