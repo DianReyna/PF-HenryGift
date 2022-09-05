@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const { User, Authentication } = require("../database/index");
 const { Op } = require("sequelize");
 
-const createNewUser = async (body) => {
+const createNewUser = async (req,res,body) => {
     const {email, password, dateBirth, first_name, last_name, phone, banned, access_level} = body;
     if(!email || !password || !dateBirth || !first_name || !last_name || !phone) {
         return res.status(400).json({message:"Please add all fields"})
