@@ -22,10 +22,10 @@ export const boxesSlice = createSlice({
       state.boxesAdmin = action.payload;
     },
     deleteBox: (state, action) => {
-      state.boxes = action.payload;
+      state.boxesAdmin = action.payload;
     },
     editBoxes: (state, action) => {
-      state.boxes = action.payload;
+      state.boxesAdmin = action.payload;
     },
     getBoxId: (state, action) => {
       state.boxes = action.payload;

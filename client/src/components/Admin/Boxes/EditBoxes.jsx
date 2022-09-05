@@ -44,7 +44,7 @@ export default function EditBox({ boxId }) {
     expiration: "",
   });
 
-  const itemsBox = useSelector((state) => state.boxes);
+  const itemsBox = useSelector((state) => state.boxesAdmin);
 
   useEffect(() => {
     dispatch(getBoxesAdmin());
@@ -53,7 +53,7 @@ export default function EditBox({ boxId }) {
   const handleClickOpen = () => {
     setOpen(true);
 
-    let selectBox = itemsBox.boxes.filter((el) => el.id === boxId);
+    let selectBox = itemsBox.boxesAdmin.filter((el) => el.id === boxId);
     selectBox = selectBox[0];
     setCurrentBox(selectBox);
     setPreview(selectBox.image);
