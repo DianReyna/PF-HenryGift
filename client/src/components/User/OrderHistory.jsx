@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
@@ -10,16 +11,29 @@ import UserReview from "../UserReview/UserReview";
 import { Action } from "../Admin/CommonStyled";
 import { Typography } from "@mui/material";
 import styled from "styled-components";
+import "./User.css";
 
 export default function OrderHistory() {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { orderDetail } = useSelector((state) => state.users);
+  const orderDetail = useSelector((state) => state.orderDetail);
 
   useEffect(() => {
     dispatch(getOrders(user._id));
   }, [dispatch]);
+
+  const rows = orderDetail?.orderDetail.map((row) => ({
+    id: row.id,
+    id_box: row.Box.id,
+    price: row.Box.price,
+    name: row.Box.name,
+    detail: row.Box.detail,
+    expiration_date: row.Box.expiration_date,
+    person: row.Box.person,
+    ranking: row.Box.ranking,
+    recipient: row.recipient,
+  }));
 
   const columns = [
     { field: "name", headerName: "Box", width: 150 },
@@ -51,18 +65,6 @@ export default function OrderHistory() {
     },
   ];
 
-  const rows = orderDetail.map((row) => ({
-    id: row.id,
-    id_box: row.Box.id,
-    price: row.Box.price,
-    name: row.Box.name,
-    detail: row.Box.detail,
-    expiration_date: row.Box.expiration_date,
-    person: row.Box.person,
-    ranking: row.Box.ranking,
-    recipient: row.recipient,
-  }));
-
   const Group = styled.div`
     height: 100%;
     width: auto;
@@ -76,10 +78,12 @@ export default function OrderHistory() {
         margin: "auto",
       }}
     >
-      <Button variant="text" href="/userprofile">
-        <KeyboardBackspaceOutlinedIcon />
-        Back
-      </Button>
+      <Link to="/userprofile" className="navlink">
+        <Button variant="text">
+          <KeyboardBackspaceOutlinedIcon />
+          Back
+        </Button>
+      </Link>
 
       <Group>
         <div>

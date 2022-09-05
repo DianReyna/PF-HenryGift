@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Grid,
@@ -17,6 +18,7 @@ import { putUsersUpdate, getUsersById } from "../../redux/actions/userActions";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import "./User.css";
 
 export default function UserProfileEdit() {
   const dispatch = useDispatch();
@@ -83,9 +85,11 @@ export default function UserProfileEdit() {
 
   return (
     <>
-      <Button variant="text" href="/userprofile" sx={{  marginLeft: '2rem'  }}>
-        <KeyboardBackspaceOutlinedIcon sx={{ fill: "text.primary" }} /> Back
-      </Button>
+      <Link to="/userprofile" className="navlink">
+        <Button variant="text" sx={{ marginLeft: "2rem" }}>
+          <KeyboardBackspaceOutlinedIcon sx={{ fill: "text.primary" }} /> Back
+        </Button>
+      </Link>
 
       <Grid
         container

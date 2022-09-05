@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
   Grid,
   Button,
-  Link,
   TextField,
   Paper,
   Typography,
@@ -23,7 +23,7 @@ import { boxSizing, padding } from "@mui/system";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import Redeem2 from "../../assets/Redeem2.png";
 import { URL } from "../../utils/index";
-
+import "./User.css";
 
 export default function RedeemCoupon() {
   const navigate = useNavigate();
@@ -55,10 +55,12 @@ export default function RedeemCoupon() {
 
   return (
     <div>
-      <Button variant="text" href="/userprofile">
-        <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }} />
-        Back{" "}
-      </Button>
+      <Link to="/userprofile" className="navlink">
+        <Button variant="text">
+          <KeyboardBackspaceOutlinedIcon sx={{ fill: "grey" }} />
+          Back{" "}
+        </Button>
+      </Link>
 
       <Typography
         fontSize={28}
@@ -72,23 +74,23 @@ export default function RedeemCoupon() {
       >
         Do you have a gift?
       </Typography>
-      
-        <CardMedia sx={{ width: 350 }}
-          component="img"
-          image={Redeem2}
-          alt="img not found"         
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justifyContent="center" 
-          style={{
-            position: 'relative', 
-            left: '50%', 
-            top: '50%',
-            transform: 'translate(-50%)'
+
+      <CardMedia
+        sx={{ width: 350 }}
+        component="img"
+        image={Redeem2}
+        alt="img not found"
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{
+          position: "relative",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%)",
         }}
-        />
-    
+      />
 
       <Typography
         fontSize={20}

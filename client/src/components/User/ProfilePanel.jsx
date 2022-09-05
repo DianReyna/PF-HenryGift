@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -9,6 +10,7 @@ import DeleteUserAccount from "./DeleteUserAccount";
 import RedeemOutlinedIcon from "@mui/icons-material/RedeemOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import "./User.css";
 
 export default function ProfilePanel() {
   const dispatch = useDispatch();
@@ -26,16 +28,22 @@ export default function ProfilePanel() {
         variant="text"
         sx={{ display: "flex", justifyContent: "center" }}
       >
-        <Button href="/editprofile" sx={{ paddingX: 5 }}>
-          <ModeEditIcon sx={{ fill: "grey" }} />
-          Edit
-        </Button>
-        <Button href="codebox" sx={{ paddingX: 5 }}>
-          <RedeemOutlinedIcon sx={{ fill: "grey" }} /> Open Box
-        </Button>
-        <Button href="/orderhistory" sx={{ paddingX: 5 }}>
-          <HistoryOutlinedIcon sx={{ fill: "grey" }} /> History
-        </Button>
+        <Link to="/editprofile" className="navlink">
+          <Button sx={{ paddingX: 5 }}>
+            <ModeEditIcon sx={{ fill: "grey" }} />
+            Edit
+          </Button>
+        </Link>
+        <Link to="/codebox" className="navlink">
+          <Button sx={{ paddingX: 5 }}>
+            <RedeemOutlinedIcon sx={{ fill: "grey" }} /> Open Box
+          </Button>
+        </Link>
+        <Link to="/orderhistory" className="navlink">
+          <Button sx={{ paddingX: 5 }}>
+            <HistoryOutlinedIcon sx={{ fill: "grey" }} /> History
+          </Button>
+        </Link>
         <DeleteUserAccount />
       </ButtonGroup>
 
