@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Box, Grid, Button, Typography } from "@mui/material";
 import imgOne from "../../assets/personThinking.jpg";
 import imgTwo from "../../assets/shopping.jpg";
+import { useSelector } from "react-redux";
 
 export default function HowDoesItWork() {
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
   const openGift = () => {
-    navigate("/codeBox");
+    user == null ? navigate("/login"): navigate("/codebox");
     window.scroll(0, 0);
   };
   return (
