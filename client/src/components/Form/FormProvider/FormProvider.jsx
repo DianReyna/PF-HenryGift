@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, TextField, Button, DialogContentText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Form.css";
+import "../Form.css";
 import useForm from "../useForm";
 import validate from "./validateProvider";
 
@@ -23,14 +23,14 @@ export default function FormProvider() {
   return (
     <div>
       <Box
-        className={styles.formsContainer}
+        className="formsContainer"
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },
         }}
       >
-        <div className={styles.formContainer}>
+        <div className="formContainer">
           <form autoComplete="off" onSubmit={(e) => handleProviderSubmit(e)}>
-            <div className={styles.formContainer}>
+            <div className="formContainer">
               <TextField
                 onChange={(e) => handleProviderChange(e)}
                 name="providerName"

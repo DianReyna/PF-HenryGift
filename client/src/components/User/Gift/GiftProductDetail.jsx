@@ -15,6 +15,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import PlaceIcon from "@mui/icons-material/Place";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { URL } from "../../../utils/index";
 
 const DetailProduct = styled.div`
   display: grid;
@@ -57,8 +58,6 @@ export default function ProductDetail() {
       }
     });
   };
-  const URL = " https://henrygift-api.herokuapp.com";
-  // const URL = "http://localhost:3001";
 
   const sendProductPicked = async (userId, productId) => {
     try {
@@ -73,8 +72,8 @@ export default function ProductDetail() {
   };
 
   return (
-    <Container sx={{ m: 3 }} display={"flex"}>
-      <Box>
+    <Container sx={{ m: 3 }}>
+      <Box sx={{ pb: 5 }}>
         <Typography gutterBottom variant="h4" component="div">
           {detailProd.name}
         </Typography>
@@ -86,58 +85,51 @@ export default function ProductDetail() {
             alt="img not found"
           />
           <Card sx={{ p: 2 }}>
+            <Button
+              sx={{ ml: "7.5rem" }}
+              className="clear-btn"
+              variant="outlined"
+              onClick={() => handlePick()}
+            >
+              Choose This Service
+            </Button>
             <ItemProduct>
               <h2>About :</h2>
             </ItemProduct>
             <ItemProduct>
-              <p>{detailProd.description}</p>
+              <Typography gutterBottom fontSize={20}>
+                {detailProd.description}
+              </Typography>
             </ItemProduct>
-            <ItemProduct>
+            {/* <ItemProduct>
               <AttachMoneyIcon />
               <p> {detailProd.price}</p>
-            </ItemProduct>
+            </ItemProduct> */}
+
+            <Typography
+              sx={{ textDecoration: "underline" }}
+              gutterBottom
+              variant="h5"
+              component="div"
+              paddingTop={5}
+            >
+              Contact
+            </Typography>
+            <Typography gutterBottom fontSize={18} component="div">
+              Service provided by: {detailProd?.Provider?.name}
+            </Typography>
+            <Typography gutterBottom fontSize={18} component="div">
+              Phone: {detailProd?.Provider?.phone}
+            </Typography>
+            <Typography gutterBottom fontSize={18} component="div">
+              Adress: {detailProd?.Provider?.address}
+            </Typography>
             <ItemProduct>
               <PlaceIcon />
               <p>{detailProd.location}</p>
             </ItemProduct>
           </Card>
         </DetailProduct>
-      </Box>
-      <Button
-        sx={{ ml: "60%", mt: 5, position: "absolute" }}
-        className="clear-btn"
-        variant="outlined"
-        onClick={() => handlePick()}
-      >
-        Choose This Service
-      </Button>
-      <Box sx={{ my: 2 }}>
-        <Typography
-          sx={{ textDecoration: "underline" }}
-          gutterBottom
-          variant="h5"
-          component="div"
-        >
-          Contact
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          Service provided by :
-        </Typography>
-        <Typography gutterBottom variant="h7" component="div">
-          {detailProd?.Provider?.name}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          Phone :
-        </Typography>
-        <Typography gutterBottom variant="h7" component="div">
-          {detailProd?.Provider?.phone}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          Adress:
-        </Typography>
-        <Typography gutterBottom variant="h7" component="div">
-          {detailProd?.Provider?.address}
-        </Typography>
       </Box>
     </Container>
   );

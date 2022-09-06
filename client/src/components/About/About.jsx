@@ -9,21 +9,29 @@ export default function About() {
     <Box className="containerAbout">
       <div className="containerContent">
         <div className="aboutTitle">
-          <Typography variant="h2">
-            Hi! Here you will find a bit from us
-          </Typography>
-          <img
-            className="img"
-            src="https://wp.es.aleteia.org/wp-content/uploads/sites/7/2018/06/web3-woman-holding-small-gift-present-shutterstock_739730530-j-chizhe-ai.jpg?w=620&h=348&crop=1"
-            alt="gift"
-          />
+          <div>
+            <Typography variant="h2">
+              Hi! Here you will find a bit from us
+            </Typography>
+          </div>
+          <div className="containerImg">
+            <img
+              className="img"
+              src="https://wp.es.aleteia.org/wp-content/uploads/sites/7/2018/06/web3-woman-holding-small-gift-present-shutterstock_739730530-j-chizhe-ai.jpg?w=620&h=348&crop=1"
+              alt="gift"
+            />
+          </div>
         </div>
         <div className="containerWho">
           <Typography sx={{ marginBottom: 3 }} variant="h3" color="primary">
             What is Henry-Gift?
           </Typography>
           <Typography variant="body1">
-            Henry-Gift is a platform that allows you to buy gift cards for yourself or your loved ones, so that they can enjoy a special moment, you can choose from a wide variety of options, such as a dinner, a delicious massage, a night in any hotel you prefer, among others.
+            Henry-Gift is a platform that allows you to buy gift cards for
+            yourself or your loved ones, so that they can enjoy a special
+            moment, you can choose from a wide variety of options, such as a
+            dinner, a delicious massage, a night in any hotel you prefer, among
+            others.
           </Typography>
         </div>
 
@@ -32,7 +40,12 @@ export default function About() {
             Why did we created Henry-Gift?
           </Typography>
           <Typography variant="body1">
-            We started from the idea of creating something different so that people could give something out of the ordinary and have access to different gift options without having to wait in long lines or worry about finding a supplier. We also thought about being the link between people and services to give small or large companies a connection with other customers.
+            We started from the idea of creating something different so that
+            people could give something out of the ordinary and have access to
+            different gift options without having to wait in long lines or worry
+            about finding a supplier. We also thought about being the link
+            between people and services to give small or large companies a
+            connection with other customers.
           </Typography>
         </div>
 
@@ -88,7 +101,7 @@ export default function About() {
               img={
                 "https://media-exp1.licdn.com/dms/image/C4E03AQH_qCFkUXWpcA/profile-displayphoto-shrink_800_800/0/1661833530786?e=1667433600&v=beta&t=4GjXuOU8-Fh1bb-cAvQWKL1o3mm6jyUqVW7ThlKRg2U"
               }
-              name={"Deysi Cisneros"}
+              name={"Daysi Cisneros"}
               country={"Perú"}
               git={"https://github.com/DaybelCR"}
               linked={"https://www.linkedin.com/in/daysi-cisneros/"}

@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt')
-const { User, Authentication } = require("../database/index");
+const { User, Authentication, Token } = require("../database/index");
 const { Op } = require("sequelize");
+const {confirmEmail} = require("../utils/sendEmail.js")
+const genConfirmationToken = require("../utils/genConfirmationToken")
 
-const createNewUser = async (body) => {
+const createNewUser = async (req,res,body) => {
     const {email, password, dateBirth, first_name, last_name, phone, banned, access_level} = body;
     if(!email || !password || !dateBirth || !first_name || !last_name || !phone) {
         return res.status(400).json({message:"Please add all fields"})
@@ -15,6 +17,10 @@ const createNewUser = async (body) => {
     
     await Authentication.create({email: email, password: hashedPassword})
     const registerUser = await User.create({ email: email, dateBirth, first_name, last_name, phone, banned, access_level})
+
+    let jwt_token = genConfirmationToken(email)
+    await User.update({token: jwt_token}, { where: {email: email} })
+    confirmEmail(email, jwt_token)
 
     return registerUser
 };

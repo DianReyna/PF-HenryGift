@@ -24,7 +24,7 @@ export default function BoxCard({
     "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
 
   return (
-    <Card sx={{ maxWidth: 335, border: "1px solid black" }}>
+    <Card sx={{ maxWidth: 320, border: "1px solid rgb(187, 187, 187)" }}>
       <CardWidth>
         <div className="footer-fav-box">
           <Favorite id={id} />
@@ -35,6 +35,7 @@ export default function BoxCard({
               component="img"
               height="140"
               image={image}
+              // border= '1px solid rgb(187, 187, 187)'
               alt="img not found"
             />
           ) : (
@@ -43,6 +44,7 @@ export default function BoxCard({
               height="140"
               image={imgDefault}
               alt="img not found"
+              // border= '1px solid rgb(187, 187, 187)'
             />
           )}
 

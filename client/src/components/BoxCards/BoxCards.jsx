@@ -7,6 +7,7 @@ import { Grid, Typography } from "@mui/material";
 import { queryPage } from "../../redux/actions/queryActions";
 import { getCart } from "../../redux/actions/cartActions";
 import axios from "axios";
+import { URL } from "../../utils/index";
 
 export default function BoxCards() {
   const dispatch = useDispatch();
@@ -31,8 +32,6 @@ export default function BoxCards() {
   }, [query]);
 
   const saveCart = async () => {
-    const URL = " https://henrygift-api.herokuapp.com";
-    // const URL = "http://localhost:3001";
     user &&
       (await axios.post(`${URL}/orders/cart`, { ...cart, user_id: user._id }));
   };

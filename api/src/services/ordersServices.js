@@ -38,6 +38,7 @@ const getAllOrders = async () => {
     const userOrders = await OrderDetail.findAll({
       where:{
         UserEmail: user,
+        payed:true
       },
       include: [{ model: Box }]
     })

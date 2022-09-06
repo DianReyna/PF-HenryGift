@@ -5,6 +5,7 @@ import BoxCard from "../BoxCard/BoxCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./Favs.css";
 import { Link } from "react-router-dom";
+import Redeem2 from "../../assets/Redeem2.png";
 
 const Favs = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ const Favs = () => {
               <ArrowBackIcon />
               <span>Start shopping</span>
             </Link>
+          </div>
+          <div className="favs-img">
+            <img src={Redeem2} alt="gift-img" />
           </div>
         </div>
       ) : (

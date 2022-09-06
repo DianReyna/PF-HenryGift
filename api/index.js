@@ -34,7 +34,7 @@ app.use(errorHandler);
 // set DB connection and express server
 async function start() {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: false, alter:true });
     app.listen(PORT, async () => {
       console.log("Server listening on port", PORT);
       // await loadMockCategories();

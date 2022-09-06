@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getView, postViews } from "../reducer/reviewsSlice";
 
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+import { URL } from "../../utils/index";
 
 export const getReviews = (id) => (dispatch) => {
   axios(` ${URL}/reviews?box_id=${id}`)

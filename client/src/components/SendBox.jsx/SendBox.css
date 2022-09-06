@@ -45,7 +45,7 @@
 .summary-cart-box{
     display: flex;
     justify-content: space-between;
-    border-bottom: 0.5px solid white;
+    border-bottom: 0.5px solid rgb(187, 187, 187);
 }
 
 .right-side{
@@ -64,12 +64,12 @@
 }
 
 .summary-cart-title{
-    border-bottom: 0.5px solid white;
+    border-bottom: 0.5px solid rgb(187, 187, 187);
 }
 
 
 .container-all-send{
-    border: 1px solid white;
+    border: 1px solid rgb(187, 187, 187);
     width: 30rem;
     margin-top: 3rem;
     border-radius: 5px;

@@ -1,6 +1,6 @@
 import axios from "axios";
-const URL = "https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+
+import { URL } from "../../utils/index";
 
 // Register user
 const register = async (userData) => {

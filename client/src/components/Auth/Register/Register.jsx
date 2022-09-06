@@ -49,6 +49,7 @@ export default function Register() {
       toast.error(message)
     }
     if (isSuccess || user) {
+      toast.success(`Please check your inbox to verify your email.`)
       navigate('/')
     }
     dispatch(reset())

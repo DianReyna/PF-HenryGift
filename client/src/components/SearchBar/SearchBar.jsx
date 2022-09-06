@@ -1,19 +1,18 @@
-import React from 'react'
-import {styled, InputBase, alpha} from  "@mui/material"
+import React from "react";
+import { styled, InputBase, alpha } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { queryName } from "../../redux/actions/queryActions";
-import styles from "../NavBar/NavBar.module.css";
+import "../NavBar/NavBar.css";
 
 const SearchBar = () => {
-
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundcolor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundcolor: alpha(theme.palette.common.white, 0.25),
     },
     marginLeft: 100,
     width: "100%",
@@ -60,16 +59,16 @@ const SearchBar = () => {
   }
 
   return (
-          <Search className={styles.searchbar} onChange={handleInputChange}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-  )
-}
+    <Search className="searchbar" onChange={handleInputChange}>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ "aria-label": "search" }}
+      />
+    </Search>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

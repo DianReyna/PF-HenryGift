@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import "./SendBox.css";
-import { useEffect } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import PayButton from "../PayButton/PayButton";
 import PersonIcon from "@mui/icons-material/Person";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
+import "./SendBox.css";
+import { URL } from "../../utils/index";
 
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
@@ -36,8 +35,6 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
-      const URL = " https://henrygift-api.herokuapp.com";
-      // const URL = "http://localhost:3001";
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,
@@ -76,7 +73,7 @@ const SendBox = () => {
                       Valid until {cartItem.expiration_date}
                     </div>
                     <div className="box-amount">
-                      <h1>${cartItem.price}</h1>
+                      <h1>U$D {cartItem.price}</h1>
                     </div>
                   </div>
                 </div>
@@ -90,14 +87,14 @@ const SendBox = () => {
                     <TextField
                       sx={{
                         input: {
-                          color: "white",
+                          color: "text.primary",
                         },
                       }}
                       onChange={(e) => handleEmailChange(e, index)}
                       value={input[index]}
                       type="text"
                       fullWidth
-                      placeholder="Ingrese el email del agasajado"
+                      placeholder="Insert email from the recipient"
                       className="place-email"
                     />
                   </form>

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { getProvider } from "../../../redux/actions/providerActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Form.css";
+import "../Form.css";
 import useForm from "../useForm";
 import validate from "./validateProduct.js";
 import DialogFormProduct from "./DialogFormProduct";
@@ -57,9 +57,9 @@ export default function FormProduct() {
           },
         }}
       >
-        <div className={styles.formContainer}>
+        <div className="formContainer">
           <form autoComplete="off" onSubmit={handleProductSubmit}>
-            <div className={styles.formContainer}>
+            <div className="formContainer">
               <TextField
                 type="file"
                 accept="image/"

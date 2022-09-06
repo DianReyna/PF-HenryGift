@@ -6,6 +6,7 @@ export const boxesSlice = createSlice({
     boxes: [],
     detail: {},
     detailProd: {},
+    boxesAdmin: [],
   },
   reducers: {
     getAllBoxes: (state, action) => {
@@ -17,14 +18,14 @@ export const boxesSlice = createSlice({
     getDetailProduct: (state, action) => {
       state.detailProd = action.payload;
     },
-    getAllBoxesAdmin: (state, action) => {
-      state.boxes = action.payload;
+    BoxesAdmin: (state, action) => {
+      state.boxesAdmin = action.payload;
     },
     deleteBox: (state, action) => {
-      state.boxes = action.payload;
+      state.boxesAdmin = action.payload;
     },
     editBoxes: (state, action) => {
-      state.boxes = action.payload;
+      state.boxesAdmin = action.payload;
     },
     getBoxId: (state, action) => {
       state.boxes = action.payload;
@@ -40,7 +41,7 @@ export const {
   getDetailBox,
   getDetailProduct,
   deleteBox,
-  getAllBoxesAdmin,
+  BoxesAdmin,
   editBoxes,
   postBox,
 } = boxesSlice.actions;

@@ -6,8 +6,7 @@ import {
   postProduct,
 } from "../reducer/productsSlice";
 
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+import { URL } from "../../utils/index";
 
 export const createProduct = (payload) => (dispatch) => {
   axios
@@ -39,7 +38,6 @@ export const updateProduct = (data) => (dispatch) => {
 };
 
 export const putStateProduct = (data) => (dispatch) => {
-  console.log(data);
   axios
     .put(`${URL}/products/status/${data.id}`, data.product)
     .then((res) => dispatch(editProduct(res.data)))

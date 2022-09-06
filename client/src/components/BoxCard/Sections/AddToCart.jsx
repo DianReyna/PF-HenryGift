@@ -5,6 +5,7 @@ import { getCart } from "../../../redux/actions/cartActions";
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import axios from "axios";
+import { URL } from "../../../utils/index";
 
 const AddToCart = ({ box }) => {
   const dispatch = useDispatch();
@@ -25,8 +26,6 @@ const AddToCart = ({ box }) => {
   }, [dispatch]);
 
   const saveCart = async () => {
-    const URL = " https://henrygift-api.herokuapp.com";
-    // const URL = "http://localhost:3001";
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
@@ -45,7 +44,7 @@ const AddToCart = ({ box }) => {
       onClick={() => handleAddToCart(box)}
     >
       Add to Cart
-      <ShoppingCartIcon color="primary" />
+      {/* <ShoppingCartIcon color="primary" /> */}
     </Button>
   );
 };

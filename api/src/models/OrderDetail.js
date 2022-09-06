@@ -29,6 +29,11 @@ module.exports = OrderDetailFactory = (sequelize) => {
         defaultValue: false,
         allowNull: false,
       },
+      payed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       timestamps: true,

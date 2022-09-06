@@ -8,9 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { filterCategory } from "../../redux/actions/queryActions";
 import { getCategory } from "../../redux/actions/categoryActions";
-export default function BasicSelect({setCategory,category}) {
-  
-  const {categories} = useSelector(state=>state.categories)
+export default function BasicSelect({ setCategory, category }) {
+  const { categories } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,16 +34,13 @@ export default function BasicSelect({setCategory,category}) {
     <Box
     // sx={{ background: 'rgba(16, 15, 15, 0)', color: 'white !important', borderRadius: 2 }}
     >
-      <FormControl sx={{ width:{xs:80,sm:100,md:120} }}>
-        <InputLabel
-          id="demo-simple-select-label"
-          sx={{ color: "#E16428" }}
-        >
+      <FormControl sx={{ width: { xs: 80, sm: 100, md: 120 } }}>
+        <InputLabel id="demo-simple-select-label" sx={{ color: "#E16428" }}>
           Category
         </InputLabel>
 
         <Select
-          sx={{ color: "white !important" }}
+          sx={{ color: "text.primary" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={category}
@@ -52,12 +48,13 @@ export default function BasicSelect({setCategory,category}) {
           onChange={handleChange}
         >
           <MenuItem value={""}>No Aplicar</MenuItem>
-          {categories?.map((category,index)=>(
-          <MenuItem key={index} value={category.name}>{category.name}</MenuItem>
+          {categories?.map((category, index) => (
+            <MenuItem key={index} value={category.name}>
+              {category.name}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
     </Box>
   );
 }
-

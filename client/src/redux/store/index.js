@@ -14,6 +14,8 @@ import reviews from "../reducer/reviewsSlice";
 import bestBoxes from "../reducer/adminSlice";
 import userBuy from "../reducer/adminSlice";
 import salesBox from "../reducer/adminSlice";
+import boxesAdmin from "../reducer/boxesSlice";
+import orderDetail from "../reducer/userSlice";
 
 export default configureStore({
   reducer: {
@@ -32,5 +34,7 @@ export default configureStore({
     bestBoxes,
     userBuy,
     salesBox,
+    boxesAdmin,
+    orderDetail,
   },
 });

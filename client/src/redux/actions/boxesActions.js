@@ -4,12 +4,12 @@ import {
   getDetailBox,
   getDetailProduct,
   deleteBox,
-  getAllBoxesAdmin,
+  BoxesAdmin,
   editBoxes,
   postBox,
 } from "../reducer/boxesSlice";
-const URL = " https://henrygift-api.herokuapp.com";
-// const URL = "http://localhost:3001";
+
+import { URL } from "../../utils/index";
 
 export const getBoxes = () => (dispatch) => {
   axios(` ${URL}/boxes`)
@@ -62,7 +62,7 @@ export const detailProduct = (id) => (dispatch) => {
 
 export const getBoxesAdmin = () => (dispatch) => {
   axios(` ${URL}/boxes/admin`)
-    .then((res) => dispatch(getAllBoxesAdmin(res.data)))
+    .then((res) => dispatch(BoxesAdmin(res.data)))
     .catch((err) => {
       console.log(err);
     });

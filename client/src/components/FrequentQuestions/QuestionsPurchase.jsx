@@ -23,7 +23,7 @@ export default function QuestionsPurchase() {
           <Typography>
           If you are looking for an original gift, Henry-Gift experiences are the best option!
            No matter the reason, no matter the occasion, it only matters to make someone happy.
-          Each Henry-Gift includes a catalog with a selection of experiences. 
+          Each Henry-Gift box includes a catalog with a selection of experiences. 
           The honoree can choose the one they like best and book directly with the place.
           </Typography>
         </AccordionDetails>

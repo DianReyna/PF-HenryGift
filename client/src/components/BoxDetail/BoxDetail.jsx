@@ -11,7 +11,8 @@ import ReviewBar from "../ReviewBar/ReviewBar";
 import AddToCart from "../BoxCard/Sections/AddToCart";
 import Favorite from "../BoxCard/Sections/Favorite";
 import Reviews from "../Reviews/Reviews";
-import paymentMethods2 from "../../assets/paymentMethods2.jpg";
+
+
 import {
   Container,
   LeftSide,
@@ -81,12 +82,8 @@ export default function BoxDetail() {
                   <Favorite id={detail.id} />
                 </div>
               </GroupFeats>
-              <PaymentMethod>
-                <PaymentImg src={paymentMethods2} alt="payment methods" />
-              </PaymentMethod>
             </div>
           </DetailBox>
-
           <CardsProducts>
             {allProducts &&
               allProducts.map((product) => {

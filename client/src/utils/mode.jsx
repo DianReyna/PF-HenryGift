@@ -1,5 +1,5 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { amber, deepOrange, grey, orange, red } from "@mui/material/colors";
+import { deepOrange, grey, orange } from "@mui/material/colors";
 import { createContext, useMemo, useState } from "react";
 
 export const ColorModeContext = createContext({
@@ -8,7 +8,6 @@ export const ColorModeContext = createContext({
 
 export const ColorContextProvider = ({ children }) => {
   const [mode, setMode] = useState("light");
-  console.log(mode);
 
   const colorMode = useMemo(
     () => ({
@@ -22,7 +21,6 @@ export const ColorContextProvider = ({ children }) => {
 
   const theme = createTheme({
     palette: {
-      // mode: mode,
       mode,
       ...(mode === "light"
         ? {
@@ -44,7 +42,7 @@ export const ColorContextProvider = ({ children }) => {
         : {
             // palette values for dark mode
             primary: {
-              main: deepOrange[600],
+              main: orange[600],
               contrastText: "rgba(0,0,0,0.87)",
             },
             secondary: {

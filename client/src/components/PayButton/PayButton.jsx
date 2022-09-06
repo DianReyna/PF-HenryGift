@@ -2,8 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
-// const URL = `http://localhost:3001`;
-const URL = `https://henrygift-api.herokuapp.com`;
+import { URL } from "../../utils/index";
 
 const PayButton = ({ cartItems, handleSubmit }) => {
   const { user } = useSelector((state) => state.auth);
@@ -26,7 +25,7 @@ const PayButton = ({ cartItems, handleSubmit }) => {
   return (
     <div>
       <Button
-        sx={{ bgcolor: "rgb(217, 79, 15)" }}
+        sx={{ bgcolor: "rgb(217, 79, 15)", color: 'text.primary' }}
         variant="contained"
         onClick={() => handleCheckOut()}
       >
