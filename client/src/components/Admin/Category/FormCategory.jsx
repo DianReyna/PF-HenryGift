@@ -66,7 +66,7 @@ export default function FormCategory() {
             onChange={(e) => handleOnChange(e)}
             name="name"
             value={input.name}
-            label="Nombre del proveedor"
+            label="Category Name"
           />
           {errors.name && (
             <DialogContentText sx={{ color: "red !Important", fontSize: 13 }}>
