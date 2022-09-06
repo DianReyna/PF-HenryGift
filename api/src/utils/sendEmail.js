@@ -2,8 +2,8 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const { AUTH_USER, AUTH_PASS } = process.env;
 
-// const URL = "https://henry-gift.vercel.app";
-const URL = "http://127.0.0.1:5173";
+const URL = "https://henry-gift.vercel.app";
+// const URL = "http://127.0.0.1:5173";
 
 let mailTransport = nodemailer.createTransport({
   service: "Gmail",
@@ -168,7 +168,9 @@ const changePassword = (recipient) => {
                   <p>Do you forget your password?.</p>
                   <p>Go the link below and create a new one.</p>
                       <!-- Button -->
-                      <a class="button" href=${URL}/login/reset-password/${recipient.split("@")[0]}> Reset password</a>
+                      <a class="button" href=${URL}/login/reset-password/${
+        recipient.split("@")[0]
+      }> Reset password</a>
                   </div>
                   <!-- Main Content -->
                   <!-- Footer -->
@@ -229,14 +231,14 @@ const sendQr = (recipient, img) => {
 };
 
 const confirmEmail = (recipient, jwt_code) => {
-    console.log("Check");
-    mailTransport
-      .sendMail({
-        from: AUTH_USER,
-        to: recipient,
-        subject: "Confirm email",
-        attachDataUrls: true,
-        html: `<!DOCTYPE html>
+  console.log("Check");
+  mailTransport
+    .sendMail({
+      from: AUTH_USER,
+      to: recipient,
+      subject: "Confirm email",
+      attachDataUrls: true,
+      html: `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -267,14 +269,14 @@ const confirmEmail = (recipient, jwt_code) => {
             </div>
         </body>
         </html>`,
-      })
-      .catch((err) => console.log(err));
-  };
+    })
+    .catch((err) => console.log(err));
+};
 
 module.exports = {
   sendCode,
   confirmPay,
   changePassword,
   sendQr,
-  confirmEmail
+  confirmEmail,
 };
