@@ -5,18 +5,28 @@
 # Henry Gift
 
 ## Introduction
+(eng)
+This is a group proyect created for the Henry bootcamp by 7 members of the 09 team.
+The idea is to design and code an E-comerce of boxes, in it you can buy, recieve, and/or gift a happiness package, exchanging said package for one of the options the catalogue includes.
 
+(esp)
 Este es un proyecto grupal creado para Henry bootcamp por 7 integrandes del equipo 09.
 La idea es diseñar y programar una E-commerce de boxes, en ella se pueden comprar, recibir y/o regalar paquetes de felicidad, canjeando dicho paquete por una de las opciones que incluya el catálogo.
 
 ## Proyect Objetives
+(eng)
+- Create an app with Javascript
+- Afirm and connect all the concepts learned on the bootcamp
+- Learn and practice Git workflow and teamwork
+- Use the SCRUM methodology
 
+(esp)
 - Crear una aplicacion con Javascript
 - Afirmar y conectar todos los conceptos aprendidos en la carrera
 - Aprender y practicar Git workflow / trabajo en equipo
 - Usar la metodologia scrum
 
-## Tecnologias utilizadas
+## Used technologies
 
 ### Front End:
 
@@ -31,7 +41,7 @@ PostgresSQL
 
 ## **Starting Instructions**
 
-**IMPORTANT:** Necesary version of node and NPM
+**IMPORTANT:** Necessary version of node and NPM
 
 **Node**: v16.14.0 o mayor
 **NPM**: 8.3.1 o mayor
@@ -40,7 +50,7 @@ PostgresSQL
 
 The boilerPlate has two folders: `api` and `client`.
 
-Dentro de `api` deberias crear un archivo llamado:`.env` con el siguiente fromato:
+Inside the `api` you should create a file called:`.env` with the following format:
 
 ```
 DB_USER=postgresUser
@@ -56,28 +66,28 @@ CLOUDINARY_API_KEY = cloudinaryapikey
 CLOUDINARY_API_SECRET =  cloudinaryapisecret
 ```
 
-deberias remplasar `postgresuser` , `postgrespassword` y `databaseName` con tus credenciales, para que puedas conectar con la base de datos.
+Replace `postgresuser` , `postgrespassword` y `databaseName` with your credentials, so that you can connect to de database.
 
-Para` youremail` y `passwordauthemail` debes seguir los pasos del siguiente <a href="https://www.youtube.com/watch?v=J4CtP1MBtOE&ab_channel=TonyTeachesTech">video</a> para configurar tu correo gmail.
+For` youremail` y `passwordauthemail` you must follow the following steps at  <a href="https://www.youtube.com/watch?v=J4CtP1MBtOE&ab_channel=TonyTeachesTech">video</a> to configure your gmail.
 
-Para `stripekey` ...
+For `stripekey` ...
 
-Para `jwtsecretkey` ...
+For `jwtsecretkey` ...
 
-Para `cloudinaryname` , `cloudinaryapikey` y ` cloudinaryapisecret` debes crearte una cuenta en cloudinary y colocar tus credenciales. <a href="https://www.youtube.com/watch?v=lcKQv4QAXME&t=1s&ab_channel=prefectcode">video para crear cuenta</a>
+For `cloudinaryname` , `cloudinaryapikey` and ` cloudinaryapisecret` you must create a cloudinary account and place your credentials. <a href="https://www.youtube.com/watch?v=lcKQv4QAXME&t=1s&ab_channel=prefectcode">Video to create account</a>
 
-recuerda que el archivo .env es ignorado por .gitignore ya que estas contains son informacion sensible (the credeentials).
+remember the .env file is ignored by .gitignore since it contains sensible information.
 
 ### _Install necesary package to run it_
 
 - Abre la consola :
 
-* dentro de la carpeta `api`, run the command line, `npm install`
-* dentro de la carpeta `client`, run the command line. `npm install`
+*inside the folder `api`, run the command line, `npm install`
+*inside the folder `client`, run the command line. `npm install`
 
 ### _Run the proyect_
 
 - Abre la consola:
 
-* dentro de la carpeta `api`, run the command line, `npm run dev`
-* dentro de la carpeta `client`, run the command line, `npm run dev` (`alt + click` o `ctrl + click` en el enlace que aparece en la consola para que te lleve a la preview del proyecto)
+*inside the folder `api`, run the command line, `npm run dev`
+*inside the folder `client`, run the command line, `npm run dev` (`alt + click` o `ctrl + click` on the link showing in the console to open the proyect preview)
