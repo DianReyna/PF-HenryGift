@@ -3,8 +3,8 @@ const boxServices = require("../services/boxServices");
 const { GiftList, Gift, Box, Products } = require("../database/index");
 const QrCode = require("qrcode");
 const { sendQr } = require("../utils/sendEmail");
-// const URL = "http://127.0.0.1:5173";
-const URL = "https://henry-gift.vercel.app";
+const URL = "http://127.0.0.1:5173";
+// const URL = "https://henry-gift.vercel.app";
 
 const redeemGift = async (req, res, next) => {
   const { code } = req.body;
