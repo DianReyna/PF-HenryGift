@@ -59,9 +59,9 @@ CLOUDINARY_API_KEY = cloudinaryapikey
 CLOUDINARY_API_SECRET =  cloudinaryapisecret
 ```
 
-Replace `postgresuser` , `postgrespassword` y `databaseName` with your credentials, so that you can connect to de database.
+Replace `postgresuser` , `postgrespassword` and `databaseName` with your credentials, so that you can connect to de database.
 
-For` youremail` y `passwordauthemail` you must follow the following steps at <a href="https://www.youtube.com/watch?v=J4CtP1MBtOE&ab_channel=TonyTeachesTech">video</a> to configure your gmail.
+For` youremail` and `passwordauthemail` you must follow this <a href="https://www.youtube.com/watch?v=J4CtP1MBtOE&ab_channel=TonyTeachesTech">video</a> steps to configure your gmail.
 
 For `stripekey` and `jwtsecretkey` replace with your credentials.
 
