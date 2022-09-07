@@ -30,14 +30,14 @@ export default function About() {
             Henry-Gift is a platform that allows you to buy gift cards for
             yourself or your loved ones, so that they can enjoy a special
             moment, you can choose from a wide variety of options, such as a
-            dinner, a delicious massage, a night in any hotel you prefer, among
+            dinner, a delicious massage, a night at any hotel of your preference, among
             others.
           </Typography>
         </div>
 
         <div className="containerWhy">
           <Typography sx={{ marginBottom: 3 }} variant="h3" color="primary">
-            Why did we created Henry-Gift?
+            Why did we create Henry-Gift?
           </Typography>
           <Typography variant="body1">
             We started from the idea of creating something different so that
