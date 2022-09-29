@@ -4,11 +4,16 @@ import {
   getDetailBox,
   getDetailProduct,
   deleteBox,
-  getAllBoxesAdmin,
+  BoxesAdmin,
   editBoxes,
   postBox,
 } from "../reducer/boxesSlice";
+<<<<<<< HEAD
 import URL from "../../utils/backRoutes";
+=======
+
+import { URL } from "../../utils/index";
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 
 export const getBoxes = () => (dispatch) => {
   axios(` ${URL}/boxes`)
@@ -18,7 +23,7 @@ export const getBoxes = () => (dispatch) => {
 
 export const getBoxesPerPage = (query) => (dispatch) => {
   axios(
-    ` ${URL}/test?offset=${query.page}&limit=4&name=${query.name}&col=${query.sort.col}&dir=${query.sort.dir}&category=${query.filters.category}&num=${query.filters.person}`
+    ` ${URL}/test?offset=${query.page}&limit=8&name=${query.name}&col=${query.sort.col}&dir=${query.sort.dir}&category=${query.filters.category}&num=${query.filters.person}`
   )
     .then((res) => dispatch(getAllBoxes(res.data)))
     .catch((err) => console.log(err));
@@ -61,7 +66,7 @@ export const detailProduct = (id) => (dispatch) => {
 
 export const getBoxesAdmin = () => (dispatch) => {
   axios(` ${URL}/boxes/admin`)
-    .then((res) => dispatch(getAllBoxesAdmin(res.data)))
+    .then((res) => dispatch(BoxesAdmin(res.data)))
     .catch((err) => {
       console.log(err);
     });

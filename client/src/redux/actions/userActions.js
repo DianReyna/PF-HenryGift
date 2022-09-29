@@ -7,10 +7,14 @@ import {
   profileUpdate,
   getGiftUser,
   deleteUser,
-  getOrderUser
+  getOrderUser,
 } from "../reducer/userSlice";
 
+<<<<<<< HEAD
 import URL from "../../utils/backRoutes";
+=======
+import { URL } from "../../utils/index";
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 
 export const getUsers = () => (dispatch) => {
   axios(` ${URL}/getAllUsers`)
@@ -61,7 +65,6 @@ export const removeUser = (id) => (dispatch) => {
 
 export const getOrders = (user) => (dispatch) => {
   axios(` ${URL}/orders/user?user=${user}`)
-   .then((res) => dispatch(getOrderUser(res.data)))
-   .catch((err) => console.log(err));
+    .then((res) => dispatch(getOrderUser(res.data)))
+    .catch((err) => console.log(err));
 };
-

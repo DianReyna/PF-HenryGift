@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, TextField, Button, DialogContentText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Form.module.css";
+import "../Form.css";
 import useForm from "../useForm";
 import validate from "./validateProvider";
 
@@ -23,25 +23,14 @@ export default function FormProvider() {
   return (
     <div>
       <Box
-        className={styles.formsContainer}
+        className="formsContainer"
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "white !Important",
-            },
-          },
-          "& label.Mui-focused": {
-            color: "white",
-          },
-          "& .MuiFormLabel-root ": {
-            color: "white !important",
-          },
         }}
       >
-        <div className={styles.formContainer}>
+        <div className="formContainer">
           <form autoComplete="off" onSubmit={(e) => handleProviderSubmit(e)}>
-            <div className={styles.formContainer}>
+            <div className="formContainer">
               <TextField
                 onChange={(e) => handleProviderChange(e)}
                 name="providerName"
@@ -49,11 +38,6 @@ export default function FormProvider() {
                 required
                 label="Provider name"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.providerName && (
                 <DialogContentText
@@ -70,11 +54,6 @@ export default function FormProvider() {
                 required
                 label="Phone"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.providerPhone && (
                 <DialogContentText
@@ -90,11 +69,6 @@ export default function FormProvider() {
                 required
                 label="Addres"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.providerAddress && (
                 <DialogContentText
@@ -111,11 +85,6 @@ export default function FormProvider() {
                 required
                 label="Email"
                 size="small"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.providerEmail && (
                 <DialogContentText

@@ -1,87 +1,35 @@
-import * as React from "react";
-import Rating from "@mui/material/Rating";
-import styled from "styled-components";
-import Reviews from "../Reviews/Reviews";
-import { useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReviews } from "../../redux/actions/reviewsActions";
-import { toast } from "react-toastify";
-import { Button, TextField } from "@mui/material";
-import styles from './ReviewBar.css'
+import { detailBox } from "../../redux/actions/boxesActions";
+import { getReviews } from "../../redux/actions/reviewsActions";
+import { List, ListItem, ListItemText } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 
 export default function ReviewBar({ id }) {
   const dispatch = useDispatch();
-  const [value, setValue] = useState(0);
-  const [message, setMessage] = useState("");
+  const rating = useSelector((state) => state.reviews);
+  const { detail } = useSelector((state) => state.boxes);
 
-  const { user } = useSelector((state) => state.auth);
-
-  const handleBlur = () => {
-    if (!user) {
-      toast.warning("Register to leave your review", {
-        position: "top-right",
-      });
-    }
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (user) {
-      const info = {
-        user: user._id,
-        box: id,
-      };
-      dispatch(createReviews(info, value, message));
-      setMessage("");
-    } else {
-      toast.warning("Register to leave your review", {
-        position: "top-right",
-      });
-    }
-  };
+  useEffect(() => {
+    getReviews(id);
+    detailBox(id);
+  }, [dispatch]);
+  const ratingStart = rating?.reviews.length;
+  const num = detail?.ranking;
 
   return (
-    <ReviewContent
-      sx={{
-        "& > legend": { mt: 2 },
-      }}
+    <List
+      sx={{ width: "100%", maxWidth: 360, bgcolor: "transparent" }}
+      aria-label="contacts"
     >
-      <div className={styles.container}>
-        <Rating
-          name="simple-controlled"
-          value={value}
-          onBlur={handleBlur}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
+      <ListItem disablePadding>
+        <StarIcon /> {num}
+        <ListItemText
+          primary={`
+Average between ${ratingStart} opinions`}
+          sx={{ marginLeft: 2 }}
         />
-        <div className={styles.textField}>
-          <TextField
-            disabled={false}
-            name="message"
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-            placeholder="Write a costumer review"
-            size="small"
-            sx={{
-              input: {
-                color: "white",
-              }
-            }}
-          />
-          <Button color="success" size="md" variant="solid" onClick={handleSubmit}>Send</Button>
-        </div>
-      </div>
-      <div>
-        <Reviews id={id} />
-      </div>
-    </ReviewContent>
+      </ListItem>
+    </List>
   );
 }
-
-export const ReviewContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;

@@ -25,6 +25,7 @@ export default function ProductDetail() {
   useEffect(() => {
     dispatch(detailProduct(idProduct));
   }, [dispatch, idProduct]);
+
   return (
     <Container sx={{ m: 3 }} display={"flex"}>
       <Box>
@@ -35,9 +36,10 @@ export default function ProductDetail() {
           <CardMedia
             component="img"
             height="240"
-            image={detailProd.image}
+            image={detailProd.image && detailProd.image.url}
             alt="img not found"
           />
+
           <Card sx={{ p: 2 }}>
             <ItemProduct>
               <h2>About :</h2>

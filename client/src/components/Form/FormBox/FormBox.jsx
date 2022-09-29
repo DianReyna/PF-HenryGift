@@ -9,11 +9,12 @@ import {
   Select,
   FormLabel,
   DialogContentText,
+  Grid,
 } from "@mui/material";
 import { getCategory } from "../../../redux/actions/categoryActions";
 import { getProducts } from "../../../redux/actions/productsActions";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Form.module.css";
+import "../Form.css";
 import useForm from "../useForm";
 import validate from "./validateBox.js";
 import DialogFormBox from "./DialogFormBox";
@@ -59,28 +60,13 @@ export default function FormBox() {
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "32ch",
-          },
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "white !Important",
-            },
-          },
-          "& label.Mui-focused": {
-            color: "white",
-          },
-          "& .MuiFormLabel-root ": {
-            color: "white !important",
+            width: "33ch",
           },
         }}
       >
-        <div className={styles.formContainer}>
-          <form
-            sx={{ color: "white !Important" }}
-            autoComplete="off"
-            onSubmit={handleBoxSubmit}
-          >
-            <div className={styles.formContainer}>
+        <div className="formContainer">
+          <form autoComplete="off" onSubmit={handleBoxSubmit}>
+            <div className="formContainer">
               <TextField
                 type="file"
                 accept="image/"
@@ -88,19 +74,7 @@ export default function FormBox() {
                 onChange={(e) => handleChangeBoxImg(e)}
                 size="small"
                 required
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
-              {errors.boxImage && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxImage}
-                </DialogContentText>
-              )}
               <TextField
                 onChange={(e) => handleChangeBox(e)}
                 name="boxName"
@@ -108,11 +82,6 @@ export default function FormBox() {
                 required
                 size="small"
                 label="Box name"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.boxName && (
                 <DialogContentText
@@ -131,11 +100,6 @@ export default function FormBox() {
                 required
                 label="Box Detail"
                 size="small"
-                sx={{
-                  textarea: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.boxDetail && (
                 <DialogContentText
@@ -151,11 +115,6 @@ export default function FormBox() {
                 required
                 size="small"
                 label="Persons"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.boxPerson && (
                 <DialogContentText
@@ -171,11 +130,6 @@ export default function FormBox() {
                 required
                 size="small"
                 label="Price"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                }}
               />
               {errors.boxPrice && (
                 <DialogContentText
@@ -184,27 +138,27 @@ export default function FormBox() {
                   {errors.boxPrice}
                 </DialogContentText>
               )}
-              <FormLabel sx={{ fontSize: 12 }}>Expiration Date</FormLabel>
-              <TextField
-                id="date"
-                type="date"
-                name="boxExpirationDate"
-                value={input.boxExpirationDate || ""}
-                onChange={(e) => handleChangeBox(e)}
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                  color: "white",
-                }}
-              />
-              {errors.boxExpirationDate && (
-                <DialogContentText
-                  sx={{ color: "red !Important", fontSize: 13 }}
-                >
-                  {errors.boxExpirationDate}
-                </DialogContentText>
-              )}
+              <Grid xs={12} sm={6} item>
+                <TextField
+                  id="date"
+                  label="Expiration Date"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="boxExpirationDate"
+                  value={input.boxExpirationDate || ""}
+                  onChange={(e) => handleChangeBox(e)}
+                />
+                {errors.boxExpirationDate && (
+                  <DialogContentText
+                    sx={{ color: "red !Important", fontSize: 13 }}
+                  >
+                    {errors.boxExpirationDate}
+                  </DialogContentText>
+                )}
+              </Grid>
+
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Products</InputLabel>
                 <Select
@@ -217,9 +171,6 @@ export default function FormBox() {
                   MenuProps={MenuProps}
                   size="small"
                   color="primary"
-                  sx={{
-                    color: "white",
-                  }}
                 >
                   {products.products?.map(({ name, id }) => {
                     return (
@@ -250,9 +201,6 @@ export default function FormBox() {
                   onChange={(e) => handleChangeCat(e)}
                   MenuProps={MenuProps}
                   size="small"
-                  sx={{
-                    color: "white",
-                  }}
                 >
                   {categories.categories?.map(({ name, id }) => {
                     return (
@@ -264,7 +212,7 @@ export default function FormBox() {
                 </Select>
                 {errors.boxCategories && (
                   <DialogContentText
-                    sx={{ color: "red !Important", fontSize: 13 }}
+                    sx={{ color: "text.primary", fontSize: 13 }}
                   >
                     {errors.boxCategories}
                   </DialogContentText>
@@ -283,7 +231,7 @@ export default function FormBox() {
           </form>
         </div>
       </Box>
-      <Box sx={{ width: 345 }}>
+      <Box sx={{ width: 345 }} className="previewCard">
         <BoxCard
           name={dataBox.name}
           detail={dataBox.detail}

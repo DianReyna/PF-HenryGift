@@ -35,11 +35,12 @@ const getAllOrders = async () => {
 };
 
   const getUserOrders = async(user)=>{
-    const userOrders = await Order.findAll({
+    const userOrders = await OrderDetail.findAll({
       where:{
         UserEmail: user,
+        payed:true
       },
-      include: [{ model: OrderDetail, include: [Box] }]
+      include: [{ model: Box }]
     })
     return userOrders
   }; 

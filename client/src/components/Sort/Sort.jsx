@@ -31,7 +31,7 @@ export default function BasicSelect() {
     <Box
     // sx={{ width: 220, mt: 5, ml: "auto" }}
     >
-      <FormControl sx={{ width: 120, mr: 1 }}>
+      <FormControl sx={{ width:{xs:80,sm:100,md:120} , mr: 1}} >
         <InputLabel
           id="demo-simple-select-label-col"
           sx={{ color: "#E16428" }}
@@ -39,6 +39,7 @@ export default function BasicSelect() {
           Sort by
         </InputLabel>
         <Select
+          sx={{ color: "white !important" }}
           labelId="demo-simple-select-label-col"
           id="demo-simple-select-col"
           value={col}
@@ -50,7 +51,7 @@ export default function BasicSelect() {
         </Select>
       </FormControl>
 
-      <FormControl sx={{ width: 120 }}>
+      <FormControl sx={{ width:{xs:80,sm:100,md:120} }}>
         <InputLabel
           id="demo-simple-select-label-dir"
           sx={{ color: "#E16428" }}
@@ -58,6 +59,7 @@ export default function BasicSelect() {
           Order
         </InputLabel>
         <Select
+           sx={{ color: "white !important" }}
           labelId="demo-simple-select-label-dir"
           id="demo-simple-select-dir"
           value={dir}

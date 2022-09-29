@@ -19,7 +19,9 @@ const loginUser = async (req, res, next) => {
 
     if (!isValid) return res.status(400).json({message:'Invalid password'})
 
-    const user=await User.findOne({ where: {email: email} })
+    const user = await User.findOne({ where: {email: email} })
+
+    if (!user.confirmed) return res.status(400).json({message:`Please validate your email. Check your inbox at: ${email}`})
 
     return res.json({
       _id: user.email,

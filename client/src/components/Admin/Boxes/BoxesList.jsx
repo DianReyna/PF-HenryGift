@@ -17,7 +17,7 @@ import { Box, Button, CircularProgress } from "@mui/material";
 export default function BoxesList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const itemsBox = useSelector((state) => state.boxes);
+  const itemsBox = useSelector((state) => state.boxesAdmin);
 
   useEffect(() => {
     dispatch(getBoxesAdmin());
@@ -47,7 +47,7 @@ export default function BoxesList() {
 
   const rows =
     itemsBox &&
-    itemsBox.boxes?.map((item, index) => {
+    itemsBox.boxesAdmin?.map((item, index) => {
       let activeBox;
       if (item.active) {
         activeBox = "Active";
@@ -140,13 +140,13 @@ export default function BoxesList() {
       ) : (
         <div style={{ height: 450, width: "100%" }}>
           <DataGrid
-            style={{ color: "white" }}
             rows={rows}
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[10]}
             checkboxSelection
             disableSelectionOnClick
+            color="divider"
           />
         </div>
       )}

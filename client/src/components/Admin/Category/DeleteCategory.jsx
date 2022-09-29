@@ -56,8 +56,7 @@ export default function DeleteCategory({ idCat }) {
         <DialogTitle
           sx={{
             fontSize: 25,
-            color: "#545454",
-            fontFamily: "arial",
+            color: "text.primary",
             textAlign: "center",
           }}
           id="alert-dialog-title"
@@ -66,7 +65,7 @@ export default function DeleteCategory({ idCat }) {
         </DialogTitle>
         <DialogActions>
           <Cancel onClick={handleClose}>Cancel</Cancel>
-          <CreateNew onClick={() => handleDelete(idProd)} autoFocus>
+          <CreateNew onClick={() => handleDelete(idCat)} autoFocus>
             Accept
           </CreateNew>
         </DialogActions>

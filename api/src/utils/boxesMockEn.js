@@ -1157,27 +1157,27 @@ const boxes = [
     ],
   },
   {
-    name: "Día de Campo",
+    name: "Field Day",
     price: 24000,
-    Categories: [{ id: "3", name: "Estadia" }],
+    Categories: [{ id: "3", name: "Stay" }],
     ranking: 4.8,
     person: "2",
     expiration_date: "22-10-02",
-    detail:
-      "Regalá experiencias únicas. Esta Bigbox ofrece la oportunidad de escaparle a la rutina y disfrutar de un día de campo en las mejores estancias y lodges del país.",
+    details:
+      "Give unique experiences. This Bigbox offers the opportunity to escape from routine and enjoy a day in the country in the best estancias and lodges in the country.",
     image:
       "https://revista-lagunas.s3.us-east-2.amazonaws.com/2021/10/311-7-lugares-perfectos-para-un-dia-de-campo-en-buenos-aires-124-big.jpg",
     Products: [
       {
-        name: "Puesto Viejo Estancia",
+        name: "Estancia Old Post",
         price: 24000,
         description:
-          "Vení a disfrutar de las mejores costumbres argentinas con un día de campo excepcional!",
+          "Come and enjoy the best Argentine customs with an exceptional field day!",
         image:
           "https://www.infocanuelas.com/app/media/puesto-viejo-resto-01.jpeg",
-        location: "GBA Sur",
+        location: "GBA South",
         Provider: {
-          name: "Provider vieja estancia ",
+          name: "Provider old stay",
           phone: "1111888888",
           address: "cll 4 n 37 40",
           email: "puestoviejo@gmail.com",
@@ -1187,12 +1187,12 @@ const boxes = [
         name: "Estancia La Candelaria",
         price: 24000,
         description:
-          "Conectate con la naturaleza, respirá aire puro y conocé la tradición del campo argentino.",
+          "Connect with nature, breathe fresh air and get to know the tradition of the Argentine countryside.",
         image:
           "https://media-cdn.tripadvisor.com/media/photo-s/07/44/17/1a/estancia-candelaria.jpg",
-        location: "Buenos Aires Provincia",
+        location: "Buenos Aires Province",
         Provider: {
-          name: "Provider la candelaria ",
+          name: "Provider the candelaria ",
           phone: "111145445",
           address: "cll 7 n 7 40",
           email: "candelaria@gmail.com",
@@ -1202,12 +1202,12 @@ const boxes = [
         name: "Estancia La Alameda",
         price: 24000,
         description:
-          "Historia, naturaleza, tradición, deporte, cultura y gastronomía se combinan en un plan perfecto.",
+          "History, nature, tradition, sport, culture and gastronomy are combined in a perfect plan.",
         image:
           "https://media-cdn.tripadvisor.com/media/photo-s/0d/6e/9a/b6/hotel-boutiqe-estancia.jpg",
         location: "Buenos Aires Provincia",
         Provider: {
-          name: "Provider la alameda ",
+          name: "Provider the mall ",
           phone: "12245445",
           address: "cll 8 n 2 12",
           email: "alameda@gmail.com",
@@ -1216,61 +1216,61 @@ const boxes = [
       {
         name: "Estancia La Sistina",
         price: 24000,
-        description: "Un día de campo en una isla alejada de todo.",
+        description: "A picnic on an island far from everything.",
         image:
           "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/cb/15/25/estancia-la-sistina.jpg?w=1000&h=-1&s=1",
         location: "CABA",
         Provider: {
-          name: "provider la sistina ",
+          name: "provider the sistine",
           phone: "4545456",
-          address: "cll 78 n 112 5",
+          address: "cll 78 n 112 5", 
           email: "sistina@gmail.com",
         },
       },
     ],
   },
   {
-    name: "Hoteles Urbanos",
+    name: "Urban Hotels",
     price: 18000,
     Categories: [
       {
         id: "3",
-        name: "Estadia",
+        name: "Stay",
       },
     ],
     ranking: 3.8,
     person: "3",
     expiration_date: "02-12-22",
-    detail:
-      "Regalá experiencias únicas. Esta Bigbox ofrece la posibilidad de disfrutar una noche distinta en los hoteles urbanos más destacados del país.",
+    details:
+      "Give unique experiences. This Bigbox offers the possibility of enjoying a different night in the most outstanding urban hotels in the country.",
     image:
       "https://media-magazine.trivago.com/wp-content/uploads/2019/10/03101635/hoteles-urbanos-ayre-hotel-sevilla-fachada.jpg",
-    Products: [
-      {
-        name: "Dazzler Rosario",
-        price: 1800,
-        description:
-          "Emplazado en el barrio La Refinería, uno de los más modernos de Rosario, un hotel hecho a medida para vos.",
+      Products: [
+        {
+          name: "Dazzler Rosario",
+          price: 1800,
+          description:
+            "Located in the La Refinería neighborhood, one of the most modern in Rosario, a hotel made to measure for you.",
         image:
           "https://media.cdn.puntobiz.com.ar/122017/1617315859528.webp?cw=984&ch=553&extw=jpg",
-        location: "Santa Fe",
-        Provider: {
-          name: "Rosario Center",
-          phone: "11451848",
-          address: "cll 7 n 18 01",
+          location: "Santa Fe",
+          Provider: {
+            name: "Rosario Center",
+            phone: "11451848",
+            address: "cll 7 n 18 01",
           email: "rosario@gmail.com",
         },
       },
       {
-        name: "Esplendor Savoy",
+        name: "Savoy Splendor",
         price: 1800,
         description:
-          "Un edificio histórico, una propuesta única que invita a los huéspedes a sentirse protagonistas de su viaje.",
+          "A historic building, a unique proposal that invites guests to feel like protagonists of their trip.",
         image:
           "https://media-cdn.tripadvisor.com/media/photo-s/23/e4/97/f4/exterior.jpg",
         location: "Santa Fe",
         Provider: {
-          name: "Savoy Estadia",
+          name: "Savoy Stay",
           phone: "178148845",
           address: "cll 75 n 45 4",
           email: "savoy@gmail.com",
@@ -1280,7 +1280,7 @@ const boxes = [
         name: "Howard Johnson Plaza Buenos Aires",
         price: 1800,
         description:
-          "En el epicentro de la city porteña, un lugar para relajar y disfrutar de una noche de bienestar.",
+          "In the epicenter of the city of Buenos Aires, a place to relax and enjoy a night of wellness.",
         image:
           "https://media-cdn.tripadvisor.com/media/photo-s/0d/6e/9a/b6/hotel-boutiqe-estancia.jpg",
         location: "CABA",
@@ -1294,7 +1294,7 @@ const boxes = [
       {
         name: "Argenta Suites Hotel",
         price: 1800,
-        description: "Escapale a la rutina en plena ciudad!",
+        description: "Escape from the routine in the middle of the city!",
         image:
           "https://www.atrapalo.pe/hoteles/picture/l/1718/9/8/413790377.jpg",
         location: "CABA",
@@ -1319,23 +1319,23 @@ const boxes = [
     ranking: "4.65",
     person: "2",
     expiration_date: "2022-31-10",
-    detail:
-      "Esta Bigbox ofrece la posibilidad de disfrutar de una experiencia de aventura, bienestar, gastronomía o una selección de cursos y talleres en toda la Argentina.",
+    details:
+      "This Bigbox offers the possibility of enjoying an experience of adventure, wellness, gastronomy or a selection of courses and workshops throughout Argentina.",
     image:
       "https://media-exp1.licdn.com/dms/image/C560BAQEeSryTWln3tg/company-logo_200_200/0/1646434511596?e=2147483647&v=beta&t=Tbxnhn5Sq4YCLs8kbsMl4t4oMPFNwg5t7trkHvg4t34",
-    Products: [
-      {
-        name: "Cabalgata, Estancia Las Carreras",
-        price: "3000",
-        description:
-          "La antigua casa señorial fue construida por los jesuitas en 1718, convirtiéndose en un lugar histórico en América Latina.",
+      Products: [
+        {
+          name: "Cavalcade, Estancia Las Carreras",
+          price: "3000",
+          description:
+            "The old manor house was built by the Jesuits in 1718, becoming a historical place in Latin America.",
         image:
           "https://media-cdn.tripadvisor.com/media/photo-s/02/35/13/c2/le-patio-interieur.jpg",
-        location: "Ruta provincial 325 Km. 13. Tafí del Valle.",
-        Provider: {
-          name: "Estancia las Carreras",
-          phone: "1023214154541",
-          address: "1963 Adams Drive",
+          location: "Provincial route 325 Km. 13. Tafi del Valle.",
+          Provider: {
+            name: "Stay the Races",
+            phone: "1023214154541",
+            address: "1963 Adams Drive",
           email: "estancialascarreras@gmail.com",
         },
       },
@@ -1343,28 +1343,28 @@ const boxes = [
         name: "Hotel Patagonia",
         price: "3000",
         description:
-          "Si buscás un momento de relax, no dudes en consultar por esta experiencia. Sin dudas el circuito hídrico te dejara sin palabras.",
+          "If you are looking for a moment of relaxation, do not hesitate to ask about this experience. Without a doubt, the water circuit will leave you speechless.",
         image:
           "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/ce/0c/66/frente-nocturno.jpg?w=1200&h=-1&s=1",
-        location: "Fagnano 54. Rio Gallegos.",
-        Provider: {
-          name: "Hotel Patagonia",
-          phone: "1023514321541",
-          address: "885 Spring Street",
+          location: "Fagnano 54. Rio Gallegos.",
+          Provider: {
+            name: "Hotel Patagonia",
+            phone: "1023514321541",
+            address: "885 Spring Street",
           email: "lagoclaro@gmail.com",
         },
       },
       {
-        name: "Plan D, Peluquería",
+        name: "Plan D, Hair Salon",
         price: "3000",
         description:
-          "Un nuevo concepto de belleza puertas adentro. ¡Anímate a descubrir tu look!",
+          "A new concept of beauty indoors. Go ahead and discover your look!",
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlC5hxBQ9UhrrSZ3M3yNETvBw9HHFWrDc9JQ&usqp=CAU",
         location: "Villa Crespo",
         Provider: {
           idProvider: "8761123",
-          name: "villa crespo peluqueria",
+          name: "villa crespo hairdresser",
           phone: "1023514153211",
           address: "3429 Nixon Avenue",
           email: "villacrespo123@gmail.com",

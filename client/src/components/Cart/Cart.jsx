@@ -15,7 +15,12 @@ import {
   getTotals,
 } from "../../redux/reducer/cartSlice";
 import "./Cart.css";
+<<<<<<< HEAD
 import URL from "../../utils/backRoutes";
+=======
+import { URL } from "../../utils/index";
+
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -32,7 +37,10 @@ const Cart = () => {
   }, []);
 
   const saveCart = async () => {
+<<<<<<< HEAD
     
+=======
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
@@ -42,17 +50,17 @@ const Cart = () => {
 
   const handleRemoveFromCart = (cartItem) => {
     Swal.fire({
-      title: "Estas seguro?",
-      text: "No podras revertir este cambio!",
+      title: "Are you sure?",
+      text: "You wont be able to revert changes!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Si, borrarlo!",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(removeFromCart(cartItem));
-        Swal.fire("Eliminado!", "Tu item ha sido removido.", "success");
+        Swal.fire("Deleted!", "Your item was removed.", "success");
       }
     });
   };
@@ -67,17 +75,17 @@ const Cart = () => {
 
   const handleClearCart = (e) => {
     Swal.fire({
-      title: "Estas seguro?",
-      text: "No podras revertir este cambio!",
+      title: "Are you sure?",
+      text: "You wont be able to revert changes!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Si, borrarlo!",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());
-        Swal.fire("Eliminado!", "Tu carrito se ha limpiado.", "success");
+        Swal.fire("Deleted!", "Your cart was cleared.", "success");
       }
     });
   };
@@ -111,7 +119,10 @@ const Cart = () => {
             {cart.cartItems?.map((cartItem) => (
               <div className="cart-item" key={cartItem.id}>
                 <div className="cart-product">
-                  <img src={cartItem.image} alt={cartItem.name} />
+                  <img
+                    src={cartItem.image && cartItem.image.url}
+                    alt={cartItem.name}
+                  />
                   <div>
                     <h3>{cartItem.name}</h3>
                     <p className="make-eaven-cart">
@@ -124,13 +135,19 @@ const Cart = () => {
                 </div>
                 <div className="cart-product-price">${cartItem.price}</div>
                 <div className="cart-product-quantity">
-                  <button onClick={() => handleDecreaseCart(cartItem)}>
+                  <Button
+                    sx={{ color: "text.primary" }}
+                    onClick={() => handleDecreaseCart(cartItem)}
+                  >
                     -
-                  </button>
+                  </Button>
                   <div className="count">{cartItem.cartQuantity}</div>
-                  <button onClick={() => handleIncreaseCart(cartItem)}>
+                  <Button
+                    sx={{ color: "text.primary" }}
+                    onClick={() => handleIncreaseCart(cartItem)}
+                  >
                     +
-                  </button>
+                  </Button>
                 </div>
                 <div className="cart-product-total-price">
                   ${cartItem.cartQuantity * cartItem.price}
@@ -153,9 +170,15 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes included</p>
-              <Link to="/send">
-                <button>Continue</button>
-              </Link>
+              {user && user._id ? (
+                <Link to="/send">
+                  <button>Continue</button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <button>Login</button>
+                </Link>
+              )}
               <div className="continue-shopping">
                 <Link to="/">
                   <ArrowBackIcon />

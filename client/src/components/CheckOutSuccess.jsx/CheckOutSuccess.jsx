@@ -3,7 +3,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { clearCart, getTotals } from "../../redux/reducer/cartSlice";
+<<<<<<< HEAD
 import URL from "../../utils/backRoutes";
+=======
+import { URL } from "../../utils/index";
+
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -16,12 +21,19 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     async function sendCode() {
+<<<<<<< HEAD
       
+=======
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
       await axios.post(`${URL}/orders/sendcode`, {
         userId: user._id,
       });
     }
+<<<<<<< HEAD
     //console.log("envio del codigo")
+=======
+    console.log("envio del codigo");
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
     sendCode();
   }, []);
 

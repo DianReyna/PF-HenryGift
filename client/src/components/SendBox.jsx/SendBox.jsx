@@ -1,22 +1,35 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+=======
+import { useSelector } from "react-redux";
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 import axios from "axios";
-import "./SendBox.css";
-import { useEffect } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import PayButton from "../PayButton/PayButton";
+<<<<<<< HEAD
 import { getCart } from "../../redux/actions/cartActions";
 import URL from "../../utils/backRoutes";
+=======
+import PersonIcon from "@mui/icons-material/Person";
+import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
+import "./SendBox.css";
+import { URL } from "../../utils/index";
+
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
-  
+  console.log(cart);
+
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
 
+<<<<<<< HEAD
   const dispatch = useDispatch()
 
+=======
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
   const { user } = useSelector((state) => state.auth);
-
 
   const handleEmailChange = (e, position) => {
     setInput((prev) =>
@@ -37,7 +50,10 @@ const SendBox = () => {
         const recipient = input[i];
         return { id, quantity, name, recipient };
       });
+<<<<<<< HEAD
      
+=======
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 
       axios.post(` ${URL}/orders`, {
         amount: cart.cartTotalAmount,
@@ -79,15 +95,22 @@ const SendBox = () => {
                 </div>
                 <div className="box-info">
                   <div className="product-image">
-                    <img src={cartItem.image} alt={cartItem.name} />
+                    <img
+                      src={cartItem.image && cartItem.image.url}
+                      alt={cartItem.name}
+                    />
                   </div>
                   <div className="purchase-detail">
                     <div className="box-people">
-                      <h3>For {cartItem.person} persons</h3>
+                      <PersonIcon />
+                      <h3> For {cartItem.person} persons</h3>
                     </div>
-                    <div className="valid-till">Valid until 31/12/2022</div>
+                    <div className="valid-till">
+                      <InsertInvitationOutlinedIcon />
+                      Valid until {cartItem.expiration_date}
+                    </div>
                     <div className="box-amount">
-                      <h1>${cartItem.price}</h1>
+                      <h1>U$D {cartItem.price}</h1>
                     </div>
                   </div>
                 </div>
@@ -97,18 +120,18 @@ const SendBox = () => {
                   <h3>Insert the gift recipient email</h3>
                 </div>
                 <div className="email-place">
-                  <form >
+                  <form>
                     <TextField
                       sx={{
                         input: {
-                          color: "white",
+                          color: "text.primary",
                         },
                       }}
                       onChange={(e) => handleEmailChange(e, index)}
                       value={input[index]}
                       type="text"
                       fullWidth
-                      placeholder="Ingrese el email del agasajado"
+                      placeholder="Insert email from the recipient"
                       className="place-email"
                     />
                   </form>
@@ -136,13 +159,7 @@ const SendBox = () => {
             </div>
           </div>
           <div className="go-payment">
-            {user && user._id ? (
-              <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
-            ) : (
-              <Link to="/login">
-                <Button variant="outlined">Login to Check Out</Button>
-              </Link>
-            )}
+            <PayButton cartItems={cart.cartItems} handleSubmit={handleSubmit} />
           </div>
         </div>
       </div>

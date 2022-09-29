@@ -18,7 +18,7 @@
 .fav-empty{
     font-size: 20px;
 	margin-top: 2rem;
-	color: rgb(84, 84, 84);
+	color: rgb(187, 187, 187);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -26,4 +26,16 @@
 
 .fav-container-card{
     margin-top: 2rem;
+}
+
+.favs-img{
+    margin-top: 2rem;
+    display: flex;
+    width: 70%;
+    height: 70%;
+}
+
+.favs-img img{
+    width: 100%;
+    height: 100%;
 }

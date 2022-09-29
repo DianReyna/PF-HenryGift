@@ -1,63 +1,57 @@
-
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeUser, getUsersById} from '../../redux/actions/userActions';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser, getUsersById } from "../../redux/actions/userActions";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    DialogContentText,
-  } from "@mui/material/";
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+} from "@mui/material/";
+import { logout, reset } from "../../redux/reducer/authSlice";
 
 function DeleteUserAccount() {
+  const dispatch = useDispatch();
+  const deleteUser = useSelector((state) => state.users);
+  //(console.log("soy deleteuser",deleteUser))
+  const { user } = useSelector((state) => state.auth);
+  const [email, setEmail] = "";
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const deleteUser = useSelector((state) => state.users)
-    //(console.log("soy deleteuser",deleteUser))
-    const {user}  = useSelector((state) => state.auth);
-    const [email, setEmail]= ('');
-    const [open, setOpen] = useState(false);
-    const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(getUsersById());
+  }, [dispatch]);
 
-    useEffect(() =>{
-       dispatch(getUsersById())
-    },[dispatch])
-    
- 
-    const handleClickOpen = () => {
-       setOpen(true);      
-      };
-    
-      const handleClose = () => {
-        setOpen(false);
-      };
-    
-    
-    function handleDelete() {
-      dispatch(removeUser(user._id))
-      navigate('/')
-      setTimeout(function () {
-        location.reload()
-    }, 100);
-        setOpen(false);
-            toast.success("Account deleted successfully", {
-              position: "top-right",
-            });
-          };
-        
-  return (                    
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-    <div>        
-        <Button variant="outlined" onClick={handleClickOpen}>
-        <DeleteIcon />
+  function handleDelete() {
+    dispatch(removeUser(user._id));
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+    setOpen(false);
+    toast.success("Account deleted successfully", {
+      position: "top-right",
+    });
+  }
+
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        <DeleteIcon sx={{ fill: "grey" }} />
         Delete account
-        </Button>
+      </Button>
 
       <Dialog
         open={open}
@@ -69,7 +63,7 @@ function DeleteUserAccount() {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to delete your account?
-            </DialogContentText>
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -79,7 +73,7 @@ function DeleteUserAccount() {
         </DialogActions>
       </Dialog>
     </div>
-  )
+  );
 }
 
-export default DeleteUserAccount
+export default DeleteUserAccount;

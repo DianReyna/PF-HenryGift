@@ -1,0 +1,17 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+
+/* .formsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+} */
+
+@media screen and (max-width: 600px) and (min-width: 1px) {
+  .previewCard {
+    display: none;
+  }
+}

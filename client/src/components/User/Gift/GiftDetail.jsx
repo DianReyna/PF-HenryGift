@@ -1,127 +1,131 @@
-
-
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { detailBox } from "../../../redux/actions/boxesActions";
-import { useSelector, useDispatch } from 'react-redux';
-import {useParams} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import GiftProduct from "./GiftProduct";
-import styled from 'styled-components'
-import PersonIcon from '@mui/icons-material/Person';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import StarIcon from '@mui/icons-material/Star';
-import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
-import FilterGiftSelect from '../../FilterComponent/FilterGiftSelect'
+import styled from "styled-components";
+import PersonIcon from "@mui/icons-material/Person";
+import StarIcon from "@mui/icons-material/Star";
+
 
 const Container = styled.div`
-  padding: 2rem 3rem;
-`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-evenly;
+`;
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  margin-bottom: 3rem;`
+  margin-bottom: 3rem;
+`;
 
-  const DetailBox = styled.div`
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 2rem;
-  `
+const DetailBox = styled.div`
+width: 43%;
+display: flex;
+flex-wrap: wrap;
+padding-bottom: 50px;
+`;
 
-  const ImageDetailBox = styled.div`
-    
-  `
-  const InfoDetailBox = styled.div`
-  
-  `
-
-  const Imagen = styled.img`
-    border: 1px solid black;
-    border-radius: 0.5rem;
-    object-fit: cover;
-    width: 100%;
-  `
-  const CardsProducts = styled.div`
-    margin: 2rem 0;
-  `
-  const ItemProduct = styled.div`
-  
-  `
-  const ItemBox = styled.div`
+const LeftSide = styled.div`
+  width: 40%;
   display: flex;
-  margin-top: 0.9rem;
-  align-items: center;
-  `  
-   
-  export default function GiftDetail() {
+  flex-direction: column;
+`;
+const Imagen = styled.img`
+width: 50%;
+border-radius: 0.5rem;
+object-fit: cover;
+width: 100%;
+background-color: lightblue;
+`;
+const CardsProducts = styled.div`
+width: 100%;
+margin: 2rem 0;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-evenly;
+`;
+const ItemProduct = styled.div``;
+const ItemBox = styled.div`
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+`;
 
+export default function GiftDetail() {
   const dispatch = useDispatch();
-  const {idBox} = useParams()
-  const {detail} = useSelector((state) => state.boxes)
-  
+  const { idBox } = useParams();
+  const { detail } = useSelector((state) => state.boxes);
+
   useEffect(() => {
-    dispatch(detailBox(idBox))
-  }, [dispatch,idBox])
-  
-  
+    dispatch(detailBox(idBox));
+  }, [dispatch, idBox]);
+
   return (
     <div>
-    {
-      detail? 
-      <Container >
-          <DetailBox>
-            <ImageDetailBox>
-              <Imagen src={detail.image} alt='img not found'/>
-            </ImageDetailBox>
-            <InfoDetailBox >
+      {detail ? (
+        <Container>
+            <LeftSide>
+            <Imagen
+              src={detail.image && detail.image.url}
+              alt="img not found"
+            />
+           </LeftSide>
+           <DetailBox>
+            <div>
               <h1>{detail.name}</h1>
               <ItemBox>
                 <h3>About this Bigbox:</h3>
-                </ItemBox>
+              </ItemBox>
               <ItemBox>
-              <p>{detail.detail}</p>
+                <p>{detail.detail}</p>
               </ItemBox>
               <ItemBox>
                 <PersonIcon />
                 <p>For {detail.person} person</p>
               </ItemBox>
-              <ItemBox>
+              {/* <ItemBox>
                 <CardGiftcardIcon />
-                <p>Contains  options</p>
-              </ItemBox>
+                <p>Contains options</p>
+              </ItemBox> */}
               <ItemBox>
-                <StarIcon/>
-              <p>{detail.ranking}</p>
+                <StarIcon />
+                <p>{detail.ranking}</p>
               </ItemBox>
-              <ItemBox>
-                <InsertInvitationOutlinedIcon/>
-              <p>Expiration date: {detail.expiration_date}</p>
-              </ItemBox>
-              <ItemBox>
-                <AttachMoneyIcon/>
-              <p>Price: {detail.price}</p>
-              </ItemBox>
-              <FilterGiftSelect/>
-            </InfoDetailBox>
+              {/* <ItemBox>
+                <InsertInvitationOutlinedIcon />
+                <p>Expiration date: {detail.expiration_date}</p>
+              </ItemBox> */}
+              {/* <ItemBox>
+                <AttachMoneyIcon />
+                <p>Price: {detail.price}</p>
+              </ItemBox> */}
+              </div>
           </DetailBox>
-        <CardsProducts>
-          <Grid>
-                {detail.Products && detail.Products.map((product)=>{
-                  return <ItemProduct key={product.id}>
-                    <GiftProduct 
-                      id={product.id}
-                      imagen={product.image} 
-                      name={product.name} 
-                      description={product.description}
-                      location={product.location}/>
+          <CardsProducts>
+            <Grid >
+              {detail.Products &&
+                detail.Products.map((product) => {
+                  return (
+                    <ItemProduct key={product.id}>
+                      <GiftProduct
+                        id={product.id}
+                        imagen={product.image && product.image.url}
+                        name={product.name}
+                        description={product.description}
+                        location={product.location}
+                      />
                     </ItemProduct>
+                  );
                 })}
-              
-          </Grid>
-        </CardsProducts>
-      </Container>
-      :'nada'
-    }
+            </Grid>
+          </CardsProducts>
+        </Container>
+      ) : (
+        "ERROR: Not Found"
+      )}
     </div>
-  )
+  );
 }

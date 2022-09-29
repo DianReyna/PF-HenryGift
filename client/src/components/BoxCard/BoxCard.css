@@ -1,0 +1,21 @@
+.footer-card-box {
+	position: absolute;
+	bottom: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-fav-box {
+	display: flex;
+	position: absolute;
+	right: 0.7rem;
+	top: 0.3rem
+}
+
+.footer-cart-box {
+	/* display: flex; */
+	/* align-items: center; */
+	/* justify-content: center; */
+	margin-left: 2.6rem;
+}

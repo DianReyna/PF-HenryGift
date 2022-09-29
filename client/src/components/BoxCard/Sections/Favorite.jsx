@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addFavorite,
-  removeFavorite,
-} from "../../../redux/actions/favActions";
+import { addFavorite, removeFavorite } from "../../../redux/actions/favActions";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { IconButton } from "@mui/material";
@@ -28,21 +25,9 @@ const Favorite = ({ id }) => {
   return (
     <IconButton aria-label="add to favorites" onClick={handleFavorite}>
       {Favorited ? (
-        <FavoriteBorderOutlinedIcon
-        clicked={Favorited}
-          sx={{
-            bgcolor: "red",
-            borderRadius: "50%",
-          }}
-        />
+        <FavoriteOutlinedIcon color="primary" />
       ) : (
-        <FavoriteOutlinedIcon
-        clicked={Favorited}
-          sx={{
-            bgcolor: "red",
-            borderRadius: "50%",
-          }}
-        />
+        <FavoriteBorderOutlinedIcon color="primary" />
       )}
     </IconButton>
   );

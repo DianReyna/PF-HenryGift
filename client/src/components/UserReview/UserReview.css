@@ -1,0 +1,11 @@
+.containerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  height: 4rem;
+}
+
+.containerDialog {
+  width: 24rem;
+}

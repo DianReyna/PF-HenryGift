@@ -6,7 +6,11 @@ import {
   postProduct,
 } from "../reducer/productsSlice";
 
+<<<<<<< HEAD
 import URL from "../../utils/backRoutes";
+=======
+import { URL } from "../../utils/index";
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 
 export const createProduct = (payload) => (dispatch) => {
   axios
@@ -38,7 +42,6 @@ export const updateProduct = (data) => (dispatch) => {
 };
 
 export const putStateProduct = (data) => (dispatch) => {
-  console.log(data);
   axios
     .put(`${URL}/products/status/${data.id}`, data.product)
     .then((res) => dispatch(editProduct(res.data)))

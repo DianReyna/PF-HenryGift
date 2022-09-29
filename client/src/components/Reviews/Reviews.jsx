@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import CardReview from "../CardReview/CardReview";
 import { getReviews } from "../../redux/actions/reviewsActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 
 export default function Reviews({ id }) {
   const dispatch = useDispatch();
@@ -41,29 +39,34 @@ export default function Reviews({ id }) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Opinions</DialogTitle>
-        <DialogActions>
-          <Button onClick={handleClose}>X</Button>
-        </DialogActions>
-
-        <DialogContent dividers={scroll === "paper"}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            // ref={descriptionElementRef}
-            tabIndex={-1}
+        <Typography
+          sx={{ mt: 3, mb: 2, display: "inline", marginLeft: 3 }}
+          variant="h5"
+          component="div"
+        >
+          Options
+          <IconButton
+            sx={{ display: "inline", marginLeft: 40 }}
+            onClick={handleClose}
           >
+            X
+          </IconButton>
+        </Typography>
+
+        <DialogContent dividers={scroll === "paper"} sx={{ width: 480 }}>
+          <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
             <Grid>
               {reviews &&
                 reviews?.map((item, index) => {
-                  const find = item.createdAt.indexOf("T");
-                  const dateBox = item.createdAt.slice(0, find);
+                  const find = item && item.createdAt.indexOf("T");
+                  const dateBox = item && item.createdAt.slice(0, find);
                   return (
                     <div key={index}>
                       <CardReview
-                        name={item.User.first_name}
+                        name={item && item.User.first_name}
                         date={dateBox}
-                        message={item.menssageBox}
-                        score={item.scoreBox}
+                        message={item && item.menssageBox}
+                        score={item && item.scoreBox}
                       />
                     </div>
                   );

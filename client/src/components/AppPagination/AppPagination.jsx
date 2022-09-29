@@ -10,7 +10,7 @@ export default function AppPagination({ setPage, page }) {
   const query = useSelector((state) => state.query);
   useEffect(() => {
     if (typeof boxes.count != "undefined") {
-      setPages(Math.ceil(boxes.count / 4));
+      setPages(Math.ceil(boxes.count / 8));
     }
     dispatch(queryPage(0));
   }, [boxes.count]);
@@ -31,13 +31,6 @@ export default function AppPagination({ setPage, page }) {
       sx={{ margin: "2rem 0px" }}
     >
       <Pagination
-        sx={{
-          color: "white",
-          button: {
-            color: "white",
-            border: "1px solid white",
-          },
-        }}
         count={pages}
         page={page + 1}
         variant="outlined"

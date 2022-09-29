@@ -17,12 +17,12 @@ router.post("/create-checkout-session", async (req, res, next) => {
           currency: "usd",
           product_data: {
             name: item.name,
-            images: [item.image],
+            images: [item.image && item.image.url],
             metadata: {
               id: item.id,
             },
           },
-          unit_amount: item.price * 10,
+          unit_amount: item.price * 100,
         },
         quantity: item.cartQuantity,
       };
@@ -41,7 +41,7 @@ router.post("/create-checkout-session", async (req, res, next) => {
   }
 });
 
-const URL = `http://127.0.0.1:5173`
-//const URL = `https://henrygift-api.herokuapp.com`
+const URL = `http://127.0.0.1:5173`;
+// const URL = `https://henry-gift.vercel.app`;
 
 module.exports = router;

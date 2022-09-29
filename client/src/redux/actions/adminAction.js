@@ -1,7 +1,11 @@
 import axios from "axios";
 import { getBoxes, getUsers, getBoxSales } from "../reducer/adminSlice";
 
+<<<<<<< HEAD
 import URL from "../../utils/backRoutes";
+=======
+import { URL } from "../../utils/index";
+>>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 
 export const getBestBoxes = () => (dispatch) => {
   axios(` ${URL}/admin/raiting`)

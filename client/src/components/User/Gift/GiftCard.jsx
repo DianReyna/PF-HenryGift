@@ -1,35 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Button,
-} from "@mui/material";
+import {  Card, CardMedia, CardContent, Typography } from "@mui/material";
 import styled from "styled-components";
-import AddShoppingCartSharpIcon from '@mui/icons-material/AddShoppingCartSharp';
-import { useDispatch } from "react-redux";
-import { Box } from "@mui/material";
+import Favorite from "../../BoxCard/Sections/Favorite";
+import GroupIcon from "@mui/icons-material/Group";
+import PersonIcon from "@mui/icons-material/Person";
+import StarIcon from "@mui/icons-material/Star";
 
 
 const CardWidth = styled.div`
-  height: 33rem;
+  height: 28rem;
   position: relative;
-  /* box-shadow: 3px 3px  black; */
 `;
+
 const BodyCardProduct = styled.div`
   height: 22rem;
-`;
-const FooterCardProduct = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-`;
-const SupCardProduct = styled.div`
-  box-shadow: 1px 1px 2px black;
-  border-radius: 3px;
-  /* border: 1px solid black; */
 `;
 
 export default function GiftCard({
@@ -43,47 +28,73 @@ export default function GiftCard({
     box,
  })
 {
-  //   const dispatch = useDispatch();
-    //const history = useHistory();
-  
-    // const handleAddToCart = (box) => {
-    //   dispatch(addToCart(box));
-    //   //history.push("/cart")
-    // };
-  
+  const imgDefault =
+  "https://ejemplocodigo.com/wp-content/themes/qaengine/img/default-thumbnail.jpg";
 
   return (
-    <div>
-    <SupCardProduct>
-      <Card sx={{ maxWidth: 345 }}>
-        <Box>
+   
+    <Card 
+    sx={{ maxWidth: 335, border: '1px solid black' }}
+    >
+      <CardWidth>
+        <div className="footer-fav-box">
+          <Favorite id={id} />
+        </div>
           <Link
             to={`/giftdetail/${id}`}
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none"}}
           >
-            <CardMedia
-              component="img"
-              height="140"
-              image={image}
-              alt="img not found"
-            />
+           {image ? (
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={image}
+                  alt="img not found"
+                />
+              ) : (
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={imgDefault}
+                  alt="img not found"
+                />
+              )}
             <CardContent>
               <BodyCardProduct>
-                <Typography gutterBottom variant="h4" component="div">
-                  {name}
-                </Typography>
-                <Typography>Ranking: {ranking}</Typography>
-                <Typography>{detail}</Typography>
-                <Typography>Persons: {person}</Typography>
-                {/* <Typography>Price: ${price}</Typography> */}
-                <Typography>Expiration date: {expiration_date}</Typography>
-              </BodyCardProduct>
-            </CardContent>
+              <Typography color='text.primary' gutterBottom variant="h4" component="div">
+                    {name}
+                  </Typography>
+                  <Typography color='text.primary'
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography color='text.primary' sx={{ display: "flex" }}>
+                      <StarIcon sx={{ fill: "black" }} />
+                      {ranking}
+                    </Typography>
+
+                    <Typography color='text.primary' sx={{ display: "flex" }}>
+                      {person === 1 ? (
+                        <PersonIcon sx={{ fill: "black" }} />
+                      ) : person === 2 ? (
+                        <GroupIcon sx={{ fill: "black" }} />
+                      ) : (
+                        <div>
+                          <PersonIcon sx={{ fill: "black" }} />
+                          x3
+                        </div>
+                      )}
+                    </Typography>
+                  </Typography>
+
+                  <Typography color='text.primary'>{detail}</Typography>
+                {/* <Typography color='text.primary'>Price: ${price}</Typography> */}
+                <Typography color='text.primary'>Expiration date: {expiration_date}</Typography>
+                </BodyCardProduct>
+              </CardContent>
           </Link>
-          </Box>
-      </Card>
-    </SupCardProduct>
-  </div>
+        </CardWidth>
+         </Card>
+   
 );
 }
 
