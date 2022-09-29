@@ -13,25 +13,46 @@ import {
   Typography,
 } from "@mui/material";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { URL } from "../../../utils/index";
+=======
+import URL from '../../../utils/backRoutes';
+const URL = "http://localhost:3001";
+
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
+<<<<<<< HEAD
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(2px);
+=======
+  background-color: white;
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
   padding: 10px;
   margin: 10px;
 `;
 
 export default function ForgotPassword() {
+<<<<<<< HEAD
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const handleChange = (e) => {
     setEmail(e.target.value);
   };
+=======
+  
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  
+  const handleChange = (e) => {
+    setEmail(e.target.value);
+  };
+  
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email.trim()) {
@@ -73,19 +94,32 @@ export default function ForgotPassword() {
             onChange={(e) => handleChange(e)}
             endAdornment={
               <InputAdornment position="end">
+<<<<<<< HEAD
                 <Email style={{ fill: "#e16428" }} />
               </InputAdornment>
             }
             label="Email"
             sx={{ fontSize: 20 }}
+=======
+                <Email style={{ fill: "#f44336" }} />
+              </InputAdornment>
+            }
+            label="Email"
+            sx={{ fontSize: 20, color: "black" }}
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
           />
         </FormControl>
         <Button
           sx={{
             m: 1,
             width: "40ch",
+<<<<<<< HEAD
             backgroundColor: "#e16428",
             borderColor: "#e16428",
+=======
+            backgroundColor: "#f44336",
+            borderColor: "#f44336",
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
             color: "black",
           }}
           variant="outlined"

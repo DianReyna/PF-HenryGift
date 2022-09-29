@@ -58,7 +58,7 @@ export default function BoxCards() {
 <<<<<<< HEAD
     if(boxes.rows){
       if(boxes.rows.length>0){
-        return boxes.rows.map((box) => (
+        return allBoxes?.map((box) => (
           <Grid key={box.id} item xs={3}>
             <BoxCard
               key={box.id}

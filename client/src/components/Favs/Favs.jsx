@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFavorites } from "../../redux/actions/favActions";
 import BoxCard from "../BoxCard/BoxCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import "./Favs.css";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import Redeem2 from "../../assets/Redeem2.png";
+=======
+import "./Favs.css";
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 
 const Favs = () => {
   const dispatch = useDispatch();
@@ -46,7 +49,11 @@ const Favs = () => {
                 person={item.Box.person}
                 expiration_date={item.Box.expiration_date}
                 detail={item.Box.detail}
+<<<<<<< HEAD
                 image={item.Box.image && item.Box.image.url}
+=======
+                image={item.Box.image}
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
                 box={item.Box}
               />
             </div>

@@ -1,13 +1,40 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+<<<<<<< HEAD
 import { Box, Avatar, Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./NavBar.css";
+=======
+import {
+  Box,
+  Toolbar,
+  // IconButton,
+  Typography,
+  Menu,
+  Container,
+  // Avatar,
+  Button,
+  // Tooltip,
+  MenuItem,
+  InputBase,
+  styled,
+  alpha,
+} from "@mui/material";
+import AdbIcon from "@mui/icons-material/Adb";
+import { useDispatch } from "react-redux";
+// import { searchBox, getBoxesPerPage } from "../../redux/actions/boxesActions";
+import SearchIcon from "@mui/icons-material/Search";
+import { NavLink, useNavigate } from "react-router-dom";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+// import AccountBoxIcon from "@mui/icons-material/AccountBox";
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getTotals } from "../../redux/reducer/cartSlice";
+<<<<<<< HEAD
 import { logout, reset } from "../../redux/reducer/authSlice";
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined";
 import { useContext } from "react";
@@ -21,6 +48,14 @@ import RedeemIcon from "@mui/icons-material/Redeem";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
+=======
+import styles from "./NavBar.module.css";
+import { queryName } from "../../redux/actions/queryActions";
+import { logout, reset } from "../../redux/reducer/authSlice";
+import "./NavBar.module.css";
+
+// import { toast } from "react-toastify";
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -31,16 +66,91 @@ import NavMobile from "./NavMobile";
 import { useState } from "react";
 
 const ResponsiveAppBar = () => {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { mode, toggleMode } = useContext(ColorModeContext);
+=======
+  const Search = styled("div")(({ theme }) => ({
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+  }));
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }));
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: "inherit",
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {
+        width: "12ch",
+        "&:focus": {
+          width: "20ch",
+        },
+      },
+    },
+  }));
+  const [, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const cart = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
+<<<<<<< HEAD
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+=======
+
+  const navigate = useNavigate();
+
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const dispatch = useDispatch();
+
+  function handleInputChange(event) {
+    event.preventDefault();
+    if (
+      event.target.value.trim().length >= 3 ||
+      event.target.value.length === 0
+    )
+      dispatch(queryName(event.target.value));
+  }
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 
   useEffect(() => {
     dispatch(getTotals());
@@ -80,6 +190,52 @@ const ResponsiveAppBar = () => {
                     About
                   </Typography>
                 </Button>
+<<<<<<< HEAD
+=======
+              </NavLink>
+            ))}
+            <NavLink to={"/userprofile"} className={styles.navlink}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {"Profile"}
+              </Button>
+            </NavLink>
+            {user && user.is_Admin ? (
+              <NavLink to={"/admin"} className={styles.navlink}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {"Admin"}
+                </Button>
+              </NavLink>
+            ) : null}
+          </Box>
+          <Search className={styles.searchbar} onChange={handleInputChange}>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+
+          {/* //Login and LogOut */}
+          {user ? (
+            <Button sx={{ color: "white" }} onClick={onLogout}>
+              Logout
+            </Button>
+          ) : (
+            <Button variant="text">
+              <Link
+                to="/login"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Login
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
               </Link>
             </Box>
             {user == null ? (
@@ -114,6 +270,7 @@ const ResponsiveAppBar = () => {
                 </Typography>
               </Link>
             </div>
+<<<<<<< HEAD
             <div className="topRight">
               <div className="topbarIconContainer">
                 <Link to="/cart" className="navlink">
@@ -133,6 +290,29 @@ const ResponsiveAppBar = () => {
                 display: "flex",
                 alignItems: "center",
                 textalign: "center",
+=======
+          </Link>
+
+          <Link to="/favs">
+            <FavoriteIcon />
+          </Link>
+
+          <Link
+            to="/how-does-it-work"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            How does it work?
+          </Link>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
               }}
             >
               <NavLink to={`/login`} className="navlink">

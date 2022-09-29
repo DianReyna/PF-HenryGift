@@ -38,9 +38,16 @@ const Cart = () => {
 
   const saveCart = async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
 >>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
+=======
+
+    // const URL=" https://henrygift-api.herokuapp.com/"
+    const URL = "http://localhost:3001";
+
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
     await axios.post(`${URL}/orders/cart`, {
       ...cart,
       user_id: user._id,
@@ -51,7 +58,11 @@ const Cart = () => {
   const handleRemoveFromCart = (cartItem) => {
     Swal.fire({
       title: "Are you sure?",
+<<<<<<< HEAD
       text: "You wont be able to revert changes!",
+=======
+      text: "You won't be able to revert changes!",
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -76,7 +87,11 @@ const Cart = () => {
   const handleClearCart = (e) => {
     Swal.fire({
       title: "Are you sure?",
+<<<<<<< HEAD
       text: "You wont be able to revert changes!",
+=======
+      text: "You won't be able to revert changes!",
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -85,7 +100,11 @@ const Cart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());
+<<<<<<< HEAD
         Swal.fire("Deleted!", "Your cart was cleared.", "success");
+=======
+        Swal.fire("Deleted!", "Your item was removed.", "success");
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
       }
     });
   };
@@ -170,6 +189,7 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes included</p>
+<<<<<<< HEAD
               {user && user._id ? (
                 <Link to="/send">
                   <button>Continue</button>
@@ -179,6 +199,20 @@ const Cart = () => {
                   <button>Login</button>
                 </Link>
               )}
+=======
+
+              {
+                user && user._id ? (
+                  <Link to="/send">
+                  <button>Continue</button>
+                </Link>
+                ) : (
+                  <Link to="/login">
+                    <button>Login to Continue</button>
+                  </Link>
+                )
+              }
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
               <div className="continue-shopping">
                 <Link to="/">
                   <ArrowBackIcon />

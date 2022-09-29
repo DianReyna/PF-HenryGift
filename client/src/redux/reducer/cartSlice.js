@@ -5,6 +5,10 @@ const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+<<<<<<< HEAD
+=======
+  //cartTotalItems: [],
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 };
 
 export const cartSlice = createSlice({
@@ -18,13 +22,23 @@ export const cartSlice = createSlice({
 
       if (itemIndex >= 0 && state.cartItems[itemIndex].cartQuantity <= 4) {
         state.cartItems[itemIndex].cartQuantity += 1;
+<<<<<<< HEAD
         toast.info(`Amount of ${state.cartItems[itemIndex].name} increased`, {
+=======
+        //state.cartTotalItems.push(state.cartItems[itemIndex]);
+        toast.info(`Cantidad de ${state.cartItems[itemIndex].name} aumentada`, {
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
           position: "bottom-left",
         });
       } else if (!state.cartItems[itemIndex]) {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
+<<<<<<< HEAD
         toast.success(`${action.payload.name} added to cart`, {
+=======
+        //state.cartTotalItems.push(tempProduct);
+        toast.success(`${action.payload.name} agregado al carrito`, {
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
           position: "bottom-left",
         });
       }
@@ -115,6 +129,10 @@ export const cartSlice = createSlice({
         state.cartItems = action.payload.cartItems;
         state.cartTotalQuantity = action.payload.cartTotalQuantity;
         state.cartTotalAmount = action.payload.cartTotalAmount;
+<<<<<<< HEAD
+=======
+        //state.cartTotalItems = action.payload.cartTotalItems;
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
       }
     },
   },

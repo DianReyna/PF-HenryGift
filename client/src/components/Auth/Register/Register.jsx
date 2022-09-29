@@ -1,10 +1,14 @@
-import React, { useState,useEffect } from "react";
-import { toast } from 'react-toastify'
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { useNavigate  } from "react-router-dom";
 import { Google, Facebook, TonalitySharp } from "@mui/icons-material";
+=======
+import { Link, useNavigate } from "react-router-dom";
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 import Spinner from "../spinner";
-import {register,reset} from "../../../redux/reducer/authSlice";
+import { register, reset } from "../../../redux/reducer/authSlice";
 import {
   Grid,
   TextField,
@@ -20,8 +24,10 @@ import { validate } from "./validate";
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {user,isLoading,isError,isSuccess,message}= useSelector((state) => state.auth);
-  
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
@@ -30,10 +36,16 @@ export default function Register() {
     email: "",
     password: "",
     accept: false,
-    passwordAgain: ""
+    passwordAgain: "",
   });
+<<<<<<< HEAD
   
   const [errors, setErrors] = useState({first_name:""});
+=======
+
+  const [errors, setErrors] = useState({ first_name: "*name is required" });
+  
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
   const handleChange = (prop) => (event) => {
     setInput({ ...input, [prop]: event.target.value });
     setErrors(validate({ ...input, [prop]: event.target.value }));
@@ -43,38 +55,39 @@ export default function Register() {
     setErrors(validate({ ...input, [prop]: event.target.checked }));
   };
 
-
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
     if (isSuccess || user) {
+<<<<<<< HEAD
       toast.success(`Please check your inbox to verify your email.`)
       navigate('/')
+=======
+      navigate("/");
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
     }
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
-
- 
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(input.password!==input.passwordAgain){
-      toast.error('Passwords do not match')
-    }else{
-      const userData={
-        first_name:input.first_name,
-        last_name:input.last_name,
+    if (input.password !== input.passwordAgain) {
+      toast.error("Passwords do not match");
+    } else {
+      const userData = {
+        first_name: input.first_name,
+        last_name: input.last_name,
         dateBirth: input.dateBirth,
         phone: input.phone,
         email: input.email,
         password: input.password,
-      }
+      };
       dispatch(register(userData));
     }
   };
-  if (isLoading){
-    return <Spinner/>
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
@@ -85,7 +98,7 @@ export default function Register() {
       <Grid>
         <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
-            <form onSubmit={ handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <Grid container spacing={1}>
                 <Grid xs={12} sm={6} item>
                   <TextField
@@ -198,7 +211,7 @@ export default function Register() {
                   <TextField
                     type="password"
                     placeholder="Enter password"
-                    label="Introduce again the password"
+                    label="Re-introduce your password"
                     variant="outlined"
                     fullWidth
                     onChange={handleChange("passwordAgain")}
@@ -218,9 +231,14 @@ export default function Register() {
                     <Checkbox
                       checked={input.accept}
                       onChange={handleCheck("accept")}
+<<<<<<< HEAD
                       style=
                       {{
                         backgroundColor: "#e16428",
+=======
+                      style={{
+                        backgroundColor: "#448AFF",
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
                         padding: 1,
                       }}
                     />
@@ -253,7 +271,7 @@ export default function Register() {
             </form>
             {/* {auth.registerStatus === "rejected" ? (<Typography component={"p"} sx={{ fontSize: 17 ,color:"red"}}>{auth.registerError}</Typography>) :null} */}
             <Typography variant="h7">
-              Do you have an account Henry-Gift?
+              Already have an account?
             </Typography>
             <Button variant="text" onClick={()=>{ navigate('/login')
           window.scroll(0, 0);}}>

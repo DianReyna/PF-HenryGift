@@ -20,6 +20,7 @@ import { URL } from "../../utils/index";
 >>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
 const SendBox = () => {
   const cart = useSelector((state) => state.cart);
+<<<<<<< HEAD
   console.log(cart);
 
   const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
@@ -29,6 +30,12 @@ const SendBox = () => {
 
 =======
 >>>>>>> f8a3346c1ea300ea29620e50413818547edb0978
+=======
+  
+   const dispatch = useDispatch()
+  const [input, setInput] = useState(Array(cart.cartItems.length).fill(""));
+
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
   const { user } = useSelector((state) => state.auth);
 
   const handleEmailChange = (e, position) => {

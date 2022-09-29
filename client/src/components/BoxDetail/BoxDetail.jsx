@@ -9,8 +9,11 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
 import ReviewBar from "../ReviewBar/ReviewBar";
 import AddToCart from "../BoxCard/Sections/AddToCart";
+<<<<<<< HEAD
 import Favorite from "../BoxCard/Sections/Favorite";
 import Reviews from "../Reviews/Reviews";
+=======
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
 
 
 import {
@@ -30,6 +33,9 @@ export default function BoxDetail() {
   const dispatch = useDispatch();
   const { idBox } = useParams();
   const { detail } = useSelector((state) => state.boxes);
+  // const detetalle = useSelector((state) => state.boxes);
+  // console.log('detail', detail)
+  // console.log('detalle', detetalle)
 
   useEffect(() => {
     dispatch(detailBox(idBox));
@@ -75,6 +81,7 @@ export default function BoxDetail() {
                 <AttachMoneyIcon />
                 <p>Price: {detail.price}</p>
               </ItemBox>
+<<<<<<< HEAD
               <GroupFeats>
                 <AddToCart box={detail} />
                 <div>
@@ -83,6 +90,10 @@ export default function BoxDetail() {
                 </div>
               </GroupFeats>
             </div>
+=======
+              <AddToCart box={detail} />
+            </InfoDetailBox>
+>>>>>>> 3a680830a4cbbbf59e607b76f9d9881974808611
           </DetailBox>
           <CardsProducts>
             {allProducts &&
